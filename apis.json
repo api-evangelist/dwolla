@@ -1,0 +1,118 @@
+{
+    "name": "Dwolla",
+    "description": "Dwolla???s ACH APIs make it easy to integrate bank transfers. Facilitate ACH payments, or verify customer and bank account information within your platform.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/185-dwolla.jpg",
+    "tags": [
+        "api lifeycle",
+        "api provider",
+        "financial",
+        "financial services",
+        "have api",
+        "have openapi",
+        "payments",
+        "target"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/dwolla\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Dwolla API - Sandbox",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/185-dwolla.jpg",
+            "humanURL": "https:\/\/www.dwolla.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/dwolla-api--sandbox-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/dwolla-api--sandbox.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "https:\/\/www.dwolla.com"
+        },
+        {
+            "type": "Base",
+            "url": "https:\/\/www.dwolla.com\/oauth\/rest\/"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.dwolla.com\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/dwolla"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/dwolla"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developers.dwolla.com\/"
+        },
+        {
+            "type": "Email",
+            "url": "privacy@dwolla.com"
+        },
+        {
+            "type": "Email",
+            "url": "security@dwolla.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@dwolla.com"
+        },
+        {
+            "type": "Email",
+            "url": "compliance@dwolla.com"
+        },
+        {
+            "type": "Email",
+            "url": "disputes@dwolla.com"
+        },
+        {
+            "type": "Email",
+            "url": "notices@dwolla.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/Dwolla"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.dwolla.com\/pricing"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.dwolla.com\/pricing\/"
+        },
+        {
+            "type": "Pricing",
+            "url": "dwolla-com-pricing"
+        },
+        {
+            "type": "Sandbox",
+            "url": "https:\/\/developers.dwolla.com\/guides\/sandbox-setup\/"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/dwolla"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.dwolla.com\/developers\/"
+        }
+    ]
+}
