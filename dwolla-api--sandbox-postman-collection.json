@@ -1,5 +1,5 @@
 {
-    "id": "9080716302e2a9b0ccfb16710b2d2a0a",
+    "id": "fea124317c7270c3d5279c69a105a244",
     "name": "Dwolla API - Sandbox",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "0bb4b8b6f99d4a378b4a02fb48373303",
+            "id": "0a0d5e5bc6977fc063103d9111b297af",
             "name": "Application Access Token",
             "url": "https:\/\/api-sandbox.dwolla.com\/token",
             "description": "",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "6972b3c9f1fb1945a4d106b7941f9828",
+            "id": "db0cab3e065aa64cb94df29a6cede646",
             "name": "Retrieve Account Details",
             "url": "https:\/\/api-sandbox.dwolla.com\/accounts\/{accountId}",
             "description": "An Account represents your Dwolla Master Account that was established on dwolla.com. Retrieve account information belonging to the authorized user account that owns the API application. Retrieve an account id by calling the root of the API.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|-------|----------|-----------|\nid | string | path | yes | Account unique identifier.",
@@ -60,11 +60,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "2df4c478944884e93e59683780ff1aa6",
+            "id": "9a6f742858363242f5f547bff2770f1e",
             "name": "List Funding Sources For An Account",
             "url": "https:\/\/api-sandbox.dwolla.com\/accounts\/{accountId}\/funding-sources",
             "description": "An Account represents your Dwolla Master Account that was established on dwolla.com.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|--------|--------|-----------|-----------|\nid | string | path | yes | Account's unique identifier.\nremoved | boolean | query | no | Filter removed funding sources. Defaults to `true`. Set to `false` to filter out removed funding sources from list (i.e. - \/accounts\/{id}\/funding-sources?removed=false).",
@@ -98,11 +98,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "1e0b37d0886b039256e904a7223b2081",
+            "id": "b22367d30dca21296979de6c43e0c81d",
             "name": "List Mass Payments For An Account",
             "url": "https:\/\/api-sandbox.dwolla.com\/accounts\/{accountId}\/mass-payments",
             "description": "Retrieve an Account's list of previously created mass payments. Mass payments are returned ordered by date created, with most recent mass payments appearing first.\n\n### Request parameters\n\n| Parameter | Data Type | Parameter Type | Required | Description |\n| ---------|--------|---------|--------|----------|\n| id | string | path | yes | Account unique identifier to get mass payments for. |\n| limit | integer | query | no | How many results to return. Defaults to 25. |\n| offset | integer | query | ",
@@ -129,11 +129,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "1d4d9c13b1d587e94cb394bffe1cddfc",
+            "id": "7f8945a7dd3f75911835705c8e0903b5",
             "name": "List And Search Transfers For An Account",
             "url": "https:\/\/api-sandbox.dwolla.com\/accounts\/{accountId}\/transfers",
             "description": "Retrieve an Account's list of transfers. Transaction search is supported by passing in optional querystring parameters such as: `search` which represents a term to search on, `startAmount`, `endAmount`, `startDate`, and `endDate`.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n--------|---------|---------|---------|----------|\nid | string | path | yes | Account unique identifier to get transfers for.\nsearch | string | query | no | A string to be matched ",
@@ -160,11 +160,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "cc8acd23cbb4f0b96eab8ce6d8aee152",
+            "id": "0f76e46572b64068464c84832f8ecfd8",
             "name": "Create A Funding Source For A Master Dwolla Account",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources",
             "description": "Create a new Funding Source for a Master Dwolla Account. \n\n### Request Parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|--------|----------|---------|\naccountNumber | string | body | yes | The bank account number.\nroutingNumber | string | body | yes | The bank account's routing number.\nbankAccountType | string | body | yes | Type of bank account: `checking` or `savings`.\nname | string | body | yes | Arbitrary nickname for the funding source.",
@@ -183,11 +183,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "a0e211fc1875dfa97298c2b10054a5ca",
+            "id": "c2fa02ff01f5225c060f14fa00e85f65",
             "name": "Create A New Beneficial Owner.",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/beneficial-owners",
             "description": "",
@@ -214,11 +214,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "488422cfa99e18d1373f312b062555c3",
+            "id": "0dc45204f0a7eb5dbcaa1ae3742c33ba",
             "name": "List Beneficial Owners",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/beneficial-owners",
             "description": "",
@@ -245,11 +245,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "ff64088558f46c4795d8e70d1bb98f83",
+            "id": "1933eb6f7e38627d702cb76139fc94b0",
             "name": "Retrieve A Beneficial Owner",
             "url": "https:\/\/api-sandbox.dwolla.com\/beneficial-owners\/{beneficialOwnerId}",
             "description": "",
@@ -276,11 +276,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "166a3e24e5c095dae2fac50aaaec5f42",
+            "id": "2a1aff23079db10b5f19efcef454ff68",
             "name": "Update A Beneficial Owner",
             "url": "https:\/\/api-sandbox.dwolla.com\/beneficial-owners\/{beneficialOwnerId}",
             "description": "",
@@ -307,11 +307,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "c8e93475b5cb2e575cf6d67539a7adab",
+            "id": "8b27c93da5b54483c4344553fc885979",
             "name": "Delete A Beneficial Owner",
             "url": "https:\/\/api-sandbox.dwolla.com\/beneficial-owners\/{beneficialOwnerId}",
             "description": "",
@@ -338,11 +338,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "367756de7ebed4d7631dcb88b769d0db",
+            "id": "71e3ecdb23b5f50c2c8bd5994f39ad33",
             "name": "Retrieve Beneficial Ownership Status",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{beneficialOwnerId}\/beneficial-ownership",
             "description": "",
@@ -369,11 +369,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "e82f19800628654ab822630cd5e86640",
+            "id": "32529726fc55bdc4c829c50bb8f165e2",
             "name": "Certify Beneficial Ownership",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/beneficial-ownership",
             "description": "",
@@ -400,11 +400,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "4b50df438a90fd40cf0707d1659009b5",
+            "id": "f7301d87381c5e6008c1e810162c974f",
             "name": "List Business Classifications",
             "url": "https:\/\/api-sandbox.dwolla.com\/business-classifications",
             "description": "Retrieve a list of industry classifications to identify the Customer\u2019s business.",
@@ -423,11 +423,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "e675baf7c89b3f5db52aeeb62ae5fe6d",
+            "id": "88f37dc60967cd927880b49f8ff4aca9",
             "name": "Retrieve A Business Classification",
             "url": "https:\/\/api-sandbox.dwolla.com\/business-classifications\/{businessClassificationId}",
             "description": "Retrieve a business classification from a list of industry classifications.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n----------|--------|--------|----------|-----------|\nid | string | path | yes | Business classification unique identifier.",
@@ -454,11 +454,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "87c2645fd13f6d7eb8b6de6c4cca6045",
+            "id": "0f5a68cf452d21d3fcb8b674fe6a5807",
             "name": "List And Search Customers",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers",
             "description": "Retrieve a Dwolla Account's list of created Customers.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n----------|---------|---------|-----------|------|\nlimit | integer | query | no | How many results to return\noffset | integer | query | no | How many results to skip\nsearch | string | query | no | Searches on `firstName`, `lastName`, and `email` fields. (`\/customers?search=Smith`)",
@@ -477,11 +477,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "811ea4065df0d8d5008eb80775dc021e",
+            "id": "c9f3ff2e9b1d3c19fac8facdaa96d6f9",
             "name": "Create An Unverified Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers",
             "description": "To create an unverified Customer, you need to provide only the customer's full name, email address, and optional businessName (if user is a business). Unverified Customers have a default sending transaction limit of $5,000 per week. A week is defined as Monday to Sunday UTC time. As this Customer is not identity verified, they will only be able to transact with verified Customers or your Dwolla Master Account.\n\n### Verified and unverified Customers\n\nWith a transfer of money, at least one party m",
@@ -500,11 +500,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "81f74092f275730422e3341e52bb6cfe",
+            "id": "18bac756a68e24c75c9470a672e00620",
             "name": "Retrieve A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}",
             "description": "Retrieve a Customer belonging to the authorized Dwolla Master Account.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|----------|----------|---------|---------|\nid | string | path | yes | Customer unique identifier.",
@@ -531,11 +531,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "acff54fa38cfeb0a0dca06a0804fce74",
+            "id": "d31d15f6de7871547f20eb1613eb7799",
             "name": "Update A Customer - Suspend",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}",
             "description": "An unverified and verified Customer can be suspended by supplying the status of `suspended`. You'll need to contact Dwolla to unsuspend a Customer.\n\n##### Request parameters\nParameter | Data Type | Parameter Type | Required | Description\n--------|------|---------|----------|----------|\nstatus | string | body | no | Value of `suspended`.",
@@ -562,11 +562,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "25e9b5b65eee120c62450d105badb2e6",
+            "id": "fc12bc8f5e46e3309510474397b48db5",
             "name": "Create A Document For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/documents",
             "description": "Create a document for a Customer pending verification by uploading a photo of the document. This requires a multipart form-data POST request. The file must be either a .jpg, .jpeg, .png, .tif, or .pdf up to 10MB in size.\n\n\n|Form Field| Data type | Required | Description|\n|---------|----------|----------|--------------|\n| documentType | string | yes | One of `passport`, `license`, `idCard`, or `other` |\n| file | file | yes | File contents.",
@@ -593,11 +593,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "d9f2a0909f5ebfd328295253c782cf12",
+            "id": "b31ef2485aa4fdc7b373f262e9b7ee29",
             "name": "List Documents For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}\/documents",
             "description": "Retrieve a list of documents that belong to a Customer.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|----------|--------|---------|\nid | string | path | yes | Customer unique identifier.",
@@ -624,11 +624,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "5e68bfff2ae88179a504bc70e2487876",
+            "id": "0e9cc2955c0b27e81b467d49b08f1bcf",
             "name": "Retrieve A Document",
             "url": "https:\/\/api-sandbox.dwolla.com\/documents\/{documentId}",
             "description": "Retrieve an uploaded document by its id.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|----------|---------|---------|\nid | string | path | yes | Customer unique identifier.",
@@ -655,11 +655,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "3ac2eb7f164175a46f50486fdd25d67c",
+            "id": "512f05e2f19fc0d0c0890937f1b75403",
             "name": "Create A Document For A Beneficial Owner",
             "url": "https:\/\/api-sandbox.dwolla.com\/beneficial-owners\/{beneficialOwnerId}\/documents",
             "description": "Create a document for a Customer pending verification by uploading a photo of the document. This requires a multipart form-data POST request. The file must be either a .jpg, .jpeg, .png, .tif, or .pdf up to 10MB in size.\n\n### Resources\n[Article - Handling document verification status](https:\/\/developers.dwolla.com\/resources\/customer-verification\/handling-verification-statuses.html)\n\n|Form Field| Data type | Required | Description|\n|---------|----------|----------|--------------|\n| documentType |",
@@ -686,11 +686,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "bdfa42403740205e66eae86fe961deb7",
+            "id": "5dc56158348a8e4bd5813edbfabecab8",
             "name": "List Documents For A Beneficial Owner",
             "url": "https:\/\/api-sandbox.dwolla.com\/beneficial-owners\/{beneficialOwnerId}\/documents",
             "description": "",
@@ -717,11 +717,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "3b3d91ced3aaffee3d0c36e8e161bc4f",
+            "id": "bded5c37a16958ebc90ed3d9e0bd7add",
             "name": "List Events",
             "url": "https:\/\/api-sandbox.dwolla.com\/events",
             "description": "When the state of a resource changes, we create a new event resource to record the change. For instance, if a Customer\u2019s status changes to verified, a customer_verified event will be created. When an Event is created, a Webhook will be created to deliver the Event to any URLs specified by your active Webhook Subscriptions.\n\nRetrieve a list of events for the authorized application.",
@@ -755,11 +755,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "23c44c6293c39e8e6934c98e30368f45",
+            "id": "cd34a74cd87f6262b1d1e832ffe40347",
             "name": "Retrieve An Event",
             "url": "https:\/\/api-sandbox.dwolla.com\/events\/{eventId}",
             "description": "When the state of a resource changes, we create a new event resource to record the change. For instance, if a Customer\u2019s status changes to verified, a customer_verified event will be created. When an Event is created, a Webhook will be created to deliver the Event to any URLs specified by your active Webhook Subscriptions.\n\nRetrieve an event by id.\n\n### Request parameters\nParameter | Data Type | Parameter Type | Required | Description\n---------|--------|---------|----------|----------|\nid | st",
@@ -786,11 +786,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "e0d673d609423323a78bd97590c74c39",
+            "id": "17b249ce9f3b2ee9d4e53fb2675e23b7",
             "name": "Create A Funding Source For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/funding-sources",
             "description": "Create a new Funding Source for a Customer. Customers can have a maximum of 6 funding sources.\n\n### Request parameters\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|----------|--------|---------|\n_links | object | body | no | A <code>_links<\/code> JSON object containing an `on-demand-authorization` link relation. See example raw request and response below.\nroutingNumber | string | body | yes | The bank account's routing number.\naccountNumber | string | body ",
@@ -817,11 +817,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "f44a712213fcf1fa0b760b45b18b96de",
+            "id": "db186285438d3bbfc47a509974c310cb",
             "name": "Create A Funding Source For A Customer - On-demand Auth",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}\/funding-sources",
             "description": "Create a new Funding Source for a Customer. Customers can have a maximum of 6 funding sources.\n\n### Request parameters\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|----------|--------|---------|\n_links | object | body | no | A <code>_links<\/code> JSON object containing an `on-demand-authorization` link relation. See example raw request and response below.\nroutingNumber | string | body | yes | The bank account's routing number.\naccountNumber | string | body ",
@@ -848,11 +848,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "6a66664c501f2d14c28e0e8f896ac186",
+            "id": "22fc961089cb828270025c9035feb085",
             "name": "List Funding Sources For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}\/funding-sources",
             "description": "Retrieve a list of funding sources that belong to a Customer. By default, all funding sources are returned unless the removed querystring parameter is set to false in the request.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|--------|--------|----------|---------|\nid | string | path | yes | Customer's unique identifier.\nremoved | boolean | query | no | Filter removed funding sources. Defaults to `true`. Set to `false` to filter out removed fu",
@@ -886,11 +886,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "19a818497f1b692ef13f45d412389838",
+            "id": "6f9d67a6f567bb15a2bc8f7882e3b0f7",
             "name": "Create An IAV Token For Dwolla.js",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}\/iav-token",
             "description": "To initiate the IAV flow, dwolla.js requires a single-use IAV token for a Customer. Your server initiates a POST request to Dwolla, specifying for which Customer you want to add\/verify a bank account. Dwolla will respond with a non-expiring single-use token. This IAV token will be sent to the client and used to authenticate the HTTP request asking Dwolla to render the IAV flow.\n\n### Resources\n\n[Article - Funding source verification - IAV](https:\/\/developers.dwolla.com\/resources\/funding-source-ve",
@@ -917,11 +917,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "49120fb971316fa668634a1b578a39bb",
+            "id": "47b28dbbca9100c2b7672f6514d88261",
             "name": "Create A Customer Funding Sources Token For Dwolla.js",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{customerId}\/funding-sources-token",
             "description": "Before calling a function within dwolla.js to add a new funding source, you need to generate a funding sources token. Your server initiates a POST request to Dwolla, specifying for which Dwolla account or white label Customer you want to add a bank account. Dwolla will respond with a funding sources token that expires in an hour. This token will be sent to the client and used to authenticate the HTTP request asking Dwolla to add a new funding source.\n\n### Resources\n\n[Article - Using dwolla.js to",
@@ -948,11 +948,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "334d1ec241ea3c08473c5632b3072522",
+            "id": "26d31ac4ba9aca7042a6bc3b3efafec8",
             "name": "Retrieve A Funding Source",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources\/{fundingSourceId}",
             "description": "Retrieve a funding source by its unique id. \n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n--------|---------|--------|-----------|---------|\nid | string | path | yes | id of funding source to retrieve.",
@@ -979,11 +979,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "3852ecdd6b433a942064304f62c6d668",
+            "id": "c774123c0a68134833e348a7b4149cac",
             "name": "Update A Funding Source",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources\/{fundingSourceId}",
             "description": "Update a funding source. The accountNumber, routingNumber, type and name are all optional attributes that can be updated on a funding source when it has an unverified status. You can choose to update only name, name and routingNumber, name and accountNumber, name and type or all four attributes. Any attribute that isn\u2019t updated remains the same as it was prior to update, including the funding source id. The name attribute can be updated when a funding source has either an unverified or verifie",
@@ -1010,11 +1010,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "b4e01184b6d1ce711b70f66e144c79c8",
+            "id": "297ea656f0b4e30e88fa70aac95665ff",
             "name": "Initiate Micro Deposits For Bank Verification",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources\/{fundingSourceId}\/micro-deposits",
             "description": "If you choose to verify using micro-deposits, Dwolla will transfer two deposits of less than $0.10 to the Customer\u2019s linked bank or credit union account. After initiating micro-deposits, these two random amounts should post to the Customer\u2019s bank account in 1-2 business days. Once the Customer sees these deposits in their account, they need to verify the two deposit amounts in your application. If subscribed to webhooks, your application will be notified throughout this process with the trig",
@@ -1041,11 +1041,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "f10fc9ff3f689dbe4666f4baa0120cd4",
+            "id": "1bb1df6eefe9c8d45a9aa469de6a0fc1",
             "name": "Retrieve Micro Deposits Details",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources\/{fundingSourceId}\/micro-deposits",
             "description": "Check if pending verification for micro-deposits exists.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n--------|---------|-------|------------|---------|\nid | string | path | yes | id of funding source to check status of validation deposits.",
@@ -1072,11 +1072,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "fb48542d6a316521180c7b46f1ea28d3",
+            "id": "94f9e25dd97fd44ba2a65612446e58ea",
             "name": "Retrieve A Funding Source Balance",
             "url": "https:\/\/api-sandbox.dwolla.com\/funding-sources\/{VCRBalanceFundingSourceId}\/balance",
             "description": "Retrieve the amount for the `balance` funding source. The funding source type `balance` only exists for Verified Customer accounts and represents a balance held in the Dwolla network.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|----------|--------|---------|\nid | string | path | yes | id of funding source to retrieve.",
@@ -1103,11 +1103,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "6de3ed77c22c0c670a1a12c1bbf15bbf",
+            "id": "8dbc82b9bbaedaf33b6e2f0c601563f0",
             "name": "Create A Transfer",
             "url": "https:\/\/api-sandbox.dwolla.com\/transfers",
             "description": "Initiate a transfer for either an Account or Customer resource.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Optional? | Description\n--------|---------|---------|--------|---------|\n| _links | yes | object | A _links JSON object describing the desired `source` and `destination` of a transfer. [Reference the Source and Destination object to learn more](#source-and-destination-types) about possible values for `source` and `destination`. |\n| amount | yes | object | An amount JS",
@@ -1126,11 +1126,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "ef9513a102c46e1b12e9b76c2297731f",
+            "id": "8427d4c34af069c893385274756cc2d6",
             "name": "Retrieve A Transfer",
             "url": "https:\/\/api-sandbox.dwolla.com\/transfers\/{transferId}",
             "description": "Retrieve a transfer belonging to an Account or Customer by its id.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|---------|--------|---------|\nid | string | path | yes | The id of the transfer to be retrieved.",
@@ -1157,11 +1157,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "8a1a57a5eb2e430112598d6d57913350",
+            "id": "47fda1e7ab104387514ee32d7e809a86",
             "name": "Cancel A Transfer",
             "url": "https:\/\/api-sandbox.dwolla.com\/transfers\/{transferId}",
             "description": "When a Customer's bank transfer is eligible for cancellation, Dwolla returns a `cancel` link  when retrieving a transfer. This cancel link is used to trigger the cancellation, preventing the bank transfer from processing further. A bank transfer is cancellable up until 4pm CT on that same business day if initiated prior to 4PM CT. If a transfer was initiated after 4pm CT, it can be cancelled anytime before 4pm CT on the following business day.\n\n### Request Parameters\n\n| Parameter | Data Type | P",
@@ -1188,11 +1188,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "02e4c318155a112346311ffbb5c66d09",
+            "id": "ec4d75634a7e5ec7b3c797a096063cbb",
             "name": "List And Search Transfers For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/transfers",
             "description": "Retrieve a white label Customer\u2019s list of transfers. Transaction search is supported by passing in optional querystring parameters such as: `search` which represents a term to search on, `startAmount`, `endAmount`, `startDate`, and `endDate`.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n---------|---------|---------|---------|--------|\nid | string | path | yes | Customer unique identifier to get transfers for.\nsearch | string | query | no | A string ",
@@ -1219,11 +1219,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "170c6c8be8c1c7a8a4be1031f9913e0e",
+            "id": "baf6e2189d435bcc3dd64256d6e1cfd6",
             "name": "List Fees For A Transfer",
             "url": "https:\/\/api-sandbox.dwolla.com\/transfers\/{transferId}\/fees",
             "description": "Retrieve fees charged on a created transfer. Fees are visible to the Customer or Account that is charged the fee, as well as the Dwolla Account that is involved in receiving the fee.\n\n### Request parameters\n\n| Parameter | Data Type | Parameter Type | Required | Description |\n|----------|------------|-------------|---------|------|\nid | string | path | yes | The id of the transfer to retrieve fees for.",
@@ -1250,11 +1250,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "215c5774ba1cc38f7e9359fcd77b88db",
+            "id": "4b0feb7d3902f397330796b73fa80a4c",
             "name": "Retrieve A Transfer Failure Reason",
             "url": "https:\/\/api-sandbox.dwolla.com\/transfers\/{transferId}\/failure",
             "description": "When a bank transfer fails for an Account or Customer, Dwolla returns a `failure` link when getting the transfer by Id. This failure link is used to retrieve the return code and description. For reference, the list of possible failure codes and descriptions are shown in the [Transfer failures](https:\/\/developers.dwolla.com\/resources\/bank-transfer-workflow\/transfer-failures.html) resource article.\n\n### Request Parameters\n\n| Parameter | Data Type | Parameter Type | Required | Description |\n|------",
@@ -1281,11 +1281,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "bc046412966f36b15d2cf672721fdefc",
+            "id": "1cd8447752c77b5a00dcad63bc145215",
             "name": "Create A Mass Payment",
             "url": "https:\/\/api-sandbox.dwolla.com\/mass-payments",
             "description": "Initiate a mass payment from an Account or verified Customer resource. A mass payment contains a list of items representing individual payments. Optionally, mass payments can contain metadata on the mass payment itself as well as items contained in the mass payment which can be used to pass along additional information with the mass payment and item respectively.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n-------|---------|----------|--------|-------",
@@ -1304,11 +1304,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "ce0bbc1797cc9bfedafd78f5ee3b7e46",
+            "id": "56c799dbc74f4375fbdd8c7285ce9d63",
             "name": "Retrieve A Mass Payment",
             "url": "https:\/\/api-sandbox.dwolla.com\/mass-payments\/{massPaymentId}",
             "description": "Retrieve a mass payment by its id. All mass payments will have a status of pending upon creation and will move to processing and finally complete as the service runs.\n \n ### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n--------|---------|---------|----------|----------|\nid | string | path | yes | The id of the mass payment to retrieve information for.",
@@ -1335,11 +1335,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "b4c57fc415302ca6dc285ca53411e56e",
+            "id": "c127f5e89ff032a8b113a2692a465a15",
             "name": "Update A Mass Payment",
             "url": "https:\/\/api-sandbox.dwolla.com\/mass-payments\/{massPaymentId}",
             "description": "This section covers how to update a mass payment's status to `pending` which triggers processing on a created and deferred mass payment, or `cancelled` which cancels a created and deferred mass payment.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n-------|---------|----------|--------|----------|\n| id | string | path | yes | id of mass payment to update. |\n| status | string | body | yes | Either `pending` or `cancelled` depending on the action you want",
@@ -1366,11 +1366,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "a59e72ab559ecb4c8e81060f5f0f41a0",
+            "id": "8b6598ddd9d77fc41d2e15b3748e8fd3",
             "name": "List Items For A Mass Payment",
             "url": "https:\/\/api-sandbox.dwolla.com\/mass-payments\/{massPaymentId}\/items",
             "description": "A mass payment contains a list of payments called items. An item is distinct from the transfer which it creates. An item can contain a status of either failed, pending, or success depending on whether the payment was created by the Dwolla service or not. A mass payment item status of success is an indication that a transfer was successfully created. A mass payment\u2019s items will be returned in the _embedded object as a list of items.\n\n### Request Parameters\n\nParameter | Data Type | Parameter Typ",
@@ -1397,11 +1397,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "8649bf2f17ae964f0384bbb3189b899d",
+            "id": "83cea9c7d55407715ddf99ea09b4a8db",
             "name": "List Mass Payments For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/mass-payments",
             "description": "Retrieve a verified Customer's list of previously created mass payments. Mass payments are returned ordered by date created, with most recent mass payments appearing first.\n\n### Request parameters\n\n| Parameter | Data Type | Parameter Type | Required | Description |\n| --------|--------|---------|---------|---------|\n| id | string | path | yes | Customer unique identifier to get mass payments for. |\n| limit | integer | query | no | How many results to return. Defaults to 25. |\n| offset | integer |",
@@ -1428,11 +1428,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "d8f2eae25c221c8886cb82a186289f2c",
+            "id": "94a02d72a514b32efe9b9d4140af364c",
             "name": "Retreive A Mass Payment Item",
             "url": "https:\/\/api-sandbox.dwolla.com\/mass-payment-items\/{massPaymentItemId}",
             "description": "Retrieve a mass payment item by its unique identifier. An item can contain _links to: the mass payment the item belongs to, the transfer created from the item, and the destination user.\n\n### Request parameters\n\nParameter | Data Type | Parameter Type | Required | Description\n----------|--------|--------|----------|----------|\nid | string | path | yes | The id of the item to be retrieved in a mass payment.",
@@ -1459,11 +1459,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "2da020a29093a66716984a6a06ba0d85",
+            "id": "5f871fe8f5bafdc43dd7c1fe21125757",
             "name": "Create A Label",
             "url": "https:\/\/api-sandbox.dwolla.com\/customers\/{VCRCustomerId}\/labels",
             "description": "",
@@ -1490,11 +1490,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "589a333dec1e2be40c79a7c5e3527e18",
+            "id": "22f2d12fbfdc3eaabd8938e1e5a04225",
             "name": "Retrieve A Label",
             "url": "https:\/\/api-sandbox.dwolla.com\/labels\/{labelId}",
             "description": "",
@@ -1521,11 +1521,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "802023a0720bbf961db898d713e5eb73",
+            "id": "482319ff8c5226dfd489919b88659451",
             "name": "Remove A Label",
             "url": "https:\/\/api-sandbox.dwolla.com\/labels\/{labelId}",
             "description": "",
@@ -1552,11 +1552,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "6e69205fdd8257ead3335e6fe99ee704",
+            "id": "28975bad749f3e200846d35a2ef93e12",
             "name": "Create A Label Ledger Entry",
             "url": "https:\/\/api-sandbox.dwolla.com\/labels\/{labelId}\/ledger-entries",
             "description": "",
@@ -1583,11 +1583,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "ad4a3dd830b2726de0696e666e5b0dc4",
+            "id": "a4de5b644801062ab136c72e063fc407",
             "name": "List Label Ledger Entries",
             "url": "https:\/\/api-sandbox.dwolla.com\/labels\/{labelId}\/ledger-entries",
             "description": "",
@@ -1614,11 +1614,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "16090f64f824b1c6a8fbf6a4218ee274",
+            "id": "4d079069d04541ed0f03c5d9831f95e8",
             "name": "Retrieve A Label Ledger Entry",
             "url": "https:\/\/api-sandbox.dwolla.com\/ledger-entries\/{ledgerEntryId}",
             "description": "",
@@ -1645,11 +1645,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "2fedb2531fb8b2129a3387c75b4145ff",
+            "id": "a8ced708dc3fbea77e64a53fb6984e5d",
             "name": "List Labels For A Customer",
             "url": "https:\/\/api-sandbox.dwolla.com\/customer\/{VCRCustomerId}\/labels",
             "description": "",
@@ -1676,11 +1676,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "e6623552cb87b518915d78d5c8ba2789",
+            "id": "c46dfb5b8fee8825f50d075a55b05e0e",
             "name": "Create A Label Reallocation",
             "url": "https:\/\/api-sandbox.dwolla.com\/label-reallocations",
             "description": "",
@@ -1699,11 +1699,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "b147c8a672ee7c2d5357119104f95bfe",
+            "id": "d6120a443f8d623883434b7da4b9ba9b",
             "name": "Retrieve A Label Reallocation",
             "url": "https:\/\/api-sandbox.dwolla.com\/label-reallocations\/{labelReallocationId}",
             "description": "",
@@ -1730,11 +1730,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "bfba35c22d2f4003d3083cc64a4a87d9",
+            "id": "89b920cbfaf306b4815b908fbc07e4d6",
             "name": "Create A New On-demand Authorization",
             "url": "https:\/\/api-sandbox.dwolla.com\/on-demand-authorizations",
             "description": "Create an on-demand bank transfer authorization for your Customer. On-demand authorization allows Customers to authorize Dwolla to transfer variable amounts from their bank account using ACH at a later point in time for products or services delivered. This on-demand authorization is supplied along with the Customer\u2019s bank details when creating a new Customer funding source.\n\nWhen on-demand authorization is enabled for your application the Customer is presented with text on a \u201cadd bank accoun",
@@ -1753,11 +1753,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "eefb8ddfbc9d0090eda5c3cb5c7d53b2",
+            "id": "6d13216bcf6f9842d2ebe2bdfcbc791e",
             "name": "Create A Webhook Subscription",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions",
             "description": "",
@@ -1776,11 +1776,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "8e3aa37eb11d8d38d694c7b705797de0",
+            "id": "0e86d676c0a2e5c2df83070969b1aeac",
             "name": "List Webhook Subscriptions",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions",
             "description": "",
@@ -1799,11 +1799,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "529e4c2200e42b0ebf5391a24ca7a444",
+            "id": "92d5ffb3a8b256ac3c386c5187c6c2cf",
             "name": "Retrieve A Webhook Subscription",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions\/{webhookSubscriptionId}",
             "description": "",
@@ -1830,11 +1830,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "ffca9ac2493670255733f4f61d7b29bd",
+            "id": "1b483cd71bb33a0dff24a111aef19f7e",
             "name": "Update A Webhook Subscription",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions\/{webhookSubscriptionId}",
             "description": "",
@@ -1861,11 +1861,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "2987c300a4d90dbf72282eb5e14cffd5",
+            "id": "ef7911e411e2177ea6169fff0af8938a",
             "name": "Delete A Webhook Subscription",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions\/{webhookSubscriptionId}",
             "description": "",
@@ -1892,11 +1892,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "a122b4929fb01de9d819fdfa2f96057f",
+            "id": "0aa0504a2c5890e7c039e9b40a5942bc",
             "name": "List Webhooks For A Webhook Subscription",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhook-subscriptions\/{webhookSubscriptionId}\/webhooks",
             "description": "",
@@ -1923,11 +1923,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "174590bd76d23bb59c544b283d862fb4",
+            "id": "37ae9c79f69ec5793fe5de49742a52f3",
             "name": "Retrieve A Webhook",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhooks\/{webhookId}",
             "description": "",
@@ -1954,11 +1954,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "d1a6cb69ae6f4a8471133d5d46018353",
+            "id": "c5902277cf47aac0c81772a7bdc69aaa",
             "name": "Retry A Webhook",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhooks\/{webhookId}\/retries",
             "description": "",
@@ -1985,11 +1985,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "82d5542d0f15ec1a94a02447fde568ce",
+            "id": "4880e65fb3562a1c70340c58220315f6",
             "name": "List Retries For A Webhook",
             "url": "https:\/\/api-sandbox.dwolla.com\/webhooks\/{webhookId}\/retries",
             "description": "",
@@ -2016,11 +2016,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         },
         {
-            "id": "3cccac89ba3a4eb27af0d39b71719eb0",
+            "id": "f98353874a7a5f6c6cbcff818e8a90b8",
             "name": "Get Root",
             "url": "https:\/\/api-sandbox.dwolla.com\/",
             "description": "",
@@ -2039,7 +2039,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9080716302e2a9b0ccfb16710b2d2a0a",
+            "collectionId": "fea124317c7270c3d5279c69a105a244",
             "rawModeData": ""
         }
     ]
