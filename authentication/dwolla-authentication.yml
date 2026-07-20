@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/api-reference/api-fundamentals/making-requests-and-authentication
+docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/making-requests-and-authentication
+summary:
+  types: [oauth2]
+  oauth2_flows: [clientCredentials]
+  token_delivery: bearer
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  description: >-
+    Application authorization (2-legged OAuth). The application exchanges its client_id and
+    client_secret for an application access token that acts on the app's own behalf.
+  token_urls:
+    production: https://api.dwolla.com/token
+    sandbox: https://api-sandbox.dwolla.com/token
+  grant_type: client_credentials
+  token_request_auth: "HTTP Basic — Authorization: Basic base64(client_id:client_secret)"
+  token_lifetime: "3600s (one hour); no refresh token — re-exchange credentials on expiry"
+  api_request_auth: "Authorization: Bearer {access_token}"
+request_headers:
+  Accept: application/vnd.dwolla.v1.hal+json
+  Content-Type: application/vnd.dwolla.v1.hal+json (or application/json)
+scopes:
+  note: >-
+    The client-credentials application flow does not use scopes. Scope errors (InvalidScopes) can be
+    returned for endpoints requiring specific granted permissions; a public scope reference was not
+    located, so no scopes/ artifact is emitted (see errors/dwolla-problem-types.yml InvalidScopes).
