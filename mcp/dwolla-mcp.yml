@@ -19,6 +19,27 @@ access: read-only
 notes: >-
   All tools are for data retrieval and analysis only; creating, updating, or deleting data is not
   currently supported. The authoritative tool list is maintained in the server's GitHub README.
+modes:
+  static: registers each tool below individually
+  dynamic: >-
+    registers only meta-tools (list_tools, describe_tool_input, execute_tool, list_scopes) so agents
+    progressively discover tools on demand, reducing token/context bloat.
+tools:
+- {name: accounts-get, description: Retrieve account details and status, source_operation: openapi/dwolla-accounts-openapi.yml#getAccount}
+- {name: customers-get, description: Retrieve detailed customer information, source_operation: openapi/dwolla-customers-openapi.yml#getCustomer}
+- {name: transfers-get, description: Retrieve specific transfer details, source_operation: openapi/dwolla-transfers-openapi.yml#getTransfer}
+- {name: mass-payments-get, description: Retrieve mass payment details, source_operation: openapi/dwolla-mass-payments-openapi.yml#getMassPayment}
+- {name: mass-payments-get-item, description: Retrieve specific mass payment item, source_operation: openapi/dwolla-mass-payments-openapi.yml#getMassPaymentItem}
+- {name: funding-sources-get, description: Retrieve funding source details, source_operation: openapi/dwolla-funding-sources-openapi.yml#getFundingSource}
+- {name: documents-get, description: Retrieve document details, source_operation: openapi/dwolla-documents-openapi.yml#retrieveDocument}
+- {name: beneficial-owners-get, description: Retrieve beneficial owner information, source_operation: openapi/dwolla-beneficial-owners-openapi.yml#retrieveBeneficialOwner}
+- {name: kba-get-questions, description: Retrieve KBA (Knowledge-Based Authentication) questions, source_operation: openapi/dwolla-kba-openapi.yml#getKbaQuestions}
+- {name: exchanges-get, description: Retrieve exchange details, source_operation: openapi/dwolla-exchanges-openapi.yml#getExchange}
+- {name: labels-get, description: Retrieve label details, source_operation: openapi/dwolla-labels-openapi.yml#getLabel}
+- {name: labels-get-ledger-entry, description: Retrieve specific ledger entry, source_operation: openapi/dwolla-labels-openapi.yml#getLabelLedgerEntry}
+- {name: webhooks-get, description: Retrieve webhook details, source_operation: openapi/dwolla-webhooks-openapi.yml#getWebhook}
+- {name: events-get, description: Retrieve specific event details, source_operation: openapi/dwolla-events-openapi.yml#getEvent}
+crosswalk: mcp/dwolla-tool-crosswalk.yml
 tool_categories:
 - Account operations (details, funding sources, transfers)
 - Customer management (list, search, details)

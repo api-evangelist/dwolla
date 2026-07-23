@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dwolla v2
+  version: 1.0.0
+# API Evangelist enrichment overlay. Captures OUR annotations over Dwolla's bundled OpenAPI without
+# mutating the harvested spec. generated: '2026-07-23'; method: generated.
+extends: openapi/dwolla-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-23'
+      x-apievangelist-artifacts:
+        authentication: authentication/dwolla-authentication.yml
+        conventions: conventions/dwolla-conventions.yml
+        errors: errors/dwolla-problem-types.yml
+        decline_codes: errors/dwolla-decline-codes.yml
+        lifecycle: lifecycle/dwolla-lifecycle.yml
+        sandbox: sandbox/dwolla-sandbox.yml
+        webhooks: asyncapi/dwolla-webhooks.yml
+        mcp: mcp/dwolla-mcp.yml
+        tool_crosswalk: mcp/dwolla-tool-crosswalk.yml
+        agentic_access: agentic-access/dwolla-agentic-access.yml
+        skills: skills/_index.yml
+        data_model: data-model/dwolla-data-model.yml
+      x-agentic-access:
+        summary: agentic-access/dwolla-agentic-access.yml
+        physical-consequence-operations: 16
+        note: >-
+          Money-movement writes (initiateTransfer, initiateMassPayment, createLabelReallocation) are
+          classified physical-consequence; require token exchange + purpose-required + audit before
+          granting to an autonomous agent.
+  - target: $.info
+    update:
+      x-hypermedia:
+        style: JSON-HAL with HAL-Forms extensions
+        media_type: application/vnd.dwolla.v1.hal+json
+        note: >-
+          Clients discover available operations by following _links in each resource rather than
+          hard-coding URLs; collections embed items under _embedded.
+  - target: $.info
+    update:
+      x-idempotency:
+        header: Idempotency-Key
+        applies_to: POST
+        retention_hours: 24
+        docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/idempotency-key

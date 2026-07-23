@@ -1,0 +1,27 @@
+generated: '2026-07-23'
+method: generated
+source: >-
+  Packaged Agent Skills for Dwolla's marquee money-movement flows. Every step is grounded in a real
+  operationId verified in openapi/ and cross-links conventions/, authentication/, errors/, sandbox/,
+  and asyncapi/. No provider-published skills/AGENTS.md was found on the Dwolla developer surface.
+skills:
+- file: dwolla-send-ach-transfer.md
+  name: Send an ACH transfer between funding sources
+  api: openapi/dwolla-transfers-openapi.yml
+  operations: [createApplicationAccessToken, initiateTransfer, getTransfer, getTransferFailureReason]
+- file: dwolla-onboard-personal-verified-customer.md
+  name: Onboard a personal Verified Customer with a bank funding source
+  api: openapi/dwolla-customers-openapi.yml
+  operations: [createCustomer, getCustomer, createCustomerFundingSource, initiateOrVerifyMicroDeposits, initiateKbaForCustomer, getKbaQuestions, verifyKbaQuestions]
+- file: dwolla-onboard-business-verified-customer.md
+  name: Onboard a Business Verified Customer and certify beneficial owners
+  api: openapi/dwolla-beneficial-owners-openapi.yml
+  operations: [createCustomer, listBusinessClassifications, createBeneficialOwnerForCustomer, getBeneficialOwnershipStatusForCustomer, certifyBeneficialOwnershipForCustomer]
+- file: dwolla-mass-payment-payout.md
+  name: Run a mass payment payout
+  api: openapi/dwolla-mass-payments-openapi.yml
+  operations: [initiateMassPayment, getMassPayment, listMassPaymentItems, getMassPaymentItem, updateMassPayment]
+- file: dwolla-subscribe-webhooks.md
+  name: Subscribe to webhooks and consume events
+  api: openapi/dwolla-webhook-subscriptions-openapi.yml
+  operations: [createWebhookSubscription, getWebhookSubscription, listWebhooks, retryWebhook, listEvents, getEvent]

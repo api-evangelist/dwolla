@@ -1,0 +1,161 @@
+generated: '2026-07-23'
+method: searched
+source: >-
+  MCP tool names taken verbatim from the Dwolla dwolla-mcp README
+  (https://github.com/Dwolla/dwolla-mcp, "Available Operations"); each tool bound to its backing
+  REST operationId in openapi/. The server is READ-ONLY, so every tool maps to a GET operation and
+  all write operations are rest_only.
+purpose: >-
+  Make the agent-facing MCP tool a first-class discovery unit and bind it to the REST operation that
+  backs it, so a tool inherits a REAL inputSchema (the operation's path parameters) instead of a
+  guessed one. The Dwolla MCP server is a strict read-only projection of the v2 REST API — it exposes
+  single-resource GET tools only; list/search and every write operation are REST-only.
+surfaces:
+  rest_openapi: openapi/                      # 17 split specs + dwolla-openapi.yml bundle; 164 operations
+  graphql: null                               # Dwolla has no GraphQL surface
+  mcp:
+    package: "@dwolla/mcp-server"             # npx @dwolla/mcp-server --bearer-auth <token>
+    transport: stdio
+    access: read-only
+    tools_list_gated: false                   # tool names public in README; live invocation needs bearer token
+    modes:
+      static: registers each tool below
+      dynamic: registers only meta-tools (list_tools, describe_tool_input, execute_tool, list_scopes)
+
+# Each MCP tool -> the REST operationId that backs it. inputSchema for a bound tool is that
+# operation's path parameters (all are single-resource GET-by-id retrievals).
+crosswalk:
+  - tool: accounts-get
+    category: account
+    rest: [getAccount]
+    binding: rest
+    confidence: high
+  - tool: customers-get
+    category: customers
+    rest: [getCustomer]
+    binding: rest
+    confidence: high
+  - tool: transfers-get
+    category: transfers
+    rest: [getTransfer]
+    binding: rest
+    confidence: high
+    note: >-
+      Related transfer detail (fees, failure reason) is served by listTransferFees /
+      getTransferFailureReason; the README lists a single transfers-get tool that fronts the transfer
+      resource and its embedded detail links.
+  - tool: mass-payments-get
+    category: mass-payments
+    rest: [getMassPayment]
+    binding: rest
+    confidence: high
+  - tool: mass-payments-get-item
+    category: mass-payments
+    rest: [getMassPaymentItem]
+    binding: rest
+    confidence: high
+  - tool: funding-sources-get
+    category: funding-sources
+    rest: [getFundingSource]
+    binding: rest
+    confidence: high
+    note: >-
+      Balance and micro-deposit status are sub-resources (getFundingSourceBalance / getMicroDeposits)
+      reachable via the funding source's _links; the tool fronts the funding source resource.
+  - tool: documents-get
+    category: documents
+    rest: [retrieveDocument]
+    binding: rest
+    confidence: high
+  - tool: beneficial-owners-get
+    category: compliance
+    rest: [retrieveBeneficialOwner]
+    binding: rest
+    confidence: high
+  - tool: kba-get-questions
+    category: compliance
+    rest: [getKbaQuestions]
+    binding: rest
+    confidence: high
+  - tool: exchanges-get
+    category: exchanges
+    rest: [getExchange]
+    binding: rest
+    confidence: high
+  - tool: labels-get
+    category: labels
+    rest: [getLabel]
+    binding: rest
+    confidence: high
+  - tool: labels-get-ledger-entry
+    category: labels
+    rest: [getLabelLedgerEntry]
+    binding: rest
+    confidence: high
+  - tool: webhooks-get
+    category: webhooks
+    rest: [getWebhook]
+    binding: rest
+    confidence: high
+  - tool: events-get
+    category: events
+    rest: [getEvent]
+    binding: rest
+    confidence: high
+
+# MCP-ONLY: tools with no backing public REST operation. Only the dynamic-mode meta-tools qualify —
+# they are server-side control operations, not data operations.
+mcp_only:
+  - tool: list_tools
+    category: meta
+    reason: Dynamic-mode meta-tool; lists available tools. No REST equivalent (server control plane).
+  - tool: describe_tool_input
+    category: meta
+    reason: Dynamic-mode meta-tool; returns a tool's input schema. Server control plane.
+  - tool: execute_tool
+    category: meta
+    reason: Dynamic-mode meta-tool; invokes a named tool. Server control plane.
+  - tool: list_scopes
+    category: meta
+    reason: Dynamic-mode meta-tool; lists MCP tool-filter scopes. Server control plane, not OAuth scopes.
+
+# REST-ONLY: real OpenAPI operations with NO MCP tool. The read-only agent projection omits every
+# write operation and every list/search operation, grouped by capability.
+rest_only:
+  - group: authentication
+    ops: [createApplicationAccessToken, getRoot, createClientToken]
+  - group: accounts (list/create sub-resources)
+    ops: [createFundingSource, listFundingSources, listAndSearchTransfers, listMassPayments]
+  - group: customers (list/search/create/update)
+    ops: [listAndSearchCustomers, createCustomer, update, listBusinessClassifications, retrieveBusinessClassification]
+  - group: beneficial owners (list/create/update/delete/certify)
+    ops: [listBeneficialOwnersForCustomer, createBeneficialOwnerForCustomer, updateBeneficialOwner, deleteBeneficialOwner, getBeneficialOwnershipStatusForCustomer, certifyBeneficialOwnershipForCustomer]
+  - group: documents (list/create)
+    ops: [listCustomerDocuments, createCustomerDocument, listBeneficialOwnerDocuments, createBeneficialOwnerDocument]
+  - group: kba (initiate/verify)
+    ops: [initiateKbaForCustomer, verifyKbaQuestions]
+  - group: funding sources (list/create/update/verify/balance/van/on-demand-auth)
+    ops: [listCustomerFundingSources, createCustomerFundingSource, updateOrRemoveFundingSource, getMicroDeposits, initiateOrVerifyMicroDeposits, getFundingSourceBalance, getVanRouting, createOnDemandTransferAuthorization]
+  - group: transfers (initiate/cancel/list/fees/failure)
+    ops: [initiateTransfer, cancelTransfer, listCustomerTransfers, listTransferFees, getTransferFailureReason]
+  - group: mass payments (initiate/update/list)
+    ops: [initiateMassPayment, updateMassPayment, listMassPaymentItems, listCustomerMassPayments]
+  - group: labels (list/create/reallocate/ledger)
+    ops: [removeLabel, listCustomerLabels, createCustomerLabel, listLabelLedgerEntries, createLabelLedgerEntry, createLabelReallocation, retrieveLabelReallocation]
+  - group: exchanges & sessions
+    ops: [listExchangePartners, getExchangePartner, listAccountExchanges, createAccountExchange, listCustomerExchanges, createCustomerExchange, createCustomerExchangeSession, retrieveCustomerExchangeSession, createReAuthExchangeSession, listAvailableExchangeConnections]
+  - group: events & webhooks (list/subscribe/retry)
+    ops: [listEvents, listWebhookSubscriptions, createWebhookSubscription, getWebhookSubscription, updateWebhookSubscription, delete, listWebhooks, listWebhookRetries, retryWebhook]
+  - group: sandbox simulation
+    ops: [simulateBankTransferProcessing]
+
+coverage:
+  mcp_tools_named: 14
+  mcp_bound_to_rest: 14
+  mcp_only: 4              # dynamic-mode meta-tools
+  rest_operations_total: 164
+  rest_operations_with_mcp_tool: 14
+  note: >-
+    Coverage is intentionally narrow: the Dwolla MCP server is read-only and single-resource by
+    design, so 14 GET-by-id tools cover < 10% of the REST surface. Every write, list, and search
+    operation is REST-only. This is a real, deliberate surface divergence, not a mapping gap.

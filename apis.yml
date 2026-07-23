@@ -450,6 +450,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/dwolla-agentic-access.yml
 - type: DomainSecurity
   url: security/dwolla-domain-security.yml
 - type: TrustCenter
@@ -491,6 +493,12 @@ common:
   url: llms/dwolla-llms.txt
 - type: MCPServer
   url: mcp/dwolla-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/dwolla-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/dwolla-overlay.yaml
 - type: Packages
   url: packages/dwolla-packages.yml
 - type: SDKs
