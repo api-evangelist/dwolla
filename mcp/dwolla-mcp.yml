@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://developers.dwolla.com/docs/mcp-server
+server:
+  name: dwolla
+  package: "@dwolla/mcp-server"
+  transport: stdio
+  install: npx @dwolla/mcp-server --bearer-auth <access_token>
+  authentication:
+    type: bearer
+    notes: >-
+      Bearer token passed via --bearer-auth. Tokens are short-lived (expire after one hour) and are
+      programmatically generated (OAuth 2.0 client-credentials) or obtained from the Sandbox Dashboard.
+  environments:
+    sandbox: https://api-sandbox.dwolla.com
+    production: https://api.dwolla.com
+access: read-only
+notes: >-
+  All tools are for data retrieval and analysis only; creating, updating, or deleting data is not
+  currently supported. The authoritative tool list is maintained in the server's GitHub README.
+tool_categories:
+- Account operations (details, funding sources, transfers)
+- Customer management (list, search, details)
+- Transfer operations (details, fees, failure reasons)
+- Mass payment operations
+- Funding source operations
+- Compliance and documents (beneficial ownership, KBA)
+- Exchange operations
+- Labels and ledger
+- Webhooks and events
+- Reference data (business classifications)

@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/changelog
+scheme: dated
+current_version: v2
+entries:
+- date: '2026-07-13'
+  title: Facilitator Fees on Instant Payments
+  type: addition
+  highlights: Facilitator fee support extended to Instant Payments (RTP/FedNow) transfers, matching ACH.
+- date: '2025-11-01'
+  title: Visa Open Banking Integration Sunset
+  type: breaking
+  highlights: Visa discontinued as an Open Banking provider; migrate to Plaid or MX.
+- date: '2025-07-29'
+  title: FedNow Service Integration
+  type: addition
+  highlights: FedNow Service added alongside the RTP Network for Instant Payments across both U.S. rails.
+- date: '2025-05-15'
+  title: Verification Directives for Business Customers
+  type: enhancement
+  highlights: API returns detailed verification guidance; new webhook topics for verification lifecycle.
+- date: '2024-12-16'
+  title: Plaid as Open Banking Provider
+  type: addition
+  highlights: Dwolla Balance supports Plaid for bank account verification and balance checks.
+- date: '2024-10-30'
+  title: Multiple Redirect URLs Configuration
+  type: enhancement
+  highlights: Exchange sessions require redirect URL validation with enhanced security standards.
+- date: '2024-09-16'
+  title: Real-Time Bank Balance Retrieval
+  type: addition
+  highlights: Retrieve current bank balance via Open Banking before initiating ACH payments.
+- date: '2024-06-10'
+  title: Open Banking Support Launch
+  type: addition
+  highlights: Open Banking integration for a seamless Instant Account Verification experience.

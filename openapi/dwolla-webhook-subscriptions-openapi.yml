@@ -1,0 +1,903 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Webhook Subscriptions
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: webhook subscriptions
+  description: Operations related to Webhook Subscriptions
+paths:
+  /webhook-subscriptions:
+    get:
+      tags:
+      - webhook subscriptions
+      summary: List webhook subscriptions
+      description: Retrieve all webhook subscriptions that belong to an application including their configuration
+        details and status. Returns subscription details including webhook endpoints, status, creation
+        dates, and links to associated webhooks with total count. Essential for webhook management and
+        monitoring subscription health.
+      operationId: listWebhookSubscriptions
+      x-speakeasy-group: webhookSubscriptions
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/webhook-subscriptions
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: '// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          dwolla.get("webhook-subscriptions").then((res) => res.body.total); // => 1
+
+          '
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_subscriptions = app_token.get(''webhook-subscriptions'')
+
+          webhook_subscriptions.body[''total''] # => 1
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookApi = new DwollaSwagger\WebhooksubscriptionsApi($apiClient);
+
+
+          $retrieved = $webhookApi->_list();
+
+          $retrieved->total; # => 1
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_subscriptions = app_token.get "webhook-subscriptions"
+
+          webhook_subscriptions.total # => 1
+
+          '
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhook-subscriptions
+                  _embedded:
+                    type: object
+                    properties:
+                      webhook-subscriptions:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WebhookSubscription'
+                  total:
+                    type: integer
+                    format: int32
+                    example: 1
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - webhook subscriptions
+      summary: Create a webhook subscription
+      description: Create a webhook subscription to deliver webhook notifications to a specified URL endpoint
+        for your application. Requires a destination URL where Dwolla will send notifications and a secret
+        key for webhook validation and security. Returns the location of the created subscription resource.
+        Essential for establishing real-time event notifications and automated integrations with Dwolla's
+        payment processing events.
+      operationId: createWebhookSubscription
+      x-speakeasy-group: webhookSubscriptions
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/webhook-subscriptions\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Content-Type: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer 0Sn0W6kzNicvoWhDbQcVSKLRUpGjIdlPSEYyrHqrDDoRnQwE7Q\n\
+          {\n    \"url\": \"http://myapplication.com/webhooks\",\n    \"secret\": \"sshhhhhh\"\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar requestBody = {\n\
+          \  url: \"http://myawesomeapplication.com/destination\",\n  secret: \"your webhook secret\"\
+          ,\n};\ndwolla\n  .post(\"webhook-subscriptions\", requestBody)\n  .then((res) => res.headers.get(\"\
+          location\")); // => 'https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nrequest_body = {\n  'url':\
+          \ 'http://myapplication.com/webhooks',\n  'secret': 'sshhhhhh'\n}\nsubscription = app_token.post('webhook-subscriptions',\
+          \ request_body)\nsubscription.headers['location'] # => 'https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$webhookApi\
+          \ = new DwollaSwagger\\WebhooksubscriptionsApi($apiClient);\n$subscription = $webhookApi->create(array\
+          \ (\n  'url' => 'http://myapplication.com/webhooks',\n  'secret' => 'sshhhhhh',\n));\n$subscription;\
+          \ # => \"https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\"\
+          \n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nrequest_body = {\n  :url\
+          \ => \"http://myawesomeapplication.com/destination\",\n  :secret => \"your webhook secret\"\n\
+          }\nsubscription = app_token.post \"webhook-subscriptions\", request_body\nsubscription.response_headers[:location]\
+          \ # => \"https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\"\
+          \n"
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to create a webhook subscriptions
+        content:
+          application/json:
+            schema:
+              required:
+              - url
+              - secret
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: http://myapplication.com/webhooks
+                secret:
+                  type: string
+                  example: sshhhhhh
+      responses:
+        '201':
+          description: create
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/InvalidUrlFormatError'
+                - $ref: '#/components/schemas/SecretTooLongError'
+                - $ref: '#/components/schemas/MaxSubscriptionsReachedError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '429':
+          description: Too Many Requests
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+  /webhook-subscriptions/{id}:
+    get:
+      tags:
+      - webhook subscriptions
+      summary: Retrieve a webhook subscription
+      description: Retrieve detailed information for a specific webhook subscription by its unique identifier.
+        Returns subscription configuration including URL endpoint, creation date, and links to associated
+        webhooks for comprehensive subscription management. Essential for monitoring webhook subscription
+        status and accessing webhook delivery history.
+      operationId: getWebhookSubscription
+      x-speakeasy-group: webhookSubscriptions
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookSubscriptionUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\"\
+          ;\n\ndwolla.get(webhookSubscriptionUrl).then((res) => res.body.created); // => '2016-04-20T15:49:50.340Z'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          webhook_subscription = app_token.get(webhook_subscription_url)
+
+          webhook_subscription.body[''created''] # => ''2015-10-28T16:20:47+00:00''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookApi = new DwollaSwagger\WebhooksubscriptionsApi($apiClient);
+
+          $retrieved = $webhookApi->id(''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'');
+
+
+          $retrieved->created; # => 2015-10-28T16:20:47+00:00
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          webhook_subscription = app_token.get webhook_subscription_url
+
+          webhook_subscription.created # => 2015-10-28T16:20:47+00:00
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook subscription unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/WebhookSubscription'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - webhook subscriptions
+      summary: Update a webhook subscription
+      description: Update a webhook subscription to pause or resume webhook delivery notifications. Allows
+        toggling the paused status to temporarily stop webhook notifications without deleting the subscription.
+        Returns the updated subscription resource with the new paused status. Use this endpoint to manage
+        webhook delivery during maintenance or troubleshooting periods.
+      operationId: updateWebhookSubscription
+      x-speakeasy-group: webhookSubscriptions
+      x-speakeasy-name-override: update
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nContent-Type: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer 0Sn0W6kzNicvoWhDbQcVSKLRUpGjIdlPSEYyrHqrDDoRnQwE7Q\n{\n    \"paused\"\
+          : true\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookSubscriptionUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/webhook-subscriptions/692486f8-29f6-4516-a6a5-c69fd2ce854c\"\
+          ;\n\nvar requestBody = {\n  paused: true,\n};\n\ndwolla.post(webhookSubscriptionUrl, requestBody).then((res)\
+          \ => res.body.paused); // => 'true'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nwebhook_subscription_url\
+          \ = 'https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'\n\
+          \nrequest_body = {\n  'paused': true\n}\n\nsubscription = app_token.post(webhook_subscription_url,\
+          \ request_body)\nsubscription.body['paused'] # => true\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$webhookSubscriptionUrl\
+          \ = 'https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'\n\
+          \n$webhookApi = new DwollaSwagger\\WebhooksubscriptionsApi($apiClient);\n\n$subscription = $webhookApi->updateSubscription(array\
+          \ (\n  'paused' => true\n), $webhookSubscriptionUrl);\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nwebhook_subscription_url\
+          \ = 'https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'\n\
+          \nrequest_body = {\n  :paused => true\n}\n\nsubscription = app_token.post \"#{webhook_subscription_url}\"\
+          , request_body\n"
+      parameters:
+      - name: id
+        in: path
+        description: Webhook unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to update a webhook subscription
+        content:
+          application/json:
+            schema:
+              required:
+              - paused
+              type: object
+              properties:
+                paused:
+                  type: boolean
+                  example: true
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/WebhookSubscription'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    delete:
+      tags:
+      - webhook subscriptions
+      summary: Delete a webhook subscription
+      description: Delete a webhook subscription to permanently remove webhook notifications for your
+        application. This action stops all future webhook deliveries and cannot be undone. Returns the
+        deleted subscription resource for confirmation. Use this endpoint when webhook notifications are
+        no longer needed or when cleaning up unused subscriptions.
+      operationId: delete
+      x-speakeasy-group: webhookSubscriptions
+      x-codeSamples:
+      - lang: bash
+        source: 'DELETE https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookSubscriptionUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\"\
+          ;\n\ndwolla.delete(webhookSubscriptionUrl);\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          app_token.delete(webhook_subscription_url)
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookApi = new DwollaSwagger\WebhooksubscriptionsApi($apiClient);
+
+          $webhookApi->deleteById(''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'');
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          app_token.delete webhook_subscription_url
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/WebhookSubscription'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /webhook-subscriptions/{id}/webhooks:
+    get:
+      tags:
+      - webhook subscriptions
+      summary: List webhooks for a webhook subscription
+      description: Retrieve all fired webhooks for a specific webhook subscription with comprehensive
+        filtering and pagination support. Returns webhook delivery history including topics, attempts,
+        request/response details, and delivery status over a rolling 30-day period. Supports filtering
+        by resource ID, date ranges, and pagination parameters for detailed webhook delivery analysis.
+        Critical for debugging webhook delivery issues and monitoring event notification success rates.
+      operationId: listWebhooks
+      x-speakeasy-group: webhookSubscriptions.webhooks
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/webhook-subscriptions/10d4133e-b308-4646-b276-40d9d36def1c/webhooks
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookSubscriptionUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216\"\
+          ;\n\ndwolla.get(`${webhookSubscriptionUrl}/webhooks`).then((res) => res.body.total); // => 5\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          hooks = app_token.get(''%s/webhooks'' % webhook_subscription_url)
+
+          hooks.body[''total''] # => 5
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookApi = new DwollaSwagger\WebhooksApi($apiClient);
+
+
+          $hooks = $webhookApi->hooksById(''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216'');
+
+          $hooks->total; # => 5
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_subscription_url = ''https://api-sandbox.dwolla.com/webhook-subscriptions/5af4c10a-f6de-4ac8-840d-42cb65454216''
+
+
+          hooks = app_token.get "#{webhook_subscription_url}/webhooks"
+
+          hooks.total # => 5
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook subscription unique identifier
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: How many results to return
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: How many results to skip
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks
+                      first:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=0
+                      last:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=150
+                      next:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=25
+                  _embedded:
+                    type: object
+                    properties:
+                      webhooks:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Webhook'
+                  total:
+                    type: integer
+                    format: int32
+                    example: 1
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+components:
+  schemas:
+    WebhookSubscription:
+      title: WebhookSubscription
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589
+            webhooks:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks
+        id:
+          type: string
+          example: 077dfffb-4852-412f-96b6-0fe668066589
+        url:
+          type: string
+          example: http://myapplication.com/webhooks
+        paused:
+          type: boolean
+          example: true
+        created:
+          type: string
+          format: date-time
+          example: '2022-10-28T16:20:47+00:00'
+    TooManyRequestsError:
+      title: TooManyRequestsError
+      type: object
+      properties:
+        code:
+          type: string
+          example: Too Many Requests
+        message:
+          type: string
+          example: Please wait a short period of time before re-attempting the request.
+    InvalidUrlFormatError:
+      title: InvalidUrlFormatError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Url must be a valid url.
+                  path:
+                    type: string
+                    example: /url
+                  _links:
+                    type: object
+                    example: {}
+    Webhook:
+      title: Webhook
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8
+            subscription:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83
+            retry:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries
+            event:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50
+        id:
+          type: string
+          example: 9ece9660-aa34-41eb-80d7-0125d53b45e8
+        topic:
+          type: string
+          example: transfer_created
+        accountId:
+          type: string
+          example: ca32853c-48fa-40be-ae75-77b37504581b
+        eventId:
+          type: string
+          example: 03c7e14c-7f15-44a2-bcf7-83f2f7e95d50
+        subscriptionId:
+          type: string
+          example: a0943041-7a5c-4e8f-92de-b55711ef3a83
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8
+              request:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2022-10-27T17:07:34.304Z'
+                  url:
+                    type: string
+                    example: https://myapp.runscope.net
+                  headers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: X-Dwolla-Topic
+                        value:
+                          type: string
+                          example: transfer_created
+                  body:
+                    type: string
+                    example: id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388
+              response:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2022-10-27T17:07:34.308Z'
+                  headers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Date
+                        value:
+                          type: string
+                          example: Tue 27 Oct 2022 17:07:34 GMT
+                  statusCode:
+                    type: integer
+                    format: int32
+                    example: 200
+                  body:
+                    type: string
+                    example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json;
+                      charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    SecretTooLongError:
+      title: SecretTooLongError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Secret must be 128 or fewer characters.
+                  path:
+                    type: string
+                    example: /secret
+                  _links:
+                    type: object
+                    example: {}
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    MaxSubscriptionsReachedError:
+      title: MaxSubscriptionsReachedError
+      type: object
+      properties:
+        code:
+          type: string
+          example: MaxNumberOfResources
+        message:
+          type: string
+          example: The maximum number of subscriptions has been reached.
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

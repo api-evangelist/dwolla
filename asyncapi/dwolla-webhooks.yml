@@ -1,0 +1,77 @@
+generated: '2026-07-18'
+method: searched
+type: Webhooks
+source: https://developers.dwolla.com/docs/webhook-events + https://developers.dwolla.com/docs/working-with-webhooks
+spec_type: none
+note: >-
+  Dwolla documents a webhook event surface but does not publish an AsyncAPI document; this artifact
+  captures the webhook catalog (type: Webhooks). Delivery is HTTPS POST of a JSON event to a
+  subscriber URL created via the webhook-subscriptions endpoints.
+delivery:
+  transport: HTTPS POST
+  retention: fired webhooks retained for a rolling 30-day window; retries supported
+  payload_fields: [id, created, topic, resourceId, correlationId, _links]
+  links: [self, account, resource, customer]
+signature:
+  algorithm: HMAC-SHA256
+  header: X-Request-Signature-SHA-256
+  topic_header: X-Dwolla-Topic
+  validation: >-
+    Compute HMAC-SHA256 over the raw request body using your webhook subscription secret and compare
+    to the header value before parsing the payload.
+event_topics:
+  customers:
+  - customer_created
+  - customer_kba_verification_needed
+  - customer_kba_verification_failed
+  - customer_kba_verification_passed
+  - customer_reverification_needed
+  - customer_verification_document_needed
+  - customer_verification_document_uploaded
+  - customer_verification_document_failed
+  - customer_verification_document_approved
+  - customer_verified
+  - customer_suspended
+  - customer_activated
+  - customer_deactivated
+  beneficial_owners:
+  - customer_beneficial_owner_created
+  - customer_beneficial_owner_removed
+  - customer_beneficial_owner_verification_document_needed
+  - customer_beneficial_owner_verification_document_uploaded
+  - customer_beneficial_owner_verification_document_failed
+  - customer_beneficial_owner_verification_document_approved
+  - customer_beneficial_owner_reverification_needed
+  - customer_beneficial_owner_verified
+  exchanges:
+  - customer_exchange_reauth_required
+  funding_sources:
+  - customer_funding_source_added
+  - customer_funding_source_removed
+  - customer_funding_source_verified
+  - customer_funding_source_unverified
+  - customer_funding_source_negative
+  - customer_funding_source_updated
+  - customer_microdeposits_added
+  - customer_microdeposits_failed
+  - customer_microdeposits_completed
+  - customer_microdeposits_maxattempts
+  transfers:
+  - customer_bank_transfer_created
+  - customer_bank_transfer_cancelled
+  - customer_bank_transfer_failed
+  - customer_bank_transfer_creation_failed
+  - customer_bank_transfer_completed
+  - customer_transfer_created
+  - customer_transfer_cancelled
+  - customer_transfer_failed
+  - customer_transfer_completed
+  mass_payments:
+  - customer_mass_payment_created
+  - customer_mass_payment_completed
+  - customer_mass_payment_cancelled
+  - customer_balance_inquiry_completed
+  labels:
+  - customer_label_created
+  - customer_label_ledger_entry_created
+  - customer_label_removed

@@ -1,0 +1,160 @@
+aid: dwolla
+name: Dwolla
+review:
+  question: >-
+    Does Dwolla publish a real first-party developer API surface, and what is
+    its auth model, spec availability, and U.S. open-finance posture?
+  answer: true
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Dwolla operates a mature, fully public, self-serve first-party developer
+    program at https://developers.dwolla.com. Unlike most U.S. banks (which are
+    HTML-only or partner-gated), Dwolla publishes a complete, downloadable
+    OpenAPI 3.1.0 specification for its v2 account-to-account payments API in a
+    public GitHub repository (Dwolla/dwolla-openapi), plus a public Postman
+    workspace and six official SDKs. Dwolla is a payments platform / money
+    transmitter and Open Banking aggregator-consumer, not a chartered bank; it
+    moves money over ACH (standard + Same-Day), the RTP Network, and the FedNow
+    Service on behalf of its business customers, and consumes Open Banking data
+    from Plaid, MX, Flinks, Finicity, and Checkout.com to instantly verify and
+    fund from bank accounts. The API is a JSON-HAL hypermedia REST API secured
+    with OAuth 2.0 client-credentials.
+  developerPortal:
+    url: https://developers.dwolla.com
+    reachableFromReview: true
+    note: >-
+      Developer portal, docs, api-reference, and SDKs/Tools pages all reachable
+      and crawled. The dev-portal-hosted openapi.json short link
+      (developers.dwolla.com/api-reference/openapi.json) returned HTTP 404 at
+      review time, but the authoritative machine-readable spec is published
+      verbatim in the public GitHub repo and was harvested from there.
+  documentedApis:
+  - name: Tokens (OAuth 2.0 client-credentials)
+    url: https://developers.dwolla.com/api-reference
+  - name: Root (HAL hypermedia entry point)
+    url: https://developers.dwolla.com/api-reference
+  - name: Accounts
+    url: https://developers.dwolla.com/api-reference
+  - name: Customers (Unverified / Receive-Only / Personal & Business Verified)
+    url: https://developers.dwolla.com/api-reference
+  - name: Beneficial Owners
+    url: https://developers.dwolla.com/api-reference
+  - name: KBA (Knowledge-Based Authentication)
+    url: https://developers.dwolla.com/api-reference
+  - name: Documents
+    url: https://developers.dwolla.com/api-reference
+  - name: Funding Sources
+    url: https://developers.dwolla.com/api-reference
+  - name: Transfers (ACH / Same-Day ACH / RTP / FedNow)
+    url: https://developers.dwolla.com/api-reference
+  - name: Mass Payments
+    url: https://developers.dwolla.com/api-reference
+  - name: Labels (balance sub-ledger)
+    url: https://developers.dwolla.com/api-reference
+  - name: Exchanges (Open Banking connections)
+    url: https://developers.dwolla.com/api-reference
+  - name: Exchange Sessions
+    url: https://developers.dwolla.com/api-reference
+  - name: Events
+    url: https://developers.dwolla.com/api-reference
+  - name: Webhook Subscriptions
+    url: https://developers.dwolla.com/api-reference
+  - name: Webhooks
+    url: https://developers.dwolla.com/api-reference
+  - name: Client Tokens (Drop-in Components)
+    url: https://developers.dwolla.com/api-reference
+  - name: Sandbox Simulations
+    url: https://developers.dwolla.com/api-reference
+  authModel:
+    scheme: OAuth2
+    flow: client_credentials
+    documented: true
+    tokenUrl: https://api.dwolla.com/token
+    note: >-
+      Application access tokens are obtained via OAuth 2.0 client-credentials
+      (client key + secret sent Basic-authenticated to POST /token); the bearer
+      token authorizes every server-to-server request. Client Tokens provide
+      short-lived, Customer-scoped authorization for browser-side Drop-in
+      Components. The securitySchemes block in the harvested spec confirms an
+      oauth2 clientCredentials scheme (client_secret_basic).
+  specProvenance:
+    openApiDownloadable: true
+    openApiFormat: OpenAPI 3.1.0
+    source: https://github.com/Dwolla/dwolla-openapi (raw main/openapi.yml)
+    postmanDownloadable: true
+    postmanUrl: https://www.postman.com/dwolladev/dwolla
+    harvested: 19
+    note: >-
+      The full bundled OpenAPI 3.1.0 spec (title "Dwolla API", version 2.0, 59
+      paths, 18 tags, servers api.dwolla.com + api-sandbox.dwolla.com) was
+      harvested VERBATIM from the public Dwolla/dwolla-openapi GitHub repo into
+      openapi/dwolla-openapi.yml. It was then split by tag into 18 self-contained
+      per-resource OpenAPI documents (transitive component closure) — one per
+      apis[] entry — for a total of 19 harvested/derived spec files. Nothing was
+      fabricated; every path, schema, and security scheme is verbatim from the
+      upstream Dwolla spec.
+  openFinancePosture:
+    role: money-transmitter + open-banking data consumer/aggregator
+    fdxParticipation: not-a-data-provider
+    cfpb1033Posture: consumer-side (Dwolla consumes permissioned bank data, it is not a 1033 data provider)
+    aggregatorAccess:
+      available: true
+      partners:
+      - Plaid
+      - MX
+      - Flinks
+      - Finicity
+      - Checkout.com
+      note: >-
+        Dwolla's Exchanges / Exchange Sessions APIs integrate Open Banking
+        aggregators to instantly verify and fund from end-user bank accounts,
+        as an alternative to micro-deposit verification. Dwolla is on the
+        consuming side of U.S. open finance (permissioned account-linking and
+        pay-by-bank), not a bank publishing an FDX/1033 data-access endpoint.
+    note: >-
+      U.S. open finance is voluntary and fragmented. Dwolla's contribution is a
+      developer-friendly money-movement layer over ACH/RTP/FedNow plus
+      aggregator-powered account verification, exposed as a single well-documented
+      first-party API — a strong contrast to the gated, HTML-only surfaces of
+      most U.S. depository institutions.
+sources:
+- url: https://developers.dwolla.com
+  type: DeveloperPortal
+  note: Public self-serve developer portal.
+- url: https://developers.dwolla.com/api-reference
+  type: APIReference
+  note: Full v2 API reference — 18 resource families.
+- url: https://developers.dwolla.com/docs/sdks-tools
+  type: Documentation
+  note: SDKs & Tools page — links the OpenAPI GitHub repo and Postman workspace; lists Node, Ruby, Python, PHP, C#, Kotlin/TypeScript SDKs.
+- url: https://github.com/Dwolla/dwolla-openapi
+  type: OpenAPI
+  note: Public repo containing the authoritative OpenAPI 3.1.0 spec (openapi.yml, 617KB, 59 paths, 18 tags). Harvested verbatim.
+- url: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/main/openapi.yml
+  type: OpenAPI
+  note: Raw bundled spec that was downloaded to openapi/dwolla-openapi.yml (HTTP 200, 617901 bytes).
+- url: https://www.postman.com/dwolladev/dwolla
+  type: Postman
+  note: Public Dwolla Postman workspace (sandbox collections).
+- url: https://developers.dwolla.com/llms.txt
+  type: Documentation
+  note: LLM-friendly documentation index enumerating all resource sections.
+actions:
+  apisYmlUpdated: true
+  apisBefore: 1
+  apisAfter: 18
+  specsHarvested: 19
+  reason: >-
+    Deepened from a single umbrella "Dwolla API" entry to 18 real, documented
+    resource-family entries (Accounts, Customers, Beneficial Owners, KBA,
+    Documents, Funding Sources, Transfers, Mass Payments, Labels, Exchanges,
+    Exchange Sessions, Events, Webhook Subscriptions, Webhooks, Client Tokens,
+    Tokens, Root, Sandbox Simulations), each backed by a per-resource OpenAPI
+    split from the verbatim upstream spec. Harvested the full bundled OpenAPI
+    3.1.0 spec plus 18 per-tag splits (19 files). Verified common[] links
+    (developer portal, docs, api-reference, GitHub org, OpenAPI source repo,
+    LinkedIn, blog, pricing, ToS, privacy, support, status). Auth model is
+    OAuth 2.0 client-credentials; open-finance posture is consumer/aggregator
+    (Plaid/MX/Flinks/Finicity/Checkout.com), not an FDX/1033 data provider.

@@ -1,0 +1,50 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/api-reference/api-fundamentals
+authentication:
+  style: OAuth 2.0 Bearer token (client-credentials application access token)
+  see: authentication/dwolla-authentication.yml
+media_type:
+  hypermedia: application/vnd.dwolla.v1.hal+json
+  format: JSON-HAL with Dwolla HAL-Forms extensions (_links, _embedded)
+  docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/json-hal-hypermedia
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  applies_to: POST requests
+  value: unique random value (UUID recommended)
+  behavior: >-
+    Duplicate POSTs with the same Idempotency-Key and request body return the original 201 Created
+    response instead of creating a new resource; a 409 Conflict is returned if the original request
+    is still processing.
+  retention: 24 hours (keys paired with a request body expire after 24h)
+  docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/idempotency-key
+pagination:
+  style: offset-limit
+  params: {limit: default 25 (max 200 on many collections), offset: zero-based}
+  response_fields: [total, _links.first, _links.last, _links.next, _links.prev]
+  notes: >-
+    Collections are HAL documents; items are in _embedded. Transfer search is capped at 10,000
+    results per query — use date-range filters for larger historical windows.
+request_tracing:
+  header: X-Request-ID
+  direction: response (also accepts client-supplied values); used for debugging with Dwolla support
+  docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/debugging
+versioning:
+  scheme: media-type / account-level API version (current v2)
+  header: Accept media type application/vnd.dwolla.v1.hal+json
+  error_on_missing: 406 InvalidVersion
+  see: lifecycle/dwolla-lifecycle.yml
+error_envelope:
+  shape: "{ code, message, _embedded.errors[] }"
+  embedded_error: "{ code, message, path (JSON pointer), _links }"
+  format: custom Dwolla HAL error (not RFC 9457 problem+json)
+  see: errors/dwolla-problem-types.yml
+rate_limit_signaling:
+  status: 429 Too Many Requests
+  behavior: volume-based limit persists 5 minutes; concurrency limits on rapid same-wallet transfers
+  guidance: exponential backoff + idempotency keys
+  see: rate-limits/dwolla-rate-limits.yml
+ip_allowlist:
+  supported: true
+  docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/ip-allowlist

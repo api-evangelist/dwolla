@@ -1,0 +1,471 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Webhooks
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: webhooks
+  description: Operations related to Webhooks
+paths:
+  /webhooks/{id}:
+    get:
+      tags:
+      - webhooks
+      summary: Retrieve a webhook
+      description: Retrieve detailed information for a specific webhook by its unique identifier including
+        delivery attempts and response data. Returns webhook details with topic, account information,
+        delivery attempts containing request/response history, and links to subscription and retry resources.
+        Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification
+        processing status.
+      operationId: getWebhook
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookUrl =\n  \"\
+          https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8\";\n\ndwolla.get(webhookUrl).then((res)\
+          \ => res.body.topic); // => 'transfer_created'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          webhook = app_token.get(webhook_url)
+
+          webhook.body[''topic''] # => ''transfer_created''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookUrl = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8'';
+
+
+          $webhooksApi = new DwollaSwagger\WebhooksApi($apiClient);
+
+
+          $webhook = $webhooksApi->id($webhookUrl);
+
+          $webhook->topic; # => "transfer_created"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          webhook = app_token.get webhook_url
+
+          webhook.topic # => "transfer_created"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /webhooks/{id}/retries:
+    get:
+      tags:
+      - webhooks
+      summary: List retries for a webhook
+      description: Retrieve all retry attempts for a specific webhook including timestamps and delivery
+        details. Returns a list of retry attempts with unique identifiers, timestamps, and links to the
+        parent webhook with total count. Essential for tracking webhook delivery failures, analyzing retry
+        patterns, and debugging webhook notification issues to ensure reliable event processing.
+      operationId: listWebhookRetries
+      x-speakeasy-group: webhooks.retries
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookUrl =\n  \"\
+          https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8\";\n\ndwolla.get(`${webhookUrl}/retries`).then((res)\
+          \ => res.body.total); // => 1\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          retries = app_token.get(''%s/retries'' % webhook_url)
+
+          retries.body[''total''] # => 1
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookUrl = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8'';
+
+
+          $webhooksApi = new DwollaSwagger\WebhooksApi($apiClient);
+
+
+          $retries = $webhooksApi->retriesById($webhookUrl);
+
+          $retries->total; # => 1
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          retries = app_token.get "#{webhook_url}/retries"
+
+          retries.total # => 1
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/WebhookRetries'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - webhooks
+      summary: Retry a webhook
+      description: Retry a webhook by its unique identifier to redeliver the notification to your endpoint.
+        Creates a new retry attempt and returns the location of the new webhook resource. Essential for
+        recovering from webhook delivery failures and ensuring reliable event notification processing
+        in your application.
+      operationId: retryWebhook
+      x-speakeasy-name-override: retry
+      x-codeSamples:
+      - lang: bash
+        source: 'POST https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Content-Type: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar webhookUrl =\n  \"\
+          https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8\";\n\ndwolla.post(`${webhookUrl}/retries`);\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          app_token.post(''%s/retries'' % webhook_url)
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $webhookUrl = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8'';
+
+
+          $webhooksApi = new DwollaSwagger\WebhooksApi($apiClient);
+
+
+          $webhooksApi->retryWebhook($webhookUrl);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          webhook_url = ''https://api-sandbox.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8''
+
+
+          app_token.post "#{webhook_url}/retries"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Webhook unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '201':
+          description: created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+components:
+  schemas:
+    WebhookRetries:
+      title: WebhookRetries
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries
+        _embedded:
+          type: object
+          properties:
+            retries:
+              type: array
+              items:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries/5aa27a0f-cf99-418d-a3ee-67c0ff99a494
+                      webhook:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8
+                  id:
+                    type: string
+                    example: 5aa27a0f-cf99-418d-a3ee-67c0ff99a494
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2022-11-02T17:43:26.000Z'
+        total:
+          type: integer
+          format: int32
+          example: 1
+    Webhook:
+      title: Webhook
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8
+            subscription:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83
+            retry:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries
+            event:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50
+        id:
+          type: string
+          example: 9ece9660-aa34-41eb-80d7-0125d53b45e8
+        topic:
+          type: string
+          example: transfer_created
+        accountId:
+          type: string
+          example: ca32853c-48fa-40be-ae75-77b37504581b
+        eventId:
+          type: string
+          example: 03c7e14c-7f15-44a2-bcf7-83f2f7e95d50
+        subscriptionId:
+          type: string
+          example: a0943041-7a5c-4e8f-92de-b55711ef3a83
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8
+              request:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2022-10-27T17:07:34.304Z'
+                  url:
+                    type: string
+                    example: https://myapp.runscope.net
+                  headers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: X-Dwolla-Topic
+                        value:
+                          type: string
+                          example: transfer_created
+                  body:
+                    type: string
+                    example: id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388
+              response:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2022-10-27T17:07:34.308Z'
+                  headers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Date
+                        value:
+                          type: string
+                          example: Tue 27 Oct 2022 17:07:34 GMT
+                  statusCode:
+                    type: integer
+                    format: int32
+                    example: 200
+                  body:
+                    type: string
+                    example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json;
+                      charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

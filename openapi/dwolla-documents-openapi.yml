@@ -1,0 +1,875 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Documents
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: documents
+  description: Operations related to Documents
+paths:
+  /customers/{id}/documents:
+    get:
+      tags:
+      - documents
+      summary: List documents for customer
+      description: Returns all identity verification documents submitted for a customer. Includes document
+        status, verification results, document type (passport, driver's license, etc.), and failure reasons
+        if verification was rejected. Used to track document submission and verification progress during
+        the business verification process.
+      operationId: listCustomerDocuments
+      x-speakeasy-group: customers.documents
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: "GET https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2/documents\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLfwKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\
+          \n...\n\n{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2/documents\"\
+          \n    }\n  },\n  \"_embedded\": {\n    \"documents\": [\n      {\n        \"_links\": {\n  \
+          \        \"self\": {\n            \"href\": \"https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\"\
+          \n          }\n        },\n        \"id\": \"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\",\n     \
+          \   \"status\": \"pending\",\n        \"type\": \"passport\",\n        \"created\": \"2015-09-29T21:42:16.000Z\"\
+          ,\n        \"documentVerificationStatus\": \"pending\"\n      },\n      {\n        \"_links\"\
+          : {\n            \"self\": {\n                \"href\": \"https://api-sandbox.dwolla.com/documents/20988444-c7e1-40cf-ab1a-a20da878e568\"\
+          ,\n                \"type\": \"application/vnd.dwolla.v1.hal+json\",\n                \"resource-type\"\
+          : \"document\"\n            }\n        },\n        \"id\": \"20988444-c7e1-40cf-ab1a-a20da878e568\"\
+          ,\n        \"status\": \"reviewed\",\n        \"type\": \"license\",\n        \"created\": \"\
+          2019-05-30T22:01:40.000Z\",\n        \"documentVerificationStatus\": \"rejected\",\n       \
+          \ \"failureReason\": \"ScanDobMismatch\",\n        \"allFailureReasons\": [\n            {\n\
+          \                \"reason\": \"ScanDobMismatch\",\n                \"description\": \"Scan DOB\
+          \ does not match DOB on account\"\n            },\n            {\n                \"reason\"\
+          : \"ScanIdExpired\",\n                \"description\": \"ID is expired or missing expiration\
+          \ date\"\n            }\n        ]\n      }\n    ]\n  },\n  \"total\": 2\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl =\n  \"\
+          https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2\";\n\ndwolla\n\
+          \  .get(`${customerUrl}/documents`)\n  .then((res) => res.body._embedded[\"documents\"][0].id);\
+          \ // => '56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          documents = app_token.get(''%s/documents'' % customer_url)
+
+          documents.body[''total''] # => 2
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customerUrl = ''https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2'';
+
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+
+          $customer = $customersApi->getCustomerDocuments($customerUrl);
+
+          $customer->total; # => 2
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          documents = app_token.get "#{customer_url}/documents"
+
+          documents._embedded[''documents''][0].id # => "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: customer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - documents
+      summary: Create a document for customer
+      description: Uploads an identity verification document for a customer using multipart form-data.
+        Required when a customer has "document" status during the verification process.
+      operationId: createCustomerDocument
+      x-speakeasy-group: customers.documents
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: 'curl -X POST
+
+          \ -H "Authorization: Bearer tJlyMNW6e3QVbzHjeJ9JvAPsRglFjwnba4NdfCzsYJm7XbckcR"
+
+          \ -H "Accept: application/vnd.dwolla.v1.hal+json"
+
+          \ -H "Cache-Control: no-cache"
+
+          \ -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+
+          \ -F "documentType=passport"
+
+          \ -F "file=@foo.png"
+
+          \ ''https://api-sandbox.dwolla.com/customers/1de32eC7-ff0b-4c0c-9f09-19629e6788ce/documents''
+
+
+          ...
+
+
+          HTTP/1.1 201 Created
+
+          Location: https://api-sandbox.dwolla.com/documents/11fe0bab-39bd-42ee-bb39-275afcc050d0
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\n// Using form-data - https://github.com/form-data/form-data\
+          \ (Not Maintained By Dwolla)\nvar customerUrl = \"https://api-sandbox.dwolla.com/customers/1de32eC7-ff0b-4c0c-9f09-19629e6788ce\"\
+          ;\n\nvar requestBody = new FormData();\nrequestBody.append(\"file\", fs.createReadStream(\"\
+          mclovin.jpg\"), {\n  filename: \"mclovin.jpg\",\n  contentType: \"image/jpeg\",\n  knownLength:\
+          \ fs.statSync(\"mclovin.jpg\").size,\n});\nrequestBody.append(\"documentType\", \"license\"\
+          );\n\ndwolla\n  .post(`${customerUrl}/documents`, requestBody)\n  .then((res) => res.headers.get(\"\
+          location\")); // => \"https://api-sandbox.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16\"\
+          \n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/1de32eC7-ff0b-4c0c-9f09-19629e6788ce''
+
+
+          document = app_token.post(''%s/documents'' % customer_url, file = open(''mclovin.jpg'', ''rb''),
+          documentType = ''license'')
+
+          document.headers[''location''] # => ''https://api-sandbox.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16''
+
+          '
+      - lang: php
+        source: "/**\n * No example for this language yet.\n **/\n"
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/1de32eC7-ff0b-4c0c-9f09-19629e6788ce''
+
+
+          file = Faraday::UploadIO.new(''mclovin.jpg'', ''image/jpeg'')
+
+          document = app_token.post "#{customer_url}/documents", file: file, documentType: ''license''
+
+          document.response_headers[:location] # => "https://api.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: customer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        description: Upload a document for a customer.
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - documentType
+              - file
+              properties:
+                documentType:
+                  type: string
+                  enum:
+                  - passport
+                  - license
+                  - idCard
+                  - other
+                  example: license
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: successful operation
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/MaximumNumberOfResourcesSchema'
+                - $ref: '#/components/schemas/InvalidFileTypeSchema'
+                - $ref: '#/components/schemas/DuplicateResourceSchema'
+        '403':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/InvalidResourceStateSchema'
+                - $ref: '#/components/schemas/NotAuthorizedSchema'
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: notFound
+                  message:
+                    type: string
+                    example: Customer not found. Check CustomerId.
+        '413':
+          description: request entity too large
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: fileTooLarge
+                  message:
+                    type: string
+                    example: Document requests are limited to 10 MiB.
+  /beneficial-owners/{id}/documents:
+    get:
+      tags:
+      - documents
+      summary: List documents for beneficial owner
+      description: Returns all identity verification documents submitted for a beneficial owner. Includes
+        document status, verification results, document type (passport, driver's license, etc.), and failure
+        reasons if verification was rejected. Used to track document submission and verification progress
+        during the business verification process.
+      operationId: listBeneficialOwnerDocuments
+      x-speakeasy-group: beneficialOwners.documents
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: "GET https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2/documents\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLfwKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\
+          \n...\n\n{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2/documents\"\
+          \n    }\n  },\n  \"_embedded\": {\n    \"documents\": [\n      {\n        \"_links\": {\n  \
+          \        \"self\": {\n            \"href\": \"https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\"\
+          \n          }\n        },\n        \"id\": \"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\",\n     \
+          \   \"status\": \"pending\",\n        \"type\": \"passport\",\n        \"created\": \"2015-09-29T21:42:16.000Z\"\
+          ,\n        \"documentVerificationStatus\": \"pending\"\n      },\n      {\n        \"_links\"\
+          : {\n            \"self\": {\n                \"href\": \"https://api-sandbox.dwolla.com/documents/20988444-c7e1-40cf-ab1a-a20da878e568\"\
+          ,\n                \"type\": \"application/vnd.dwolla.v1.hal+json\",\n                \"resource-type\"\
+          : \"document\"\n            }\n        },\n        \"id\": \"20988444-c7e1-40cf-ab1a-a20da878e568\"\
+          ,\n        \"status\": \"reviewed\",\n        \"type\": \"license\",\n        \"created\": \"\
+          2019-05-30T22:01:40.000Z\",\n        \"documentVerificationStatus\": \"rejected\",\n       \
+          \ \"failureReason\": \"ScanDobMismatch\",\n        \"allFailureReasons\": [\n            {\n\
+          \                \"reason\": \"ScanDobMismatch\",\n                \"description\": \"Scan DOB\
+          \ does not match DOB on account\"\n            },\n            {\n                \"reason\"\
+          : \"ScanIdExpired\",\n                \"description\": \"ID is expired or missing expiration\
+          \ date\"\n            }\n        ]\n      }\n    ]\n  },\n  \"total\": 2\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar beneficialOwnerUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2\"\
+          ;\n\ndwolla\n  .get(`${beneficialOwnerUrl}/documents`)\n  .then((res) => res.body._embedded[\"\
+          documents\"][0].id); // => '56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          documents = app_token.get(''%s/documents'' % beneficial_owner_url)
+
+          documents.body[''total''] # => 2
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $beneficialOwnerUrl = ''https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2'';
+
+
+          $beneficialOwnersApi = new DwollaSwagger\BeneficialOwnersApi($apiClient);
+
+
+          $listDocsBeneficialOwner = $beneficialOwnersApi->getBeneficialOwnerDocuments($beneficialOwnerUrl);
+
+          $listDocsBeneficialOwner->total; # => 2
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          documents = app_token.get "#{beneficial_owner_url}/documents"
+
+          documents._embedded[''documents''][0].id # => "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: beneficial owner unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - documents
+      summary: Create a document for beneficial owner
+      description: Uploads an identity verification document for a beneficial owner using multipart form-data.
+        Required when a beneficial owner has "document" status during the business verification process.
+      operationId: createBeneficialOwnerDocument
+      x-speakeasy-group: beneficialOwners.documents
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: 'curl -X POST
+
+          \ -H "Authorization: Bearer tJlyMNW6e3QVbzHjeJ9JvAPsRglFjwnba4NdfCzsYJm7XbckcR"
+
+          \ -H "Accept: application/vnd.dwolla.v1.hal+json"
+
+          \ -H "Cache-Control: no-cache"
+
+          \ -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+
+          \ -F "documentType=passport"
+
+          \ -F "file=@foo.png"
+
+          \ ''https://api-sandbox.dwolla.com/beneficial-owners/1de32ec7-ff0b-4c0c-9f09-19629e6788ce/documents''
+
+
+          ...
+
+
+          HTTP/1.1 201 Created
+
+          Location: https://api-sandbox.dwolla.com/documents/11fe0bab-39bd-42ee-bb39-275afcc050d0
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\n// Using form-data - https://github.com/form-data/form-data\
+          \ (Not Maintained By Dwolla)\nvar beneficialOwnerUrl = \"https://api-sandbox.dwolla.com/beneficial-owners/1DE32EC7-FF0B-4C0C-9F09-19629E6788CE\"\
+          ;\n\nvar requestBody = new FormData();\nbody.append(\"file\", fs.createReadStream(\"mclovin.jpg\"\
+          ), {\n  filename: \"mclovin.jpg\",\n  contentType: \"image/jpeg\",\n  knownLength: fs.statSync(\"\
+          mclovin.jpg\").size,\n});\nbody.append(\"documentType\", \"license\");\n\ndwolla\n  .post(`${beneficialOwnerUrl}/documents`,\
+          \ requestBody)\n  .then((res) => res.headers.get(\"location\")); // => \"https://api-sandbox.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16\"\
+          \n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/1DE32EC7-FF0B-4C0C-9F09-19629E6788CE''
+
+
+          document = app_token.post(''%s/documents'' % customer_url, file = open(''mclovin.jpg'', ''rb''),
+          documentType = ''license'')
+
+          document.headers[''location''] # => ''https://api-sandbox.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16''
+
+          '
+      - lang: php
+        source: "/**\n * No example for this language yet.\n **/\n"
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/1DE32EC7-FF0B-4C0C-9F09-19629E6788CE''
+
+
+          file = Faraday::UploadIO.new(''mclovin.jpg'', ''image/jpeg'')
+
+          document = app_token.post "#{beneficial_owner_url}/documents", file: file, documentType: ''license''
+
+          document.response_headers[:location] # => "https://api.dwolla.com/documents/fb919e0b-ffbe-4268-b1e2-947b44328a16"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: beneficial owner unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        description: Upload a document for a beneficial owner.
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - documentType
+              - file
+              properties:
+                documentType:
+                  type: string
+                  enum:
+                  - passport
+                  - license
+                  - idCard
+                  - other
+                  example: license
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: document created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/MaximumNumberOfResourcesSchema'
+                - $ref: '#/components/schemas/InvalidFileTypeSchema'
+                - $ref: '#/components/schemas/DuplicateResourceSchema'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        '413':
+          description: request entity too large
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: fileTooLarge
+                  message:
+                    type: string
+                    example: Document requests are limited to 10 MiB.
+  /documents/{id}:
+    get:
+      tags:
+      - documents
+      summary: Retrieve a document
+      description: Returns detailed information about a specific identity verification document, including
+        its status, type, and verification results. Used to track document submission and verification
+        progress during the business verification process.
+      operationId: retrieveDocument
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: "GET https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\nAccept:\
+          \ application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLfwKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\
+          \n{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\"\
+          \n    }\n  },\n  \"id\": \"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\",\n  \"status\": \"pending\"\
+          ,\n  \"type\": \"passport\",\n  \"created\": \"2015-09-29T21:42:16.000Z\",\n  \"documentVerificationStatus\"\
+          : \"pending\"\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar documentUrl =\n  \"\
+          https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\";\n\ndwolla.get(documentUrl).then((res)\
+          \ => res.body.type); // => \"passport\"\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          document_url = ''https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc''
+
+
+          document = app_token.get(document_url)
+
+          document.body[''type''] # => ''passport''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $documentUrl = ''https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc'';
+
+
+          $documentsApi = new DwollaSwagger\DocumentsApi($apiClient);
+
+
+          $document = $documentsApi->getDocument($documentUrl);
+
+          $document->type; # => "passport"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          document_url = ''https://api-sandbox.dwolla.com/documents/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc''
+
+
+          document = app_token.get document_url
+
+          document.type # => "passport"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Document unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+components:
+  schemas:
+    Document:
+      title: Document
+      description: Identity verification document for a customer or beneficial owner
+      type: object
+      required:
+      - _links
+      - id
+      - status
+      - documentVerificationStatus
+      - type
+      - created
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          description: Unique identifier for the document
+          example: 56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc
+        status:
+          type: string
+          description: Current status of the document upload
+          enum:
+          - pending
+          - reviewed
+          example: reviewed
+        type:
+          type: string
+          description: Type of identity document uploaded
+          enum:
+          - passport
+          - license
+          - idCard
+          - other
+          example: passport
+        created:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the document was uploaded
+          example: '2015-09-29T21:42:16.000Z'
+        documentVerificationStatus:
+          type: string
+          description: Verification status of the document after review
+          enum:
+          - pending
+          - accepted
+          - rejected
+          example: rejected
+        failureReason:
+          type: string
+          description: Primary reason why document verification failed (if rejected)
+          example: ScanDobMismatch
+        allFailureReasons:
+          type: array
+          description: Complete list of all failure reasons if document verification was rejected
+          items:
+            type: object
+            required:
+            - reason
+            - description
+            properties:
+              reason:
+                type: string
+                description: Failure reason code
+                example: ScanDobMismatch
+              description:
+                type: string
+                description: Human-readable explanation of the failure reason
+                example: Scan DOB does not match DOB on account
+    NotAuthorizedSchema:
+      title: NotAuthorizedSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: notAuthorized
+        message:
+          type: string
+          example: Not authorized to create documents.
+    InvalidFileTypeSchema:
+      title: InvalidFileTypeSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidFileType
+        message:
+          type: string
+          example: 'File types supported: Personal IDs - .jpg, .jpeg or .png. Business Documents - .jpg,
+            .jpeg, .png, or .pdf.'
+    InvalidResourceStateSchema:
+      title: InvalidResourceStateSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidResourceState
+        message:
+          type: string
+          example: Resource cannot be modified. Document creation not allowed for already verified Customers
+            or non-verified Customer types.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    Documents:
+      title: Documents
+      type: object
+      required:
+      - _links
+      - _embedded
+      - total
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          required:
+          - documents
+          properties:
+            documents:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+        total:
+          type: integer
+          example: 2
+    DuplicateResourceSchema:
+      title: DuplicateResourceSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: DuplicateResource
+        message:
+          type: string
+          example: 'Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11'
+        _links:
+          type: object
+          properties:
+            about:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11
+                type:
+                  type: string
+                  example: application/vnd.dwolla.v1.hal+json
+                resource-type:
+                  type: string
+                  example: funding-source
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    MaximumNumberOfResourcesSchema:
+      title: MaximumNumberOfResourcesSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: maximumNumberOfResources
+        message:
+          type: string
+          example: Max of four files upload allowed. Please wait for Dwolla to manually check the documents.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

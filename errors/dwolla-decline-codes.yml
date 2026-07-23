@@ -1,0 +1,87 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/transfer-failures
+kind: ach-return-codes
+envelope_field: >-
+  Returned on the transfer failure resource ("Retrieve the Transfer Failure Reason" endpoint) and on
+  customer_bank_transfer_failed / customer_transfer_failed webhook events.
+masked_to_buyers: >-
+  Return codes are integration/operational signals surfaced to the application, not directly shown to
+  end users; the docs recommend mapping codes to appropriate end-user messaging and funding-source
+  actions.
+decline_codes:
+- code: R01
+  meaning: Insufficient Funds — available balance inadequate for debit entry.
+  action: None
+- code: R02
+  meaning: Bank Account Closed — previously active account now closed.
+  action: Unverify or remove funding source.
+- code: R03
+  meaning: No Account / Unable to Locate Account — account number invalid or unmatched.
+  action: Unverify or remove funding source.
+- code: R04
+  meaning: Invalid Bank Account Number Structure — account number format incorrect.
+  action: Unverify or remove funding source.
+- code: R05
+  meaning: Unauthorized Debit Using Corporate SEC Code — CCD/CTX unauthorized to consumer.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R06
+  meaning: Returned per ODFI's Request — originating bank requested return.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R07
+  meaning: Authorization Revoked by Customer — consumer withdrew prior authorization.
+  action: Deactivate customer; unverify or remove funding source.
+- code: R08
+  meaning: Payment Stopped — receiver requested stop payment on ACH debit.
+  action: Unverify or remove funding source.
+- code: R09
+  meaning: Uncollected Funds — insufficient available balance after uncollected items.
+  action: None
+- code: R10
+  meaning: Customer Advises Not Authorized — no relationship or authorization exists.
+  action: Suspend customer; unverify/remove/blocklist funding source.
+- code: R11
+  meaning: Not in Accordance with Authorization Terms — inaccurate or improper entry.
+  action: Deactivate customer; unverify or remove funding source.
+- code: R12
+  meaning: Branch Sold to Another DFI — account transferred via merger/acquisition.
+  action: Remove funding source.
+- code: R13
+  meaning: Invalid ACH Routing Number.
+  action: Unverify, remove, or blocklist funding source.
+- code: R14
+  meaning: Representative Payee Deceased — payee unable to continue capacity.
+  action: Deactivate customer; remove funding source.
+- code: R15
+  meaning: Beneficiary or Account Holder Deceased.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R16
+  meaning: Account Frozen / OFAC Return — restricted access or OFAC instruction.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R17
+  meaning: File Record Edit Criteria / Questionable Entry.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R20
+  meaning: Non-Transaction Account — account exceeds withdrawal limits.
+  action: Remove or blocklist funding source.
+- code: R22
+  meaning: Invalid Individual ID Number — receiver disputes provided ID.
+  action: Unverify funding source.
+- code: R23
+  meaning: Credit Entry Refused by Receiver.
+  action: Unverify or remove funding source.
+- code: R29
+  meaning: Corporate Customer Advises Not Authorized.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R31
+  meaning: Permissible Return (CCD/CTX) — RDFI returned agreed-upon entry.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R37
+  meaning: Source Document Presented for Payment — ARC/BOC/POP document paid elsewhere.
+  action: Remove funding source.
+- code: R38
+  meaning: Stop Payment on Source Document.
+  action: Deactivate customer; unverify/remove/blocklist funding source.
+- code: R51
+  meaning: RCK Entry Ineligible or Improper.
+  action: Deactivate customer; unverify/remove/blocklist funding source.

@@ -1,0 +1,66 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/sdks-tools + package registries + https://github.com/Dwolla
+packages:
+- language: javascript
+  registry: npm
+  name: dwolla-v2
+  version: 3.4.2
+  url: https://www.npmjs.com/package/dwolla-v2
+  repository: https://github.com/Dwolla/dwolla-v2-node
+  install: npm install dwolla-v2
+  official: true
+  notes: Official Node/TypeScript SDK (ships TypeScript type definitions).
+- language: python
+  registry: pypi
+  name: dwollav2
+  url: https://pypi.org/project/dwollav2/
+  repository: https://github.com/Dwolla/dwolla-v2-python
+  install: pip install dwollav2
+  official: true
+- language: ruby
+  registry: rubygems
+  name: dwolla_v2
+  version: 4.0.0
+  url: https://rubygems.org/gems/dwolla_v2
+  repository: https://github.com/Dwolla/dwolla-v2-ruby
+  install: gem install dwolla_v2
+  official: true
+- language: php
+  registry: packagist
+  name: dwolla/dwollaswagger
+  url: https://packagist.org/packages/dwolla/dwollaswagger
+  repository: https://github.com/Dwolla/dwolla-swagger-php
+  install: composer require dwolla/dwollaswagger
+  official: true
+- language: csharp
+  registry: nuget
+  name: Dwolla.Client
+  version: 6.0.1
+  url: https://www.nuget.org/packages/Dwolla.Client
+  repository: https://github.com/Dwolla/dwolla-v2-csharp
+  install: dotnet add package Dwolla.Client
+  official: true
+- language: kotlin
+  registry: github
+  name: dwolla-v2-kotlin
+  url: https://github.com/Dwolla/dwolla-v2-kotlin
+  repository: https://github.com/Dwolla/dwolla-v2-kotlin
+  install: See repository release artifacts (JVM SDK).
+  official: true
+  notes: Published as a JVM/Kotlin SDK on GitHub; not verified on Maven Central under com.dwolla.
+- language: javascript
+  registry: npm
+  name: "@dwolla/react-drop-ins"
+  url: https://www.npmjs.com/package/@dwolla/react-drop-ins
+  repository: https://github.com/Dwolla/react-drop-ins
+  install: npm install @dwolla/react-drop-ins
+  official: true
+  notes: React/JSX bindings for Dwolla Drop-in Components (see components/).
+mcp:
+- name: "@dwolla/mcp-server"
+  registry: npm
+  url: https://www.npmjs.com/package/@dwolla/mcp-server
+  install: npx @dwolla/mcp-server
+  official: true
+  notes: Read-only MCP server; see mcp/dwolla-mcp.yml.

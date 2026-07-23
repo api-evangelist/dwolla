@@ -1,0 +1,971 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Beneficial Owners
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: beneficial owners
+  description: Operations related to Beneficial Owners
+paths:
+  /customers/{id}/beneficial-owners:
+    get:
+      tags:
+      - beneficial owners
+      summary: List customer beneficial owners
+      description: Returns all beneficial owners associated with a business verified customer. Beneficial
+        owners are individuals who directly or indirectly own 25% or more of the company's equity. Includes
+        personal information, verification status, and address details for each owner.
+      operationId: listBeneficialOwnersForCustomer
+      x-speakeasy-group: customers.beneficialOwners
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/customers/81696e5d-a593-45a6-8863-3c20ad634de5/beneficial-owners
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl = \"https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2\"\
+          ;\n\ntoken\n  .get(`${customerUrl}/beneficial-owners`)\n  .then((res) => res.body._embedded[\"\
+          beneficial-owners\"][0].id);\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          beneficial_owners = app_token.get(''%s/beneficial-owners'' % customer_url)
+
+          beneficial_owners.body[''id'']
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+
+          $customerUrl = ''https://api-sandbox.dwolla.com/customers/81696e5d-a593-45a6-8863-3c20ad634de5'';
+
+          $beneficialOwnerList = $customersApi->getBeneficialOwners($customerUrl);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/176878b8-ecdb-469b-a82b-43ba5e8704b2''
+
+
+          beneficial_owners = app_token.get "#{customer_url}/beneficial-owners"
+
+          beneficial_owners._embedded[''beneficial-owners''][0].id
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Customer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BeneficialOwners'
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: not_found
+                  message:
+                    type: string
+                    example: not found.
+    post:
+      tags:
+      - beneficial owners
+      summary: Create customer beneficial owner
+      description: Creates a new beneficial owner for a business verified customer. Beneficial owners
+        are individuals who own 25% or more of the company's equity. Requires personal information, address,
+        and SSN or passport for identity verification.
+      operationId: createBeneficialOwnerForCustomer
+      x-speakeasy-group: customers.beneficialOwners
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/customers/81696e5d-a593-45a6-8863-3c20ad634de5/beneficial-owners\n\
+          Content-Type: application/vnd.dwolla.v1.hal+json\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n  \"firstName\"\
+          : \"document\",\n  \"lastName\": \"owner\",\n  \"ssn\": \"123-46-7890\",\n  \"dateOfBirth\"\
+          : \"1960-11-30\",\n  \"address\": {\n    \"address1\": \"123 Main St.\",\n    \"city\": \"New\
+          \ York\",\n    \"stateProvinceRegion\": \"NY\",\n    \"country\": \"US\",\n    \"postalCode\"\
+          : \"10005\"\n  }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl = 'https://api-sandbox.dwolla.com/customers/07d59716-ef22-4fe6-98e8-f3190233dfb8';\n\
+          var requestBody = {\n  firstName: 'John',\n  lastName: 'Doe',\n  dateOfBirth: '1970-01-01',\n\
+          \  ssn: '123-56-7890',\n  address: {\n    address1: '99-99 33rd St',\n    city: 'Some City',\n\
+          \    stateProvinceRegion: 'NY',\n    country: 'US',\n    postalCode: '11101'\n  }\n};\n\ndwolla\n\
+          \  .post(`${customerUrl}/beneficial-owners`, requestBody)\n  .then(res => res.headers.get('location'));\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C'\n\
+          request_body = {\n  'firstName': 'John',\n  'lastName': 'Doe',\n  'dateOfBirth': '1970-01-01',\n\
+          \  'ssn': '123-46-7890',\n  'address': {\n    'address1': '99-99 33rd St',\n    'city': 'Some\
+          \ City',\n    'stateProvinceRegion': 'NY',\n    'country': 'US',\n    'postalCode': '11101'\n\
+          \  }\n}\n\nbeneficial_owner = app_token.post('%s/beneficial-owners' % customer_url, request_body)\n\
+          beneficial_owner.headers['location']\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$customersApi\
+          \ = new DwollaSwagger\\CustomersApi($apiClient);\n$verified_customer = 'https://api-sandbox.dwolla.com/customers/81696e5d-a593-45a6-8863-3c20ad634de5';\n\
+          \n$addOwner = $customersApi->addBeneficialOwner([\n      'firstName' => 'document',\n      'lastName'=>\
+          \ 'owner',\n      'dateOfBirth' => '1990-11-11',\n      'ssn' => '123-34-9876',\n      'address'\
+          \ =>\n      [\n          'address1' => '18749 18th st',\n          'address2' => 'apt 12',\n\
+          \          'address3' => '',\n          'city' => 'Des Moines',\n          'stateProvinceRegion'\
+          \ => 'IA',\n          'postalCode' => '50265',\n          'country' => 'US'\n      ],\n  ],\
+          \ $verified_customer);\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/81696e5d-a593-45a6-8863-3c20ad634de5'\n\
+          request_body = {\n  :firstName => 'John',\n  :lastName => 'Doe',\n  :ssn => '123-46-7890',\n\
+          \  :dateOfBirth => '1970-01-01',\n  :address => {\n    :address1 => '99-99 33rd St',\n    :city\
+          \ => 'Some City',\n    :stateProvinceRegion => 'NY',\n    :country => 'US',\n    :postalCode\
+          \ => '11101'\n  }\n}\n\nbeneficial_owner = app_token.post \"#{customer_url}/beneficial-owners\"\
+          , request_body\nbeneficial_owner.response_headers[:location]\n"
+      parameters:
+      - name: id
+        in: path
+        description: Customer ID for which to create a Beneficial Owner
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters for creating a beneficial owner
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/CreateUSBeneficialOwner'
+              - $ref: '#/components/schemas/CreateInternationalBeneficialOwner'
+      responses:
+        '201':
+          description: successful operation
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /beneficial-owners/{id}:
+    get:
+      tags:
+      - beneficial owners
+      summary: Retrieve beneficial owner
+      description: Returns detailed information for a specific beneficial owner, including personal information,
+        address, and verification status. The verification status indicates the owner's identity verification
+        progress and affects the business customer's transaction capabilities.
+      operationId: retrieveBeneficialOwner
+      x-speakeasy-group: beneficialOwners
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/beneficial-owners/976a4c14-b183-40e9-b2df-ddbb3e794d3f
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: '// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          var beneficialOwnerUrl = "https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8";
+
+
+          dwolla.get(beneficialOwnerUrl).then((res) => res.body.firstName); // => ''Jane''
+
+          '
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfB8''
+
+
+          beneficial_owner = app_token.get(beneficial_owner_url)
+
+          beneficial_owner.body[''firstName'']
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $beneficialOwnersApi = new DwollaSwagger\BeneficialownersApi($apiClient);
+
+
+          $beneficialOwnerUrl = ''https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfB8'';
+
+          $beneficialOwner = $beneficialOwnersApi->getById($beneficialOwnerUrl);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfB8''
+
+
+          beneficial_owner = app_token.get beneficial_owner_url
+
+          beneficial_owner.firstName # => "Jane"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Beneficial owner unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BeneficialOwner'
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: not_found
+                  message:
+                    type: string
+                    example: not found.
+    post:
+      tags:
+      - beneficial owners
+      summary: Update beneficial owner
+      description: Updates a beneficial owner's information to retry verification when their status is
+        "incomplete". Only beneficial owners with incomplete verification status can be updated. Used
+        to correct information that caused initial verification to fail.
+      operationId: updateBeneficialOwner
+      x-speakeasy-group: beneficialOwners
+      x-speakeasy-name-override: update
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8\n\
+          Content-Type: application/vnd.dwolla.v1.hal+json\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n  \"firstName\"\
+          : \"beneficial\",\n  \"lastName\": \"owner\",\n  \"ssn\": \"123-54-6789\",\n  \"dateOfBirth\"\
+          : \"1963-11-11\",\n  \"address\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\":\
+          \ \"Apt 123\",\n    \"city\": \"Des Moines\",\n    \"stateProvinceRegion\": \"IA\",\n    \"\
+          country\": \"US\",\n    \"postalCode\": \"50309\"\n  }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar beneficialOwnerUrl\
+          \ = 'https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8';\n\
+          var requestBody = {\n  firstName: 'beneficial',\n  lastName: 'owner',\n  dateOfBirth: '1963-11-11',\n\
+          \  ssn: '123-54-6789',\n  address: {\n    address1: '123 Main St',\n    city: 'Des Moines',\n\
+          \    stateProvinceRegion: 'IA',\n    country: 'US',\n    postalCode: '50309'\n  }\n};\n\ndwolla\n\
+          \  .post(beneficialOwnerUrl, requestBody)\n  .then(res => res.body.id); // => '00cb67f2-768c-4ee3-ac81-73bc4faf9c2b'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nbeneficial_owner_url =\
+          \ 'https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8'\n\
+          request_body = {\n  'firstName': 'beneficial',\n  'lastName': 'owner',\n  'dateOfBirth': '1963-11-11',\n\
+          \  'ssn': '123-54-6789',\n  'address': {\n    'address1': '123 Main St',\n    'city': 'Des Moines',\n\
+          \    'stateProvinceRegion': 'IA',\n    'country': 'US',\n    'postalCode': '50309'\n  }\n}\n\
+          \nupdate_beneficial_owner = app_token.post(beneficial_owner_url, request_body)\nupdate_beneficial_owner.body['id']\
+          \ # => '00cb67f2-768c-4ee3-ac81-73bc4faf9c2b'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$beneficialOwnersApi\
+          \ = new DwollaSwagger\\BeneficialownersApi($apiClient);\n\n$beneficialOwnerUrl = 'https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8';\n\
+          $updateBeneficialOwner = $beneficialOwnersApi->update([\n      'firstName' => 'beneficial',\n\
+          \      'lastName'=> 'owner',\n      'dateOfBirth' => '1963-11-11',\n      'ssn' => '123-54-6789',\n\
+          \      'address' =>\n      [\n          'address1' => '123 Main St.',\n          'address2'\
+          \ => 'Apt 123',\n          'city' => 'Des Moines',\n          'stateProvinceRegion' => 'IA',\n\
+          \          'postalCode' => '50309',\n          'country' => 'US'\n      ],\n  ], $beneficialOwnerUrl);\n\
+          \n$updateBeneficialOwner->id; # => \"00cb67f2-768c-4ee3-ac81-73bc4faf9c2b\"\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nbeneficial_owner_url =\
+          \ 'https://api-sandbox.dwolla.com/beneficial-owners/07d59716-ef22-4fe6-98e8-f3190233dfb8'\n\
+          request_body = {\n  :firstName => 'beneficial',\n  :lastName => 'owner',\n  :ssn => '123-54-6789',\n\
+          \  :dateOfBirth => '1963-11-11',\n  :address => {\n    :address1 => '123 Main St',\n    :city\
+          \ => 'Des Moines',\n    :stateProvinceRegion => 'IA',\n    :country => 'US',\n    :postalCode\
+          \ => '50309'\n  }\n}\n\nupdate_beneficial_owner = app_token.post beneficial_owner_url, request_body\n\
+          update_beneficial_owner.id # => \"00cb67f2-768c-4ee3-ac81-73bc4faf9c2b\"\n"
+      parameters:
+      - name: id
+        in: path
+        description: Beneficial owner unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters for updating a beneficial owner
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/CreateUSBeneficialOwner'
+              - $ref: '#/components/schemas/CreateInternationalBeneficialOwner'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BeneficialOwner'
+        '400':
+          description: ValidationError
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorSchema'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to update beneficial owner.
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: notFound
+                  message:
+                    type: string
+                    example: owner not found.
+    delete:
+      tags:
+      - beneficial owners
+      summary: Remove beneficial owner
+      description: Permanently removes a beneficial owner from a business customer. This action is irreversible
+        and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change
+        the customer's certification status to "recertify".
+      operationId: deleteBeneficialOwner
+      x-speakeasy-group: beneficialOwners
+      x-speakeasy-name-override: delete
+      x-codeSamples:
+      - lang: bash
+        source: 'DELETE https://api-sandbox.dwolla.com/beneficial-owners/692486f8-29f6-4516-a6a5-c69fd2ce854c
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: '// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          var beneficialOwnerUrl = "https://api-sandbox.dwolla.com/beneficial-owners/692486f8-29f6-4516-a6a5-c69fd2ce854c";
+
+
+          dwolla.delete(beneficialOwnerUrl);
+
+          '
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/692486f8-29f6-4516-a6a5-c69fd2ce854c''
+
+
+          app_token.delete(beneficial_owner_url)
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $beneficialOwnersApi = new DwollaSwagger\BeneficialownersApi($apiClient);
+
+          $beneficialOwner = ''https://api-sandbox.dwolla.com/beneficial-owners/692486f8-29f6-4516-a6a5-c69fd2ce854c'';
+
+          $deletedBeneficialOwner = $beneficialOwnersApi->deleteById($beneficialOwner);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          beneficial_owner_url = ''https://api-sandbox.dwolla.com/beneficial-owners/692486f8-29f6-4516-a6a5-c69fd2ce854c''
+
+
+          app_token.delete beneficial_owner_url
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Beneficial owner unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: not_found
+                  message:
+                    type: string
+                    example: Beneficial owner not found.
+  /customers/{id}/beneficial-ownership:
+    get:
+      tags:
+      - beneficial owners
+      summary: Retrieve beneficial ownership status
+      description: Returns the certification status of beneficial ownership for a business verified customer.
+        Status indicates whether beneficial owner information has been certified and affects the customer's
+        ability to send funds. Possible values include uncertified, certified, and recertify.
+      operationId: getBeneficialOwnershipStatusForCustomer
+      x-speakeasy-group: customers.beneficialOwnership
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc/beneficial-ownership
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl = \"https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc\"\
+          ;\n\ndwolla\n  .get(`${customerUrl}/beneficial-ownership`)\n  .then((res) => res.body.status);\
+          \ // => \"uncertified\"\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc''
+
+
+          beneficial_ownership = app_token.get(''%s/beneficial-ownership'' % customer_url)
+
+          beneficial_ownership.body[''status''] # => ''uncertified''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+
+          $newCustomer = ''https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc'';
+
+          $customerOwnershipStatus = $customersApi->getOwnershipStatus($newCustomer);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc''
+
+
+          beneficial_ownership = app_token.get "#{customer_url}/beneficial-ownership"
+
+          beneficial_ownership.status # => "uncertified"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Customer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BeneficialOwnership'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to get certification status.
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: not_found
+                  message:
+                    type: string
+                    example: Ownership certification status not found.
+    post:
+      tags:
+      - beneficial owners
+      summary: Certify beneficial ownership
+      description: Updates the beneficial ownership certification status to "certified", confirming that
+        all beneficial owner information is accurate and complete. This action enables the business customer
+        to send funds and is required to complete the verification process.
+      operationId: certifyBeneficialOwnershipForCustomer
+      x-speakeasy-group: customers.beneficialOwnership
+      x-speakeasy-name-override: certify
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/customers/56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc/beneficial-ownership\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nContent-Type: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n  \"status\"\
+          : \"certified\"\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl = \"https://api-sandbox.dwolla.com/customers/e52006c3-7560-4ff1-99d5-b0f3a6f4f909\"\
+          ;\nvar requestBody = {\n  status: \"certified\",\n};\n\ndwolla.post(`${customerUrl}/beneficial-ownership`,\
+          \ requestBody);\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/e52006c3-7560-4ff1-99d5-b0f3a6f4f909'\n\
+          request_body = {\n    \"status\": \"certified\"\n}\n\napp_token.post('%s/beneficial-ownership'\
+          \ % customer_url, request_body)\n"
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+          $customerId = ''https://api-sandbox.dwolla.com/customers/e52006c3-7560-4ff1-99d5-b0f3a6f4f909'';
+
+          $certifyCustomer = $customersApi->changeOwnershipStatus([''status'' => ''certified'' ], $customerId);
+
+          ?>
+
+          '
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/e52006c3-7560-4ff1-99d5-b0f3a6f4f909'\n\
+          request_body = {\n  :status => \"certified\"\n}\n\napp_token.post \"#{customer_url}/beneficial-ownership\"\
+          , request_body\n"
+      parameters:
+      - name: id
+        in: path
+        description: Customer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters for certifying beneficial ownership for a Customer
+        content:
+          application/json:
+            schema:
+              required:
+              - status
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BeneficialOwnership'
+        '400':
+          description: ValidationError
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorSchema'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Forbidden from updating beneficial ownership status for this customer.
+components:
+  schemas:
+    BeneficialOwners:
+      title: BeneficialOwners
+      description: Request model for list beneficial owners
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            beneficial-owners:
+              type: array
+              items:
+                $ref: '#/components/schemas/BeneficialOwner'
+    ValidationErrorSchema:
+      title: ValidationErrorSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    Passport:
+      title: Passport
+      type: object
+      required:
+      - number
+      - country
+      properties:
+        number:
+          type: string
+        country:
+          type: string
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    InternationalAddress:
+      title: InternationalAddress
+      type: object
+      required:
+      - address1
+      - city
+      - country
+      - stateProvinceRegion
+      properties:
+        address1:
+          type: string
+          example: 462 Main Street
+        address2:
+          type: string
+          example: Suite 123
+        address3:
+          type: string
+          example: Unit 123
+        city:
+          type: string
+          example: Des Moines
+        postalCode:
+          type: string
+          example: '50309'
+        country:
+          type: string
+          example: USA
+        stateProvinceRegion:
+          type: string
+          example: IA
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    BeneficialOwnership:
+      title: BeneficialOwnership
+      type: object
+      required:
+      - _links
+      - status
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
+        status:
+          type: string
+          enum:
+          - uncertified
+          - certified
+          - recertify
+          example: uncertified
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    CreateInternationalBeneficialOwner:
+      title: CreateInternationalBeneficialOwner
+      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial
+        owners who don't have a US SSN. Requires passport information for identity verification.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - passport
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        dateOfBirth:
+          type: string
+          example: '1985-03-15'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        passport:
+          $ref: '#/components/schemas/Passport'
+    BeneficialOwner:
+      title: BeneficialOwner
+      description: Request body model for a Beneficial Owner
+      type: object
+      required:
+      - _links
+      - id
+      - firstName
+      - lastName
+      - address
+      - verificationStatus
+      - created
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        verificationStatus:
+          type: string
+          enum:
+          - verified
+          - document
+          - incomplete
+          example: verified
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
+    CreateUSBeneficialOwner:
+      title: CreateUSBeneficialOwner
+      description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only.
+        Use SSN for identity verification instead of passport.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - ssn
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        dateOfBirth:
+          type: string
+          example: '1980-01-31'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        ssn:
+          type: string
+          example: '123456789'
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

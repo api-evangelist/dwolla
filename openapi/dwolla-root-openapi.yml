@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Root
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: root
+  description: Root API operations
+paths:
+  /:
+    get:
+      tags:
+      - root
+      summary: root
+      description: Retrieve the API root entry point to discover available resources and endpoints based
+        on your OAuth access token permissions. Returns HAL+JSON with navigation links to accessible resources
+        including accounts, customers, events, and webhook subscriptions depending on token scope. Essential
+        for API exploration, dynamic resource discovery, and building adaptive client applications that
+        respond to available permissions.
+      operationId: getRoot
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: '// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          dwolla.get("/").then((res) => res.body._links.account.href); // => ''https://api-sandbox.dwolla.com/accounts/ad5f2162-404a-4c4c-994e-6ab6c3a13254''
+
+          '
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          root = app_token.get(''/'')
+
+          root.body[''_links''][''account''][''href''] # => ''https://api-sandbox.dwolla.com/accounts/ad5f2162-404a-4c4c-994e-6ab6c3a13254''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $rootApi = new DwollaSwagger\RootApi($apiClient);
+
+
+          $root = $rootApi->root();
+
+          $accountUrl = $root->_links["account"]->href; # => "https://api-sandbox.dwolla.com/accounts/ad5f2162-404a-4c4c-994e-6ab6c3a13254"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          root = app_token.get "/"
+
+          root._links.account.href # => "https://api-sandbox.dwolla.com/accounts/ad5f2162-404a-4c4c-994e-6ab6c3a13254"
+
+          '
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Root'
+        '401':
+          description: unauthorized
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidAccessToken
+                  message:
+                    type: string
+                    example: Invalid access token.
+      deprecated: false
+components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  schemas:
+    Root:
+      title: Root
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/api-reference/api-fundamentals/errors
+format: dwolla-hal-error
+envelope:
+  fields: [code, message, _embedded.errors]
+  embedded_error_fields: [code, message, path, _links]
+  note: >-
+    Validation errors nest per-field detail codes (e.g. Required, Invalid, InvalidFormat) under
+    _embedded.errors[] with a JSON-pointer path. Not RFC 9457 application/problem+json.
+problems:
+- status: 400
+  code: BadRequest
+  title: The request body contains bad syntax or is incomplete.
+- status: 400
+  code: ValidationError
+  title: Multiple field validation issues present with embedded details.
+- status: 401
+  code: InvalidCredentials
+  title: Missing or invalid Authorization header.
+- status: 401
+  code: InvalidAccessToken
+  title: Invalid access token.
+- status: 401
+  code: ExpiredAccessToken
+  title: Token expired; generate new credentials.
+- status: 401
+  code: InvalidAccountStatus
+  title: Account status prevents access.
+- status: 401
+  code: InvalidApplicationStatus
+  title: Application status prevents access.
+- status: 401
+  code: InvalidScopes
+  title: Missing or invalid scopes for requested endpoint.
+- status: 403
+  code: Forbidden
+  title: Supplied credentials not authorized for this resource.
+- status: 403
+  code: InvalidResourceState
+  title: Resource cannot be modified.
+- status: 404
+  code: NotFound
+  title: The requested resource was not found.
+- status: 405
+  code: MethodNotAllowed
+  title: HTTP method not supported.
+- status: 406
+  code: InvalidVersion
+  title: Missing or invalid API version.
+- status: 500
+  code: ServerError
+  title: Server-side failure with error ID.
+- status: 500
+  code: RequestTimeout
+  title: The request timed out.

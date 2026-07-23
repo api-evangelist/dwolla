@@ -1,27 +1,542 @@
 aid: dwolla
 name: Dwolla
-description: Dwolla is a company surfaced as a portfolio company of a16z, union-square-ventures and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+kind: company
+description: Dwolla is a Des Moines-based fintech providing an account-to-account (A2A) payments platform
+  that lets businesses programmatically move money across the U.S. banking system. Its v2 REST API — a
+  JSON-HAL hypermedia API secured with OAuth 2.0 client-credentials — supports ACH (standard and Same-Day),
+  instant/real-time payments over the RTP Network and FedNow Service, bank funding sources with micro-deposit
+  and Open Banking (Plaid/MX) verification, verified Customers (personal and business with beneficial-owner/KYC
+  flows), mass payments, labels and ledgers, virtual account numbers, and webhook event notifications.
+  Dwolla ships official SDKs for Node, Python, Ruby, PHP, C#, and Kotlin, low-code Drop-in Components,
+  and a read-only MCP server for AI agents.
 url: https://raw.githubusercontent.com/api-evangelist/dwolla/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/Dwolla.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
 - union-square-ventures
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-23'
 tags:
-- Company
-apis: []
+- Payments
+- ACH
+- Bank Transfers
+- Fintech
+- Account-to-Account Payments
+- Money Movement
+- Instant Payments
+- Open Banking
+- Webhooks
+- KYC
+- United States
+- Open Finance
+- Same-Day ACH
+- RTP
+- FedNow
+- Mass Payments
+- Drop-in Components
+- SDKs
+- Sandbox
+apis:
+- aid: dwolla:dwolla-accounts-api
+  name: Dwolla Accounts API
+  description: Retrieve details about your master Dwolla Account and manage account-level resources including
+    creating and listing the account's own funding sources, and listing the account's transfers and mass
+    payments. The root of the account-to-account money-movement model that all verified Customers and
+    funding sources hang from.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Accounts
+  - Funding Sources
+  - Balance
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-accounts-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-customers-api
+  name: Dwolla Customers API
+  description: Create, retrieve, update, list and search Dwolla Customers — the account holders you onboard
+    to send or receive money. Supports Unverified, Receive-Only, Personal Verified and Business Verified
+    customer types with the identity-verification (KYC/CIP) fields the U.S. banking system requires, plus
+    business classification lookups used during business-customer onboarding.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Customers
+  - KYC
+  - Onboarding
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-customers-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-beneficial-owners-api
+  name: Dwolla Beneficial Owners API
+  description: Create, retrieve, update, remove and certify beneficial owners for Business Verified Customers.
+    Implements the U.S. CDD/beneficial-ownership requirements by collecting and verifying the individuals
+    who own or control a business entity, and exposing the certification step that attests ownership information
+    is accurate.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - KYC
+  - Beneficial Owners
+  - Compliance
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-beneficial-owners-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-kba-api
+  name: Dwolla KBA API
+  description: Knowledge-Based Authentication (KBA) for Personal Verified Customers whose identity could
+    not be automatically verified. Initiate a KBA session, retrieve the dynamically generated question
+    set, and submit answers to complete step-up identity verification without requiring a document upload.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - KYC
+  - Identity Verification
+  - Compliance
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-kba-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-documents-api
+  name: Dwolla Documents API
+  description: Upload and retrieve identity-verification documents for Customers and beneficial owners
+    when additional documentation is required to clear verification. Supports photo ID and business documents,
+    tracks each document's review status, and lists all documents attached to a Customer or beneficial
+    owner.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - KYC
+  - Documents
+  - Identity Verification
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-documents-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-funding-sources-api
+  name: Dwolla Funding Sources API
+  description: Attach, verify, retrieve, update and remove bank-account and balance funding sources for
+    Accounts and Customers. Supports micro-deposit verification, instant Open Banking verification (Plaid/MX
+    and other exchange partners), on-demand transfer authorizations, retrieving a funding source's balance,
+    and virtual account/routing numbers (VANs).
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Funding Sources
+  - Bank Accounts
+  - Open Banking
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-funding-sources-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-transfers-api
+  name: Dwolla Transfers API
+  description: Initiate, retrieve, list, search and cancel money transfers between funding sources over
+    the U.S. banking rails — standard ACH, Same-Day ACH, and instant/real-time payments via the RTP Network
+    and FedNow Service. Exposes transfer status, fees, and failure details, and is the core money-movement
+    resource of the Dwolla platform.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Transfers
+  - ACH
+  - Instant Payments
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-transfers-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-mass-payments-api
+  name: Dwolla Mass Payments API
+  description: Initiate a single batch (mass payment) of up to 5,000 individual transfers from one source
+    funding source, then retrieve, update (pause/cancel), and list the mass payment and its items. Built
+    for payroll, marketplace payouts, and other high-volume disbursement use cases that would otherwise
+    require thousands of individual transfer calls.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Mass Payments
+  - ACH
+  - Batch
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-mass-payments-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-labels-api
+  name: Dwolla Labels API
+  description: Allocate and track funds within a Verified Customer's Dwolla balance using labels (a virtual
+    sub-ledger). Create and list labels, reallocate balance between labels, and read the label ledger
+    entries, enabling FBO/ledgering patterns where a single balance is partitioned across many end users.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Labels
+  - Ledger
+  - Balance
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-labels-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-exchanges-api
+  name: Dwolla Exchanges API
+  description: Manage Open Banking exchange connections used to instantly verify and fund from bank accounts.
+    List available exchange partners (Plaid, MX, Flinks, Finicity, Checkout.com), create and list exchange
+    resources for an Account or Customer, and retrieve individual exchange records that back an Open-Banking-verified
+    funding source.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Open Banking
+  - Exchanges
+  - Funding Sources
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-exchanges-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-exchange-sessions-api
+  name: Dwolla Exchange Sessions API
+  description: Create and manage exchange sessions — the short-lived tokens that drive the Open Banking
+    connect experience. Start a Customer exchange session, list available exchange connections, create
+    a re-authentication session when a connection expires, and retrieve session state used by Dwolla's
+    Drop-in components and hosted flows.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Open Banking
+  - Exchanges
+  - Verification
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-exchange-sessions-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-events-api
+  name: Dwolla Events API
+  description: List and retrieve Events — the immutable record of every state change across your Dwolla
+    application (customer verified, transfer created/completed/failed, funding source added, and more).
+    Events are retained for 30 days and are the source that backs webhook notifications, letting you reconcile
+    or replay activity via polling.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Events
+  - Webhooks
+  - Notifications
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-events-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-webhook-subscriptions-api
+  name: Dwolla Webhook Subscriptions API
+  description: Create, retrieve, list, pause and remove webhook subscriptions that tell Dwolla where to
+    deliver event notifications. Each subscription carries a secret used to HMAC-sign payloads so your
+    endpoint can verify authenticity, forming the registration half of Dwolla's real-time webhook delivery
+    system.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Webhooks
+  - Subscriptions
+  - Notifications
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-webhook-subscriptions-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-webhooks-api
+  name: Dwolla Webhooks API
+  description: Inspect and manage individual webhook deliveries. Retrieve a specific webhook, list the
+    delivery attempts for a subscription, and retry failed deliveries — giving you full visibility into
+    and control over the at-least-once delivery of event notifications to your endpoints.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Webhooks
+  - Notifications
+  - Delivery
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-webhooks-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-client-tokens-api
+  name: Dwolla Client Tokens API
+  description: Generate single-use, narrowly-scoped client tokens that authorize Dwolla's low-code Drop-in
+    Components and client-side flows to act on behalf of a specific Customer. Keeps your application secret
+    on the server while letting the browser safely perform a scoped action such as adding a funding source.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Authentication
+  - Drop-in Components
+  - Security
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-client-tokens-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-tokens-api
+  name: Dwolla Tokens API
+  description: Exchange your application key and secret for an OAuth 2.0 client-credentials application
+    access token used as the bearer token on every server-to-server Dwolla API request. Tokens are short-lived
+    (default one hour) and are the entry point to authenticating with the entire Dwolla v2 API.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Authentication
+  - OAuth 2.0
+  - Security
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-tokens-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-root-api
+  name: Dwolla Root API
+  description: The API root — a JSON-HAL hypermedia entry point that returns the _links an authenticated
+    application can follow (its account, customers, and other top-level collections). Reflects Dwolla's
+    hypermedia design where clients discover available resources by following links rather than hard-coding
+    URLs.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Discovery
+  - Hypermedia
+  - HAL
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-root-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-sandbox-simulations-api
+  name: Dwolla Sandbox Simulations API
+  description: Sandbox-only endpoint that advances the state of test transfers and other resources so
+    developers can simulate ACH processing, clearing, and failure scenarios on demand rather than waiting
+    for real bank timing. Essential for end-to-end testing of money-movement flows before going live.
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  version: v2
+  tags:
+  - Payments
+  - Sandbox
+  - Testing
+  - Simulation
+  - United States
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-sandbox-simulations-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/dwolla-domain-security.yml
+- type: TrustCenter
+  url: security/dwolla-trust-center.yml
+- type: Compliance
+  url: https://www.dwolla.com/security/
 - type: Website
   url: https://dwolla.com
+- type: DeveloperPortal
+  url: https://developers.dwolla.com
+- type: Documentation
+  url: https://developers.dwolla.com/docs
+- type: APIReference
+  url: https://developers.dwolla.com/docs/api-reference
+- type: GettingStarted
+  url: https://developers.dwolla.com/docs/quickstart
+- type: Support
+  url: https://discuss.dwolla.com
+- type: GitHubOrganization
+  url: https://github.com/Dwolla
+- type: Pricing
+  url: https://www.dwolla.com/pricing/
+- type: SignUp
+  url: https://accounts-sandbox.dwolla.com/sign-up
+- type: Login
+  url: https://dashboard.dwolla.com
+- type: TermsOfService
+  url: https://www.dwolla.com/legal/tos/
+- type: PrivacyPolicy
+  url: https://www.dwolla.com/legal/privacy/
+- type: StatusPage
+  url: https://status.dwolla.com/
+- type: ChangeLog
+  url: https://developers.dwolla.com/docs/changelog
+- type: ChangeLog
+  url: changelog/dwolla-changelog.yml
+  name: Dwolla changelog (structured)
+- type: LLMsTxt
+  url: llms/dwolla-llms.txt
+- type: MCPServer
+  url: mcp/dwolla-mcp.yml
+- type: Packages
+  url: packages/dwolla-packages.yml
+- type: SDKs
+  url: packages/dwolla-packages.yml
+- type: Authentication
+  url: authentication/dwolla-authentication.yml
+- type: Conventions
+  url: conventions/dwolla-conventions.yml
+- type: Idempotency
+  url: conventions/dwolla-conventions.yml
+- type: ErrorCatalog
+  url: errors/dwolla-problem-types.yml
+- type: DeclineCodes
+  url: errors/dwolla-decline-codes.yml
+- type: Lifecycle
+  url: lifecycle/dwolla-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/dwolla-lifecycle.yml
+- type: Sandbox
+  url: sandbox/dwolla-sandbox.yml
+- type: Components
+  url: components/dwolla-components.yml
+- type: Webhooks
+  url: asyncapi/dwolla-webhooks.yml
+- type: Conformance
+  url: conformance/dwolla-conformance.yml
+- type: DataModel
+  url: data-model/dwolla-data-model.yml
+- type: RateLimits
+  url: rate-limits/dwolla-rate-limits.yml
+- type: WellKnown
+  url: well-known/dwolla-well-known.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/dwolla
+- type: Blog
+  url: https://www.dwolla.com/blog/
+- type: OpenAPI
+  url: openapi/dwolla-openapi.yml
+  name: Dwolla API (full bundled OpenAPI 3.1)
+- type: SourceCode
+  url: https://github.com/Dwolla/dwolla-openapi
+  name: Dwolla OpenAPI source repository
+- type: Review
+  url: review.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,1176 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Accounts
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: accounts
+  description: Operations related to Accounts
+paths:
+  /accounts/{id}:
+    get:
+      tags:
+      - accounts
+      summary: Retrieve account details
+      description: Returns basic account information for your authorized Main Dwolla Account, including
+        account ID, name, and links to related resources such as funding sources, transfers, and customers.
+      operationId: getAccount
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581b
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: '// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          var accountUrl = "https://api-sandbox.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581b";
+
+
+          dwolla.get(accountUrl).then((res) => res.body.name); // => ''Jane Doe''
+
+          '
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          account_url = ''https://api-sandbox.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581b''
+
+
+          account = app_token.get(account_url)
+
+          account.body[''name'']
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $accountUrl = ''https://api-sandbox.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581b'';
+
+
+          $accountsApi = new DwollaSwagger\AccountsApi($apiClient);
+
+
+          $account = $accountsApi->id($accountUrl);
+
+          print($account->name); # => "Jane Doe"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          account_url = ''https://api-sandbox.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581b''
+
+
+          account = app_token.get account_url
+
+          account.name # => "Jane Doe"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Account's unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to retrieve an Account by id.
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /funding-sources:
+    post:
+      tags:
+      - accounts
+      summary: Create a funding source for an account
+      description: 'Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint
+        allows you to connect a checking or savings account using either manual bank account details or
+        an exchange resource.
+
+
+        For more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).
+
+        '
+      operationId: createFundingSource
+      x-speakeasy-group: accounts.fundingSources
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/funding-sources\nContent-Type: application/vnd.dwolla.v1.hal+json\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\
+          {\n    \"routingNumber\": \"222222226\",\n    \"accountNumber\": \"123456789\",\n    \"bankAccountType\"\
+          : \"checking\",\n    \"name\": \"My Bank\"\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar requestBody = {\n\
+          \  routingNumber: \"222222226\",\n  accountNumber: \"123456789\",\n  bankAccountType: \"checking\"\
+          ,\n  name: \"My Bank\",\n};\n\ndwolla\n  .post(\"funding-sources\", requestBody)\n  .then((res)\
+          \ => res.headers.get(\"location\")); // => 'https://api-sandbox.dwolla.com/funding-sources/04173e17-6398-4d36-a167-9d98c4b1f1c3'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nrequest_body = {\n  'routingNumber':\
+          \ '222222226',\n  'accountNumber': '123456789',\n  'bankAccountType': 'checking',\n  'name':\
+          \ 'My Bank'\n}\n\nfunding_source = app_token.post('funding-sources', request_body)\nfunding_source.headers['location']\
+          \ # => 'https://api-sandbox.dwolla.com/funding-sources/04173e17-6398-4d36-a167-9d98c4b1f1c3'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$fundingApi\
+          \ = new DwollaSwagger\\FundingsourcesApi($apiClient);\n\n$fundingSource = $fundingApi->createFundingSource([\n\
+          \  \"routingNumber\" => \"222222226\",\n  \"accountNumber\" => \"123456789\",\n  \"bankAccountType\"\
+          \ => \"checking\",\n  \"name\" => \"My Bank\"\n]);\n$fundingSource; # => \"https://api-sandbox.dwolla.com/funding-sources/04173e17-6398-4d36-a167-9d98c4b1f1c3\"\
+          \n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nrequest_body = {\n  routingNumber:\
+          \ '222222226',\n  accountNumber: '123456789',\n  bankAccountType: 'checking',\n  name: 'My Bank'\n\
+          }\n\nfunding_source = app_token.post \"funding-sources\", request_body\nfunding_source.response_headers[:location]\
+          \ # => \"https://api-sandbox.dwolla.com/funding-sources/04173e17-6398-4d36-a167-9d98c4b1f1c3\"\
+          \n"
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters for the funding source to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountFundingSource'
+      responses:
+        '201':
+          description: successful operation
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad request or duplicate resource
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/BadRequestSchema'
+                - $ref: '#/components/schemas/DuplicateResourceSchema'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to create funding source.
+  /accounts/{id}/funding-sources:
+    get:
+      tags:
+      - accounts
+      summary: List funding sources for an account
+      description: 'Get a list of all funding sources associated with a specific Main Dwolla Account.
+        This endpoint returns both bank accounts and balance funding sources, with detailed information
+        about each funding source''s status, type, and available processing channels.
+
+        '
+      operationId: listFundingSources
+      x-speakeasy-group: accounts.fundingSources
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/funding-sources
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\ndwolla\n  .get(\"accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/funding-sources\"\
+          )\n  .then((res) => res.body.total); // => 1\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          funding_sources = app_token.get(''accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/funding-sources'')
+
+          funding_sources.body[''total''] # => 1
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $fundingApi = new DwollaSwagger\FundingsourcesApi($apiClient);
+
+
+          $fundingSources = $fundingApi->getAccountFundingSources("CA366CA3-6D30-44D6-B0F3-8D86C64462A1");
+
+          $fundingSources->total; # => 1
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          funding_sources = app_token.get "accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/funding-sources"
+
+          funding_sources.total # => 1
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Account's unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      - name: removed
+        in: query
+        description: Filter removed funding sources. Boolean value. Defaults to `true`
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/FundingSources'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to list funding sources.
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: notFound
+                  message:
+                    type: string
+                    example: Account not found.
+  /accounts/{id}/transfers:
+    get:
+      tags:
+      - accounts
+      summary: List and search account transfers
+      description: Returns a paginated, searchable list of transfers associated with the specified Main
+        Dwolla account. Supports advanced filtering by amount range, date range, transfer status, and
+        correlation ID. Results are limited to 10,000 transfers per query; use date range filters for
+        historical data beyond this limit.
+      operationId: listAndSearchTransfers
+      x-speakeasy-group: accounts.transfers
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/transfers
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\ndwolla\n  .get(\"accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/transfers\"\
+          )\n  .then((res) => res.body.total); // => 1\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          transfers = app_token.get(''accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/transfers'')
+
+          transfers.body[''total''] # => 1
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $transfersApi = new DwollaSwagger\TransfersApi($apiClient);
+
+
+          $transfers = $transfersApi->getAccountTransfers("CA366CA3-6D30-44D6-B0F3-8D86C64462A1");
+
+          $transfers->total; # => 1
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          transfers = app_token.get "accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/transfers"
+
+          transfers.total # => 1
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Account's unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      - name: search
+        in: query
+        description: A string to search on fields `firstName`, `lastName`, `email`, `businessName`, Customer
+          ID, and Account ID
+        required: false
+        schema:
+          type: string
+      - name: startAmount
+        in: query
+        description: Only include transactions with an amount equal to or greater than `startAmount`
+        required: false
+        schema:
+          type: string
+      - name: endAmount
+        in: query
+        description: Only include transactions with an amount equal to or less than `endAmount`
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter on transaction status. Possible values are `pending`, `processed`, `failed`,
+          or `cancelled`
+        required: false
+        schema:
+          type: string
+      - name: correlationId
+        in: query
+        description: A string value to search on if `correlationId` was specified for a transaction
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of search results to return. Defaults to 25
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Number of search results to skip. Use for pagination
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Transfers'
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: notFound
+                  message:
+                    type: string
+                    example: Account not found.
+  /accounts/{id}/mass-payments:
+    get:
+      tags:
+      - accounts
+      summary: List account mass payments
+      description: Returns a paginated list of mass payments created by your Main Dwolla account. Results
+        are sorted by creation date in descending order (newest first) and can be filtered by correlation
+        ID.
+      operationId: listMassPayments
+      x-speakeasy-group: accounts.massPayments
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/mass-payments
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\ndwolla\n  .get(\"accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/mass-payments\"\
+          )\n  .then((res) => res.body.total); // => 1\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          mass_payments = app_token.get(''accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/mass-payments'')
+
+          mass_payments.body[''total''] # => 1
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $massPaymentsApi = new DwollaSwagger\MasspaymentsApi($apiClient);
+
+
+          $massPayments = $massPaymentsApi->getAccountMassPayments("CA366CA3-6D30-44D6-B0F3-8D86C64462A1");
+
+          $massPayments->total; # => 1
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          mass_payments = app_token.get "accounts/CA366CA3-6D30-44D6-B0F3-8D86C64462A1/mass-payments"
+
+          mass_payments.total # => 1
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Account's unique identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      - name: limit
+        in: query
+        description: Maximum number of results to return
+        required: false
+        schema:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 200
+          default: 25
+          example: 25
+      - name: offset
+        in: query
+        description: How many results to skip.
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          default: 0
+          example: 0
+      - name: correlationId
+        in: query
+        description: Correlation ID to search by.
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/MassPayments'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: forbidden
+                  message:
+                    type: string
+                    example: Not authorized to list mass payments.
+        '404':
+          description: not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: notFound
+                  message:
+                    type: string
+                    example: Account not found.
+components:
+  schemas:
+    Transfers:
+      title: Transfers
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            transfers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transfer'
+        total:
+          type: integer
+          example: 100
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+    MassPayments:
+      title: MassPayments
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
+        total:
+          type: integer
+          example: 100
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    Account:
+      title: Account
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
+        name:
+          type: string
+          example: Jane Doe's Business
+        timezoneOffset:
+          type: number
+          example: -6
+        type:
+          type: string
+          example: Commercial
+    FundingSources:
+      title: FundingSources
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            funding-sources:
+              type: array
+              items:
+                $ref: '#/components/schemas/FundingSource'
+        total:
+          type: integer
+          format: int32
+          example: 3
+    DuplicateResourceSchema:
+      title: DuplicateResourceSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: DuplicateResource
+        message:
+          type: string
+          example: 'Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11'
+        _links:
+          type: object
+          properties:
+            about:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11
+                type:
+                  type: string
+                  example: application/vnd.dwolla.v1.hal+json
+                resource-type:
+                  type: string
+                  example: funding-source
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    BadRequestSchema:
+      title: BadRequestSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
+    MassPayment:
+      title: MassPayment
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
+          type: string
+          example: complete
+        created:
+          type: string
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
+          type: object
+        total:
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+    FundingSource:
+      title: FundingSource
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        status:
+          type: string
+          example: unverified
+        type:
+          type: string
+          example: bank
+        bankAccountType:
+          type: string
+          example: checking
+        name:
+          type: string
+          example: My bank
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
+        removed:
+          type: boolean
+          example: true
+        channels:
+          type: array
+          description: Payment processing channels supported by this funding source
+          items:
+            type: string
+            enum:
+            - ach
+            - real-time-payments
+            - wire
+            - external
+            example: ach
+        bankName:
+          type: string
+          example: SANDBOX TEST BANK
+        fingerprint:
+          type: string
+          example: 5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c
+        bankUsageType:
+          type: string
+          description: The usage type of the bank account. Indicates if this is a settlement account for
+            card network processors.
+          enum:
+          - card-network
+          example: card-network
+        cardDetails:
+          type: object
+          description: Card-specific details. Only present when type is 'card'.
+          properties:
+            brand:
+              type: string
+              description: The card brand/network (e.g., Visa, Mastercard, American Express)
+              example: Visa
+            lastFour:
+              type: string
+              description: The last four digits of the card number
+              example: '1234'
+            expirationMonth:
+              type: integer
+              description: The card expiration month (1-12)
+              example: 12
+              minimum: 1
+              maximum: 12
+            expirationYear:
+              type: integer
+              description: The card expiration year (4-digit year)
+              example: 2026
+            nameOnCard:
+              type: string
+              description: The cardholder name as it appears on the card
+              example: John Doe
+            bin:
+              type: string
+              description: Bank Identification Number (BIN) - the first 6-8 digits of the card number
+              example: '40247644'
+            billingAddress:
+              type: object
+              description: The billing address associated with the card
+              properties:
+                address1:
+                  type: string
+                  description: First line of the street address
+                  example: 552 test
+                address2:
+                  type: string
+                  description: Second line of the street address (optional)
+                  example: Apt 4B
+                address3:
+                  type: string
+                  description: Third line of the street address (optional)
+                  example: Unit 101
+                city:
+                  type: string
+                  description: City name
+                  example: Des Moines
+                stateProvinceRegion:
+                  type: string
+                  description: Two-letter state, province, or region code
+                  example: IA
+                country:
+                  type: string
+                  description: Two-letter country code (ISO 3166-1 alpha-2)
+                  example: US
+                postalCode:
+                  type: string
+                  description: Postal code or ZIP code
+                  example: '50310'
+    Transfer:
+      title: Transfer
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 15c6bcce-46f7-e811-8112-e8dd3bececa8
+        status:
+          type: string
+          example: pending
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '42.00'
+            currency:
+              type: string
+              example: USD
+        created:
+          type: string
+          format: date-time
+          example: '2018-12-03T22:00:22.970Z'
+        clearing:
+          type: object
+          properties:
+            source:
+              type: string
+              example: standard
+            destination:
+              type: string
+              example: same-day
+        metadata:
+          type: object
+          properties:
+            paymentId:
+              type: string
+              example: '12345678'
+            note:
+              type: string
+              example: Payment for completed work Dec. 1
+        achDetails:
+          type: object
+          description: ACH-specific details for the transfer. Present when transfer was processed via
+            ACH network.
+          properties:
+            source:
+              type: object
+              description: Information sent to the source/originating bank account along with the transfer
+              properties:
+                addenda:
+                  type: object
+                  description: Contains addenda information for the transfer
+                  properties:
+                    values:
+                      type: array
+                      items:
+                        type: string
+                        example: ABC123_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user
+                    onboarded to the Platform's name
+                  example: John Doe
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                  - REVERSAL
+                  - RECLAIM
+                  - NO CHECK
+                  - AUTOENROLL
+                  - REDEPCHECK
+                  - RETURN FEE
+                  - RETRY PMNT
+                  - HEALTHCARE
+                  - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD.
+                    This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:John Doe
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI).
+                    Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking
+                    network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
+            destination:
+              type: object
+              description: Information sent to the destination/receiving bank account along with the transfer
+              properties:
+                addenda:
+                  type: object
+                  description: Contains addenda information for the transfer
+                  properties:
+                    values:
+                      type: array
+                      items:
+                        type: string
+                        example: ZYX987_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user
+                    onboarded to the Platform's name
+                  example: Jane Smith
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                  - REVERSAL
+                  - RECLAIM
+                  - NO CHECK
+                  - AUTOENROLL
+                  - REDEPCHECK
+                  - RETURN FEE
+                  - RETRY PMNT
+                  - HEALTHCARE
+                  - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD.
+                    This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:Jane Smith
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI).
+                    Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking
+                    network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
+        rtpDetails:
+          type: object
+          description: Real-Time Payments (RTP) network specific details. Present when transfer was processed
+            via RTP network.
+          properties:
+            destination:
+              type: object
+              description: RTP destination details with network identifiers
+              properties:
+                remittanceData:
+                  type: string
+                  description: Remittance information included in the transfer request
+                  example: ABC_123 Remittance Data
+                networkId:
+                  type: string
+                  description: Unique identifier for the transfer within the RTP network
+                  example: 20210617021214273T1BG27487110796028
+                endToEndReferenceId:
+                  type: string
+                  description: End-to-end reference identifier for the RTP transfer
+                  example: E2E-RTP-20210617-001
+        fedNowDetails:
+          type: object
+          description: FedNow Service network specific details. Present when transfer was processed via
+            FedNow network.
+          properties:
+            destination:
+              type: object
+              description: FedNow destination details with network identifiers
+              properties:
+                remittanceData:
+                  type: string
+                  description: Remittance information included in the transfer request
+                  example: ABC_123 Remittance Data
+                networkId:
+                  type: string
+                  description: Unique identifier for the transfer within the FedNow network
+                  example: 20240115123456789FEDNOW123456
+                endToEndReferenceId:
+                  type: string
+                  description: End-to-end reference identifier for the FedNow transfer
+                  example: E2E-FEDNOW-20240115-001
+        correlationId:
+          type: string
+          example: 8a2cdc8d-629d-4a24-98ac-40b735229fe2
+        processingChannel:
+          type: object
+          properties:
+            destination:
+              type: string
+              enum:
+              - real-time-payments
+              - fed-now
+              description: The payment network used to process the transfer
+              example: real-time-payments
+    CreateAccountFundingSource:
+      title: CreateAccountFundingSource
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            exchange:
+              type: object
+              properties:
+                href:
+                  type: string
+        name:
+          type: string
+        bankAccountType:
+          type: string
+          enum:
+          - checking
+          - savings
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - bankAccountType
+      - accountNumber
+      - routingNumber
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

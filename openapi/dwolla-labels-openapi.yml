@@ -1,0 +1,1162 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Labels
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: labels
+  description: Operations related to Labels
+paths:
+  /labels/{id}:
+    get:
+      tags:
+      - labels
+      summary: Retrieve a label
+      description: Retrieve details for a specific Label used to categorize and track funds within your
+        account. Returns Label information including unique identifier, current amount with currency,
+        and creation timestamp.
+      operationId: getLabel
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar labelUrl =\n  \"https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc\"\
+          ;\n\ndwolla.get(labelUrl).then((res) => res.body.id); // => '7e042ffe-e25e-40d2-b86e-748b98845ecc'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+
+          label = app_token.get(label_url)
+
+          label.body[''id''] # => ''7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $labelUrl = "https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc";
+
+
+          $labelsApi = new DwollaSwagger\LabelsApi($apiClient);
+
+
+          $label = $labelsApi->getLabel($labelUrl);
+
+          $label->id; # => "7e042ffe-e25e-40d2-b86e-748b98845ecc"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+
+          label = app_token.get label_url
+
+          label.id # => "7e042ffe-e25e-40d2-b86e-748b98845ecc"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Label unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    delete:
+      tags:
+      - labels
+      summary: Remove a label
+      description: Delete a Label to stop tracking funds and remove it from your account. Returns success
+        status if the Label is successfully removed. Use this to streamline your account management and
+        remove unused Labels from your system.
+      operationId: removeLabel
+      x-speakeasy-name-override: remove
+      x-codeSamples:
+      - lang: bash
+        source: 'DELETE https://api-sandbox.dwolla.com/labels/30165ded-2f32-4ee9-b340-ac44dda1d7fc
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar labelUrl =\n  \"https://api-sandbox.dwolla.com/labels/30165ded-2f32-4ee9-b340-ac44dda1d7fc\"\
+          ;\n\ndwolla.delete(labelUrl);\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/30165ded-2f32-4ee9-b340-ac44dda1d7fc''
+
+
+          app_token.delete(label_url)
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $labelsApi = new DwollaSwagger\LabelsApi($apiClient);
+
+          $labelsApi->removeLabel(''https://api-sandbox.dwolla.com/labels/30165ded-2f32-4ee9-b340-ac44dda1d7fc'');
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/30165ded-2f32-4ee9-b340-ac44dda1d7fc''
+
+
+          app_token.delete label_url
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: A label unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '403':
+          description: forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidResourceState
+                  message:
+                    type: string
+                    example: Amount must be zero to remove label.
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /customers/{id}/labels:
+    get:
+      tags:
+      - labels
+      summary: List labels for a customer
+      description: Returns all labels for a specified Verified Customer, sorted by creation date (most
+        recent first). Supports pagination with limit and offset parameters. Each label includes its current
+        amount and creation timestamp.
+      operationId: listCustomerLabels
+      x-speakeasy-group: customers.labels
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/customers/315a9456-3750-44bf-8b41-487b10d1d4bb/labels
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl =\n  \"\
+          https://api-sandbox.dwolla.com/customers/5b29279d-6359-4c87-a318-e09095532733\";\n\ndwolla\n\
+          \  .get(`${customerUrl}/labels`)\n  .then((res) => res.body._embedded[\"labels\"][0].id); //\
+          \ => '7e042ffe-e25e-40d2-b86e-748b98845ecc'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/315a9456-3750-44bf-8b41-487b10d1d4bb''
+
+
+          labels = app_token.get(''%s/labels'' % customer_url)
+
+          labels.body[''_embedded''][''labels''][0][''id''] # => ''7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node
+
+          $customerUrl = ''https://api-sandbox.dwolla.com/customers/315a9456-3750-44bf-8b41-487b10d1d4bb'';
+
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+
+          $labels = $customersApi->getLabelsForCustomer($customerUrl);
+
+          $labels->_embedded->{''labels''}[0]->id; # => "7e042ffe-e25e-40d2-b86e-748b98845ecc"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/315a9456-3750-44bf-8b41-487b10d1d4bb''
+
+
+          labels = app_token.get "#{customer_url}/labels"
+
+          labels._embedded[''labels''][0].id # => "7e042ffe-e25e-40d2-b86e-748b98845ecc"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: ID of customer
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: How many results to return
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: How many results to skip
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: success operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Labels'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Not authorized to list customer labels
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: Customer not found
+    post:
+      tags:
+      - labels
+      summary: Create a label for a customer
+      description: Creates a new label for a Verified Customer with a specified amount. Labels help organize
+        and track funds within a customer's balance. Returns the location of the created label resource
+        in the response header.
+      operationId: createCustomerLabel
+      x-speakeasy-group: customers.labels
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C/labels\n\
+          Content-Type: application/vnd.dwolla.v1.hal+json\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n    \"amount\"\
+          : {\n        \"currency\": \"USD\",\n        \"value\": \"10.00\"\n    }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl =\n  \"\
+          https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C\";\nvar requestBody\
+          \ = {\n  amount: {\n    currency: \"USD\",\n    value: \"10.00\",\n  },\n};\n\ndwolla\n  .post(`${customerUrl}/labels`,\
+          \ requestBody)\n  .then((res) => res.headers.get(\"location\")); // => 'https://api-sandbox.dwolla.com/labels/375c6781-2a17-476c-84f7-db7d2f6ffb31'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C'\n\
+          request_body = {\n  'amount': {\n    'currency': 'USD',\n    'value': '10.00'\n  }\n}\n\nlabel\
+          \ = app_token.post('%s/labels' % customer_url, request_body)\nlabel.headers['location'] # =>\
+          \ 'https://api-sandbox.dwolla.com/labels/375c6781-2a17-476c-84f7-db7d2f6ffb31'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$customersApi\
+          \ = new DwollaSwagger\\CustomersApi($apiClient);\n\n$label = $customersApi->createLabel([\n\
+          \  'amount' => [\n    'currency' => 'USD',\n    'value' => '10.00'\n  ]\n], \"https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C\"\
+          );\n$label; # => \"https://api-sandbox.dwolla.com/labels/375c6781-2a17-476c-84f7-db7d2f6ffb31\"\
+          \n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\ncustomer_url = 'https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C'\n\
+          request_body = {\n  :amount => {\n    :currency => \"USD\",\n    :value => \"10.00\"\n  }\n\
+          }\n\nlabel = app_token.post \"#{customer_url}/labels\", request_body\nlabel.response_headers[:location]\
+          \ # => \"https://api-sandbox.dwolla.com/labels/375c6781-2a17-476c-84f7-db7d2f6ffb31\"\n"
+      parameters:
+      - name: id
+        in: path
+        description: ID of customer to create a label for
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to create a customer label
+        content:
+          application/json:
+            schema:
+              required:
+              - amount
+              type: object
+              properties:
+                amount:
+                  type: object
+                  properties:
+                    currency:
+                      type: string
+                      example: USD
+                    value:
+                      type: string
+                      example: '12.34'
+      responses:
+        '201':
+          description: create
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Not authorized to create customer label
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: Customer not found
+  /labels/{id}/ledger-entries:
+    get:
+      tags:
+      - labels
+      summary: List label ledger entries
+      description: Returns all ledger entries for a specific Label, sorted by creation date (newest first).
+        Supports pagination with limit and offset parameters. Each ledger entry includes its amount, currency,
+        and creation timestamp.
+      operationId: listLabelLedgerEntries
+      x-speakeasy-group: labels.ledgerEntries
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc/ledger-entries
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar labelUrl =\n  \"https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc\"\
+          ;\n\ndwolla\n  .get(`${labelUrl}/ledger-entries`)\n  .then((res) => res.body._embedded[\"ledger-entries\"\
+          ][0].id); // => '32d68709-62dd-43d6-a6df-562f4baec526'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+
+          ledger_entries = app_token.get(''%s/ledger-entries'' % label_url)
+
+          ledger_entries.body[''_embedded''][''ledger-entries''][0][''id''] # => ''32d68709-62dd-43d6-a6df-562f4baec526''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $labelUrl = ''https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc'';
+
+
+          $labelsApi = new DwollaSwagger\LabelsApi($apiClient);
+
+
+          $ledgerEntries = $labelsApi->getLedgerEntriesForLabel($labelUrl);
+
+          $ledgerEntries->_embedded->{''ledger-entries''}[0]->id; # => "32d68709-62dd-43d6-a6df-562f4baec526"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          label_url = ''https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc''
+
+
+          ledger_entries = app_token.get "#{label_url}/ledger-entries"
+
+          ledger_entries._embedded[''ledger-entries''][0].id # => "32d68709-62dd-43d6-a6df-562f4baec526"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: A label unique identifier
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: How many results to return
+        required: false
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: How many results to skip
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/LabelLedgerEntries'
+        '400':
+          description: Bad request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - labels
+      summary: Create a label ledger entry
+      description: Create a new ledger entry to track fund adjustments on a Label by specifying a positive
+        or negative amount value. Returns the location of the created ledger entry in the response header.
+        Label amounts cannot go negative, so validation errors occur if the entry would result in a negative
+        Label balance.
+      operationId: createLabelLedgerEntry
+      x-speakeasy-group: labels.ledgerEntries
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/labels/e217bcac-628a-456d-a375-6cc51230616f/ledger-entries\n\
+          Content-Type: application/vnd.dwolla.v1.hal+json\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n \"amount\":\
+          \ {\n   \"value\": \"-5.00\",\n   \"currency\": \"USD\"\n }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar labelUrl =\n  \"https://api-sandbox.dwolla.com/labels/e217bcac-628a-456d-a375-6cc51230616f\"\
+          ;\nvar requestBody = {\n  amount: {\n    currency: \"USD\",\n    value: \"-5.00\",\n  },\n};\n\
+          \ndwolla\n  .post(`${labelUrl}/ledger-entries`, requestBody)\n  .then((res) => res.headers.get(\"\
+          location\")); // => 'https://api-sandbox.dwolla.com/ledger-entries/76e5541d-18f4-e811-8112-e8dd3bececa8'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nlabel_url = 'https://api-sandbox.dwolla.com/labels/e217bcac-628a-456d-a375-6cc51230616f'\n\
+          request_body = {\n  'amount': {\n    'currency': 'USD',\n    'value': '-5.00'\n  }\n}\n\nledger_entry\
+          \ = app_token.post('%s/ledger-entries' % label_url, request_body)\nledger_entry.headers['location']\
+          \ # => 'https://api-sandbox.dwolla.com/ledger-entries/76e5541d-18f4-e811-8112-e8dd3bececa8'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$labelsApi\
+          \ = new DwollaSwagger\\LabelsApi($apiClient);\n\n$label = $labelsApi->addLedgerEntry([\n  'amount'\
+          \ => [\n    'currency' => 'USD',\n    'value' => '-5.00'\n  ]\n], \"https://api-sandbox.dwolla.com/labels/e217bcac-628a-456d-a375-6cc51230616f\"\
+          );\n$label; # => \"https://api-sandbox.dwolla.com/ledger-entries/76e5541d-18f4-e811-8112-e8dd3bececa8\"\
+          \n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nlabel_url = 'https://api-sandbox.dwolla.com/labels/e217bcac-628a-456d-a375-6cc51230616f'\n\
+          request_body = {\n  :amount => {\n    :currency => \"USD\",\n    :value => \"-5.00\"\n  }\n\
+          }\n\nledger_entry = app_token.post \"#{label_url}/ledger-entries\", request_body\nledger_entry.response_headers[:location]\
+          \ # => \"https://api-sandbox.dwolla.com/ledger-entries/76e5541d-18f4-e811-8112-e8dd3bececa8\"\
+          \n"
+      parameters:
+      - name: id
+        in: path
+        description: The Id of the Label to update.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to create a label ledger entry
+        content:
+          application/json:
+            schema:
+              required:
+              - amount
+              type: object
+              properties:
+                amount:
+                  type: object
+                  required:
+                  - value
+                  - currency
+                  properties:
+                    value:
+                      type: string
+                      description: Amount of funds to increase or decrease for a Label. To decrease funds
+                        in a Label a string numeric value will be supplied and prepended with a "-" operator.
+                      example: '-5.00'
+                    currency:
+                      type: string
+                      description: Currency code for the amount
+                      example: USD
+      responses:
+        '201':
+          description: created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /ledger-entries/{ledgerEntryId}:
+    get:
+      tags:
+      - labels
+      summary: Retrieve a label ledger entry
+      description: Returns detailed information for a specific ledger entry on a Label, including its
+        amount, currency, and creation timestamp.
+      operationId: getLabelLedgerEntry
+      x-speakeasy-group: labels.ledgerEntries
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/ledger-entries/32d68709-62dd-43d6-a6df-562f4baec526
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar ledgerEntryUrl =\n\
+          \  \"https://api-sandbox.dwolla.com/ledger-entries/32d68709-62dd-43d6-a6df-562f4baec526\";\n\
+          \ndwolla.get(ledgerEntryUrl).then((res) => res.body.id); // => '32d68709-62dd-43d6-a6df-562f4baec526'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          ledger_entry_url = ''https://api-sandbox.dwolla.com/ledger-entries/32d68709-62dd-43d6-a6df-562f4baec526''
+
+
+          ledger_entry = app_token.get(ledger_entry_url)
+
+          ledger_entry.body[''id''] # => ''32d68709-62dd-43d6-a6df-562f4baec526''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $ledgerEntryUrl = "https://api-sandbox.dwolla.com/ledger-entries/32d68709-62dd-43d6-a6df-562f4baec526";
+
+
+          $ledgerEntriesApi = new DwollaSwagger\LedgerentriesApi($apiClient);
+
+
+          $ledgerEntry = $ledgerEntriesApi->getLedgerEntry($ledgerEntryUrl);
+
+          $ledgerEntry->id; # => "7e042ffe-e25e-40d2-b86e-748b98845ecc"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          ledger_entry_url = ''https://api-sandbox.dwolla.com/ledger-entries/32d68709-62dd-43d6-a6df-562f4baec526''
+
+
+          ledger_entry = app_token.get ledger_entry_url
+
+          ledger_entry.id # => "32d68709-62dd-43d6-a6df-562f4baec526"
+
+          '
+      parameters:
+      - name: ledgerEntryId
+        in: path
+        description: A label ledger entry unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/LabelLedgerEntry'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+  /label-reallocations:
+    post:
+      tags:
+      - labels
+      summary: Create a label reallocation
+      description: Reallocates funds between two labels belonging to the same Verified Customer. Moves
+        the specified amount from the source label to the destination label, creating ledger entries for
+        both. The reallocation only succeeds if the source label has sufficient funds.
+      operationId: createLabelReallocation
+      x-speakeasy-group: labels.reallocations
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/label-reallocations\nContent-Type: application/vnd.dwolla.v1.hal+json\n\
+          Accept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\
+          \n{\n \"_links\":{\n   \"from\": {\n     \"href\": \"https://api-sandbox.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45\"\
+          \n   },\n   \"to\": {\n     \"href\": \"https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc\"\
+          \n   }\n },\n \"amount\": {\n   \"value\": \"15.00\",\n   \"currency\": \"USD\"\n }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar requestBody = {\n\
+          \  _links: {\n    from: {\n      href: \"https://api-sandbox.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45\"\
+          ,\n    },\n    to: {\n      href: \"https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc\"\
+          ,\n    },\n  },\n  amount: {\n    currency: \"USD\",\n    value: \"1.00\",\n  },\n};\n\ndwolla\n\
+          \  .post(\"label-reallocations\", requestBody)\n  .then((res) => res.headers.get(\"location\"\
+          )); // => 'https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nrequest_body = {\n  '_links':\
+          \ {\n    'from': {\n      'href': 'https://api-sandbox.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45'\n\
+          \    },\n    'to': {\n      'href': 'https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc'\n\
+          \    }\n  },\n  'amount': {\n    'currency': 'USD',\n    'value': '15.00'\n  }\n}\n\nlabelReallocation\
+          \ = app_token.post('label-reallocations', request_body)\nlabelReallocation.headers['location']\
+          \ # => 'https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$labelReallocationsApi\
+          \ = new DwollaSwagger\\LabelreallocationsApi($apiClient);\n\n$labelReallocation = $labelReallocationsApi->reallocateLabel([\n\
+          \  '_links' => [\n    'from' => [\n      'href' => 'https://api-sandbox.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45',\n\
+          \    ],\n    'to' => [\n      'href' => 'https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc'\n\
+          \    ]\n  ],\n  'amount' => [\n    'currency' => 'USD',\n    'value' => '15.00'\n  ]\n]);\n\
+          $labelReallocation; # => \"https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21\"\
+          \n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nrequest_body = {\n  :_links\
+          \ => {\n    :from => {\n      :href => \"https://api-sandbox.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45\"\
+          \n    },\n    :to => {\n      :href => \"https://api-sandbox.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc\"\
+          \n    }\n  },\n  :amount => {\n    :currency => \"USD\",\n    :value => \"15.00\"\n  }\n}\n\n\
+          labelReallocation = app_token.post \"label-reallocations\", request_body\nlabelReallocation.response_headers[:location]\
+          \ # => \"https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21\"\
+          \n"
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to create a label reallocation
+        content:
+          application/json:
+            schema:
+              required:
+              - _links
+              - amount
+              type: object
+              properties:
+                _links:
+                  type: object
+                  properties:
+                    from:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          example: https://api.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45
+                    to:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          example: https://api.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc
+                amount:
+                  type: object
+                  properties:
+                    currency:
+                      type: string
+                      example: USD
+                    value:
+                      type: string
+                      example: '15.00'
+      responses:
+        '201':
+          description: created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Not authorized to create label reallocation
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: Label not found
+  /label-reallocations/{reallocationId}:
+    get:
+      tags:
+      - labels
+      summary: Retrieve a label reallocation
+      description: Retrieve details for a specific label reallocation that transfers funds between Labels.
+        Returns reallocation information including source and destination Labels, amount transferred,
+        status, and creation timestamp. Use this to track and audit fund movements between different Labels.
+      operationId: retrieveLabelReallocation
+      x-speakeasy-group: labels.reallocations
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar labelReallocationUrl\
+          \ =\n  \"https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21\"\
+          ;\n\ndwolla.get(labelReallocationUrl).then((res) => res.body.created); // => '2019-05-16T13:41:31.036Z'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          label_reallocation_url = ''https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21''
+
+
+          label_reallocation = app_token.get(label_reallocation_url)
+
+          label_reallocation.body[''created''] # => ''2019-05-16T13:41:31.036Z''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $labelReallocationUrl = ''https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21'';
+
+
+          $labelReallocationsApi = new DwollaSwagger\LabelreallocationsApi($apiClient);
+
+
+          $labelReallocation = $labelReallocationsApi->getLabelReallocation($labelReallocationUrl);
+
+          $labelReallocation->created; # => "2019-05-16T13:41:31.036Z"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          label_reallocation_url = ''https://api-sandbox.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21''
+
+
+          label_reallocation = app_token.get label_reallocation_url
+
+          label_reallocation.created # => "2019-05-16T13:41:31.036Z"
+
+          '
+      parameters:
+      - name: reallocationId
+        in: path
+        description: Label reallocation unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21
+                          type:
+                            type: string
+                            example: application/vnd.dwolla.v1.hal+json
+                          resource-type:
+                            type: string
+                            example: label-reallocation
+                      to-ledger-entry:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/ledger-entries/d8a4bf7a-3fa0-48b9-873c-765d7375c59f
+                          type:
+                            type: string
+                            example: application/vnd.dwolla.v1.hal+json
+                          resource-type:
+                            type: string
+                            example: ledger-entry
+                      from-ledger-entry:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/ledger-entries/f6a44994-b4da-48e3-bd10-d3a168e6a77d
+                          type:
+                            type: string
+                            example: application/vnd.dwolla.v1.hal+json
+                          resource-type:
+                            type: string
+                            example: ledger-entry
+                  created:
+                    type: string
+                    format: date-time
+                    example: '2022-05-16T13:41:31.036Z'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+components:
+  schemas:
+    Labels:
+      title: Labels
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/Label'
+        total:
+          type: integer
+          example: 100
+    Label:
+      title: Label
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 7e042ffe-e25e-40d2-b86e-748b98845ecc
+        created:
+          type: string
+          format: date-time
+          example: '2022-05-15T22:19:09.635Z'
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '10.00'
+            currency:
+              type: string
+              example: USD
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    LabelLedgerEntry:
+      title: LabelLedgerEntry
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 32d68709-62dd-43d6-a6df-562f4baec526
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '-5.00'
+            currency:
+              type: string
+              example: USD
+        created:
+          type: string
+          format: date-time
+          example: '2019-05-16T01:54:58.062Z'
+    LabelLedgerEntries:
+      title: LabelLedgerEntries
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            ledger-entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelLedgerEntry'
+        total:
+          type: integer
+          example: 100
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

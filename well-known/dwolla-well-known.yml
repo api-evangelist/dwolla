@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of /.well-known/ on Dwolla hosts
+hosts:
+- https://api.dwolla.com
+- https://www.dwolla.com
+- https://developers.dwolla.com
+documents:
+- path: /.well-known/security.txt
+  host: https://api.dwolla.com
+  status: 401
+  file: null
+- path: /.well-known/security.txt
+  host: https://www.dwolla.com
+  status: 404
+  file: null
+- path: /.well-known/security.txt
+  host: https://developers.dwolla.com
+  status: 404
+  file: null
+- path: /.well-known/openid-configuration
+  host: https://api.dwolla.com
+  status: 401
+  file: null
+- path: /.well-known/oauth-authorization-server
+  host: https://api.dwolla.com
+  status: 401
+  file: null
+note: >-
+  No public /.well-known/ discovery documents were served. api.dwolla.com returns 401 (auth-gated)
+  for OAuth/OIDC discovery paths; the marketing and developer hosts return 404. No security.txt is
+  published (see security/ — the SOC 2 posture is documented at https://www.dwolla.com/security/ and
+  https://trust.dwolla.com/ instead).

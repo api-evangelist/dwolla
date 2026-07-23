@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Dwolla API - Client Tokens
+  description: Dwolla API Documentation
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+jsonSchemaDialect: https://spec.openapis.org/oas/3.1/dialect/base
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: client tokens
+  description: Operations related to Client Tokens
+paths:
+  /client-tokens:
+    post:
+      tags:
+      - client tokens
+      summary: Create a client token
+      description: Create a client token for secure authentication within Dwolla Drop-in components. Requires
+        a granular permission action and a Customer link to define what operations the end user can perform
+        within the component. Returns a short-lived token for configuring client-side Drop-in components
+        including customer creation, verification, funding source management, and payment processing.
+        Essential for implementing secure, embeddable UI components without exposing application credentials
+        to the frontend.
+      operationId: createClientToken
+      x-speakeasy-group: clientTokens
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/client-tokens\nAccept: application/vnd.dwolla.v1.hal+json\n\
+          Content-Type: application/json\nAuthorization: Bearer {{token}}\n{\n  \"action\": \"customer.update\"\
+          ,\n    \"_links\": {\n      \"customer\": {\n          \"href\": \"https://api-sandbox.dwolla.com/customers/{{customerId}}\"\
+          \n      }\n    }\n  }\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar requestBody = {\n\
+          \  _links: {\n    customer: {\n      href: \"https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\
+          ,\n    },\n  },\n  action: \"customer.update\",\n};\n\ndwolla.post(\"/client-tokens\", requestBody).then((res)\
+          \ => res.body.token); // => '4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nrequest_body = {\n  '_links':\
+          \ {\n    'customer': {\n      'href': 'https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4'\n\
+          \    }\n  },\n  'action': 'customer.update'\n}\n\nclient_token = app_token.post('client-tokens',\
+          \ request_body)\nclient_token.body['token'] # => '4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$request_body\
+          \ = array (\n  '_links' =>\n  array (\n    'customer' =>\n    array (\n      'href' => 'https://api-sandbox.dwolla.com/customers/8779a1f7-7a98-4a86-921e-83539f6c895e',\n\
+          \    ),\n  ),\n  'action' => 'customer.update'\n);\n$clientTokensApi = new DwollaSwagger\\TokensApi($apiClient);\n\
+          $clientToken = $clientTokensApi->clientTokens($request_body);\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nrequest_body = {\n  :_links\
+          \ => {\n    :customer => {\n      :href => \"https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\
+          \n    }\n  },\n  :action => \"customer.update\"\n}\n\nclient_token = app_token.post \"client-tokens\"\
+          , request_body\nclient_token.token # => \"4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY\"\
+          \n"
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - action
+              - _links
+              properties:
+                action:
+                  type: string
+                  description: A granular permission for the Customer performing an action within a drop-in
+                    component
+                  example: customer.update
+                _links:
+                  type: object
+                  required:
+                  - customer
+                  properties:
+                    customer:
+                      type: object
+                      required:
+                      - href
+                      properties:
+                        href:
+                          type: string
+                          format: uri
+                          description: Link to the Customer performing the action
+                          example: https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4
+      responses:
+        '200':
+          description: Client token created successfully
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                required:
+                - token
+                properties:
+                  token:
+                    type: string
+                    description: The client token that can be used with drop-in components
+                    example: 4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  schemas:
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}

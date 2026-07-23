@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/drop-in-components
+loaders:
+- name: dwolla-web.js
+  type: web-component-loader
+  cdn: //cdn.dwolla.com/v3.1.0/dwolla-web.js
+- name: "@dwolla/react-drop-ins"
+  type: react-bindings
+  registry: npm
+  url: https://www.npmjs.com/package/@dwolla/react-drop-ins
+  notes: JSX/TSX bindings for React and React-based environments (e.g. Next.js).
+auth:
+  client_token: >-
+    Drop-in components authenticate client-side with short-lived client tokens minted server-side via
+    the Create-a-client-token endpoint (scoped to a granular action + Customer).
+families:
+- name: Customer onboarding
+  components: [dwolla-customer-create, dwolla-customer-update, dwolla-personal-vcr, dwolla-business-vcr, dwolla-beneficial-owners, dwolla-document-upload]
+- name: Funding sources
+  components: [dwolla-funding-source-create, dwolla-micro-deposits-verify]
+- name: Balance & payments
+  components: [dwolla-balance-display, dwolla-payin]
+components:
+- dwolla-customer-create
+- dwolla-customer-update
+- dwolla-personal-vcr
+- dwolla-business-vcr
+- dwolla-beneficial-owners
+- dwolla-document-upload
+- dwolla-funding-source-create
+- dwolla-micro-deposits-verify
+- dwolla-balance-display
+- dwolla-payin

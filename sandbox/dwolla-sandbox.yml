@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/testing
+environment:
+  api_base: https://api-sandbox.dwolla.com/
+  dashboard: https://dashboard-sandbox.dwolla.com/
+  sign_up: https://accounts-sandbox.dwolla.com/sign-up
+  token_url: https://api-sandbox.dwolla.com/token
+  separation: Sandbox uses separate credentials/keys from production; no real money moves.
+test_bank_account:
+  routing_number: '222222226'
+  account_number: any random 4-17 digit value
+micro_deposit_verification:
+  verify_immediately: any two amounts below $0.10
+  trigger_max_attempts_failure: use amounts 0.09 and 0.09
+customer_verification_simulation:
+  field: firstName (individual) / businessName (business)
+  values:
+    verified: verified status
+    retry: retry status
+    kba: knowledge-based authentication required
+    document: document needed
+    suspended: suspended status
+kba_testing:
+  pass: answer "None of the above" / "I have never been associated with this vehicle" for all four questions
+  fail: answer with any other option
+document_upload_testing:
+  approved: /assets/images/content-images/test-document-upload-success.png
+  failed: /assets/images/content-images/test-document-upload-fail.png
+bank_transfer_failure_simulation:
+  field: funding source name
+  codes:
+    R01: Insufficient funds (source failure)
+    R03: No account / unable to locate (destination failure, removes funding source)
+    R01-late: Post-settlement source failure (requires processing twice)
+    R03-late: Post-settlement destination failure (requires processing twice)
+van_transfer_failure_simulation:
+  codes:
+    R01: Insufficient funds
+    R02: No account (removes funding source)
+verification_directive_simulation:
+  endpoint: /sandbox-simulations
+  error_codes: [PersonalIDRequired, POBoxNotAllowed, AddressNotAssociatedWithBusiness, EINDocumentRequired]
+processing_transfers:
+  options:
+  - POST to /sandbox-simulations
+  - '"Process bank transfers" button in the Sandbox Dashboard (processes the last 500 transfers)'

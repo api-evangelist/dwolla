@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/api-reference/api-fundamentals + https://www.dwolla.com/security/
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.0 client-credentials application authorization (token endpoint, Bearer tokens).
+- id: json-hal
+  conforms: true
+  evidence: Responses use application/vnd.dwolla.v1.hal+json with _links/_embedded (HAL + HAL-Forms).
+- id: idempotency
+  conforms: true
+  evidence: Idempotency-Key header on POST with 24h retention (RFC-style idempotency).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom Dwolla HAL error envelope, not application/problem+json.
+- id: webhooks-hmac-sha256
+  conforms: true
+  evidence: Webhook signatures via X-Request-Signature-SHA-256 (HMAC-SHA256).
+- id: nacha-ach
+  conforms: true
+  evidence: ACH origination over the U.S. banking system; NACHA return codes surfaced on failures.
+- id: rtp-fednow-instant
+  conforms: true
+  evidence: Instant Payments over the RTP Network and FedNow Service.
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 report (Security trust principle) per https://www.dwolla.com/security/.
+compliance_program:
+  published: true
+  url: https://www.dwolla.com/security/
+  trust_center: https://trust.dwolla.com/
+  certifications: [SOC 2 Type 2]

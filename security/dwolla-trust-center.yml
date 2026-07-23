@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+url: https://trust.dwolla.com/
+compliance_page: https://www.dwolla.com/security/
+certifications:
+- SOC 2 Type 2
+security_practices:
+- Tokenization
+- Bi-annual penetration testing
+- 24/7/365 continuous monitoring
+- Endpoint security monitoring
+- AWS Virtual Private Clouds (VPCs)
+- Cloudflare enterprise partnership
+evidence:
+- source: https://www.dwolla.com/security/
+  keywords: [soc 2 type 2, tokenization, penetration testing, continuous monitoring]
+- source: https://trust.dwolla.com/
+  keywords: [trust center]
+note: >-
+  trust.dwolla.com is a JavaScript trust-center app; SOC 2 Type 2 is named verbatim on
+  https://www.dwolla.com/security/. Additional frameworks may be gated behind the trust center's
+  document-request flow.

@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://developers.dwolla.com/docs/changelog + https://status.dwolla.com + https://developers.dwolla.com/docs/api-reference/api-fundamentals
+versioning:
+  scheme: media-type / account-level API version
+  current: v2
+  media_type: application/vnd.dwolla.v1.hal+json
+  error_on_invalid: 406 InvalidVersion
+  docs: https://developers.dwolla.com/docs/api-reference/api-fundamentals/making-requests-and-authentication
+deprecation:
+  policy: >-
+    Dwolla announces sunsets and breaking changes through its dated changelog. The legacy v1 API and
+    the original Transfer API were sunset on 2019-01-07. The Visa Open Banking provider integration
+    was sunset on 2025-11-01 (migrate to Plaid or MX).
+  changelog: https://developers.dwolla.com/docs/changelog
+status_page: https://status.dwolla.com/
+support:
+  email: support@dwolla.com
+  community: https://discuss.dwolla.com/
+event_retention: Events and fired webhooks are retained for a rolling 30-day window.
