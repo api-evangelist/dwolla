@@ -1,0 +1,1483 @@
+{
+  "info": {
+    "_postman_id": "3adb00d6-6f06-4470-9f83-13caee674e79",
+    "name": "Dwolla API - Documents",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:53.000Z",
+    "updatedAt": "2026-07-28T01:32:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3adb00d6-6f06-4470-9f83-13caee674e79"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "documents",
+              "item": [
+                {
+                  "name": "List documents for customer",
+                  "id": "8537c7be-5456-485e-aca1-f3048ee1f33f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1fab7890-80e5-4393-9acf-d514b49cbe2d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) customer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns all identity verification documents submitted for a customer. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+                  },
+                  "response": [
+                    {
+                      "id": "ac9646a8-7453-463c-bb88-d9a43f5505ea",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"sit_\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"qui_c\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"documents\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"reviewed\",\n        \"documentVerificationStatus\": \"pending\",\n        \"type\": \"license\",\n        \"created\": \"<dateTime>\",\n        \"failureReason\": \"<string>\",\n        \"allFailureReasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"reviewed\",\n        \"documentVerificationStatus\": \"rejected\",\n        \"type\": \"idCard\",\n        \"created\": \"<dateTime>\",\n        \"failureReason\": \"<string>\",\n        \"allFailureReasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-ac9646a8-7453-463c-bb88-d9a43f5505ea"
+                    },
+                    {
+                      "id": "a377465d-39c8-41ec-8ac8-f83f4a2ba473",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-a377465d-39c8-41ec-8ac8-f83f4a2ba473"
+                    },
+                    {
+                      "id": "b589a317-2570-45af-ad8f-01d7dcee346e",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-b589a317-2570-45af-ad8f-01d7dcee346e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-8537c7be-5456-485e-aca1-f3048ee1f33f"
+                },
+                {
+                  "name": "Create a document for customer",
+                  "id": "d416d149-2eb3-4554-9d91-382b7f833fe5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                          "key": "documentType",
+                          "value": "license",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b51373d7-9976-427d-9d15-7319921ec669",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) customer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Uploads an identity verification document for a customer using multipart form-data. Required when a customer has \"document\" status during the verification process."
+                  },
+                  "response": [
+                    {
+                      "id": "960b57e5-5185-4f2d-8a5a-735df5896bd5",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-960b57e5-5185-4f2d-8a5a-735df5896bd5"
+                    },
+                    {
+                      "id": "3f13eb0e-627d-4721-8eca-afeec59fc492",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-3f13eb0e-627d-4721-8eca-afeec59fc492"
+                    },
+                    {
+                      "id": "67ebd5c7-fdb3-40a8-b6cb-194a5536a6e4",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-67ebd5c7-fdb3-40a8-b6cb-194a5536a6e4"
+                    },
+                    {
+                      "id": "13d61d0e-511b-4f95-ac38-b0894dddb108",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-13d61d0e-511b-4f95-ac38-b0894dddb108"
+                    },
+                    {
+                      "id": "026d9cd3-afb7-4390-a776-79f3176ee6dd",
+                      "name": "request entity too large",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Entity Too Large",
+                      "code": 413,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-026d9cd3-afb7-4390-a776-79f3176ee6dd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-d416d149-2eb3-4554-9d91-382b7f833fe5"
+                }
+              ],
+              "id": "541973c9-b2ff-4daa-8436-79638dcbf31c",
+              "createdAt": "2026-07-28T01:32:54.000Z",
+              "updatedAt": "2026-07-28T01:32:54.000Z",
+              "uid": "35240-541973c9-b2ff-4daa-8436-79638dcbf31c"
+            }
+          ],
+          "id": "fd562bbc-3b5e-47ec-bbc1-0fe72ecda42f",
+          "createdAt": "2026-07-28T01:32:54.000Z",
+          "updatedAt": "2026-07-28T01:32:54.000Z",
+          "uid": "35240-fd562bbc-3b5e-47ec-bbc1-0fe72ecda42f"
+        }
+      ],
+      "id": "fc09f8f6-6e2f-46cd-ae13-27ec7cd8db9b",
+      "createdAt": "2026-07-28T01:32:54.000Z",
+      "updatedAt": "2026-07-28T01:32:54.000Z",
+      "uid": "35240-fc09f8f6-6e2f-46cd-ae13-27ec7cd8db9b"
+    },
+    {
+      "name": "beneficial-owners",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "documents",
+              "item": [
+                {
+                  "name": "List documents for beneficial owner",
+                  "id": "edb06488-2a94-4019-8190-d35f1881a168",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b7e0f3ea-0737-4bd9-8ec1-b318fe36569b",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) beneficial owner unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns all identity verification documents submitted for a beneficial owner. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+                  },
+                  "response": [
+                    {
+                      "id": "89b23e73-a812-4ea7-be04-fe0a07046c64",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"sit_\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"qui_c\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"documents\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"reviewed\",\n        \"documentVerificationStatus\": \"pending\",\n        \"type\": \"license\",\n        \"created\": \"<dateTime>\",\n        \"failureReason\": \"<string>\",\n        \"allFailureReasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"reviewed\",\n        \"documentVerificationStatus\": \"rejected\",\n        \"type\": \"idCard\",\n        \"created\": \"<dateTime>\",\n        \"failureReason\": \"<string>\",\n        \"allFailureReasons\": [\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"reason\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-89b23e73-a812-4ea7-be04-fe0a07046c64"
+                    },
+                    {
+                      "id": "63976b6b-49dc-4e90-94ff-e590d3ad879c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-63976b6b-49dc-4e90-94ff-e590d3ad879c"
+                    },
+                    {
+                      "id": "33bb9ffe-fb3f-4fab-8087-160e8b1abd5b",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-33bb9ffe-fb3f-4fab-8087-160e8b1abd5b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-edb06488-2a94-4019-8190-d35f1881a168"
+                },
+                {
+                  "name": "Create a document for beneficial owner",
+                  "id": "8737a7a8-bc3e-406b-b4b3-f5dbec2685dc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                          "key": "documentType",
+                          "value": "license",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "810099e3-0818-46fe-8915-001003399276",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) beneficial owner unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has \"document\" status during the business verification process."
+                  },
+                  "response": [
+                    {
+                      "id": "6a0a39fe-578d-4216-8730-a6219c2307f7",
+                      "name": "document created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-6a0a39fe-578d-4216-8730-a6219c2307f7"
+                    },
+                    {
+                      "id": "80b1a3f8-93fa-47fe-859e-a7b547c478ad",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-80b1a3f8-93fa-47fe-859e-a7b547c478ad"
+                    },
+                    {
+                      "id": "af6f2177-09ff-4f7c-8fe7-245b2867709d",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-af6f2177-09ff-4f7c-8fe7-245b2867709d"
+                    },
+                    {
+                      "id": "32712f64-feae-41eb-b9bc-05fc8272651b",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-32712f64-feae-41eb-b9bc-05fc8272651b"
+                    },
+                    {
+                      "id": "9118899e-96a4-4eda-8de7-6eb7b701546f",
+                      "name": "request entity too large",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required)  (This can only be one of passport,license,idCard,other)",
+                              "key": "documentType",
+                              "value": "license",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/beneficial-owners/:id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "beneficial-owners",
+                            ":id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Entity Too Large",
+                      "code": 413,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:54.000Z",
+                      "updatedAt": "2026-07-28T01:32:54.000Z",
+                      "uid": "35240-9118899e-96a4-4eda-8de7-6eb7b701546f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-8737a7a8-bc3e-406b-b4b3-f5dbec2685dc"
+                }
+              ],
+              "id": "4db0c989-7a71-43d3-8703-d2ea19c9ac93",
+              "createdAt": "2026-07-28T01:32:54.000Z",
+              "updatedAt": "2026-07-28T01:32:54.000Z",
+              "uid": "35240-4db0c989-7a71-43d3-8703-d2ea19c9ac93"
+            }
+          ],
+          "id": "0bb08b29-2135-4bbd-aa99-b13e8682a9dd",
+          "createdAt": "2026-07-28T01:32:54.000Z",
+          "updatedAt": "2026-07-28T01:32:54.000Z",
+          "uid": "35240-0bb08b29-2135-4bbd-aa99-b13e8682a9dd"
+        }
+      ],
+      "id": "f289e585-2d9b-48a0-85a4-1ade8596eae5",
+      "createdAt": "2026-07-28T01:32:54.000Z",
+      "updatedAt": "2026-07-28T01:32:54.000Z",
+      "uid": "35240-f289e585-2d9b-48a0-85a4-1ade8596eae5"
+    },
+    {
+      "name": "documents",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve a document",
+              "id": "c2b2a84d-e104-4680-870c-e1e98c681d0e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4031e5c7-fc68-4b78-83eb-c515a919f7c5",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Document unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific identity verification document, including its status, type, and verification results. Used to track document submission and verification progress during the business verification process."
+              },
+              "response": [
+                {
+                  "id": "ab8f83ad-c238-4b2e-bd98-dfc2f4d82714",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"documentVerificationStatus\": \"pending\",\n  \"type\": \"license\",\n  \"created\": \"<dateTime>\",\n  \"failureReason\": \"<string>\",\n  \"allFailureReasons\": [\n    {\n      \"reason\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"reason\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-ab8f83ad-c238-4b2e-bd98-dfc2f4d82714"
+                },
+                {
+                  "id": "319cd650-4eda-4700-833f-9013cdfe8cc1",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-319cd650-4eda-4700-833f-9013cdfe8cc1"
+                },
+                {
+                  "id": "70fd17bc-f73f-438d-af01-b2b499ab1b12",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:54.000Z",
+                  "updatedAt": "2026-07-28T01:32:54.000Z",
+                  "uid": "35240-70fd17bc-f73f-438d-af01-b2b499ab1b12"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:54.000Z",
+              "updatedAt": "2026-07-28T01:32:54.000Z",
+              "uid": "35240-c2b2a84d-e104-4680-870c-e1e98c681d0e"
+            }
+          ],
+          "id": "33fdaac1-b478-44fb-8736-5a4e070e7135",
+          "createdAt": "2026-07-28T01:32:54.000Z",
+          "updatedAt": "2026-07-28T01:32:54.000Z",
+          "uid": "35240-33fdaac1-b478-44fb-8736-5a4e070e7135"
+        }
+      ],
+      "id": "103336bb-3a7d-41f1-b57e-9fe8fe7a48ff",
+      "createdAt": "2026-07-28T01:32:54.000Z",
+      "updatedAt": "2026-07-28T01:32:54.000Z",
+      "uid": "35240-103336bb-3a7d-41f1-b57e-9fe8fe7a48ff"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "info": {
+    "_postman_id": "54bafb28-9e81-47e3-8078-01c078e8ae40",
+    "name": "Dwolla API - Events",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:17.000Z",
+    "updatedAt": "2026-07-28T01:33:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54bafb28-9e81-47e3-8078-01c078e8ae40"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve event",
+              "id": "895d9007-405b-4336-9257-d8f6a87968b4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7fce1995-801c-469c-9eb6-78b39a947c62",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of application event to get"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information for a specific event representing a state change that occurred on a resource in your Dwolla application. Includes the event topic, timestamp, resource links, and correlation ID if applicable."
+              },
+              "response": [
+                {
+                  "id": "804869b7-cfb6-4fb7-b572-7b5a33c7ddce",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"pariatur_2\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"proident_90\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"topic\": \"<string>\",\n  \"resourceId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-804869b7-cfb6-4fb7-b572-7b5a33c7ddce"
+                },
+                {
+                  "id": "d6649d2f-575f-4187-bc09-142f73f038ab",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-d6649d2f-575f-4187-bc09-142f73f038ab"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:17.000Z",
+              "updatedAt": "2026-07-28T01:33:17.000Z",
+              "uid": "35240-895d9007-405b-4336-9257-d8f6a87968b4"
+            }
+          ],
+          "id": "e3747f6e-a027-4282-bf88-e2c90e488849",
+          "createdAt": "2026-07-28T01:33:17.000Z",
+          "updatedAt": "2026-07-28T01:33:17.000Z",
+          "uid": "35240-e3747f6e-a027-4282-bf88-e2c90e488849"
+        },
+        {
+          "name": "List events",
+          "id": "bf1c0b4d-a917-4f40-9600-acea422f033d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?limit=<integer>&offset=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "How many results to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "How many results to skip",
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a paginated list of events representing state changes to resources in your Dwolla application. Events track actions on customers, transfers, funding sources, and other resources, sorted by creation date (newest first). Events are retained for 30 days and are essential for webhook notifications and system activity monitoring."
+          },
+          "response": [
+            {
+              "id": "40992449-f741-4fde-89b5-642f1cae844f",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "How many results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "How many results to skip",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {},\n  \"additionalProperties\": {\n    \"href\": \"<string>\",\n    \"type\": \"<string>\",\n    \"resource-type\": \"<string>\"\n  },\n  \"_embedded\": {\n    \"events\": [\n      {\n        \"_links\": {\n          \"non_8eb\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"topic\": \"<string>\",\n        \"resourceId\": \"<string>\"\n      },\n      {\n        \"_links\": {\n          \"non2\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"topic\": \"<string>\",\n        \"resourceId\": \"<string>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:33:17.000Z",
+              "updatedAt": "2026-07-28T01:33:17.000Z",
+              "uid": "35240-40992449-f741-4fde-89b5-642f1cae844f"
+            },
+            {
+              "id": "04f55622-bf4e-4f96-8b87-e69eb9b41d60",
+              "name": "not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "How many results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "How many results to skip",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:17.000Z",
+              "updatedAt": "2026-07-28T01:33:17.000Z",
+              "uid": "35240-04f55622-bf4e-4f96-8b87-e69eb9b41d60"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:17.000Z",
+          "updatedAt": "2026-07-28T01:33:17.000Z",
+          "uid": "35240-bf1c0b4d-a917-4f40-9600-acea422f033d"
+        }
+      ],
+      "id": "8bc8a1aa-dbf6-43a3-891e-ee7523589de4",
+      "createdAt": "2026-07-28T01:33:17.000Z",
+      "updatedAt": "2026-07-28T01:33:17.000Z",
+      "uid": "35240-8bc8a1aa-dbf6-43a3-891e-ee7523589de4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

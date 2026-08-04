@@ -1,0 +1,1856 @@
+{
+  "info": {
+    "_postman_id": "7a294fd5-9cc4-4508-8e7c-86627813138d",
+    "name": "Dwolla API - Funding Sources",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:54.000Z",
+    "updatedAt": "2026-07-28T01:32:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7a294fd5-9cc4-4508-8e7c-86627813138d"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "funding-sources",
+              "item": [
+                {
+                  "name": "List customer funding sources",
+                  "id": "85ca6285-5633-4611-a8dd-6dfee3e229d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/funding-sources?removed=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "funding-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter removed funding sources. Boolean value. Defaults to `true`",
+                          "key": "removed",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "75396935-c140-4a5d-87cc-659c3de8600a",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns all funding sources for a customer, including bank accounts, debit card funding sources, and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Card funding sources include masked card information. Supports filtering to exclude removed funding sources using the removed parameter."
+                  },
+                  "response": [
+                    {
+                      "id": "f34edc9a-03e5-463e-b693-d3293bf8a101",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources?removed=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter removed funding sources. Boolean value. Defaults to `true`",
+                              "key": "removed",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"dolore_e__\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"ex_c\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"funding-sources\": [\n      {\n        \"_links\": {\n          \"in_3b\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"type\": \"<string>\",\n        \"bankAccountType\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"removed\": \"<boolean>\",\n        \"channels\": [\n          \"external\",\n          \"real-time-payments\"\n        ],\n        \"bankName\": \"<string>\",\n        \"fingerprint\": \"<string>\",\n        \"bankUsageType\": \"card-network\",\n        \"cardDetails\": {\n          \"brand\": \"<string>\",\n          \"lastFour\": \"<string>\",\n          \"expirationMonth\": \"<integer>\",\n          \"expirationYear\": \"<integer>\",\n          \"nameOnCard\": \"<string>\",\n          \"bin\": \"<string>\",\n          \"billingAddress\": {\n            \"address1\": \"<string>\",\n            \"address2\": \"<string>\",\n            \"address3\": \"<string>\",\n            \"city\": \"<string>\",\n            \"stateProvinceRegion\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postalCode\": \"<string>\"\n          }\n        }\n      },\n      {\n        \"_links\": {\n          \"esseda8\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"type\": \"<string>\",\n        \"bankAccountType\": \"<string>\",\n        \"name\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"removed\": \"<boolean>\",\n        \"channels\": [\n          \"real-time-payments\",\n          \"ach\"\n        ],\n        \"bankName\": \"<string>\",\n        \"fingerprint\": \"<string>\",\n        \"bankUsageType\": \"card-network\",\n        \"cardDetails\": {\n          \"brand\": \"<string>\",\n          \"lastFour\": \"<string>\",\n          \"expirationMonth\": \"<integer>\",\n          \"expirationYear\": \"<integer>\",\n          \"nameOnCard\": \"<string>\",\n          \"bin\": \"<string>\",\n          \"billingAddress\": {\n            \"address1\": \"<string>\",\n            \"address2\": \"<string>\",\n            \"address3\": \"<string>\",\n            \"city\": \"<string>\",\n            \"stateProvinceRegion\": \"<string>\",\n            \"country\": \"<string>\",\n            \"postalCode\": \"<string>\"\n          }\n        }\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-f34edc9a-03e5-463e-b693-d3293bf8a101"
+                    },
+                    {
+                      "id": "54279a66-cf92-4b73-a547-7586ae2c6c41",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources?removed=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter removed funding sources. Boolean value. Defaults to `true`",
+                              "key": "removed",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-54279a66-cf92-4b73-a547-7586ae2c6c41"
+                    },
+                    {
+                      "id": "a889d086-1bfd-4253-94d5-52e79cbf8489",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources?removed=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter removed funding sources. Boolean value. Defaults to `true`",
+                              "key": "removed",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-a889d086-1bfd-4253-94d5-52e79cbf8489"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-85ca6285-5633-4611-a8dd-6dfee3e229d2"
+                },
+                {
+                  "name": "Create customer funding source",
+                  "id": "af398c0c-2e63-4271-8765-fd1c3728eab0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"checking\",\n  \"name\": \"<string>\",\n  \"verified\": false,\n  \"channels\": [\n    \"wire\",\n    \"wire\"\n  ],\n  \"_links\": {\n    \"on-demand-authorization\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/funding-sources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "funding-sources"
+                      ],
+                      "variable": [
+                        {
+                          "id": "02e1b225-2f72-4a9d-a9ed-0b14f11cc2c3",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, debit card addition via Exchange, and virtual account numbers. Bank funding sources require verification before transfers can be initiated."
+                  },
+                  "response": [
+                    {
+                      "id": "d9a0be89-8bf0-40a0-befb-a19f41d70b1e",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"checking\",\n  \"name\": \"<string>\",\n  \"verified\": false,\n  \"channels\": [\n    \"wire\",\n    \"wire\"\n  ],\n  \"_links\": {\n    \"on-demand-authorization\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-d9a0be89-8bf0-40a0-befb-a19f41d70b1e"
+                    },
+                    {
+                      "id": "3f0299a0-77c5-4660-9bea-a5a827901dde",
+                      "name": "validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"checking\",\n  \"name\": \"<string>\",\n  \"verified\": false,\n  \"channels\": [\n    \"wire\",\n    \"wire\"\n  ],\n  \"_links\": {\n    \"on-demand-authorization\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-3f0299a0-77c5-4660-9bea-a5a827901dde"
+                    },
+                    {
+                      "id": "afb2d7e2-fd04-4757-92a5-5ffaf1518a69",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"checking\",\n  \"name\": \"<string>\",\n  \"verified\": false,\n  \"channels\": [\n    \"wire\",\n    \"wire\"\n  ],\n  \"_links\": {\n    \"on-demand-authorization\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-afb2d7e2-fd04-4757-92a5-5ffaf1518a69"
+                    },
+                    {
+                      "id": "9d8d1f3d-2996-4dec-adcc-5d17a9d3393a",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"checking\",\n  \"name\": \"<string>\",\n  \"verified\": false,\n  \"channels\": [\n    \"wire\",\n    \"wire\"\n  ],\n  \"_links\": {\n    \"on-demand-authorization\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/funding-sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "funding-sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-9d8d1f3d-2996-4dec-adcc-5d17a9d3393a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-af398c0c-2e63-4271-8765-fd1c3728eab0"
+                }
+              ],
+              "id": "28fd6e8d-1d07-4924-9e9d-01cb0e890796",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-28fd6e8d-1d07-4924-9e9d-01cb0e890796"
+            }
+          ],
+          "id": "d2277875-75cb-474c-8da7-96dbbf259a92",
+          "createdAt": "2026-07-28T01:32:55.000Z",
+          "updatedAt": "2026-07-28T01:32:55.000Z",
+          "uid": "35240-d2277875-75cb-474c-8da7-96dbbf259a92"
+        }
+      ],
+      "id": "0bcc6c52-14ba-4886-9d5c-b246191c70a0",
+      "createdAt": "2026-07-28T01:32:55.000Z",
+      "updatedAt": "2026-07-28T01:32:55.000Z",
+      "uid": "35240-0bcc6c52-14ba-4886-9d5c-b246191c70a0"
+    },
+    {
+      "name": "funding-sources",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "micro-deposits",
+              "item": [
+                {
+                  "name": "Retrieve micro-deposits details",
+                  "id": "585d799d-1f5d-4b29-8f7a-e59ef10b22d1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id",
+                        "micro-deposits"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f37db8e3-49ea-4e18-93a3-8a6c90fa52e8",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the FS that previously had micro-deposits initiated"
+                        }
+                      ]
+                    },
+                    "description": "Returns the status and details of micro-deposits for a funding source to check verification eligibility. Includes deposit status (pending, processed, failed), creation timestamp, and failure details with ACH return codes if deposits failed. Use this endpoint to determine when micro-deposits are ready for verification."
+                  },
+                  "response": [
+                    {
+                      "id": "3e8905f2-d03f-4207-9c90-9e581c3d450e",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"dolor9\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"quisc\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"created\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"failure\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-3e8905f2-d03f-4207-9c90-9e581c3d450e"
+                    },
+                    {
+                      "id": "491b535b-51a2-4f10-8b96-347615999283",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-491b535b-51a2-4f10-8b96-347615999283"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-585d799d-1f5d-4b29-8f7a-e59ef10b22d1"
+                },
+                {
+                  "name": "Initiate or Verify micro-deposits",
+                  "id": "15cb7788-9dc0-4ead-8310-8f5cdd71a839",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "null",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id",
+                        "micro-deposits"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6cbfaa71-c8b9-4a41-9a8a-51c20e13179d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the FS to initiate or verify micro-deposit"
+                        }
+                      ]
+                    },
+                    "description": "Handles micro-deposit bank verification process. Make a request without a request body to initiate two small deposits to the customer's bank account. Include deposit amounts to verify the received values and complete verification."
+                  },
+                  "response": [
+                    {
+                      "id": "670db756-468a-42c5-89f3-2a7d0e5c0ffc",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-670db756-468a-42c5-89f3-2a7d0e5c0ffc"
+                    },
+                    {
+                      "id": "afc56af6-f220-42a5-a2d6-a51731295ad7",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-afc56af6-f220-42a5-a2d6-a51731295ad7"
+                    },
+                    {
+                      "id": "904b02b8-a302-45d6-ba14-c80601171c8a",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-904b02b8-a302-45d6-ba14-c80601171c8a"
+                    },
+                    {
+                      "id": "39f58423-ce53-4817-8135-4393c20f6f74",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/micro-deposits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "micro-deposits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-39f58423-ce53-4817-8135-4393c20f6f74"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-15cb7788-9dc0-4ead-8310-8f5cdd71a839"
+                }
+              ],
+              "id": "0187beaa-b9e1-4f22-8c6b-e663a6b092ec",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-0187beaa-b9e1-4f22-8c6b-e663a6b092ec"
+            },
+            {
+              "name": "balance",
+              "item": [
+                {
+                  "name": "Retrieve funding source balance",
+                  "id": "dc1936ea-2846-492a-bb84-9b3d83c4ec6a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id/balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id",
+                        "balance"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ac81872-b880-490b-9bcb-b70b463d97fa",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of funding source to retrieve the balance for"
+                        }
+                      ]
+                    },
+                    "description": "Returns the current balance for a specific funding source. For bank accounts, includes available and closing balances; for Dwolla balance, includes balance and total amounts; for settlement accounts (bankUsageType = card-network), includes available balance only. Supports bank accounts (via Open Banking), Dwolla balance (verified customers only), and settlement accounts for card network processing."
+                  },
+                  "response": [
+                    {
+                      "id": "f127dd06-3036-4188-8763-edf9a2921523",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/balance",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "balance"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"eiusmodf\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"ipsumc\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"balance\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"total\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"lastUpdated\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-f127dd06-3036-4188-8763-edf9a2921523"
+                    },
+                    {
+                      "id": "6e7f9dd9-3e7e-4523-936e-36b0440b2c1f",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/balance",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "balance"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-6e7f9dd9-3e7e-4523-936e-36b0440b2c1f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-dc1936ea-2846-492a-bb84-9b3d83c4ec6a"
+                }
+              ],
+              "id": "dc0edaa9-2de5-45f8-920c-65b6e994b340",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-dc0edaa9-2de5-45f8-920c-65b6e994b340"
+            },
+            {
+              "name": "ach-routing",
+              "item": [
+                {
+                  "name": "Retrieve VAN account and routing numbers",
+                  "id": "556b95f3-326a-4da1-855c-743e52d60f23",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id/ach-routing",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id",
+                        "ach-routing"
+                      ],
+                      "variable": [
+                        {
+                          "id": "df38ac44-3c3a-40dc-8cdd-14ad0d9a5287",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of VAN funding source to retrieve ACH details"
+                        }
+                      ]
+                    },
+                    "description": "Returns the unique account and routing numbers for a Virtual Account Number (VAN) funding source. These numbers can be used by external systems to initiate ACH transactions that pull funds from or push funds to the associated Dwolla balance."
+                  },
+                  "response": [
+                    {
+                      "id": "80a27aab-b887-4d45-a953-fbece6718b7f",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/ach-routing",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "ach-routing"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"magna__\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"Duis_7\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"accountNumber\": \"<string>\",\n  \"routingNumber\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-80a27aab-b887-4d45-a953-fbece6718b7f"
+                    },
+                    {
+                      "id": "2369f776-5df2-4af4-ab28-bba426a0a641",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/funding-sources/:id/ach-routing",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "funding-sources",
+                            ":id",
+                            "ach-routing"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:55.000Z",
+                      "updatedAt": "2026-07-28T01:32:55.000Z",
+                      "uid": "35240-2369f776-5df2-4af4-ab28-bba426a0a641"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-556b95f3-326a-4da1-855c-743e52d60f23"
+                }
+              ],
+              "id": "b0a41057-4b13-4fc9-a178-05903c1d9fa7",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-b0a41057-4b13-4fc9-a178-05903c1d9fa7"
+            },
+            {
+              "name": "Retrieve a funding source",
+              "id": "b10f2295-74ab-42e8-af37-87a245661238",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/funding-sources/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funding-sources",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b70f0c68-2dfd-4de3-b389-957a98702119",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Funding source unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name."
+              },
+              "response": [
+                {
+                  "id": "f71e121c-2688-4f65-b1a5-02fbb0f3c67f",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"ut5db\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"bankAccountType\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"removed\": \"<boolean>\",\n  \"channels\": [\n    \"ach\",\n    \"real-time-payments\"\n  ],\n  \"bankName\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"bankUsageType\": \"card-network\",\n  \"cardDetails\": {\n    \"brand\": \"<string>\",\n    \"lastFour\": \"<string>\",\n    \"expirationMonth\": \"<integer>\",\n    \"expirationYear\": \"<integer>\",\n    \"nameOnCard\": \"<string>\",\n    \"bin\": \"<string>\",\n    \"billingAddress\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateProvinceRegion\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-f71e121c-2688-4f65-b1a5-02fbb0f3c67f"
+                },
+                {
+                  "id": "3ede7f12-8e0a-417c-a433-b1405cc2b744",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-3ede7f12-8e0a-417c-a433-b1405cc2b744"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-b10f2295-74ab-42e8-af37-87a245661238"
+            },
+            {
+              "name": "Update or remove a funding source",
+              "id": "14fa45d0-e789-4ea7-a8ea-29cd8267457c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/funding-sources/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "funding-sources",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "98453a03-6b07-4a57-bb83-24fd0a023701",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Funding source unique identifier"
+                    }
+                  ]
+                },
+                "description": "Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed."
+              },
+              "response": [
+                {
+                  "id": "9203c17a-1f06-4929-81a1-78650d4a2023",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-9203c17a-1f06-4929-81a1-78650d4a2023"
+                },
+                {
+                  "id": "ed751ea9-1a91-481d-9fb8-19101764ade7",
+                  "name": "validation error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-ed751ea9-1a91-481d-9fb8-19101764ade7"
+                },
+                {
+                  "id": "1730f808-3537-4ff7-8b4a-3642a6c89571",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"bankAccountType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/funding-sources/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding-sources",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:55.000Z",
+                  "updatedAt": "2026-07-28T01:32:55.000Z",
+                  "uid": "35240-1730f808-3537-4ff7-8b4a-3642a6c89571"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-14fa45d0-e789-4ea7-a8ea-29cd8267457c"
+            }
+          ],
+          "id": "dae88456-cb40-47e4-b204-b80b1d9e71ef",
+          "createdAt": "2026-07-28T01:32:55.000Z",
+          "updatedAt": "2026-07-28T01:32:55.000Z",
+          "uid": "35240-dae88456-cb40-47e4-b204-b80b1d9e71ef"
+        }
+      ],
+      "id": "7ca8d46c-a332-4e7b-885b-b66f4019e6c7",
+      "createdAt": "2026-07-28T01:32:55.000Z",
+      "updatedAt": "2026-07-28T01:32:55.000Z",
+      "uid": "35240-7ca8d46c-a332-4e7b-885b-b66f4019e6c7"
+    },
+    {
+      "name": "on-demand-authorizations",
+      "item": [
+        {
+          "name": "Create an on-demand transfer authorization",
+          "id": "0e8ed4aa-7ea2-4b49-8a3d-21ffd158fcee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/on-demand-authorizations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "on-demand-authorizations"
+              ]
+            },
+            "description": "Create an on-demand transfer authorization that allows Customers to pre-authorize variable amount ACH transfers from their bank account for future payments. This authorization is used when creating Customer funding sources to enable flexible payment processing. Returns UI text elements including authorization body text and button text for display in your application's bank account addition flow."
+          },
+          "response": [
+            {
+              "id": "cd47aa7d-3c6b-4278-83ce-b477d1e8657c",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/on-demand-authorizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "on-demand-authorizations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"bodyText\": \"<string>\",\n  \"buttonText\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-cd47aa7d-3c6b-4278-83ce-b477d1e8657c"
+            },
+            {
+              "id": "3ab6c5d3-2bc1-442c-aecf-e9f9376dc52d",
+              "name": "403 Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/on-demand-authorizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "on-demand-authorizations"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:55.000Z",
+              "updatedAt": "2026-07-28T01:32:55.000Z",
+              "uid": "35240-3ab6c5d3-2bc1-442c-aecf-e9f9376dc52d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:32:55.000Z",
+          "updatedAt": "2026-07-28T01:32:55.000Z",
+          "uid": "35240-0e8ed4aa-7ea2-4b49-8a3d-21ffd158fcee"
+        }
+      ],
+      "id": "9489412a-4120-4568-b0c6-3289bea576ac",
+      "createdAt": "2026-07-28T01:32:55.000Z",
+      "updatedAt": "2026-07-28T01:32:55.000Z",
+      "uid": "35240-9489412a-4120-4568-b0c6-3289bea576ac"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

@@ -1,0 +1,1542 @@
+{
+  "info": {
+    "_postman_id": "656faa5f-9448-4904-bf76-2597fe077128",
+    "name": "Dwolla API - Beneficial Owners",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:51.000Z",
+    "updatedAt": "2026-07-28T01:32:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-656faa5f-9448-4904-bf76-2597fe077128"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "beneficial-owners",
+              "item": [
+                {
+                  "name": "List customer beneficial owners",
+                  "id": "38cfbf6f-c41c-4d50-912a-94e707f41694",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "beneficial-owners"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d07eaa3f-8831-4b0e-b8df-c846043c80db",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns all beneficial owners associated with a business verified customer. Beneficial owners are individuals who directly or indirectly own 25% or more of the company's equity. Includes personal information, verification status, and address details for each owner."
+                  },
+                  "response": [
+                    {
+                      "id": "0c3a72fc-afe6-49e9-91af-669edd602dff",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"sint00a\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"fugiat8\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"deseruntb\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"beneficial-owners\": [\n      {\n        \"_links\": {\n          \"Ut655\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"address\": {\n          \"address1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country\": \"<string>\",\n          \"stateProvinceRegion\": \"<string>\",\n          \"address2\": \"<string>\",\n          \"address3\": \"<string>\",\n          \"postalCode\": \"<string>\"\n        },\n        \"verificationStatus\": \"incomplete\",\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"cillum0b\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"address\": {\n          \"address1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country\": \"<string>\",\n          \"stateProvinceRegion\": \"<string>\",\n          \"address2\": \"<string>\",\n          \"address3\": \"<string>\",\n          \"postalCode\": \"<string>\"\n        },\n        \"verificationStatus\": \"verified\",\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-0c3a72fc-afe6-49e9-91af-669edd602dff"
+                    },
+                    {
+                      "id": "677cfe05-db7b-44c7-8f60-bc2cdd54a41a",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-677cfe05-db7b-44c7-8f60-bc2cdd54a41a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-38cfbf6f-c41c-4d50-912a-94e707f41694"
+                },
+                {
+                  "name": "Create customer beneficial owner",
+                  "id": "00747f87-c9f5-4493-bd68-45f00bb6ed4f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "beneficial-owners"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ec07a76-6078-4c7d-bcf3-13c7da658a5e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer ID for which to create a Beneficial Owner"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new beneficial owner for a business verified customer. Beneficial owners are individuals who own 25% or more of the company's equity. Requires personal information, address, and SSN or passport for identity verification."
+                  },
+                  "response": [
+                    {
+                      "id": "3671271a-7f7e-480a-bbdf-696d7abdaf9d",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-3671271a-7f7e-480a-bbdf-696d7abdaf9d"
+                    },
+                    {
+                      "id": "362c1d91-9b7d-42b5-abd0-f68c0f96ff71",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-362c1d91-9b7d-42b5-abd0-f68c0f96ff71"
+                    },
+                    {
+                      "id": "000fd8b4-92ca-4044-b443-2613eb118343",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-000fd8b4-92ca-4044-b443-2613eb118343"
+                    },
+                    {
+                      "id": "db575eee-6e75-4812-998e-ef735682e3d7",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-owners",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-owners"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-db575eee-6e75-4812-998e-ef735682e3d7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-00747f87-c9f5-4493-bd68-45f00bb6ed4f"
+                }
+              ],
+              "id": "3af8f272-28bd-4d53-bfb5-f0bb2271ce8c",
+              "createdAt": "2026-07-28T01:32:52.000Z",
+              "updatedAt": "2026-07-28T01:32:52.000Z",
+              "uid": "35240-3af8f272-28bd-4d53-bfb5-f0bb2271ce8c"
+            },
+            {
+              "name": "beneficial-ownership",
+              "item": [
+                {
+                  "name": "Retrieve beneficial ownership status",
+                  "id": "36c498d4-e05f-4824-a181-fd96f0f78a69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "beneficial-ownership"
+                      ],
+                      "variable": [
+                        {
+                          "id": "47ba4840-b94f-4212-bc0f-d3eb123a07e6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns the certification status of beneficial ownership for a business verified customer. Status indicates whether beneficial owner information has been certified and affects the customer's ability to send funds. Possible values include uncertified, certified, and recertify."
+                  },
+                  "response": [
+                    {
+                      "id": "97d91c2d-4631-4d22-a19e-c2f282f0b9df",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"status\": \"uncertified\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-97d91c2d-4631-4d22-a19e-c2f282f0b9df"
+                    },
+                    {
+                      "id": "b89cae45-84ec-46e6-8845-6bce8feb5f87",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-b89cae45-84ec-46e6-8845-6bce8feb5f87"
+                    },
+                    {
+                      "id": "7d41a01c-f393-45d8-a7fc-7f1071bb7438",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-7d41a01c-f393-45d8-a7fc-7f1071bb7438"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-36c498d4-e05f-4824-a181-fd96f0f78a69"
+                },
+                {
+                  "name": "Certify beneficial ownership",
+                  "id": "f4d2f878-910f-49e2-b163-f2b4911f306b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "beneficial-ownership"
+                      ],
+                      "variable": [
+                        {
+                          "id": "01014014-b2bb-41f3-ab1d-58e04e6cd3c1",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Updates the beneficial ownership certification status to \"certified\", confirming that all beneficial owner information is accurate and complete. This action enables the business customer to send funds and is required to complete the verification process."
+                  },
+                  "response": [
+                    {
+                      "id": "a3ef3c6e-0bf4-418d-897b-3a4ca80b0a15",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"status\": \"uncertified\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-a3ef3c6e-0bf4-418d-897b-3a4ca80b0a15"
+                    },
+                    {
+                      "id": "4b08b1e4-01c1-4943-86c6-463c96705a29",
+                      "name": "ValidationError",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"_embedded\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-4b08b1e4-01c1-4943-86c6-463c96705a29"
+                    },
+                    {
+                      "id": "eb3e595e-3482-411e-a661-ef09b24bfa8b",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/beneficial-ownership",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "beneficial-ownership"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:52.000Z",
+                      "updatedAt": "2026-07-28T01:32:52.000Z",
+                      "uid": "35240-eb3e595e-3482-411e-a661-ef09b24bfa8b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-f4d2f878-910f-49e2-b163-f2b4911f306b"
+                }
+              ],
+              "id": "a92d1f60-664c-4ad7-b934-34148f045cd7",
+              "createdAt": "2026-07-28T01:32:52.000Z",
+              "updatedAt": "2026-07-28T01:32:52.000Z",
+              "uid": "35240-a92d1f60-664c-4ad7-b934-34148f045cd7"
+            }
+          ],
+          "id": "59fa2b7b-47b5-4cf9-a453-bb049931dd3f",
+          "createdAt": "2026-07-28T01:32:52.000Z",
+          "updatedAt": "2026-07-28T01:32:52.000Z",
+          "uid": "35240-59fa2b7b-47b5-4cf9-a453-bb049931dd3f"
+        }
+      ],
+      "id": "0d874b62-8442-4075-b402-95ca3e2b7b95",
+      "createdAt": "2026-07-28T01:32:52.000Z",
+      "updatedAt": "2026-07-28T01:32:52.000Z",
+      "uid": "35240-0d874b62-8442-4075-b402-95ca3e2b7b95"
+    },
+    {
+      "name": "beneficial-owners",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve beneficial owner",
+              "id": "d239c7c6-b70d-4c70-80a4-e31b2876ea62",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/beneficial-owners/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "beneficial-owners",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a5b8ec50-6f40-4ee5-a46a-ea652ae13cf9",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Beneficial owner unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information for a specific beneficial owner, including personal information, address, and verification status. The verification status indicates the owner's identity verification progress and affects the business customer's transaction capabilities."
+              },
+              "response": [
+                {
+                  "id": "ac061cea-b2b4-49a5-b975-0236fc1e5df2",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"laborum_d6\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"verificationStatus\": \"document\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-ac061cea-b2b4-49a5-b975-0236fc1e5df2"
+                },
+                {
+                  "id": "20044c05-7ddc-4228-a3a9-234ec8ab7353",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-20044c05-7ddc-4228-a3a9-234ec8ab7353"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:52.000Z",
+              "updatedAt": "2026-07-28T01:32:52.000Z",
+              "uid": "35240-d239c7c6-b70d-4c70-80a4-e31b2876ea62"
+            },
+            {
+              "name": "Update beneficial owner",
+              "id": "ad3d246c-5aa6-410f-8775-c6d726a074ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/beneficial-owners/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "beneficial-owners",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ee4a2eea-5e9f-4790-8cb1-610f8a9bc34c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Beneficial owner unique identifier"
+                    }
+                  ]
+                },
+                "description": "Updates a beneficial owner's information to retry verification when their status is \"incomplete\". Only beneficial owners with incomplete verification status can be updated. Used to correct information that caused initial verification to fail."
+              },
+              "response": [
+                {
+                  "id": "1820840b-4bef-413e-9409-286325f4d36d",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"laborum_d6\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"verificationStatus\": \"document\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-1820840b-4bef-413e-9409-286325f4d36d"
+                },
+                {
+                  "id": "6f386637-3ab3-414a-a73a-85df92348b1f",
+                  "name": "ValidationError",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"_embedded\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-6f386637-3ab3-414a-a73a-85df92348b1f"
+                },
+                {
+                  "id": "c7ce1560-fdf1-42f1-8b6a-c0dae9794727",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-c7ce1560-fdf1-42f1-8b6a-c0dae9794727"
+                },
+                {
+                  "id": "c94254fa-cdce-4174-92d2-8a6108b0c05a",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<string>\",\n  \"address\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"stateProvinceRegion\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"address3\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"ssn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-c94254fa-cdce-4174-92d2-8a6108b0c05a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:52.000Z",
+              "updatedAt": "2026-07-28T01:32:52.000Z",
+              "uid": "35240-ad3d246c-5aa6-410f-8775-c6d726a074ad"
+            },
+            {
+              "name": "Remove beneficial owner",
+              "id": "b9c09df1-2089-433e-bfa2-531fcd489293",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/beneficial-owners/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "beneficial-owners",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c9bde1f9-11f7-4a41-ba26-dccc00d14494",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Beneficial owner unique identifier"
+                    }
+                  ]
+                },
+                "description": "Permanently removes a beneficial owner from a business customer. This action is irreversible and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change the customer's certification status to \"recertify\"."
+              },
+              "response": [
+                {
+                  "id": "9f1d63e0-fc14-4830-a051-d610014f5e59",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-9f1d63e0-fc14-4830-a051-d610014f5e59"
+                },
+                {
+                  "id": "263a5642-b0d4-409b-a309-5ea9dff381e4",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/beneficial-owners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "beneficial-owners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:52.000Z",
+                  "updatedAt": "2026-07-28T01:32:52.000Z",
+                  "uid": "35240-263a5642-b0d4-409b-a309-5ea9dff381e4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:52.000Z",
+              "updatedAt": "2026-07-28T01:32:52.000Z",
+              "uid": "35240-b9c09df1-2089-433e-bfa2-531fcd489293"
+            }
+          ],
+          "id": "ed80699d-e7d1-47de-87ec-5b538862618f",
+          "createdAt": "2026-07-28T01:32:52.000Z",
+          "updatedAt": "2026-07-28T01:32:52.000Z",
+          "uid": "35240-ed80699d-e7d1-47de-87ec-5b538862618f"
+        }
+      ],
+      "id": "59a05a06-01c4-4a4d-856d-5247bcf45384",
+      "createdAt": "2026-07-28T01:32:52.000Z",
+      "updatedAt": "2026-07-28T01:32:52.000Z",
+      "uid": "35240-59a05a06-01c4-4a4d-856d-5247bcf45384"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

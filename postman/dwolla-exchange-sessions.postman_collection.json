@@ -1,0 +1,1055 @@
+{
+  "info": {
+    "_postman_id": "f1118223-4e10-4949-9372-268a68b2f2ac",
+    "name": "Dwolla API - Exchange Sessions",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:16.000Z",
+    "updatedAt": "2026-07-28T01:33:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f1118223-4e10-4949-9372-268a68b2f2ac"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "exchange-sessions",
+              "item": [
+                {
+                  "name": "Create customer exchange session",
+                  "id": "ca48a2a4-749d-4dc2-aac3-63a3fb1e05fb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "exchange-sessions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c3c73482-745f-4d59-be57-2778958a4d06",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Creates an exchange session for a customer. Use cases include:\n- **Plaid / MX**: Instant bank account verification (open banking). For faster verification as compared to traditional micro-deposits.\n- **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "98d1b488-b82e-4959-99be-e54882f8f600",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-98d1b488-b82e-4959-99be-e54882f8f600"
+                    },
+                    {
+                      "id": "8553f589-6c1b-4d10-bc45-12ed632e1fda",
+                      "name": "validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-8553f589-6c1b-4d10-bc45-12ed632e1fda"
+                    },
+                    {
+                      "id": "85db7420-217b-4c7b-a4e3-decc39859df7",
+                      "name": "unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-85db7420-217b-4c7b-a4e3-decc39859df7"
+                    },
+                    {
+                      "id": "27d2107a-0ec3-4c8f-9a44-ea49b286cd99",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-27d2107a-0ec3-4c8f-9a44-ea49b286cd99"
+                    },
+                    {
+                      "id": "f8e0ab7a-1311-441f-bbec-4edcaceddd60",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-f8e0ab7a-1311-441f-bbec-4edcaceddd60"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-ca48a2a4-749d-4dc2-aac3-63a3fb1e05fb"
+                }
+              ],
+              "id": "c3fda05a-d226-4747-a155-f717bcb48dab",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-c3fda05a-d226-4747-a155-f717bcb48dab"
+            },
+            {
+              "name": "available-exchange-connections",
+              "item": [
+                {
+                  "name": "List available exchange connections",
+                  "id": "b83bc933-df94-4d9d-8e95-6964cadd2973",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/available-exchange-connections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "available-exchange-connections"
+                      ],
+                      "variable": [
+                        {
+                          "id": "19464a02-c74a-4aa7-ad2c-646e4005a1ff",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers."
+                  },
+                  "response": [
+                    {
+                      "id": "8440ede8-7c16-41fd-bd37-ea759d2a4c3f",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/available-exchange-connections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "available-exchange-connections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"customers\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"available-exchange-connections\": [\n      {\n        \"availableConnectionToken\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"availableConnectionToken\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-8440ede8-7c16-41fd-bd37-ea759d2a4c3f"
+                    },
+                    {
+                      "id": "cb2aa116-3d4d-478d-8461-294507072efa",
+                      "name": "not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/available-exchange-connections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "available-exchange-connections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-cb2aa116-3d4d-478d-8461-294507072efa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-b83bc933-df94-4d9d-8e95-6964cadd2973"
+                }
+              ],
+              "id": "e080172c-38c0-49b0-8787-3ebd832e3264",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-e080172c-38c0-49b0-8787-3ebd832e3264"
+            }
+          ],
+          "id": "afa1f8b5-6484-4b12-bdf2-e4b0b78ca114",
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-afa1f8b5-6484-4b12-bdf2-e4b0b78ca114"
+        }
+      ],
+      "id": "ae1c9d6c-7099-4414-b205-aed1c68a277d",
+      "createdAt": "2026-07-28T01:33:16.000Z",
+      "updatedAt": "2026-07-28T01:33:16.000Z",
+      "uid": "35240-ae1c9d6c-7099-4414-b205-aed1c68a277d"
+    },
+    {
+      "name": "exchange-sessions",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve exchange session",
+              "id": "ec923da3-0411-46e9-b6fa-88d89367e7cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchange-sessions/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchange-sessions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5a7e10db-6d08-424f-b9d8-4d8de328d83b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Exchange session's unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns details of a previously created exchange session. Response varies by partner:\n- **MX**: `_links.external-provider-session.href` (redirect URL for verification).\n- **Plaid**: `externalProviderSessionToken` (token to initialize Plaid Link).\n- **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).\n"
+              },
+              "response": [
+                {
+                  "id": "69443be6-e15f-47c9-831f-d40d28164356",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchange-sessions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchange-sessions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"created\": \"<dateTime>\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"exchange-partner\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"external-provider-session\": {\n      \"href\": \"<uri>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"externalProviderSessionToken\": \"<string>\",\n  \"externalProviderSessionData\": {\n    \"id\": \"<string>\",\n    \"payment_session_secret\": \"<string>\",\n    \"payment_session_token\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-69443be6-e15f-47c9-831f-d40d28164356"
+                },
+                {
+                  "id": "8eaa1e17-1778-4463-8537-194a2a475e5a",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchange-sessions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchange-sessions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-8eaa1e17-1778-4463-8537-194a2a475e5a"
+                },
+                {
+                  "id": "7451971a-1bc8-4c2b-be6a-cc1d92872390",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchange-sessions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchange-sessions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-7451971a-1bc8-4c2b-be6a-cc1d92872390"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:17.000Z",
+              "updatedAt": "2026-07-28T01:33:17.000Z",
+              "uid": "35240-ec923da3-0411-46e9-b6fa-88d89367e7cb"
+            }
+          ],
+          "id": "8a01e267-5689-46d0-bc03-a449f24467c0",
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-8a01e267-5689-46d0-bc03-a449f24467c0"
+        }
+      ],
+      "id": "384837d9-f539-4e31-921b-3c08cd181727",
+      "createdAt": "2026-07-28T01:33:16.000Z",
+      "updatedAt": "2026-07-28T01:33:16.000Z",
+      "uid": "35240-384837d9-f539-4e31-921b-3c08cd181727"
+    },
+    {
+      "name": "exchanges",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "exchange-sessions",
+              "item": [
+                {
+                  "name": "Create re-authentication exchange session",
+                  "id": "1c12f8f1-8ae0-4fd9-841c-ba9dbc5a05b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/exchanges/:id/exchange-sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchanges",
+                        ":id",
+                        "exchange-sessions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9308c4c6-8721-4f3f-bc42-881107ad5b63",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Exchange's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Creates a re-authentication exchange session to refresh a user's bank account connection when their existing authorization is no longer valid. Required when receiving an UpdateCredentials error during bank balance checks or when user re-authentication is needed."
+                  },
+                  "response": [
+                    {
+                      "id": "2832170c-9804-4b0c-a7b9-ef17fc2b78e8",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/exchanges/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exchanges",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-2832170c-9804-4b0c-a7b9-ef17fc2b78e8"
+                    },
+                    {
+                      "id": "af75dea7-041c-4b51-8bd0-40bf680af6e7",
+                      "name": "validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/exchanges/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exchanges",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-af75dea7-041c-4b51-8bd0-40bf680af6e7"
+                    },
+                    {
+                      "id": "9d38865d-0f4b-41a6-997e-c2092b6806c5",
+                      "name": "forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/exchanges/:id/exchange-sessions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exchanges",
+                            ":id",
+                            "exchange-sessions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:17.000Z",
+                      "updatedAt": "2026-07-28T01:33:17.000Z",
+                      "uid": "35240-9d38865d-0f4b-41a6-997e-c2092b6806c5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:17.000Z",
+                  "updatedAt": "2026-07-28T01:33:17.000Z",
+                  "uid": "35240-1c12f8f1-8ae0-4fd9-841c-ba9dbc5a05b3"
+                }
+              ],
+              "id": "bcdd2693-1998-4495-b790-41023cc96ee0",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-bcdd2693-1998-4495-b790-41023cc96ee0"
+            }
+          ],
+          "id": "7f940b05-827f-469d-8ec8-909281d3dbad",
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-7f940b05-827f-469d-8ec8-909281d3dbad"
+        }
+      ],
+      "id": "4bfb54b6-0a35-434e-91c3-c086bde2cc3e",
+      "createdAt": "2026-07-28T01:33:16.000Z",
+      "updatedAt": "2026-07-28T01:33:16.000Z",
+      "uid": "35240-4bfb54b6-0a35-434e-91c3-c086bde2cc3e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

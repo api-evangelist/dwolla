@@ -1,0 +1,159 @@
+{
+  "info": {
+    "_postman_id": "bf3e14d8-2b3d-4d39-8219-d06d6795609f",
+    "name": "Dwolla API - Root",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:21.000Z",
+    "updatedAt": "2026-07-28T01:33:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bf3e14d8-2b3d-4d39-8219-d06d6795609f"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "root",
+          "id": "e9ce6e85-6c22-445b-a667-2b98ac11cdce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Retrieve the API root entry point to discover available resources and endpoints based on your OAuth access token permissions. Returns HAL+JSON with navigation links to accessible resources including accounts, customers, events, and webhook subscriptions depending on token scope. Essential for API exploration, dynamic resource discovery, and building adaptive client applications that respond to available permissions."
+          },
+          "response": [
+            {
+              "id": "d3a4586e-1f40-4dab-bd59-79fa3b19f4ee",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"ea393\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:33:22.000Z",
+              "updatedAt": "2026-07-28T01:33:22.000Z",
+              "uid": "35240-d3a4586e-1f40-4dab-bd59-79fa3b19f4ee"
+            },
+            {
+              "id": "1ad1ff6a-47ba-43a3-bc56-fa3830f856c1",
+              "name": "unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:22.000Z",
+              "updatedAt": "2026-07-28T01:33:22.000Z",
+              "uid": "35240-1ad1ff6a-47ba-43a3-bc56-fa3830f856c1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:22.000Z",
+          "updatedAt": "2026-07-28T01:33:22.000Z",
+          "uid": "35240-e9ce6e85-6c22-445b-a667-2b98ac11cdce"
+        }
+      ],
+      "id": "28da9c31-db4b-4501-829f-aec464ac5b99",
+      "createdAt": "2026-07-28T01:33:22.000Z",
+      "updatedAt": "2026-07-28T01:33:22.000Z",
+      "uid": "35240-28da9c31-db4b-4501-829f-aec464ac5b99"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

@@ -1,0 +1,1333 @@
+{
+  "info": {
+    "_postman_id": "833c17ab-0100-43a1-997d-b35603fc6244",
+    "name": "Dwolla API - Webhook Subscriptions",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:18.000Z",
+    "updatedAt": "2026-07-28T01:33:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-833c17ab-0100-43a1-997d-b35603fc6244"
+  },
+  "item": [
+    {
+      "name": "webhook-subscriptions",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "webhooks",
+              "item": [
+                {
+                  "name": "List webhooks for a webhook subscription",
+                  "id": "febc2d3a-14bd-4d48-bac1-dde31dca5792",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id/webhooks?limit=<string>&offset=<string>&startDate=<string>&endDate=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id",
+                        "webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "How many results to return",
+                          "key": "limit",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "How many results to skip",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`",
+                          "key": "startDate",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`",
+                          "key": "endDate",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "bbd701a9-4bd4-47b9-aa7e-34adbd9ec47e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Webhook subscription unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all fired webhooks for a specific webhook subscription with comprehensive filtering and pagination support. Returns webhook delivery history including topics, attempts, request/response details, and delivery status over a rolling 30-day period. Supports filtering by resource ID, date ranges, and pagination parameters for detailed webhook delivery analysis. Critical for debugging webhook delivery issues and monitoring event notification success rates."
+                  },
+                  "response": [
+                    {
+                      "id": "a971bda2-3334-4a19-8168-af2ef0619930",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook-subscriptions/:id/webhooks?limit=<string>&offset=<string>&startDate=<string>&endDate=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook-subscriptions",
+                            ":id",
+                            "webhooks"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "startDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "endDate",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"first\": {\n      \"href\": \"<string>\"\n    },\n    \"last\": {\n      \"href\": \"<string>\"\n    },\n    \"next\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"webhooks\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"subscription\": {\n            \"href\": \"<string>\"\n          },\n          \"retry\": {\n            \"href\": \"<string>\"\n          },\n          \"event\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"topic\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"eventId\": \"<string>\",\n        \"subscriptionId\": \"<string>\",\n        \"attempts\": [\n          {\n            \"id\": \"<string>\",\n            \"request\": {\n              \"timestamp\": \"<dateTime>\",\n              \"url\": \"<string>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"body\": \"<string>\"\n            },\n            \"response\": {\n              \"timestamp\": \"<dateTime>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"statusCode\": \"<integer>\",\n              \"body\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"request\": {\n              \"timestamp\": \"<dateTime>\",\n              \"url\": \"<string>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"body\": \"<string>\"\n            },\n            \"response\": {\n              \"timestamp\": \"<dateTime>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"statusCode\": \"<integer>\",\n              \"body\": \"<string>\"\n            }\n          }\n        ]\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"subscription\": {\n            \"href\": \"<string>\"\n          },\n          \"retry\": {\n            \"href\": \"<string>\"\n          },\n          \"event\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"topic\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"eventId\": \"<string>\",\n        \"subscriptionId\": \"<string>\",\n        \"attempts\": [\n          {\n            \"id\": \"<string>\",\n            \"request\": {\n              \"timestamp\": \"<dateTime>\",\n              \"url\": \"<string>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"body\": \"<string>\"\n            },\n            \"response\": {\n              \"timestamp\": \"<dateTime>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"statusCode\": \"<integer>\",\n              \"body\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"request\": {\n              \"timestamp\": \"<dateTime>\",\n              \"url\": \"<string>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"body\": \"<string>\"\n            },\n            \"response\": {\n              \"timestamp\": \"<dateTime>\",\n              \"headers\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ],\n              \"statusCode\": \"<integer>\",\n              \"body\": \"<string>\"\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:33:18.000Z",
+                      "updatedAt": "2026-07-28T01:33:18.000Z",
+                      "uid": "35240-a971bda2-3334-4a19-8168-af2ef0619930"
+                    },
+                    {
+                      "id": "79f22978-8008-4d1c-b963-76cb8249c4ab",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook-subscriptions/:id/webhooks?limit=<string>&offset=<string>&startDate=<string>&endDate=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook-subscriptions",
+                            ":id",
+                            "webhooks"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "startDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "endDate",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:18.000Z",
+                      "updatedAt": "2026-07-28T01:33:18.000Z",
+                      "uid": "35240-79f22978-8008-4d1c-b963-76cb8249c4ab"
+                    },
+                    {
+                      "id": "6b51d26b-6a38-48d2-8019-652b5b7a3e09",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook-subscriptions/:id/webhooks?limit=<string>&offset=<string>&startDate=<string>&endDate=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook-subscriptions",
+                            ":id",
+                            "webhooks"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "startDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "endDate",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:18.000Z",
+                      "updatedAt": "2026-07-28T01:33:18.000Z",
+                      "uid": "35240-6b51d26b-6a38-48d2-8019-652b5b7a3e09"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-febc2d3a-14bd-4d48-bac1-dde31dca5792"
+                }
+              ],
+              "id": "efe292bb-ff82-4d45-8cd6-5ec8f75cb198",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-efe292bb-ff82-4d45-8cd6-5ec8f75cb198"
+            },
+            {
+              "name": "Retrieve a webhook subscription",
+              "id": "f286e7e4-b90c-4d6f-9d64-2dffb5f4d9ef",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fddb4d4b-a4c8-4141-a370-ef0080636c4f",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Webhook subscription unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information for a specific webhook subscription by its unique identifier. Returns subscription configuration including URL endpoint, creation date, and links to associated webhooks for comprehensive subscription management. Essential for monitoring webhook subscription status and accessing webhook delivery history."
+              },
+              "response": [
+                {
+                  "id": "7d1dc405-fced-417a-95b9-1df2b67a5bcf",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"webhooks\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-7d1dc405-fced-417a-95b9-1df2b67a5bcf"
+                },
+                {
+                  "id": "7c178425-3bbd-4c2f-896c-577a72934368",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-7c178425-3bbd-4c2f-896c-577a72934368"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-f286e7e4-b90c-4d6f-9d64-2dffb5f4d9ef"
+            },
+            {
+              "name": "Update a webhook subscription",
+              "id": "1a42099a-34e7-4d7d-81f8-214244aab926",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paused\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8413452a-b428-418c-9c7a-1021dd88dc75",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Webhook unique identifier"
+                    }
+                  ]
+                },
+                "description": "Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods."
+              },
+              "response": [
+                {
+                  "id": "6a62c5d6-68b4-4f50-a3da-a5f032ec7186",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"paused\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"webhooks\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-6a62c5d6-68b4-4f50-a3da-a5f032ec7186"
+                },
+                {
+                  "id": "25945145-ec05-4e63-9eff-aa9a1842c716",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"paused\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-25945145-ec05-4e63-9eff-aa9a1842c716"
+                },
+                {
+                  "id": "2553a760-4d4c-4e79-80bd-fed0eb9a6c7d",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"paused\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-2553a760-4d4c-4e79-80bd-fed0eb9a6c7d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-1a42099a-34e7-4d7d-81f8-214244aab926"
+            },
+            {
+              "name": "Delete a webhook subscription",
+              "id": "171a374e-2768-453f-95c5-b63cf8d4e591",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9048b283-e6c5-4522-9bd5-1979b27c9609",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Webhook unique identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions."
+              },
+              "response": [
+                {
+                  "id": "1994fb05-8bd9-4377-b10e-7073d38e1cb6",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"webhooks\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"paused\": \"<boolean>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-1994fb05-8bd9-4377-b10e-7073d38e1cb6"
+                },
+                {
+                  "id": "718ecd9a-1b95-45ea-a3a0-3773bbe08dbd",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook-subscriptions/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook-subscriptions",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:18.000Z",
+                  "updatedAt": "2026-07-28T01:33:18.000Z",
+                  "uid": "35240-718ecd9a-1b95-45ea-a3a0-3773bbe08dbd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-171a374e-2768-453f-95c5-b63cf8d4e591"
+            }
+          ],
+          "id": "0a42f936-1572-44c7-8660-ec1d3c4a60bc",
+          "createdAt": "2026-07-28T01:33:18.000Z",
+          "updatedAt": "2026-07-28T01:33:18.000Z",
+          "uid": "35240-0a42f936-1572-44c7-8660-ec1d3c4a60bc"
+        },
+        {
+          "name": "List webhook subscriptions",
+          "id": "e3ed2d64-452d-4114-8f63-27518c51a121",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhook-subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook-subscriptions"
+              ]
+            },
+            "description": "Retrieve all webhook subscriptions that belong to an application including their configuration details and status. Returns subscription details including webhook endpoints, status, creation dates, and links to associated webhooks with total count. Essential for webhook management and monitoring subscription health."
+          },
+          "response": [
+            {
+              "id": "95ffdb9b-f23c-444d-a1cc-e21ce854e7c7",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"webhook-subscriptions\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"webhooks\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"url\": \"<string>\",\n        \"paused\": \"<boolean>\",\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"webhooks\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"url\": \"<string>\",\n        \"paused\": \"<boolean>\",\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-95ffdb9b-f23c-444d-a1cc-e21ce854e7c7"
+            },
+            {
+              "id": "8f15cd07-5480-4003-8e33-16773f017035",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-8f15cd07-5480-4003-8e33-16773f017035"
+            },
+            {
+              "id": "302455e2-d668-465b-bb1c-cb50a9282902",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-302455e2-d668-465b-bb1c-cb50a9282902"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:18.000Z",
+          "updatedAt": "2026-07-28T01:33:18.000Z",
+          "uid": "35240-e3ed2d64-452d-4114-8f63-27518c51a121"
+        },
+        {
+          "name": "Create a webhook subscription",
+          "id": "ea8b2193-0846-444f-b068-783867db2900",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhook-subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook-subscriptions"
+              ]
+            },
+            "description": "Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events."
+          },
+          "response": [
+            {
+              "id": "ab7f3e62-ba06-4b39-b0b8-1b6eb494239c",
+              "name": "create",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-ab7f3e62-ba06-4b39-b0b8-1b6eb494239c"
+            },
+            {
+              "id": "356bb134-e5ca-4ad2-af52-7f97f1e11653",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"_embedded\": {\n    \"errors\": [\n      {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\",\n        \"path\": \"<string>\",\n        \"_links\": {}\n      },\n      {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\",\n        \"path\": \"<string>\",\n        \"_links\": {}\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-356bb134-e5ca-4ad2-af52-7f97f1e11653"
+            },
+            {
+              "id": "82dedb79-1996-429a-bfdd-c1f20a47c40c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-82dedb79-1996-429a-bfdd-c1f20a47c40c"
+            },
+            {
+              "id": "40813c3b-ceec-4ce3-9c51-9871c9022dcf",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-40813c3b-ceec-4ce3-9c51-9871c9022dcf"
+            },
+            {
+              "id": "5cec1cd3-bc2b-41b0-9302-f667d53b0b07",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook-subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook-subscriptions"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:18.000Z",
+              "updatedAt": "2026-07-28T01:33:18.000Z",
+              "uid": "35240-5cec1cd3-bc2b-41b0-9302-f667d53b0b07"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:18.000Z",
+          "updatedAt": "2026-07-28T01:33:18.000Z",
+          "uid": "35240-ea8b2193-0846-444f-b068-783867db2900"
+        }
+      ],
+      "id": "73d2d40c-8546-4331-b901-5110d4b854c1",
+      "createdAt": "2026-07-28T01:33:18.000Z",
+      "updatedAt": "2026-07-28T01:33:18.000Z",
+      "uid": "35240-73d2d40c-8546-4331-b901-5110d4b854c1"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

@@ -1,0 +1,693 @@
+{
+  "info": {
+    "_postman_id": "5db0acc1-f5ad-48b5-bcbe-b04b47c49f06",
+    "name": "Dwolla API - Kba",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:52.000Z",
+    "updatedAt": "2026-07-28T01:32:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5db0acc1-f5ad-48b5-bcbe-b04b47c49f06"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "kba",
+              "item": [
+                {
+                  "name": "Initiate a KBA session",
+                  "id": "5398a294-3a33-47cc-90af-854d9d96f6e6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/kba",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "kba"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa60b880-a951-49ad-a849-a67ec0748692",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the Customer for initiating a KBA session"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new KBA (Knowledge-Based Authentication) session for a personal Verified Customer. Returns a KBA identifier that represents the session and is used to retrieve authentication questions for customer verification."
+                  },
+                  "response": [
+                    {
+                      "id": "85ac71dd-762b-4d2b-92a0-37464692416f",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/kba",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "kba"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:32:53.000Z",
+                      "updatedAt": "2026-07-28T01:32:53.000Z",
+                      "uid": "35240-85ac71dd-762b-4d2b-92a0-37464692416f"
+                    },
+                    {
+                      "id": "1be72b15-afc7-49a4-9b28-35dbc2b3cd40",
+                      "name": "403 Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/kba",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "kba"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:53.000Z",
+                      "updatedAt": "2026-07-28T01:32:53.000Z",
+                      "uid": "35240-1be72b15-afc7-49a4-9b28-35dbc2b3cd40"
+                    },
+                    {
+                      "id": "300f9e60-e617-42e5-87f6-7e28e53d954a",
+                      "name": "404 Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/kba",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "kba"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:53.000Z",
+                      "updatedAt": "2026-07-28T01:32:53.000Z",
+                      "uid": "35240-300f9e60-e617-42e5-87f6-7e28e53d954a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-5398a294-3a33-47cc-90af-854d9d96f6e6"
+                }
+              ],
+              "id": "934043f5-5cec-4cbb-a1b5-675c87304dae",
+              "createdAt": "2026-07-28T01:32:53.000Z",
+              "updatedAt": "2026-07-28T01:32:53.000Z",
+              "uid": "35240-934043f5-5cec-4cbb-a1b5-675c87304dae"
+            }
+          ],
+          "id": "a5692c86-d972-409b-af76-445f84056249",
+          "createdAt": "2026-07-28T01:32:53.000Z",
+          "updatedAt": "2026-07-28T01:32:53.000Z",
+          "uid": "35240-a5692c86-d972-409b-af76-445f84056249"
+        }
+      ],
+      "id": "2681c048-6c83-4872-ad58-80317dab781b",
+      "createdAt": "2026-07-28T01:32:53.000Z",
+      "updatedAt": "2026-07-28T01:32:53.000Z",
+      "uid": "35240-2681c048-6c83-4872-ad58-80317dab781b"
+    },
+    {
+      "name": "kba",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve KBA Questions",
+              "id": "8241bcd4-7253-4f5c-bf41-f9d14780c98c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/kba/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "kba",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "18bedc20-abe2-4599-947a-f80519d0e07e",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the KBA session to retrieve questions for"
+                    }
+                  ]
+                },
+                "description": "Returns the KBA questions for a specific KBA session. The questions are used to verify the customer's identity during the KBA process."
+              },
+              "response": [
+                {
+                  "id": "bfd3d55f-4895-4bc2-b2da-f918a62d6ccc",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"answer\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"questions\": [\n    {\n      \"id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"answers\": [\n        {\n          \"id\": \"<string>\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"text\": \"<string>\",\n      \"answers\": [\n        {\n          \"id\": \"<string>\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-bfd3d55f-4895-4bc2-b2da-f918a62d6ccc"
+                },
+                {
+                  "id": "dccdec6f-cfd7-48b0-88a1-af5a2d3c14de",
+                  "name": "403 Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-dccdec6f-cfd7-48b0-88a1-af5a2d3c14de"
+                },
+                {
+                  "id": "03790e4f-1c44-4b9e-aa9a-d5170ef74998",
+                  "name": "404 Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-03790e4f-1c44-4b9e-aa9a-d5170ef74998"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:53.000Z",
+              "updatedAt": "2026-07-28T01:32:53.000Z",
+              "uid": "35240-8241bcd4-7253-4f5c-bf41-f9d14780c98c"
+            },
+            {
+              "name": "Verify KBA Questions",
+              "id": "3214c724-aa22-45e5-8b90-fd52ff11684f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    },\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/kba/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "kba",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "94ad4b88-f398-4149-9e5b-d765f834e0d0",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The id of the KBA session to verify questions for."
+                    }
+                  ]
+                },
+                "description": "Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication."
+              },
+              "response": [
+                {
+                  "id": "db4c1e5e-fd4b-414e-a62d-5c6fac68249a",
+                  "name": "created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    },\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"customer\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"verificationStatus\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-db4c1e5e-fd4b-414e-a62d-5c6fac68249a"
+                },
+                {
+                  "id": "f242b1b5-90f5-47e3-a70b-7c0ac5a7a898",
+                  "name": "403 Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    },\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-f242b1b5-90f5-47e3-a70b-7c0ac5a7a898"
+                },
+                {
+                  "id": "96548e8c-0baa-4aff-951c-4377e502d0fb",
+                  "name": "404 Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    },\n    {\n      \"questionId\": \"<string>\",\n      \"answerId\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/kba/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "kba",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:53.000Z",
+                  "updatedAt": "2026-07-28T01:32:53.000Z",
+                  "uid": "35240-96548e8c-0baa-4aff-951c-4377e502d0fb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:53.000Z",
+              "updatedAt": "2026-07-28T01:32:53.000Z",
+              "uid": "35240-3214c724-aa22-45e5-8b90-fd52ff11684f"
+            }
+          ],
+          "id": "1f7a38b8-5f8c-4310-9294-c9d03f04a4a1",
+          "createdAt": "2026-07-28T01:32:53.000Z",
+          "updatedAt": "2026-07-28T01:32:53.000Z",
+          "uid": "35240-1f7a38b8-5f8c-4310-9294-c9d03f04a4a1"
+        }
+      ],
+      "id": "d687404d-aa40-4f35-9e82-6ce6d63066a0",
+      "createdAt": "2026-07-28T01:32:53.000Z",
+      "updatedAt": "2026-07-28T01:32:53.000Z",
+      "uid": "35240-d687404d-aa40-4f35-9e82-6ce6d63066a0"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

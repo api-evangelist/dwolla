@@ -1,0 +1,1471 @@
+{
+  "info": {
+    "_postman_id": "4b5ac08f-6151-473f-8392-acd432f6f677",
+    "name": "Dwolla API - Exchanges",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:15.000Z",
+    "updatedAt": "2026-07-28T01:33:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4b5ac08f-6151-473f-8392-acd432f6f677"
+  },
+  "item": [
+    {
+      "name": "exchange-partners",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve exchange partner",
+              "id": "d6b116bd-54c1-4d47-b308-884c64af9159",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchange-partners/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchange-partners",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3ec5685f-9581-4ca5-86df-e89cdab8f37b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Exchange Partner resource unique identifier."
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific open banking provider that integrates with Dwolla. Includes partner name, status, and creation date. Use this to verify partner availability before creating exchanges and funding sources."
+              },
+              "response": [
+                {
+                  "id": "2adbcac5-db41-459c-9b96-2c2fcbdbc4a3",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchange-partners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchange-partners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"officia_c\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"name\": \"Plaid\",\n  \"status\": \"active\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-2adbcac5-db41-459c-9b96-2c2fcbdbc4a3"
+                },
+                {
+                  "id": "70c86f42-1534-41d8-ae1a-b09bb3e88f42",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchange-partners/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchange-partners",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-70c86f42-1534-41d8-ae1a-b09bb3e88f42"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-d6b116bd-54c1-4d47-b308-884c64af9159"
+            }
+          ],
+          "id": "3cf2ea3e-2a02-41cb-966d-cfc9654293be",
+          "createdAt": "2026-07-28T01:33:15.000Z",
+          "updatedAt": "2026-07-28T01:33:15.000Z",
+          "uid": "35240-3cf2ea3e-2a02-41cb-966d-cfc9654293be"
+        },
+        {
+          "name": "List exchange partners",
+          "id": "36e6bb54-a161-4d10-9965-c288a6390553",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/exchange-partners",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "exchange-partners"
+              ]
+            },
+            "description": "Returns a list of all supported exchange partners. Each partner includes a unique ID, name, and status indicating whether they are active or inactive."
+          },
+          "response": [
+            {
+              "id": "18a35fc4-e106-4cd1-9908-af5da42cebb8",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchange-partners",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchange-partners"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"occaecat_4\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"et_8d4\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"exchange-partners\": [\n      {\n        \"_links\": {\n          \"ada\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"enim_df8\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"name\": \"Checkout.com\",\n        \"status\": \"active\",\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"in__6\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"occaecat1\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"name\": \"Flinks\",\n        \"status\": \"active\",\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-18a35fc4-e106-4cd1-9908-af5da42cebb8"
+            },
+            {
+              "id": "52cf799c-9353-4540-a7be-c85f165fad79",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchange-partners",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchange-partners"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-52cf799c-9353-4540-a7be-c85f165fad79"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-36e6bb54-a161-4d10-9965-c288a6390553"
+        }
+      ],
+      "id": "7fb29a96-d4e3-4243-be19-d7cec9f1046c",
+      "createdAt": "2026-07-28T01:33:15.000Z",
+      "updatedAt": "2026-07-28T01:33:15.000Z",
+      "uid": "35240-7fb29a96-d4e3-4243-be19-d7cec9f1046c"
+    },
+    {
+      "name": "exchanges",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve exchange resource",
+              "id": "68284f33-ac8c-46db-a444-dbd3aa8681dc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e543fe30-9105-49dc-b04f-74b71e097095",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Exchange resource unique identifier."
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific exchange connection between Dwolla and an open banking partner for a customer's bank account. Includes exchange status, creation date, and links to the associated customer and exchange partner."
+              },
+              "response": [
+                {
+                  "id": "e38fbfef-f035-4310-8b11-6a79ed7c9b6d",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchanges/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchanges",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"occaecatd4\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"status\": \"deactivated\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-e38fbfef-f035-4310-8b11-6a79ed7c9b6d"
+                },
+                {
+                  "id": "900fe1a2-2688-4304-8c5a-c955c6a31e47",
+                  "name": "Invalid Scope",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchanges/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchanges",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-900fe1a2-2688-4304-8c5a-c955c6a31e47"
+                },
+                {
+                  "id": "dd1d2957-4d7e-460c-9dde-b1873acc2d4e",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exchanges/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exchanges",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-dd1d2957-4d7e-460c-9dde-b1873acc2d4e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-68284f33-ac8c-46db-a444-dbd3aa8681dc"
+            }
+          ],
+          "id": "03a90bd7-c8ad-482a-98b7-8415d61a24e8",
+          "createdAt": "2026-07-28T01:33:15.000Z",
+          "updatedAt": "2026-07-28T01:33:15.000Z",
+          "uid": "35240-03a90bd7-c8ad-482a-98b7-8415d61a24e8"
+        },
+        {
+          "name": "List exchanges for an account",
+          "id": "aec56a95-7027-4c84-b20d-7f0ac134b6bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/exchanges",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "exchanges"
+              ]
+            },
+            "description": "Returns all exchanges for your Dwolla account. Exchanges represent connections between external bank accounts and your account through open banking partners. Includes exchange status, creation date, and associated partner information."
+          },
+          "response": [
+            {
+              "id": "69412dcc-7a69-4c54-864b-44ca74f1df19",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"consectetur_4e0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"exchanges\": [\n      {\n        \"_links\": {\n          \"ind_e\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"removed\",\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"sited\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"reprehenderit_62\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"non_6\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"active\",\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-69412dcc-7a69-4c54-864b-44ca74f1df19"
+            },
+            {
+              "id": "2569340a-a7af-49a6-b47e-52e4bbbd4268",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-2569340a-a7af-49a6-b47e-52e4bbbd4268"
+            },
+            {
+              "id": "94b73b2c-5304-4f22-8c24-f4cbb30d196d",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-94b73b2c-5304-4f22-8c24-f4cbb30d196d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-aec56a95-7027-4c84-b20d-7f0ac134b6bf"
+        },
+        {
+          "name": "Create an exchange for an account",
+          "id": "05882942-ce06-4170-9523-ecd1c88106a9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/exchanges",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "exchanges"
+              ]
+            },
+            "description": "Create an exchange for an account. The request body will vary based on the exchange partner.\nFor Finicity, the request body will include finicity-specific fields.\nFor MX Secure Exchange, the request body will include a token.\nFor Flinks Secure Exchange, the request body will include a token.\nFor Plaid Secure Exchange, the request body will include a token.\n"
+          },
+          "response": [
+            {
+              "id": "f92c0723-3043-46a3-9f91-3368edffc141",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-f92c0723-3043-46a3-9f91-3368edffc141"
+            },
+            {
+              "id": "c3245bb1-2e96-44c8-aa8d-eeba15389ce4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-c3245bb1-2e96-44c8-aa8d-eeba15389ce4"
+            },
+            {
+              "id": "37cecef9-b6ff-4868-a49b-c04fa7be3f4f",
+              "name": "Invalid Scope",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-37cecef9-b6ff-4868-a49b-c04fa7be3f4f"
+            },
+            {
+              "id": "1fe0c557-d76a-4e81-bb9a-a052e39792c0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-1fe0c557-d76a-4e81-bb9a-a052e39792c0"
+            },
+            {
+              "id": "0653a3a2-7a64-4fe4-845f-f6d2cdabccf0",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exchanges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exchanges"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:16.000Z",
+              "updatedAt": "2026-07-28T01:33:16.000Z",
+              "uid": "35240-0653a3a2-7a64-4fe4-845f-f6d2cdabccf0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:16.000Z",
+          "updatedAt": "2026-07-28T01:33:16.000Z",
+          "uid": "35240-05882942-ce06-4170-9523-ecd1c88106a9"
+        }
+      ],
+      "id": "1a5b68cc-414b-4fb5-99a7-32469c4fde3c",
+      "createdAt": "2026-07-28T01:33:15.000Z",
+      "updatedAt": "2026-07-28T01:33:15.000Z",
+      "uid": "35240-1a5b68cc-414b-4fb5-99a7-32469c4fde3c"
+    },
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "exchanges",
+              "item": [
+                {
+                  "name": "List exchanges for a customer",
+                  "id": "faeff4b7-945b-4bdc-a833-fe05746c1cc7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/exchanges",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "exchanges"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c17acd1e-cc83-4099-953b-ce5865f1fb8d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the Customer to list exchanges for"
+                        }
+                      ]
+                    },
+                    "description": "Returns all exchanges for a specific customer. Exchanges represent connections between the customer's external bank accounts and open banking partners. Includes exchange status, creation date, and links to associated funding sources and partners."
+                  },
+                  "response": [
+                    {
+                      "id": "afb7192c-be15-4191-b87e-7fe7c04ae587",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"consectetur_4e0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"exchanges\": [\n      {\n        \"_links\": {\n          \"ind_e\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"removed\",\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"sited\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"reprehenderit_62\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"non_6\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"active\",\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-afb7192c-be15-4191-b87e-7fe7c04ae587"
+                    },
+                    {
+                      "id": "44b83a50-bf16-4d3d-a5e0-0666123678b4",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-44b83a50-bf16-4d3d-a5e0-0666123678b4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-faeff4b7-945b-4bdc-a833-fe05746c1cc7"
+                },
+                {
+                  "name": "Create an exchange for a customer",
+                  "id": "4c3ea937-edf8-442a-8f7f-0390c3a7cf98",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/exchanges",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "exchanges"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ea7abdfe-d929-43a4-9b74-07f1ab7deafd",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the customer to create an exchange for"
+                        }
+                      ]
+                    },
+                    "description": "Creates an exchange connection between a customer and Dwolla. Request body varies by partner (Plaid, MX, Flinks, Finicity, Checkout.com). For bank accounts, use Plaid, MX, Flinks, or Finicity to establish secure access to the customer's bank account data. For debit cards (Push to Card), use Checkout.com and pass the payment ID from Checkout.com Flow."
+                  },
+                  "response": [
+                    {
+                      "id": "ad1ff0df-cb48-4d57-bd05-d89973c371ef",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-ad1ff0df-cb48-4d57-bd05-d89973c371ef"
+                    },
+                    {
+                      "id": "9703b95b-4e0c-406f-b461-198e09204014",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-9703b95b-4e0c-406f-b461-198e09204014"
+                    },
+                    {
+                      "id": "7bba052b-82aa-4245-a024-4b59dd5b2f3c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-7bba052b-82aa-4245-a024-4b59dd5b2f3c"
+                    },
+                    {
+                      "id": "62a28f50-b516-456b-b42d-24d3a2ee21ad",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"finicity\": {\n    \"profile\": \"<integer>\",\n    \"version\": \"<string>\",\n    \"receiptId\": \"<string>\",\n    \"receiptVersion\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"partnerId\": \"<long>\",\n    \"products\": [\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      },\n      {\n        \"product\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accessPeriod\": {\n          \"type\": \"<string>\",\n          \"startTime\": \"<date>\",\n          \"endTime\": \"<dateTime>\"\n        }\n      }\n    ],\n    \"timestamp\": \"<dateTime>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/exchanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "exchanges"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:16.000Z",
+                      "updatedAt": "2026-07-28T01:33:16.000Z",
+                      "uid": "35240-62a28f50-b516-456b-b42d-24d3a2ee21ad"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:16.000Z",
+                  "updatedAt": "2026-07-28T01:33:16.000Z",
+                  "uid": "35240-4c3ea937-edf8-442a-8f7f-0390c3a7cf98"
+                }
+              ],
+              "id": "b44efcb4-8cbd-4788-8571-bfe732ba1c87",
+              "createdAt": "2026-07-28T01:33:15.000Z",
+              "updatedAt": "2026-07-28T01:33:15.000Z",
+              "uid": "35240-b44efcb4-8cbd-4788-8571-bfe732ba1c87"
+            }
+          ],
+          "id": "7553b080-b030-4610-85e8-5b86d04f1aeb",
+          "createdAt": "2026-07-28T01:33:15.000Z",
+          "updatedAt": "2026-07-28T01:33:15.000Z",
+          "uid": "35240-7553b080-b030-4610-85e8-5b86d04f1aeb"
+        }
+      ],
+      "id": "fb6125dc-fe5c-49ce-8b81-3f7617afc58e",
+      "createdAt": "2026-07-28T01:33:15.000Z",
+      "updatedAt": "2026-07-28T01:33:15.000Z",
+      "uid": "35240-fb6125dc-fe5c-49ce-8b81-3f7617afc58e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

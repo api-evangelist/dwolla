@@ -1,0 +1,1371 @@
+{
+  "info": {
+    "_postman_id": "95a8afe0-d9c3-4f1e-acd8-1811d7616231",
+    "name": "Dwolla API - Transfers",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:56.000Z",
+    "updatedAt": "2026-07-28T01:32:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-95a8afe0-d9c3-4f1e-acd8-1811d7616231"
+  },
+  "item": [
+    {
+      "name": "transfers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "fees",
+              "item": [
+                {
+                  "name": "List fees for a transfer",
+                  "id": "bb98fe78-61e4-4fde-bd61-fcee1c4c1984",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id/fees",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id",
+                        "fees"
+                      ],
+                      "variable": [
+                        {
+                          "id": "19fde263-56fd-4ee8-a5a8-67fe6d7cb4fb",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of transfer to retrieve fees for"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve detailed fee information for a specific transfer by its unique identifier. Returns the total number of fees and individual fee transaction details including amounts, status, and links to source and destination accounts."
+                  },
+                  "response": [
+                    {
+                      "id": "93663b55-e4e9-423f-964c-37f9cb099d50",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transfers/:id/fees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transfers",
+                            ":id",
+                            "fees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transactions\": [\n    {\n      \"_links\": {\n        \"aliquip_6b3\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"resource-type\": \"<string>\"\n        }\n      },\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"_links\": {\n        \"occaecat2\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"resource-type\": \"<string>\"\n        },\n        \"aliquaae\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"resource-type\": \"<string>\"\n        },\n        \"eu_4\": {\n          \"href\": \"<string>\",\n          \"type\": \"<string>\",\n          \"resource-type\": \"<string>\"\n        }\n      },\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"created\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-93663b55-e4e9-423f-964c-37f9cb099d50"
+                    },
+                    {
+                      "id": "2ff67af6-d860-41ff-80e9-8fc5533a885e",
+                      "name": "404 Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transfers/:id/fees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transfers",
+                            ":id",
+                            "fees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-2ff67af6-d860-41ff-80e9-8fc5533a885e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-bb98fe78-61e4-4fde-bd61-fcee1c4c1984"
+                }
+              ],
+              "id": "083a7eb5-9ff3-4330-9ba1-ffbf66eb7201",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-083a7eb5-9ff3-4330-9ba1-ffbf66eb7201"
+            },
+            {
+              "name": "failure",
+              "item": [
+                {
+                  "name": "Retrieve a transfer failure reason",
+                  "id": "dcfb8cb7-6889-4ef1-a3b2-045f97fa70f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id/failure",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id",
+                        "failure"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f7839642-d527-441a-aaa2-02ca8da58cfb",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Transfer unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve detailed failure information for a failed bank or VAN transfer including the ACH return code, description, and explanation. Returns failure details with links to the failed funding source and associated Customer for comprehensive error analysis. Available only for transfers with failure status and accessed through the failure link from transfer retrieval. Critical for troubleshooting payment failures and understanding ACH return reasons."
+                  },
+                  "response": [
+                    {
+                      "id": "79f5b39c-2586-4072-b1ec-ba7c004fe375",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transfers/:id/failure",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transfers",
+                            ":id",
+                            "failure"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"description\": \"<string>\",\n  \"_links\": {\n    \"veniam_a_f\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"nostrud2\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"explanation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-79f5b39c-2586-4072-b1ec-ba7c004fe375"
+                    },
+                    {
+                      "id": "cd8a07c6-bdfb-4a60-9521-be364cea69d2",
+                      "name": "403 Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transfers/:id/failure",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transfers",
+                            ":id",
+                            "failure"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-cd8a07c6-bdfb-4a60-9521-be364cea69d2"
+                    },
+                    {
+                      "id": "af7e1193-c0c5-4338-b67a-9fed0ab4025a",
+                      "name": "404 Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transfers/:id/failure",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transfers",
+                            ":id",
+                            "failure"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-af7e1193-c0c5-4338-b67a-9fed0ab4025a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-dcfb8cb7-6889-4ef1-a3b2-045f97fa70f9"
+                }
+              ],
+              "id": "fe56bfd6-9157-4e8d-9c0f-6a9aa8328390",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-fe56bfd6-9157-4e8d-9c0f-6a9aa8328390"
+            },
+            {
+              "name": "Retrieve a transfer",
+              "id": "3544b5d1-e149-4337-a639-e6c3bbe98155",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "83bd3bab-802c-456f-baa1-9a983fab5a54",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of transfer to be retrieved"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation."
+              },
+              "response": [
+                {
+                  "id": "cfd46977-ff20-45cd-bb58-a9223df48a56",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"ad_c\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"aliquip40_\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"created\": \"<dateTime>\",\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"metadata\": {\n    \"paymentId\": \"<string>\",\n    \"note\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"beneficiaryName\": \"<string>\",\n      \"companyEntryDescription\": \"AUTOENROLL\",\n      \"companyId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"effectiveDate\": \"<date>\",\n      \"postingData\": \"<string>\",\n      \"routingNumber\": \"<string>\",\n      \"traceId\": \"<string>\"\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"beneficiaryName\": \"<string>\",\n      \"companyEntryDescription\": \"RECLAIM\",\n      \"companyId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"effectiveDate\": \"<date>\",\n      \"postingData\": \"<string>\",\n      \"routingNumber\": \"<string>\",\n      \"traceId\": \"<string>\"\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"<string>\",\n      \"networkId\": \"<string>\",\n      \"endToEndReferenceId\": \"<string>\"\n    }\n  },\n  \"fedNowDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"<string>\",\n      \"networkId\": \"<string>\",\n      \"endToEndReferenceId\": \"<string>\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"real-time-payments\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-cfd46977-ff20-45cd-bb58-a9223df48a56"
+                },
+                {
+                  "id": "fc581184-0b9b-401d-bb1b-c3bdffa2701b",
+                  "name": "404 Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-fc581184-0b9b-401d-bb1b-c3bdffa2701b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-3544b5d1-e149-4337-a639-e6c3bbe98155"
+            },
+            {
+              "name": "Cancel a transfer",
+              "id": "ae819d45-e137-4e2b-82bd-8b5271d5505d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e21f5571-9237-4332-999d-0a012caa26be",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of transfer"
+                    }
+                  ]
+                },
+                "description": "Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing."
+              },
+              "response": [
+                {
+                  "id": "6745f53e-0b8a-40cd-9082-fc038da46355",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-6745f53e-0b8a-40cd-9082-fc038da46355"
+                },
+                {
+                  "id": "38f526f2-314a-4070-9491-843ce64efd6e",
+                  "name": "400 Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-38f526f2-314a-4070-9491-843ce64efd6e"
+                },
+                {
+                  "id": "1ccce030-e531-4043-83a3-ab1f727f2a73",
+                  "name": "404 Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-1ccce030-e531-4043-83a3-ab1f727f2a73"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-ae819d45-e137-4e2b-82bd-8b5271d5505d"
+            }
+          ],
+          "id": "df1b56c0-3542-4a74-8404-16237a967348",
+          "createdAt": "2026-07-28T01:32:57.000Z",
+          "updatedAt": "2026-07-28T01:32:57.000Z",
+          "uid": "35240-df1b56c0-3542-4a74-8404-16237a967348"
+        },
+        {
+          "name": "Initiate a transfer",
+          "id": "e61a4866-522d-42d7-a515-c16ecf8dfd58",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"J=\\\\|7&s'M/\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"7Ifn\\\\dh\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transfers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfers"
+              ]
+            },
+            "description": "Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), Push-to-Debit Card, and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management."
+          },
+          "response": [
+            {
+              "id": "7ab10e83-3e64-4710-9e1a-a50814aeca0e",
+              "name": "created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"J=\\\\|7&s'M/\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"7Ifn\\\\dh\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-7ab10e83-3e64-4710-9e1a-a50814aeca0e"
+            },
+            {
+              "id": "5857919f-5028-4376-94fb-308744a128ed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"J=\\\\|7&s'M/\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"7Ifn\\\\dh\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"_embedded\": {\n    \"errors\": [\n      {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\",\n        \"path\": \"<string>\",\n        \"_links\": {}\n      },\n      {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\",\n        \"path\": \"<string>\",\n        \"_links\": {}\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-5857919f-5028-4376-94fb-308744a128ed"
+            },
+            {
+              "id": "8814fa67-bbe8-4a4e-a1d2-f26e35622681",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"J=\\\\|7&s'M/\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"7Ifn\\\\dh\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-8814fa67-bbe8-4a4e-a1d2-f26e35622681"
+            },
+            {
+              "id": "0cab18af-dcaa-484d-a6a2-0badfc743d22",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"J=\\\\|7&s'M/\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"7Ifn\\\\dh\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-0cab18af-dcaa-484d-a6a2-0badfc743d22"
+            }
+          ],
+          "createdAt": "2026-07-28T01:32:57.000Z",
+          "updatedAt": "2026-07-28T01:32:57.000Z",
+          "uid": "35240-e61a4866-522d-42d7-a515-c16ecf8dfd58"
+        }
+      ],
+      "id": "8d60ca42-7068-47f5-9038-10c35d4465fa",
+      "createdAt": "2026-07-28T01:32:57.000Z",
+      "updatedAt": "2026-07-28T01:32:57.000Z",
+      "uid": "35240-8d60ca42-7068-47f5-9038-10c35d4465fa"
+    },
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "transfers",
+              "item": [
+                {
+                  "name": "List and search transfers for a customer",
+                  "id": "c5f7b941-51f0-4d16-8674-766de4e36e5b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/transfers?search=<string>&startAmount=<string>&endAmount=<string>&startDate=<string>&endDate=<string>&status=<string>&correlationId=<string>&limit=<string>&offset=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "transfers"
+                      ],
+                      "query": [
+                        {
+                          "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`",
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include transactions with an amount equal to or greater than `startAmount`",
+                          "key": "startAmount",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include transactions with an amount equal to or less than `endAmount`",
+                          "key": "endAmount",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`",
+                          "key": "startDate",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`",
+                          "key": "endDate",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`",
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A string value to search on if `correlationId` was specified for a transaction",
+                          "key": "correlationId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of search results to return. Defaults to 25",
+                          "key": "limit",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of search results to skip. Use for pagination",
+                          "key": "offset",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d52795d-1f8d-4117-8ebb-f441383d7a43",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Customer's unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve and search transfers for a specific Customer with comprehensive filtering and pagination support. Supports searching by customer details (name, email, business name), amount ranges, date ranges, transfer status, and correlation IDs for enhanced transaction discovery. Returns paginated transfer results including status, amounts, metadata, and links to source and destination funding sources. Use this endpoint for transaction history analysis and reconciliation purposes."
+                  },
+                  "response": [
+                    {
+                      "id": "94e7c5d0-8987-40b1-96a0-5b7820453671",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/transfers?search=<string>&startAmount=<string>&endAmount=<string>&startDate=<string>&endDate=<string>&status=<string>&correlationId=<string>&limit=<string>&offset=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "transfers"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions with an amount equal to or greater than `startAmount`",
+                              "key": "startAmount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions with an amount equal to or less than `endAmount`",
+                              "key": "endAmount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "startDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "endDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string value to search on if `correlationId` was specified for a transaction",
+                              "key": "correlationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of search results to return. Defaults to 25",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of search results to skip. Use for pagination",
+                              "key": "offset",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"sit__\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"Utb1\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"minima\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"in701\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"transfers\": [\n      {\n        \"_links\": {\n          \"Lorem_3\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"enim_a_b\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"created\": \"<dateTime>\",\n        \"clearing\": {\n          \"source\": \"<string>\",\n          \"destination\": \"<string>\"\n        },\n        \"metadata\": {\n          \"paymentId\": \"<string>\",\n          \"note\": \"<string>\"\n        },\n        \"achDetails\": {\n          \"source\": {\n            \"addenda\": {\n              \"values\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            \"beneficiaryName\": \"<string>\",\n            \"companyEntryDescription\": \"PAYMENT\",\n            \"companyId\": \"<string>\",\n            \"companyName\": \"<string>\",\n            \"effectiveDate\": \"<date>\",\n            \"postingData\": \"<string>\",\n            \"routingNumber\": \"<string>\",\n            \"traceId\": \"<string>\"\n          },\n          \"destination\": {\n            \"addenda\": {\n              \"values\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            \"beneficiaryName\": \"<string>\",\n            \"companyEntryDescription\": \"RETRY PMNT\",\n            \"companyId\": \"<string>\",\n            \"companyName\": \"<string>\",\n            \"effectiveDate\": \"<date>\",\n            \"postingData\": \"<string>\",\n            \"routingNumber\": \"<string>\",\n            \"traceId\": \"<string>\"\n          }\n        },\n        \"rtpDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"<string>\",\n            \"networkId\": \"<string>\",\n            \"endToEndReferenceId\": \"<string>\"\n          }\n        },\n        \"fedNowDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"<string>\",\n            \"networkId\": \"<string>\",\n            \"endToEndReferenceId\": \"<string>\"\n          }\n        },\n        \"correlationId\": \"<string>\",\n        \"processingChannel\": {\n          \"destination\": \"real-time-payments\"\n        }\n      },\n      {\n        \"_links\": {\n          \"irure_29\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"laborum2b\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"in3\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"created\": \"<dateTime>\",\n        \"clearing\": {\n          \"source\": \"<string>\",\n          \"destination\": \"<string>\"\n        },\n        \"metadata\": {\n          \"paymentId\": \"<string>\",\n          \"note\": \"<string>\"\n        },\n        \"achDetails\": {\n          \"source\": {\n            \"addenda\": {\n              \"values\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            \"beneficiaryName\": \"<string>\",\n            \"companyEntryDescription\": \"HEALTHCARE\",\n            \"companyId\": \"<string>\",\n            \"companyName\": \"<string>\",\n            \"effectiveDate\": \"<date>\",\n            \"postingData\": \"<string>\",\n            \"routingNumber\": \"<string>\",\n            \"traceId\": \"<string>\"\n          },\n          \"destination\": {\n            \"addenda\": {\n              \"values\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            \"beneficiaryName\": \"<string>\",\n            \"companyEntryDescription\": \"HEALTHCARE\",\n            \"companyId\": \"<string>\",\n            \"companyName\": \"<string>\",\n            \"effectiveDate\": \"<date>\",\n            \"postingData\": \"<string>\",\n            \"routingNumber\": \"<string>\",\n            \"traceId\": \"<string>\"\n          }\n        },\n        \"rtpDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"<string>\",\n            \"networkId\": \"<string>\",\n            \"endToEndReferenceId\": \"<string>\"\n          }\n        },\n        \"fedNowDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"<string>\",\n            \"networkId\": \"<string>\",\n            \"endToEndReferenceId\": \"<string>\"\n          }\n        },\n        \"correlationId\": \"<string>\",\n        \"processingChannel\": {\n          \"destination\": \"fed-now\"\n        }\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-94e7c5d0-8987-40b1-96a0-5b7820453671"
+                    },
+                    {
+                      "id": "a22c3b5e-de93-4d2f-a4a5-dbadf4007e08",
+                      "name": "404 Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/transfers?search=<string>&startAmount=<string>&endAmount=<string>&startDate=<string>&endDate=<string>&status=<string>&correlationId=<string>&limit=<string>&offset=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "transfers"
+                          ],
+                          "query": [
+                            {
+                              "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions with an amount equal to or greater than `startAmount`",
+                              "key": "startAmount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions with an amount equal to or less than `endAmount`",
+                              "key": "endAmount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "startDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`",
+                              "key": "endDate",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "A string value to search on if `correlationId` was specified for a transaction",
+                              "key": "correlationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of search results to return. Defaults to 25",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of search results to skip. Use for pagination",
+                              "key": "offset",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:32:57.000Z",
+                      "updatedAt": "2026-07-28T01:32:57.000Z",
+                      "uid": "35240-a22c3b5e-de93-4d2f-a4a5-dbadf4007e08"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:57.000Z",
+                  "updatedAt": "2026-07-28T01:32:57.000Z",
+                  "uid": "35240-c5f7b941-51f0-4d16-8674-766de4e36e5b"
+                }
+              ],
+              "id": "5c30cc03-30a6-42e3-a5f4-f257d68d48b5",
+              "createdAt": "2026-07-28T01:32:57.000Z",
+              "updatedAt": "2026-07-28T01:32:57.000Z",
+              "uid": "35240-5c30cc03-30a6-42e3-a5f4-f257d68d48b5"
+            }
+          ],
+          "id": "4c1bfe3e-12ca-42a5-94f0-27282c86640b",
+          "createdAt": "2026-07-28T01:32:57.000Z",
+          "updatedAt": "2026-07-28T01:32:57.000Z",
+          "uid": "35240-4c1bfe3e-12ca-42a5-94f0-27282c86640b"
+        }
+      ],
+      "id": "532e5410-b4a5-40a1-aacd-50f2bf59c161",
+      "createdAt": "2026-07-28T01:32:57.000Z",
+      "updatedAt": "2026-07-28T01:32:57.000Z",
+      "uid": "35240-532e5410-b4a5-40a1-aacd-50f2bf59c161"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

@@ -1,0 +1,2280 @@
+{
+  "info": {
+    "_postman_id": "97eb706d-ad9e-4943-b037-25244feb010c",
+    "name": "Dwolla API - Labels",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:14.000Z",
+    "updatedAt": "2026-07-28T01:33:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-97eb706d-ad9e-4943-b037-25244feb010c"
+  },
+  "item": [
+    {
+      "name": "labels",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "ledger-entries",
+              "item": [
+                {
+                  "name": "List label ledger entries",
+                  "id": "0c906f11-c390-46fa-b1b9-988258b335e7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id/ledger-entries?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id",
+                        "ledger-entries"
+                      ],
+                      "query": [
+                        {
+                          "description": "How many results to return",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "How many results to skip",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "633d7797-7f33-4a48-8e79-dba840deda0f",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) A label unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns all ledger entries for a specific Label, sorted by creation date (newest first). Supports pagination with limit and offset parameters. Each ledger entry includes its amount, currency, and creation timestamp."
+                  },
+                  "response": [
+                    {
+                      "id": "5d3e4bad-5a38-46b8-a8b3-4305a875870c",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries?limit=<integer>&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"eab3e\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"ind\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"Lorem_72\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"consequat_529\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"ledger-entries\": [\n      {\n        \"_links\": {\n          \"dolor5\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"created\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"quisf_0\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"created\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-5d3e4bad-5a38-46b8-a8b3-4305a875870c"
+                    },
+                    {
+                      "id": "c4dcd4df-0e90-40f8-aa6e-a72d015f060e",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries?limit=<integer>&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-c4dcd4df-0e90-40f8-aa6e-a72d015f060e"
+                    },
+                    {
+                      "id": "20cdba5e-46f7-4f52-b755-eaf7d87b772f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries?limit=<integer>&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-20cdba5e-46f7-4f52-b755-eaf7d87b772f"
+                    },
+                    {
+                      "id": "a156ae2a-1a1e-4010-8907-ef7ceedfe38e",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries?limit=<integer>&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-a156ae2a-1a1e-4010-8907-ef7ceedfe38e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-0c906f11-c390-46fa-b1b9-988258b335e7"
+                },
+                {
+                  "name": "Create a label ledger entry",
+                  "id": "3de42b84-0e33-4d0c-bfec-a8c4d493be73",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id/ledger-entries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id",
+                        "ledger-entries"
+                      ],
+                      "variable": [
+                        {
+                          "id": "82210779-3a73-4f91-85a6-885992e09d1f",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The Id of the Label to update."
+                        }
+                      ]
+                    },
+                    "description": "Create a new ledger entry to track fund adjustments on a Label by specifying a positive or negative amount value. Returns the location of the created ledger entry in the response header. Label amounts cannot go negative, so validation errors occur if the entry would result in a negative Label balance."
+                  },
+                  "response": [
+                    {
+                      "id": "f2db260f-afd6-44fb-a6d3-eb9683fbbdd7",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-f2db260f-afd6-44fb-a6d3-eb9683fbbdd7"
+                    },
+                    {
+                      "id": "ead10502-fa5e-484b-8d9b-813148cb5a41",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-ead10502-fa5e-484b-8d9b-813148cb5a41"
+                    },
+                    {
+                      "id": "03e3276f-fdd6-4945-ad22-6f22dcdaae34",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-03e3276f-fdd6-4945-ad22-6f22dcdaae34"
+                    },
+                    {
+                      "id": "13ed2783-746c-454b-a642-02bd15b675e7",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:id/ledger-entries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":id",
+                            "ledger-entries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-13ed2783-746c-454b-a642-02bd15b675e7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-3de42b84-0e33-4d0c-bfec-a8c4d493be73"
+                }
+              ],
+              "id": "b2a29fa0-6997-4ad9-bf0d-60705cf3e6cd",
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-b2a29fa0-6997-4ad9-bf0d-60705cf3e6cd"
+            },
+            {
+              "name": "Retrieve a label",
+              "id": "1a5f8be3-ecf8-4515-909f-9a4f9a1a3d24",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "90e8a1f8-489d-4e2a-a938-5ae6e0a4b4cf",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Label unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details for a specific Label used to categorize and track funds within your account. Returns Label information including unique identifier, current amount with currency, and creation timestamp."
+              },
+              "response": [
+                {
+                  "id": "91e6abe7-bf7c-4ebd-85b5-d0e2a36483d2",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"velit_add\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-91e6abe7-bf7c-4ebd-85b5-d0e2a36483d2"
+                },
+                {
+                  "id": "dc762754-bc20-4cca-a2d4-fb13e5866c3c",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-dc762754-bc20-4cca-a2d4-fb13e5866c3c"
+                },
+                {
+                  "id": "40d87d77-0d38-4da9-88f2-83449b0f5bc9",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-40d87d77-0d38-4da9-88f2-83449b0f5bc9"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-1a5f8be3-ecf8-4515-909f-9a4f9a1a3d24"
+            },
+            {
+              "name": "Remove a label",
+              "id": "9c55c30a-e7a6-4c59-802f-0d0c62799bcf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5c497124-5313-49db-92ee-a88854b79ca6",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) A label unique identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a Label to stop tracking funds and remove it from your account. Returns success status if the Label is successfully removed. Use this to streamline your account management and remove unused Labels from your system."
+              },
+              "response": [
+                {
+                  "id": "f7fc74b5-c535-4154-aed0-906096484350",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"velit_add\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-f7fc74b5-c535-4154-aed0-906096484350"
+                },
+                {
+                  "id": "72ae034f-6095-4fe1-8554-42e424bbb7e3",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-72ae034f-6095-4fe1-8554-42e424bbb7e3"
+                },
+                {
+                  "id": "821c022b-d8f7-48d6-a808-7c3b3078c78b",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-821c022b-d8f7-48d6-a808-7c3b3078c78b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-9c55c30a-e7a6-4c59-802f-0d0c62799bcf"
+            }
+          ],
+          "id": "5114f7b4-23a4-4845-b8f8-74c81307012c",
+          "createdAt": "2026-07-28T01:33:14.000Z",
+          "updatedAt": "2026-07-28T01:33:14.000Z",
+          "uid": "35240-5114f7b4-23a4-4845-b8f8-74c81307012c"
+        }
+      ],
+      "id": "407fb002-0705-4934-9d99-17ca2d0be033",
+      "createdAt": "2026-07-28T01:33:14.000Z",
+      "updatedAt": "2026-07-28T01:33:14.000Z",
+      "uid": "35240-407fb002-0705-4934-9d99-17ca2d0be033"
+    },
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "labels",
+              "item": [
+                {
+                  "name": "List labels for a customer",
+                  "id": "4119e8f7-d70c-4450-81cb-906a0efff4e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/labels?limit=<string>&offset=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "labels"
+                      ],
+                      "query": [
+                        {
+                          "description": "How many results to return",
+                          "key": "limit",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "How many results to skip",
+                          "key": "offset",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7f218c7-9bea-4605-9191-3352c4eaf755",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of customer"
+                        }
+                      ]
+                    },
+                    "description": "Returns all labels for a specified Verified Customer, sorted by creation date (most recent first). Supports pagination with limit and offset parameters. Each label includes its current amount and creation timestamp."
+                  },
+                  "response": [
+                    {
+                      "id": "e67cec45-ab5c-4b1b-b0a7-89a14a4c145b",
+                      "name": "success operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels?limit=<string>&offset=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"laborumc\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"sit_6d\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"ipsum925\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"labels\": [\n      {\n        \"_links\": {\n          \"dolor6f\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"deserunt_94\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"incididunt6\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      },\n      {\n        \"_links\": {\n          \"id_1b\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"ipsum_865\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"created\": \"<dateTime>\",\n        \"amount\": {\n          \"value\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-e67cec45-ab5c-4b1b-b0a7-89a14a4c145b"
+                    },
+                    {
+                      "id": "638f0871-e15a-47e2-8b1b-20a33dad9167",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels?limit=<string>&offset=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-638f0871-e15a-47e2-8b1b-20a33dad9167"
+                    },
+                    {
+                      "id": "f9875fd0-b83b-417f-ada5-73905d3d2eb6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels?limit=<string>&offset=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "query": [
+                            {
+                              "description": "How many results to return",
+                              "key": "limit",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many results to skip",
+                              "key": "offset",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-f9875fd0-b83b-417f-ada5-73905d3d2eb6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-4119e8f7-d70c-4450-81cb-906a0efff4e3"
+                },
+                {
+                  "name": "Create a label for a customer",
+                  "id": "bbcd9b27-8af1-4b74-812f-73613630297f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/labels",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "labels"
+                      ],
+                      "variable": [
+                        {
+                          "id": "50929029-2449-489b-a942-6055855ba2e6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of customer to create a label for"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new label for a Verified Customer with a specified amount. Labels help organize and track funds within a customer's balance. Returns the location of the created label resource in the response header."
+                  },
+                  "response": [
+                    {
+                      "id": "8a6e9927-a894-42c6-b0bc-75ac6c8837d6",
+                      "name": "create",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-8a6e9927-a894-42c6-b0bc-75ac6c8837d6"
+                    },
+                    {
+                      "id": "873c7639-6375-43bf-a170-d1770cc8106c",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-873c7639-6375-43bf-a170-d1770cc8106c"
+                    },
+                    {
+                      "id": "2122974f-4d0e-4125-b5bd-68cf33e3f093",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-2122974f-4d0e-4125-b5bd-68cf33e3f093"
+                    },
+                    {
+                      "id": "77772e22-b0ed-4425-8527-be7ccff0b9a6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/labels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "labels"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:14.000Z",
+                      "updatedAt": "2026-07-28T01:33:14.000Z",
+                      "uid": "35240-77772e22-b0ed-4425-8527-be7ccff0b9a6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-bbcd9b27-8af1-4b74-812f-73613630297f"
+                }
+              ],
+              "id": "3ef6899e-40e9-4928-bb51-bddff0272d85",
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-3ef6899e-40e9-4928-bb51-bddff0272d85"
+            }
+          ],
+          "id": "fbc301e3-2756-44a9-b294-7fdce0a50a7d",
+          "createdAt": "2026-07-28T01:33:14.000Z",
+          "updatedAt": "2026-07-28T01:33:14.000Z",
+          "uid": "35240-fbc301e3-2756-44a9-b294-7fdce0a50a7d"
+        }
+      ],
+      "id": "2e8cc7e1-4a17-4ca3-9808-ae604066ac70",
+      "createdAt": "2026-07-28T01:33:14.000Z",
+      "updatedAt": "2026-07-28T01:33:14.000Z",
+      "uid": "35240-2e8cc7e1-4a17-4ca3-9808-ae604066ac70"
+    },
+    {
+      "name": "ledger-entries",
+      "item": [
+        {
+          "name": "{ledgerEntryId}",
+          "item": [
+            {
+              "name": "Retrieve a label ledger entry",
+              "id": "0a31a8da-ae24-48ea-84c7-e44c00754b62",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ledger-entries/:ledgerEntryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ledger-entries",
+                    ":ledgerEntryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "031b3197-47f9-41db-b53d-38bf651959ea",
+                      "key": "ledgerEntryId",
+                      "value": "<string>",
+                      "description": "(Required) A label ledger entry unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information for a specific ledger entry on a Label, including its amount, currency, and creation timestamp."
+              },
+              "response": [
+                {
+                  "id": "9a05283f-7082-46a5-85b7-bf82302bf17a",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ledger-entries/:ledgerEntryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ledger-entries",
+                        ":ledgerEntryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ledgerEntryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"velit6\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"sintd\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-9a05283f-7082-46a5-85b7-bf82302bf17a"
+                },
+                {
+                  "id": "230ec298-c07d-4feb-88e1-40dbdc1a05c3",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ledger-entries/:ledgerEntryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ledger-entries",
+                        ":ledgerEntryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ledgerEntryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-230ec298-c07d-4feb-88e1-40dbdc1a05c3"
+                },
+                {
+                  "id": "d47ed14b-0118-4f3b-899c-cad0aa7d717d",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ledger-entries/:ledgerEntryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ledger-entries",
+                        ":ledgerEntryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ledgerEntryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-d47ed14b-0118-4f3b-899c-cad0aa7d717d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-0a31a8da-ae24-48ea-84c7-e44c00754b62"
+            }
+          ],
+          "id": "b9dc5151-4bba-4db3-8ac0-b33723c5f572",
+          "createdAt": "2026-07-28T01:33:14.000Z",
+          "updatedAt": "2026-07-28T01:33:14.000Z",
+          "uid": "35240-b9dc5151-4bba-4db3-8ac0-b33723c5f572"
+        }
+      ],
+      "id": "dd0cf834-1b76-4d44-a6a5-214b49c2e1ec",
+      "createdAt": "2026-07-28T01:33:14.000Z",
+      "updatedAt": "2026-07-28T01:33:14.000Z",
+      "uid": "35240-dd0cf834-1b76-4d44-a6a5-214b49c2e1ec"
+    },
+    {
+      "name": "label-reallocations",
+      "item": [
+        {
+          "name": "{reallocationId}",
+          "item": [
+            {
+              "name": "Retrieve a label reallocation",
+              "id": "223915e0-f9af-4da5-846f-0aed19ef93fa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/label-reallocations/:reallocationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "label-reallocations",
+                    ":reallocationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d3424190-e251-424b-bb36-d5de8bf54137",
+                      "key": "reallocationId",
+                      "value": "<string>",
+                      "description": "(Required) Label reallocation unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details for a specific label reallocation that transfers funds between Labels. Returns reallocation information including source and destination Labels, amount transferred, status, and creation timestamp. Use this to track and audit fund movements between different Labels."
+              },
+              "response": [
+                {
+                  "id": "385f62b1-e179-4348-ae84-e96e9df95d89",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/label-reallocations/:reallocationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "label-reallocations",
+                        ":reallocationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reallocationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"to-ledger-entry\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"from-ledger-entry\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-385f62b1-e179-4348-ae84-e96e9df95d89"
+                },
+                {
+                  "id": "30b8593e-46e2-4bb1-9f8c-b32ff83c0b72",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/label-reallocations/:reallocationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "label-reallocations",
+                        ":reallocationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reallocationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-30b8593e-46e2-4bb1-9f8c-b32ff83c0b72"
+                },
+                {
+                  "id": "41743b21-7f2c-4bf3-953e-2625ce9d8118",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/label-reallocations/:reallocationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "label-reallocations",
+                        ":reallocationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reallocationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:14.000Z",
+                  "updatedAt": "2026-07-28T01:33:14.000Z",
+                  "uid": "35240-41743b21-7f2c-4bf3-953e-2625ce9d8118"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-223915e0-f9af-4da5-846f-0aed19ef93fa"
+            }
+          ],
+          "id": "dc3ef15c-3908-4e72-a057-f0ef722c3e70",
+          "createdAt": "2026-07-28T01:33:14.000Z",
+          "updatedAt": "2026-07-28T01:33:14.000Z",
+          "uid": "35240-dc3ef15c-3908-4e72-a057-f0ef722c3e70"
+        },
+        {
+          "name": "Create a label reallocation",
+          "id": "dcd17948-81b0-47a2-a1dd-6c5606efc9e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"from\": {\n      \"href\": \"<string>\"\n    },\n    \"to\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/label-reallocations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "label-reallocations"
+              ]
+            },
+            "description": "Reallocates funds between two labels belonging to the same Verified Customer. Moves the specified amount from the source label to the destination label, creating ledger entries for both. The reallocation only succeeds if the source label has sufficient funds."
+          },
+          "response": [
+            {
+              "id": "a0736fb0-2576-42df-9b87-4d582c4ddb00",
+              "name": "created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"from\": {\n      \"href\": \"<string>\"\n    },\n    \"to\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/label-reallocations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "label-reallocations"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-a0736fb0-2576-42df-9b87-4d582c4ddb00"
+            },
+            {
+              "id": "814dab10-9808-4ab0-a567-7009d6070ca6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"from\": {\n      \"href\": \"<string>\"\n    },\n    \"to\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/label-reallocations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "label-reallocations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-814dab10-9808-4ab0-a567-7009d6070ca6"
+            },
+            {
+              "id": "7890023c-ed2a-436b-8c48-ccf3bb635dd7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"from\": {\n      \"href\": \"<string>\"\n    },\n    \"to\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/label-reallocations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "label-reallocations"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-7890023c-ed2a-436b-8c48-ccf3bb635dd7"
+            },
+            {
+              "id": "5dd82e8c-5d16-41c2-9cae-7be79003427c",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"from\": {\n      \"href\": \"<string>\"\n    },\n    \"to\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/label-reallocations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "label-reallocations"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:33:14.000Z",
+              "updatedAt": "2026-07-28T01:33:14.000Z",
+              "uid": "35240-5dd82e8c-5d16-41c2-9cae-7be79003427c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:14.000Z",
+          "updatedAt": "2026-07-28T01:33:14.000Z",
+          "uid": "35240-dcd17948-81b0-47a2-a1dd-6c5606efc9e5"
+        }
+      ],
+      "id": "33ebe6ea-d22e-448a-855a-83eeba927235",
+      "createdAt": "2026-07-28T01:33:14.000Z",
+      "updatedAt": "2026-07-28T01:33:14.000Z",
+      "uid": "35240-33ebe6ea-d22e-448a-855a-83eeba927235"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

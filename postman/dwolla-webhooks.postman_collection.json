@@ -1,0 +1,477 @@
+{
+  "info": {
+    "_postman_id": "064201b0-7d70-4183-9646-2ee80090f4f4",
+    "name": "Dwolla API - Webhooks",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:19.000Z",
+    "updatedAt": "2026-07-28T01:33:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-064201b0-7d70-4183-9646-2ee80090f4f4"
+  },
+  "item": [
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "retries",
+              "item": [
+                {
+                  "name": "List retries for a webhook",
+                  "id": "f41b36a1-09fc-4f9a-8d19-7c28c296da85",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id/retries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id",
+                        "retries"
+                      ],
+                      "variable": [
+                        {
+                          "id": "008d9dab-5925-46f3-bb2f-e07bc4350a3d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Webhook unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all retry attempts for a specific webhook including timestamps and delivery details. Returns a list of retry attempts with unique identifiers, timestamps, and links to the parent webhook with total count. Essential for tracking webhook delivery failures, analyzing retry patterns, and debugging webhook notification issues to ensure reliable event processing."
+                  },
+                  "response": [
+                    {
+                      "id": "3f121d9f-e463-4317-8682-2ee482be67fc",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:id/retries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":id",
+                            "retries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"retries\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"webhook\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"timestamp\": \"<dateTime>\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\"\n          },\n          \"webhook\": {\n            \"href\": \"<string>\"\n          }\n        },\n        \"id\": \"<string>\",\n        \"timestamp\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:33:19.000Z",
+                      "updatedAt": "2026-07-28T01:33:19.000Z",
+                      "uid": "35240-3f121d9f-e463-4317-8682-2ee482be67fc"
+                    },
+                    {
+                      "id": "e32d2846-d421-4c53-a593-359adeb5c0e0",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:id/retries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":id",
+                            "retries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:19.000Z",
+                      "updatedAt": "2026-07-28T01:33:19.000Z",
+                      "uid": "35240-e32d2846-d421-4c53-a593-359adeb5c0e0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:19.000Z",
+                  "updatedAt": "2026-07-28T01:33:19.000Z",
+                  "uid": "35240-f41b36a1-09fc-4f9a-8d19-7c28c296da85"
+                },
+                {
+                  "name": "Retry a webhook",
+                  "id": "0be974f9-01ca-43cd-afcd-ce7396b82c57",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id/retries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id",
+                        "retries"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5c4fd7da-1a9d-49b7-8520-6f002ac6fd81",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Webhook unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application."
+                  },
+                  "response": [
+                    {
+                      "id": "f6a5ac60-5f2b-4930-8228-8ddb7974584c",
+                      "name": "created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:id/retries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":id",
+                            "retries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:33:19.000Z",
+                      "updatedAt": "2026-07-28T01:33:19.000Z",
+                      "uid": "35240-f6a5ac60-5f2b-4930-8228-8ddb7974584c"
+                    },
+                    {
+                      "id": "853783fe-e213-47ab-adb7-74453814e4e6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.dwolla.v1.hal+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:id/retries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":id",
+                            "retries"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.dwolla.v1.hal+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:33:19.000Z",
+                      "updatedAt": "2026-07-28T01:33:19.000Z",
+                      "uid": "35240-853783fe-e213-47ab-adb7-74453814e4e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:19.000Z",
+                  "updatedAt": "2026-07-28T01:33:19.000Z",
+                  "uid": "35240-0be974f9-01ca-43cd-afcd-ce7396b82c57"
+                }
+              ],
+              "id": "05723324-14e7-4e71-8885-24896452e37b",
+              "createdAt": "2026-07-28T01:33:19.000Z",
+              "updatedAt": "2026-07-28T01:33:19.000Z",
+              "uid": "35240-05723324-14e7-4e71-8885-24896452e37b"
+            },
+            {
+              "name": "Retrieve a webhook",
+              "id": "7bfc1a8b-125b-47aa-99a5-7a1bfbaa495d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3be7f80e-f24b-4877-8335-c2af5ab83b4b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Webhook unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information for a specific webhook by its unique identifier including delivery attempts and response data. Returns webhook details with topic, account information, delivery attempts containing request/response history, and links to subscription and retry resources. Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification processing status."
+              },
+              "response": [
+                {
+                  "id": "f4a1e687-1a76-4312-ba1a-e325f76f3234",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"subscription\": {\n      \"href\": \"<string>\"\n    },\n    \"retry\": {\n      \"href\": \"<string>\"\n    },\n    \"event\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"topic\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"eventId\": \"<string>\",\n  \"subscriptionId\": \"<string>\",\n  \"attempts\": [\n    {\n      \"id\": \"<string>\",\n      \"request\": {\n        \"timestamp\": \"<dateTime>\",\n        \"url\": \"<string>\",\n        \"headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"body\": \"<string>\"\n      },\n      \"response\": {\n        \"timestamp\": \"<dateTime>\",\n        \"headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"statusCode\": \"<integer>\",\n        \"body\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"request\": {\n        \"timestamp\": \"<dateTime>\",\n        \"url\": \"<string>\",\n        \"headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"body\": \"<string>\"\n      },\n      \"response\": {\n        \"timestamp\": \"<dateTime>\",\n        \"headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"statusCode\": \"<integer>\",\n        \"body\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:19.000Z",
+                  "updatedAt": "2026-07-28T01:33:19.000Z",
+                  "uid": "35240-f4a1e687-1a76-4312-ba1a-e325f76f3234"
+                },
+                {
+                  "id": "6d18983c-8a25-4369-8bf7-cf6911900626",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:33:19.000Z",
+                  "updatedAt": "2026-07-28T01:33:19.000Z",
+                  "uid": "35240-6d18983c-8a25-4369-8bf7-cf6911900626"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:19.000Z",
+              "updatedAt": "2026-07-28T01:33:19.000Z",
+              "uid": "35240-7bfc1a8b-125b-47aa-99a5-7a1bfbaa495d"
+            }
+          ],
+          "id": "4062c72a-206c-45b4-b0c4-880d3ea423a9",
+          "createdAt": "2026-07-28T01:33:19.000Z",
+          "updatedAt": "2026-07-28T01:33:19.000Z",
+          "uid": "35240-4062c72a-206c-45b4-b0c4-880d3ea423a9"
+        }
+      ],
+      "id": "4744b8fa-ec79-4190-8f3c-7862713ea862",
+      "createdAt": "2026-07-28T01:33:19.000Z",
+      "updatedAt": "2026-07-28T01:33:19.000Z",
+      "uid": "35240-4744b8fa-ec79-4190-8f3c-7862713ea862"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}

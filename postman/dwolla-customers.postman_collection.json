@@ -1,0 +1,1239 @@
+{
+  "info": {
+    "_postman_id": "43837e19-7763-49b4-8ee7-4f848c911f03",
+    "name": "Dwolla API - Customers",
+    "description": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:50.000Z",
+    "updatedAt": "2026-07-28T01:32:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-43837e19-7763-49b4-8ee7-4f848c911f03"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve a customer",
+              "id": "2f9594bd-e8b6-4e4e-8ece-9d798eeab85c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d5ee5d06-4d1e-4a17-a990-ae6aa84e981c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Customer unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve identifying information for a specific customer. The returned data varies by customer type - verified customers include contact details, address information, and verification status, while unverified customers and receive-only users contain basic contact information only."
+              },
+              "response": [
+                {
+                  "id": "dee2e580-f9d3-42f8-a0aa-faffd2a6660f",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"aute_ae4\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"created\": \"<dateTime>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"status\": \"deactivated\",\n  \"type\": \"unverified\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-dee2e580-f9d3-42f8-a0aa-faffd2a6660f"
+                },
+                {
+                  "id": "d9bfa281-ac4c-446b-a5b9-3cff7296aa62",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-d9bfa281-ac4c-446b-a5b9-3cff7296aa62"
+                },
+                {
+                  "id": "8a5a4387-8a02-43f0-b586-d5bf982feb04",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-8a5a4387-8a02-43f0-b586-d5bf982feb04"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-2f9594bd-e8b6-4e4e-8ece-9d798eeab85c"
+            },
+            {
+              "name": "Update a customer",
+              "id": "537a80ab-c423-4c0a-84ee-946ecddd964e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "aa3c5789-8b5c-4e5f-9678-96c5a2d6ef17",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Customer unique identifier"
+                    }
+                  ]
+                },
+                "description": "Update Customer information, upgrade an unverified Customer to a verified Customer, suspend a Customer, deactivate a Customer, reactivate a Customer, and update a verified Customer's information to retry verification."
+              },
+              "response": [
+                {
+                  "id": "7b32856f-9363-4570-a917-4c6441f9ce3f",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"aute_ae4\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"created\": \"<dateTime>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"id\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"status\": \"deactivated\",\n  \"type\": \"unverified\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-7b32856f-9363-4570-a917-4c6441f9ce3f"
+                },
+                {
+                  "id": "29e16d9c-2cbd-4003-8bfa-0d7f71408ffa",
+                  "name": "bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-29e16d9c-2cbd-4003-8bfa-0d7f71408ffa"
+                },
+                {
+                  "id": "89db20b4-ccbb-4d3f-adb1-0a0164ddeb24",
+                  "name": "forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-89db20b4-ccbb-4d3f-adb1-0a0164ddeb24"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-537a80ab-c423-4c0a-84ee-946ecddd964e"
+            }
+          ],
+          "id": "d2713d53-fca4-4e61-a666-df07cb853b44",
+          "createdAt": "2026-07-28T01:32:51.000Z",
+          "updatedAt": "2026-07-28T01:32:51.000Z",
+          "uid": "35240-d2713d53-fca4-4e61-a666-df07cb853b44"
+        },
+        {
+          "name": "List and search customers",
+          "id": "c2465071-5db7-4118-83f4-285d81cc30fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers?limit=<integer>&offset=<integer>&search=<string>&status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ],
+              "query": [
+                {
+                  "description": "How many results to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "How many results to skip",
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Searches on certain fields",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by customer status",
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a paginated list of customers sorted by creation date. Supports fuzzy search across customer names, business names, and email addresses, plus exact filtering by email and verification status. Default limit is 25 customers per page, maximum 200."
+          },
+          "response": [
+            {
+              "id": "bbdaeba1-6555-4240-bd2a-f2075b47fd89",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers?limit=<integer>&offset=<integer>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "description": "How many results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "How many results to skip",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Searches on certain fields",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by customer status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"eu_65\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"customers\": [\n      {\n        \"_links\": {\n          \"occaecat_5d\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"cupidatat_a\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"created\": \"<dateTime>\",\n        \"email\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"status\": \"unverified\",\n        \"type\": \"unverified\",\n        \"correlationId\": \"<string>\",\n        \"businessName\": \"<string>\"\n      },\n      {\n        \"_links\": {\n          \"laborum3\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          },\n          \"adipisicing_c\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"created\": \"<dateTime>\",\n        \"email\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"status\": \"suspended\",\n        \"type\": \"unverified\",\n        \"correlationId\": \"<string>\",\n        \"businessName\": \"<string>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-bbdaeba1-6555-4240-bd2a-f2075b47fd89"
+            },
+            {
+              "id": "35f76553-a033-47fb-9d6e-44867b99a725",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers?limit=<integer>&offset=<integer>&search=<string>&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "description": "How many results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "How many results to skip",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Searches on certain fields",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by customer status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-35f76553-a033-47fb-9d6e-44867b99a725"
+            }
+          ],
+          "createdAt": "2026-07-28T01:32:51.000Z",
+          "updatedAt": "2026-07-28T01:32:51.000Z",
+          "uid": "35240-c2465071-5db7-4118-83f4-285d81cc30fd"
+        },
+        {
+          "name": "Create a customer",
+          "id": "20646d20-960a-43bc-b456-f82052808ea1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            },
+            "description": "Creates a new customer with different verification levels and capabilities. Supports personal verified customers (individuals), business verified customers (businesses), unverified customers, and receive-only users. Customer type determines transaction limits, verification requirements, and available features."
+          },
+          "response": [
+            {
+              "id": "3357f306-a432-4bdf-b14b-ecfb131fc32d",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-3357f306-a432-4bdf-b14b-ecfb131fc32d"
+            },
+            {
+              "id": "99e3f91f-770f-4769-927e-7b47e32cdc86",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-99e3f91f-770f-4769-927e-7b47e32cdc86"
+            },
+            {
+              "id": "1d47d723-6afe-4cc2-a431-5db050577604",
+              "name": "forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-1d47d723-6afe-4cc2-a431-5db050577604"
+            },
+            {
+              "id": "f63a9006-7558-4927-aa30-00b2166b4b65",
+              "name": "not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"type\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"correlationId\": \"<string>\",\n  \"businessName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-f63a9006-7558-4927-aa30-00b2166b4b65"
+            }
+          ],
+          "createdAt": "2026-07-28T01:32:51.000Z",
+          "updatedAt": "2026-07-28T01:32:51.000Z",
+          "uid": "35240-20646d20-960a-43bc-b456-f82052808ea1"
+        }
+      ],
+      "id": "c353175d-235b-4858-85c1-da6257273f87",
+      "createdAt": "2026-07-28T01:32:51.000Z",
+      "updatedAt": "2026-07-28T01:32:51.000Z",
+      "uid": "35240-c353175d-235b-4858-85c1-da6257273f87"
+    },
+    {
+      "name": "business-classifications",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Retrieve a business classification",
+              "id": "a0dc4958-bee3-48fb-8cc7-cc98ec8e5cfe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/business-classifications/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "business-classifications",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6e35e684-68ec-4dbc-8603-0361b9f47c42",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) business classification unique identifier"
+                    }
+                  ]
+                },
+                "description": "Returns a specific business classification with its embedded industry classifications. Use this endpoint to browse available industry options within a business category and obtain the industry classification ID required for the businessClassification parameter when creating business verified customers."
+              },
+              "response": [
+                {
+                  "id": "f8468204-ed30-41c4-94c3-5d0604eef4ce",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/business-classifications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "business-classifications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"industry-classifications\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"id\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-f8468204-ed30-41c4-94c3-5d0604eef4ce"
+                },
+                {
+                  "id": "958c7258-9a0f-42cb-8590-aef8b3b82242",
+                  "name": "not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.dwolla.v1.hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/business-classifications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "business-classifications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.dwolla.v1.hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:32:51.000Z",
+                  "updatedAt": "2026-07-28T01:32:51.000Z",
+                  "uid": "35240-958c7258-9a0f-42cb-8590-aef8b3b82242"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-a0dc4958-bee3-48fb-8cc7-cc98ec8e5cfe"
+            }
+          ],
+          "id": "298b9c84-b9a9-4f2e-8452-49296cb6129b",
+          "createdAt": "2026-07-28T01:32:51.000Z",
+          "updatedAt": "2026-07-28T01:32:51.000Z",
+          "uid": "35240-298b9c84-b9a9-4f2e-8452-49296cb6129b"
+        },
+        {
+          "name": "List business classifications",
+          "id": "534fc4f6-496b-4d6d-a2b0-61024d7c33ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/business-classifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "business-classifications"
+              ]
+            },
+            "description": "Returns a directory of business and industry classifications required for creating business verified customers. Each business classification contains multiple industry classifications. The industry classification ID must be provided in the businessClassification parameter during business customer creation for verification."
+          },
+          "response": [
+            {
+              "id": "f3c7e09c-0672-47e8-9141-8d562aeb5e32",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/business-classifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "business-classifications"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_links\": {\n    \"nisie0d\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"culpae4_\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    },\n    \"essef2a\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"resource-type\": \"<string>\"\n    }\n  },\n  \"_embedded\": {\n    \"business-classifications\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"_embedded\": {\n          \"industry-classifications\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"<string>\",\n            \"type\": \"<string>\",\n            \"resource-type\": \"<string>\"\n          }\n        },\n        \"_embedded\": {\n          \"industry-classifications\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-f3c7e09c-0672-47e8-9141-8d562aeb5e32"
+            },
+            {
+              "id": "48414034-a270-46f3-8ce3-bbb43acb5f88",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/business-classifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "business-classifications"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-48414034-a270-46f3-8ce3-bbb43acb5f88"
+            },
+            {
+              "id": "c8933a4e-8a4f-4d65-8e3d-1af8e46dec1d",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/business-classifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "business-classifications"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:32:51.000Z",
+              "updatedAt": "2026-07-28T01:32:51.000Z",
+              "uid": "35240-c8933a4e-8a4f-4d65-8e3d-1af8e46dec1d"
+            }
+          ],
+          "createdAt": "2026-07-28T01:32:51.000Z",
+          "updatedAt": "2026-07-28T01:32:51.000Z",
+          "uid": "35240-534fc4f6-496b-4d6d-a2b0-61024d7c33ac"
+        }
+      ],
+      "id": "51018f3c-58db-4cc4-80b4-e5603109fc27",
+      "createdAt": "2026-07-28T01:32:51.000Z",
+      "updatedAt": "2026-07-28T01:32:51.000Z",
+      "uid": "35240-51018f3c-58db-4cc4-80b4-e5603109fc27"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.dwolla.com"
+    }
+  ]
+}
