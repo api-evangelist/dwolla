@@ -1,0 +1,2468 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an application access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Generate an application access token using OAuth 2.0 client credentials flow for server-to-server authentication. Requires client ID and secret sent via Basic authentication header with grant_type=client_credentials in the request body. Returns a bearer access token with expiration time for authenticating API requests scoped to your application. Essential for secure API access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "root",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "root",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve the API root entry point to discover available resources and endpoints based on your OAuth access token permissions. Returns HAL+JSON with navigation links to accessible resources including accounts, customers, events, and webhook subscriptions depending on token scope. Essential for API exploration, dynamic resource discovery, and building adaptive client applications that respond to available permissions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns basic account information for your authorized Main Dwolla Account, including account ID, name, and links to related resources such as funding sources, transfers, and customers."
+        },
+        {
+          "info": {
+            "name": "Create a funding source for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint allows you to connect a checking or savings account using either manual bank account details or an exchange resource.\n\nFor more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).\n"
+        },
+        {
+          "info": {
+            "name": "List funding sources for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "Filter removed funding sources. Boolean value. Defaults to `true`"
+              }
+            ]
+          },
+          "docs": "Get a list of all funding sources associated with a specific Main Dwolla Account. This endpoint returns both bank accounts and balance funding sources, with detailed information about each funding source's status, type, and available processing channels.\n"
+        },
+        {
+          "info": {
+            "name": "List and search account transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/transfers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`, Customer ID, and Account ID"
+              },
+              {
+                "name": "startAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or greater than `startAmount`"
+              },
+              {
+                "name": "endAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or less than `endAmount`"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`"
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "A string value to search on if `correlationId` was specified for a transaction"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to return. Defaults to 25"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to skip. Use for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a paginated, searchable list of transfers associated with the specified Main Dwolla account. Supports advanced filtering by amount range, date range, transfer status, and correlation ID. Results are limited to 10,000 transfers per query; use date range filters for historical data beyond this limit."
+        },
+        {
+          "info": {
+            "name": "List account mass payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/mass-payments",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip."
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "Correlation ID to search by."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of mass payments created by your Main Dwolla account. Results are sorted by creation date in descending order (newest first) and can be filtered by correlation ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List and search customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Searches on certain fields"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer status"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of customers sorted by creation date. Supports fuzzy search across customer names, business names, and email addresses, plus exact filtering by email and verification status. Default limit is 25 customers per page, maximum 200."
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new customer with different verification levels and capabilities. Supports personal verified customers (individuals), business verified customers (businesses), unverified customers, and receive-only users. Customer type determines transaction limits, verification requirements, and available features."
+        },
+        {
+          "info": {
+            "name": "Retrieve a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve identifying information for a specific customer. The returned data varies by customer type - verified customers include contact details, address information, and verification status, while unverified customers and receive-only users contain basic contact information only."
+        },
+        {
+          "info": {
+            "name": "Update a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Customer information, upgrade an unverified Customer to a verified Customer, suspend a Customer, deactivate a Customer, reactivate a Customer, and update a verified Customer's information to retry verification."
+        },
+        {
+          "info": {
+            "name": "List business classifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/business-classifications",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns a directory of business and industry classifications required for creating business verified customers. Each business classification contains multiple industry classifications. The industry classification ID must be provided in the businessClassification parameter during business customer creation for verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve a business classification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/business-classifications/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "business classification unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns a specific business classification with its embedded industry classifications. Use this endpoint to browse available industry options within a business category and obtain the industry classification ID required for the businessClassification parameter when creating business verified customers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "beneficial owners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer beneficial owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-owners",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all beneficial owners associated with a business verified customer. Beneficial owners are individuals who directly or indirectly own 25% or more of the company's equity. Includes personal information, verification status, and address details for each owner."
+        },
+        {
+          "info": {
+            "name": "Create customer beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-owners",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer ID for which to create a Beneficial Owner"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new beneficial owner for a business verified customer. Beneficial owners are individuals who own 25% or more of the company's equity. Requires personal information, address, and SSN or passport for identity verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific beneficial owner, including personal information, address, and verification status. The verification status indicates the owner's identity verification progress and affects the business customer's transaction capabilities."
+        },
+        {
+          "info": {
+            "name": "Update beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a beneficial owner's information to retry verification when their status is \"incomplete\". Only beneficial owners with incomplete verification status can be updated. Used to correct information that caused initial verification to fail."
+        },
+        {
+          "info": {
+            "name": "Remove beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Permanently removes a beneficial owner from a business customer. This action is irreversible and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change the customer's certification status to \"recertify\"."
+        },
+        {
+          "info": {
+            "name": "Retrieve beneficial ownership status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-ownership",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns the certification status of beneficial ownership for a business verified customer. Status indicates whether beneficial owner information has been certified and affects the customer's ability to send funds. Possible values include uncertified, certified, and recertify."
+        },
+        {
+          "info": {
+            "name": "Certify beneficial ownership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-ownership",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the beneficial ownership certification status to \"certified\", confirming that all beneficial owner information is accurate and complete. This action enables the business customer to send funds and is required to complete the verification process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all identity verification documents submitted for a customer. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Create a document for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "customer unique identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an identity verification document for a customer using multipart form-data. Required when a customer has \"document\" status during the verification process."
+        },
+        {
+          "info": {
+            "name": "List documents for beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/beneficial-owners/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all identity verification documents submitted for a beneficial owner. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Create a document for beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/beneficial-owners/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "beneficial owner unique identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has \"document\" status during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/documents/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific identity verification document, including its status, type, and verification results. Used to track document submission and verification progress during the business verification process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "kba",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate a KBA session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/kba",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Customer for initiating a KBA session"
+              }
+            ]
+          },
+          "docs": "Creates a new KBA (Knowledge-Based Authentication) session for a personal Verified Customer. Returns a KBA identifier that represents the session and is used to retrieve authentication questions for customer verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve KBA Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/kba/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the KBA session to retrieve questions for"
+              }
+            ]
+          },
+          "docs": "Returns the KBA questions for a specific KBA session. The questions are used to verify the customer's identity during the KBA process."
+        },
+        {
+          "info": {
+            "name": "Verify KBA Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/kba/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the KBA session to verify questions for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "funding sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer funding sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "Filter removed funding sources. Boolean value. Defaults to `true`"
+              }
+            ]
+          },
+          "docs": "Returns all funding sources for a customer, including bank accounts, debit card funding sources, and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Card funding sources include masked card information. Supports filtering to exclude removed funding sources using the removed parameter."
+        },
+        {
+          "info": {
+            "name": "Create customer funding source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, debit card addition via Exchange, and virtual account numbers. Bank funding sources require verification before transfers can be initiated."
+        },
+        {
+          "info": {
+            "name": "Retrieve a funding source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/funding-sources/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Funding source unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name."
+        },
+        {
+          "info": {
+            "name": "Update or remove a funding source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/funding-sources/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Funding source unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed."
+        },
+        {
+          "info": {
+            "name": "Retrieve micro-deposits details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/funding-sources/:id/micro-deposits",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the FS that previously had micro-deposits initiated"
+              }
+            ]
+          },
+          "docs": "Returns the status and details of micro-deposits for a funding source to check verification eligibility. Includes deposit status (pending, processed, failed), creation timestamp, and failure details with ACH return codes if deposits failed. Use this endpoint to determine when micro-deposits are ready for verification."
+        },
+        {
+          "info": {
+            "name": "Initiate or Verify micro-deposits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/funding-sources/:id/micro-deposits",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the FS to initiate or verify micro-deposit"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Handles micro-deposit bank verification process. Make a request without a request body to initiate two small deposits to the customer's bank account. Include deposit amounts to verify the received values and complete verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve funding source balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/funding-sources/:id/balance",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of funding source to retrieve the balance for"
+              }
+            ]
+          },
+          "docs": "Returns the current balance for a specific funding source. For bank accounts, includes available and closing balances; for Dwolla balance, includes balance and total amounts; for settlement accounts (bankUsageType = card-network), includes available balance only. Supports bank accounts (via Open Banking), Dwolla balance (verified customers only), and settlement accounts for card network processing."
+        },
+        {
+          "info": {
+            "name": "Retrieve VAN account and routing numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/funding-sources/:id/ach-routing",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of VAN funding source to retrieve ACH details"
+              }
+            ]
+          },
+          "docs": "Returns the unique account and routing numbers for a Virtual Account Number (VAN) funding source. These numbers can be used by external systems to initiate ACH transactions that pull funds from or push funds to the associated Dwolla balance."
+        },
+        {
+          "info": {
+            "name": "Create an on-demand transfer authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/on-demand-authorizations",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Create an on-demand transfer authorization that allows Customers to pre-authorize variable amount ACH transfers from their bank account for future payments. This authorization is used when creating Customer funding sources to enable flexible payment processing. Returns UI text elements including authorization body text and button text for display in your application's bank account addition flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate a transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/transfers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": "19051a62-3403-11e6-ac61-9e71128cae77"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), Push-to-Debit Card, and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and"
+        },
+        {
+          "info": {
+            "name": "Retrieve a transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/transfers/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of transfer to be retrieved"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation."
+        },
+        {
+          "info": {
+            "name": "Cancel a transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/transfers/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of transfer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing."
+        },
+        {
+          "info": {
+            "name": "List and search transfers for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/transfers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`"
+              },
+              {
+                "name": "startAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or greater than `startAmount`"
+              },
+              {
+                "name": "endAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or less than `endAmount`"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`"
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "A string value to search on if `correlationId` was specified for a transaction"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to return. Defaults to 25"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to skip. Use for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieve and search transfers for a specific Customer with comprehensive filtering and pagination support. Supports searching by customer details (name, email, business name), amount ranges, date ranges, transfer status, and correlation IDs for enhanced transaction discovery. Returns paginated transfer results including status, amounts, metadata, and links to source and destination funding sources. Use this endpoint for transaction history analysis and reconciliation purposes."
+        },
+        {
+          "info": {
+            "name": "List fees for a transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/transfers/:id/fees",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of transfer to retrieve fees for"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed fee information for a specific transfer by its unique identifier. Returns the total number of fees and individual fee transaction details including amounts, status, and links to source and destination accounts."
+        },
+        {
+          "info": {
+            "name": "Retrieve a transfer failure reason",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/transfers/:id/failure",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transfer unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed failure information for a failed bank or VAN transfer including the ACH return code, description, and explanation. Returns failure details with links to the failed funding source and associated Customer for comprehensive error analysis. Available only for transfers with failure status and accessed through the failure link from transfer retrieval. Critical for troubleshooting payment failures and understanding ACH return reasons."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mass payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate a mass payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/mass-payments",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": "19051a62-3403-11e6-ac61-9e71128cae77"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a mass payment containing up to 5,000 individual payment items from a Dwolla Main Account or Verified Customer funding source. Supports optional metadata, correlation IDs for traceability, deferred processing, and expedited transfer options including same-day ACH clearing. Returns the location of the created mass payment resource with a unique identifier for tracking and management."
+        },
+        {
+          "info": {
+            "name": "Retrieve a mass payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/mass-payments/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Mass payment unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a mass payment by its unique identifier. Returns the current processing status (pending, processing, or complete), creation date, metadata, and links to the source funding source and payment items. Use this endpoint to monitor mass payment processing progress and determine when to check individual item results."
+        },
+        {
+          "info": {
+            "name": "Update a mass payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/mass-payments/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of mass payment to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a deferred mass payment to control its processing lifecycle. Set status to `pending` to trigger processing and begin fund transfers, or `cancelled` to permanently cancel the mass payment before processing begins. Only applies to mass payments created with deferred status. Returns the updated mass payment resource with the new status."
+        },
+        {
+          "info": {
+            "name": "List items for a mass payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/mass-payments/:id/items",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Mass payment unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item status"
+              }
+            ]
+          },
+          "docs": "Retrieve individual payment items within a mass payment with optional status filtering and pagination support. Each item represents a distinct payment with status indicators (failed, pending, success) showing whether a transfer was successfully created. Returns paginated item details including amount, destination, metadata, and error information for failed items. Supports filtering by status and standard pagination."
+        },
+        {
+          "info": {
+            "name": "Retrieve mass payment item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/mass-payment-items/:itemId",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "ID of item to be retrieved in mass payment"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific mass payment item by its unique identifier. Returns item status, amount, metadata, and links to the parent mass payment, associated transfer, and destination funding source. Use this endpoint to check the processing status and details of an individual item within a mass payment batch."
+        },
+        {
+          "info": {
+            "name": "List mass payments for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/mass-payments",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer ID to get mass payments for"
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "A string value to search on if `correlationId` was specified for a transaction"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to return. Defaults to 25"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to skip. Use for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieve all previously created mass payments for a Verified Customer account with optional correlation ID filtering and pagination support. Mass payments are returned ordered by date created with most recent appearing first. Returns paginated results including mass payment status, metadata, source funding information, and item links. Supports standard pagination parameters and correlation ID search for enhanced traceability."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/labels/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Label unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific Label used to categorize and track funds within your account. Returns Label information including unique identifier, current amount with currency, and creation timestamp."
+        },
+        {
+          "info": {
+            "name": "Remove a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dwolla.com/labels/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A label unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete a Label to stop tracking funds and remove it from your account. Returns success status if the Label is successfully removed. Use this to streamline your account management and remove unused Labels from your system."
+        },
+        {
+          "info": {
+            "name": "List labels for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/labels",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of customer"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              }
+            ]
+          },
+          "docs": "Returns all labels for a specified Verified Customer, sorted by creation date (most recent first). Supports pagination with limit and offset parameters. Each label includes its current amount and creation timestamp."
+        },
+        {
+          "info": {
+            "name": "Create a label for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/labels",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of customer to create a label for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new label for a Verified Customer with a specified amount. Labels help organize and track funds within a customer's balance. Returns the location of the created label resource in the response header."
+        },
+        {
+          "info": {
+            "name": "List label ledger entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/labels/:id/ledger-entries",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A label unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              }
+            ]
+          },
+          "docs": "Returns all ledger entries for a specific Label, sorted by creation date (newest first). Supports pagination with limit and offset parameters. Each ledger entry includes its amount, currency, and creation timestamp."
+        },
+        {
+          "info": {
+            "name": "Create a label ledger entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/labels/:id/ledger-entries",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Id of the Label to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new ledger entry to track fund adjustments on a Label by specifying a positive or negative amount value. Returns the location of the created ledger entry in the response header. Label amounts cannot go negative, so validation errors occur if the entry would result in a negative Label balance."
+        },
+        {
+          "info": {
+            "name": "Retrieve a label ledger entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/ledger-entries/:ledgerEntryId",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ledgerEntryId",
+                "value": "",
+                "type": "path",
+                "description": "A label ledger entry unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific ledger entry on a Label, including its amount, currency, and creation timestamp."
+        },
+        {
+          "info": {
+            "name": "Create a label reallocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/label-reallocations",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reallocates funds between two labels belonging to the same Verified Customer. Moves the specified amount from the source label to the destination label, creating ledger entries for both. The reallocation only succeeds if the source label has sufficient funds."
+        },
+        {
+          "info": {
+            "name": "Retrieve a label reallocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/label-reallocations/:reallocationId",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "reallocationId",
+                "value": "",
+                "type": "path",
+                "description": "Label reallocation unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific label reallocation that transfers funds between Labels. Returns reallocation information including source and destination Labels, amount transferred, status, and creation timestamp. Use this to track and audit fund movements between different Labels."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/events",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of events representing state changes to resources in your Dwolla application. Events track actions on customers, transfers, funding sources, and other resources, sorted by creation date (newest first). Events are retained for 30 days and are essential for webhook notifications and system activity monitoring."
+        },
+        {
+          "info": {
+            "name": "Retrieve event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/events/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of application event to get"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific event representing a state change that occurred on a resource in your Dwolla application. Includes the event topic, timestamp, resource links, and correlation ID if applicable."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhook subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/webhook-subscriptions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve all webhook subscriptions that belong to an application including their configuration details and status. Returns subscription details including webhook endpoints, status, creation dates, and links to associated webhooks with total count. Essential for webhook management and monitoring subscription health."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/webhook-subscriptions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events."
+        },
+        {
+          "info": {
+            "name": "Retrieve a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/webhook-subscriptions/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook subscription unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific webhook subscription by its unique identifier. Returns subscription configuration including URL endpoint, creation date, and links to associated webhooks for comprehensive subscription management. Essential for monitoring webhook subscription status and accessing webhook delivery history."
+        },
+        {
+          "info": {
+            "name": "Update a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/webhook-subscriptions/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dwolla.com/webhook-subscriptions/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions."
+        },
+        {
+          "info": {
+            "name": "List webhooks for a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/webhook-subscriptions/:id/webhooks",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook subscription unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include webhooks created after this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include webhooks created before this date. ISO-8601 format `YYYY-MM-DD`"
+              }
+            ]
+          },
+          "docs": "Retrieve all fired webhooks for a specific webhook subscription with comprehensive filtering and pagination support. Returns webhook delivery history including topics, attempts, request/response details, and delivery status over a rolling 30-day period. Supports filtering by resource ID, date ranges, and pagination parameters for detailed webhook delivery analysis. Critical for debugging webhook delivery issues and monitoring event notification success rates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/webhooks/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific webhook by its unique identifier including delivery attempts and response data. Returns webhook details with topic, account information, delivery attempts containing request/response history, and links to subscription and retry resources. Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification processing status."
+        },
+        {
+          "info": {
+            "name": "List retries for a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/webhooks/:id/retries",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all retry attempts for a specific webhook including timestamps and delivery details. Returns a list of retry attempts with unique identifiers, timestamps, and links to the parent webhook with total count. Essential for tracking webhook delivery failures, analyzing retry patterns, and debugging webhook notification issues to ensure reliable event processing."
+        },
+        {
+          "info": {
+            "name": "Retry a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/webhooks/:id/retries",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook unique identifier"
+              }
+            ]
+          },
+          "docs": "Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "sandbox simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/sandbox-simulations",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sandbox-only endpoint with three modes:\n\n**Simulate bank transfer processing** — Omit the body or send an empty JSON object. Processes or fails\nthe last 500 bank transfers on the authorized application or Sandbox account (and initiated micro-deposits).\nIf webhooks are configured, events are delivered. If a bank-to-bank transaction involves two users,\ncall this twice to process debit and credit sides. Returns **200** with a HAL document including `total`.\n\n**Simulate VAN (virtual) transfers** — S"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "exchanges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List exchange partners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchange-partners",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns a list of all supported exchange partners. Each partner includes a unique ID, name, and status indicating whether they are active or inactive."
+        },
+        {
+          "info": {
+            "name": "Retrieve exchange partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchange-partners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange Partner resource unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific open banking provider that integrates with Dwolla. Includes partner name, status, and creation date. Use this to verify partner availability before creating exchanges and funding sources."
+        },
+        {
+          "info": {
+            "name": "List exchanges for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchanges",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns all exchanges for your Dwolla account. Exchanges represent connections between external bank accounts and your account through open banking partners. Includes exchange status, creation date, and associated partner information."
+        },
+        {
+          "info": {
+            "name": "Create an exchange for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/exchanges",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an exchange for an account. The request body will vary based on the exchange partner.\nFor Finicity, the request body will include finicity-specific fields.\nFor MX Secure Exchange, the request body will include a token.\nFor Flinks Secure Exchange, the request body will include a token.\nFor Plaid Secure Exchange, the request body will include a token.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve exchange resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchanges/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange resource unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific exchange connection between Dwolla and an open banking partner for a customer's bank account. Includes exchange status, creation date, and links to the associated customer and exchange partner."
+        },
+        {
+          "info": {
+            "name": "List exchanges for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/exchanges",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Customer to list exchanges for"
+              }
+            ]
+          },
+          "docs": "Returns all exchanges for a specific customer. Exchanges represent connections between the customer's external bank accounts and open banking partners. Includes exchange status, creation date, and links to associated funding sources and partners."
+        },
+        {
+          "info": {
+            "name": "Create an exchange for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/exchanges",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer to create an exchange for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an exchange connection between a customer and Dwolla. Request body varies by partner (Plaid, MX, Flinks, Finicity, Checkout.com). For bank accounts, use Plaid, MX, Flinks, or Finicity to establish secure access to the customer's bank account data. For debit cards (Push to Card), use Checkout.com and pass the payment ID from Checkout.com Flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "exchange sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create customer exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/exchange-sessions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an exchange session for a customer. Use cases include:\n- **Plaid / MX**: Instant bank account verification (open banking). For faster verification as compared to traditional micro-deposits.\n- **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchange-sessions/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange session's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns details of a previously created exchange session. Response varies by partner:\n- **MX**: `_links.external-provider-session.href` (redirect URL for verification).\n- **Plaid**: `externalProviderSessionToken` (token to initialize Plaid Link).\n- **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).\n"
+        },
+        {
+          "info": {
+            "name": "Create re-authentication exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/exchanges/:id/exchange-sessions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a re-authentication exchange session to refresh a user's bank account connection when their existing authorization is no longer valid. Required when receiving an UpdateCredentials error during bank balance checks or when user re-authentication is needed."
+        },
+        {
+          "info": {
+            "name": "List available exchange connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/available-exchange-connections",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "client tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a client token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/client-tokens",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a client token for secure authentication within Dwolla Drop-in components. Requires a granular permission action and a Customer link to define what operations the end user can perform within the component. Returns a short-lived token for configuring client-side Drop-in components including customer creation, verification, funding source management, and payment processing. Essential for implementing secure, embeddable UI components without exposing application credentials to the frontend."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

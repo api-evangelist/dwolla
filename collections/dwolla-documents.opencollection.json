@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Documents",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all identity verification documents submitted for a customer. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Create a document for customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "customer unique identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an identity verification document for a customer using multipart form-data. Required when a customer has \"document\" status during the verification process."
+        },
+        {
+          "info": {
+            "name": "List documents for beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/beneficial-owners/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all identity verification documents submitted for a beneficial owner. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Create a document for beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/beneficial-owners/:id/documents",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "beneficial owner unique identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has \"document\" status during the business verification process."
+        },
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/documents/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific identity verification document, including its status, type, and verification results. Used to track document submission and verification progress during the business verification process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

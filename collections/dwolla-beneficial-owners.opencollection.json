@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Beneficial Owners",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "beneficial owners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customer beneficial owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-owners",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns all beneficial owners associated with a business verified customer. Beneficial owners are individuals who directly or indirectly own 25% or more of the company's equity. Includes personal information, verification status, and address details for each owner."
+        },
+        {
+          "info": {
+            "name": "Create customer beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-owners",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer ID for which to create a Beneficial Owner"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new beneficial owner for a business verified customer. Beneficial owners are individuals who own 25% or more of the company's equity. Requires personal information, address, and SSN or passport for identity verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific beneficial owner, including personal information, address, and verification status. The verification status indicates the owner's identity verification progress and affects the business customer's transaction capabilities."
+        },
+        {
+          "info": {
+            "name": "Update beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a beneficial owner's information to retry verification when their status is \"incomplete\". Only beneficial owners with incomplete verification status can be updated. Used to correct information that caused initial verification to fail."
+        },
+        {
+          "info": {
+            "name": "Remove beneficial owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dwolla.com/beneficial-owners/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Beneficial owner unique identifier"
+              }
+            ]
+          },
+          "docs": "Permanently removes a beneficial owner from a business customer. This action is irreversible and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change the customer's certification status to \"recertify\"."
+        },
+        {
+          "info": {
+            "name": "Retrieve beneficial ownership status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-ownership",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns the certification status of beneficial ownership for a business verified customer. Status indicates whether beneficial owner information has been certified and affects the customer's ability to send funds. Possible values include uncertified, certified, and recertify."
+        },
+        {
+          "info": {
+            "name": "Certify beneficial ownership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/beneficial-ownership",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the beneficial ownership certification status to \"certified\", confirming that all beneficial owner information is accurate and complete. This action enables the business customer to send funds and is required to complete the verification process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

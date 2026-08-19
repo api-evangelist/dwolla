@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Kba",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "kba",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate a KBA session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/kba",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Customer for initiating a KBA session"
+              }
+            ]
+          },
+          "docs": "Creates a new KBA (Knowledge-Based Authentication) session for a personal Verified Customer. Returns a KBA identifier that represents the session and is used to retrieve authentication questions for customer verification."
+        },
+        {
+          "info": {
+            "name": "Retrieve KBA Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/kba/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the KBA session to retrieve questions for"
+              }
+            ]
+          },
+          "docs": "Returns the KBA questions for a specific KBA session. The questions are used to verify the customer's identity during the KBA process."
+        },
+        {
+          "info": {
+            "name": "Verify KBA Questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/kba/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the KBA session to verify questions for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

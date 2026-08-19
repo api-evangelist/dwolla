@@ -1,0 +1,1445 @@
+{
+  "item": [
+    {
+      "id": "9d7f8938-87af-4976-9ea5-504859a5cd48",
+      "name": "transfers",
+      "description": {
+        "content": "Operations related to Transfers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8cef2a59-7934-442f-a7b8-46c0235b8523",
+          "name": "Initiate a transfer",
+          "request": {
+            "name": "Initiate a transfer",
+            "description": {
+              "content": "Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), Push-to-Debit Card, and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": \"<object>\",\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"<string>\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"<string>\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c027604b-8c24-4a23-9e7b-18cbdab7ac9a",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"metadata\": \"<object>\",\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The location of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5123c3fd-63df-4639-ba4a-48c2cc4e27cc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"metadata\": \"<object>\",\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"ValidationError\",\n  \"message\": \"Validation error(s) present. See embedded errors list for more details.\",\n  \"_embedded\": {\n    \"errors\": [\n      {\n        \"code\": \"Invalid\",\n        \"message\": \"Funding source not found.\",\n        \"path\": \"/_links/source/href\",\n        \"_links\": {}\n      },\n      {\n        \"code\": \"Invalid\",\n        \"message\": \"Funding source not found.\",\n        \"path\": \"/_links/source/href\",\n        \"_links\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9244b501-6b15-4f01-85b9-7d88103946f2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"metadata\": \"<object>\",\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Invalid Funds Flow: this operation requires the funds flow 'Facilitate' to be enabled\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26454adc-263c-467b-9a30-39ab9de6e176",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    },\n    \"destination\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"amount\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"metadata\": \"<object>\",\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    },\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"clearing\": {\n    \"source\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"correlationId\": \"<string>\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"TooManyRequests\",\n  \"message\": \"Concurrent transfers with the given funding source are not supported. Please wait a short period of time before re-attempting the request.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ffd6ee9-5401-4809-abed-eba9ea7be0cd",
+          "name": "Retrieve a transfer",
+          "request": {
+            "name": "Retrieve a transfer",
+            "description": {
+              "content": "Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of transfer to be retrieved"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bd8b902-4c4f-4466-bcf1-9dfb2318b444",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer to be retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    },\n    \"key_1\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"id\": \"15c6bcce-46f7-e811-8112-e8dd3bececa8\",\n  \"status\": \"pending\",\n  \"amount\": {\n    \"value\": \"42.00\",\n    \"currency\": \"USD\"\n  },\n  \"created\": \"2018-12-03T22:00:22.970Z\",\n  \"clearing\": {\n    \"source\": \"standard\",\n    \"destination\": \"same-day\"\n  },\n  \"metadata\": {\n    \"paymentId\": \"12345678\",\n    \"note\": \"Payment for completed work Dec. 1\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"ABC123_AddendaValue\",\n          \"ABC123_AddendaValue\"\n        ]\n      },\n      \"beneficiaryName\": \"John Doe\",\n      \"companyEntryDescription\": \"PAYMENT\",\n      \"companyId\": \"1234567890\",\n      \"companyName\": \"Acme Corporation\",\n      \"effectiveDate\": \"2021-12-01\",\n      \"postingData\": \"Acme Corporation:Payment Reference:John Doe\",\n      \"routingNumber\": \"222222226\",\n      \"traceId\": \"222222225926346\"\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\n          \"ZYX987_AddendaValue\",\n          \"ZYX987_AddendaValue\"\n        ]\n      },\n      \"beneficiaryName\": \"Jane Smith\",\n      \"companyEntryDescription\": \"PAYMENT\",\n      \"companyId\": \"1234567890\",\n      \"companyName\": \"Acme Corporation\",\n      \"effectiveDate\": \"2021-12-01\",\n      \"postingData\": \"Acme Corporation:Payment Reference:Jane Smith\",\n      \"routingNumber\": \"222222226\",\n      \"traceId\": \"222222225926346\"\n    }\n  },\n  \"rtpDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\",\n      \"networkId\": \"20210617021214273T1BG27487110796028\",\n      \"endToEndReferenceId\": \"E2E-RTP-20210617-001\"\n    }\n  },\n  \"fedNowDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\",\n      \"networkId\": \"20240115123456789FEDNOW123456\",\n      \"endToEndReferenceId\": \"E2E-FEDNOW-20240115-001\"\n    }\n  },\n  \"correlationId\": \"8a2cdc8d-629d-4a24-98ac-40b735229fe2\",\n  \"processingChannel\": {\n    \"destination\": \"real-time-payments\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cc5dc9b-ace9-47dd-86c6-951b404553da",
+              "name": "404 Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer to be retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00ad78ad-7497-4082-9328-ba99979e816e",
+          "name": "Cancel a transfer",
+          "request": {
+            "name": "Cancel a transfer",
+            "description": {
+              "content": "Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of transfer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbdc65dd-b38b-4d9b-ab74-e40c03b832c8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ed5351d-84a1-4bb4-9f40-283fa2a2ea43",
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"The request body contains bad syntax or is incomplete.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c438648-449e-44a6-83d6-a30b49b1a49f",
+              "name": "404 Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d48addbd-da2f-4cb2-a0b6-ef361daae388",
+          "name": "List and search transfers for a customer",
+          "request": {
+            "name": "List and search transfers for a customer",
+            "description": {
+              "content": "Retrieve and search transfers for a specific Customer with comprehensive filtering and pagination support. Supports searching by customer details (name, email, business name), amount ranges, date ranges, transfer status, and correlation IDs for enhanced transaction discovery. Returns paginated transfer results including status, amounts, metadata, and links to source and destination funding sources. Use this endpoint for transaction history analysis and reconciliation purposes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id",
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`"
+                },
+                {
+                  "disabled": false,
+                  "key": "startAmount",
+                  "value": "<string>",
+                  "description": "Only include transactions with an amount equal to or greater than `startAmount`"
+                },
+                {
+                  "disabled": false,
+                  "key": "endAmount",
+                  "value": "<string>",
+                  "description": "Only include transactions with an amount equal to or less than `endAmount`"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`"
+                },
+                {
+                  "disabled": false,
+                  "key": "correlationId",
+                  "value": "<string>",
+                  "description": "A string value to search on if `correlationId` was specified for a transaction"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>",
+                  "description": "Number of search results to return. Defaults to 25"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<string>",
+                  "description": "Number of search results to skip. Use for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Customer's unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f37ad0a8-ff94-44b8-8bb7-47936a7c3418",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAmount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endAmount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    },\n    \"key_1\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"_embedded\": {\n    \"transfers\": [\n      {\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_1\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_2\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          }\n        },\n        \"id\": \"15c6bcce-46f7-e811-8112-e8dd3bececa8\",\n        \"status\": \"pending\",\n        \"amount\": {\n          \"value\": \"42.00\",\n          \"currency\": \"USD\"\n        },\n        \"created\": \"2018-12-03T22:00:22.970Z\",\n        \"clearing\": {\n          \"source\": \"standard\",\n          \"destination\": \"same-day\"\n        },\n        \"metadata\": {\n          \"paymentId\": \"12345678\",\n          \"note\": \"Payment for completed work Dec. 1\"\n        },\n        \"achDetails\": {\n          \"source\": {\n            \"addenda\": {\n              \"values\": [\n                \"ABC123_AddendaValue\",\n                \"ABC123_AddendaValue\"\n              ]\n            },\n            \"beneficiaryName\": \"John Doe\",\n            \"companyEntryDescription\": \"PAYMENT\",\n            \"companyId\": \"1234567890\",\n            \"companyName\": \"Acme Corporation\",\n            \"effectiveDate\": \"2021-12-01\",\n            \"postingData\": \"Acme Corporation:Payment Reference:John Doe\",\n            \"routingNumber\": \"222222226\",\n            \"traceId\": \"222222225926346\"\n          },\n          \"destination\": {\n            \"addenda\": {\n              \"values\": [\n                \"ZYX987_AddendaValue\",\n                \"ZYX987_AddendaValue\"\n              ]\n            },\n            \"beneficiaryName\": \"Jane Smith\",\n            \"companyEntryDescription\": \"PAYMENT\",\n            \"companyId\": \"1234567890\",\n            \"companyName\": \"Acme Corporation\",\n            \"effectiveDate\": \"2021-12-01\",\n            \"postingData\": \"Acme Corporation:Payment Reference:Jane Smith\",\n            \"routingNumber\": \"222222226\",\n            \"traceId\": \"222222225926346\"\n          }\n        },\n        \"rtpDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"ABC_123 Remittance Data\",\n            \"networkId\": \"20210617021214273T1BG27487110796028\",\n            \"endToEndReferenceId\": \"E2E-RTP-20210617-001\"\n          }\n        },\n        \"fedNowDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"ABC_123 Remittance Data\",\n            \"networkId\": \"20240115123456789FEDNOW123456\",\n            \"endToEndReferenceId\": \"E2E-FEDNOW-20240115-001\"\n          }\n        },\n        \"correlationId\": \"8a2cdc8d-629d-4a24-98ac-40b735229fe2\",\n        \"processingChannel\": {\n          \"destination\": \"real-time-payments\"\n        }\n      },\n      {\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_1\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          }\n        },\n        \"id\": \"15c6bcce-46f7-e811-8112-e8dd3bececa8\",\n        \"status\": \"pending\",\n        \"amount\": {\n          \"value\": \"42.00\",\n          \"currency\": \"USD\"\n        },\n        \"created\": \"2018-12-03T22:00:22.970Z\",\n        \"clearing\": {\n          \"source\": \"standard\",\n          \"destination\": \"same-day\"\n        },\n        \"metadata\": {\n          \"paymentId\": \"12345678\",\n          \"note\": \"Payment for completed work Dec. 1\"\n        },\n        \"achDetails\": {\n          \"source\": {\n            \"addenda\": {\n              \"values\": [\n                \"ABC123_AddendaValue\",\n                \"ABC123_AddendaValue\"\n              ]\n            },\n            \"beneficiaryName\": \"John Doe\",\n            \"companyEntryDescription\": \"PAYMENT\",\n            \"companyId\": \"1234567890\",\n            \"companyName\": \"Acme Corporation\",\n            \"effectiveDate\": \"2021-12-01\",\n            \"postingData\": \"Acme Corporation:Payment Reference:John Doe\",\n            \"routingNumber\": \"222222226\",\n            \"traceId\": \"222222225926346\"\n          },\n          \"destination\": {\n            \"addenda\": {\n              \"values\": [\n                \"ZYX987_AddendaValue\",\n                \"ZYX987_AddendaValue\"\n              ]\n            },\n            \"beneficiaryName\": \"Jane Smith\",\n            \"companyEntryDescription\": \"PAYMENT\",\n            \"companyId\": \"1234567890\",\n            \"companyName\": \"Acme Corporation\",\n            \"effectiveDate\": \"2021-12-01\",\n            \"postingData\": \"Acme Corporation:Payment Reference:Jane Smith\",\n            \"routingNumber\": \"222222226\",\n            \"traceId\": \"222222225926346\"\n          }\n        },\n        \"rtpDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"ABC_123 Remittance Data\",\n            \"networkId\": \"20210617021214273T1BG27487110796028\",\n            \"endToEndReferenceId\": \"E2E-RTP-20210617-001\"\n          }\n        },\n        \"fedNowDetails\": {\n          \"destination\": {\n            \"remittanceData\": \"ABC_123 Remittance Data\",\n            \"networkId\": \"20240115123456789FEDNOW123456\",\n            \"endToEndReferenceId\": \"E2E-FEDNOW-20240115-001\"\n          }\n        },\n        \"correlationId\": \"8a2cdc8d-629d-4a24-98ac-40b735229fe2\",\n        \"processingChannel\": {\n          \"destination\": \"real-time-payments\"\n        }\n      }\n    ]\n  },\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f2d0bc9-1822-4392-b0f4-617170e8d875",
+              "name": "404 Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAmount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endAmount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da34cf66-b87e-45c7-b34f-50e1d812f1c9",
+          "name": "List fees for a transfer",
+          "request": {
+            "name": "List fees for a transfer",
+            "description": {
+              "content": "Retrieve detailed fee information for a specific transfer by its unique identifier. Returns the total number of fees and individual fee transaction details including amounts, status, and links to source and destination accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":id",
+                "fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of transfer to retrieve fees for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0005d80-0c88-42d5-b8e5-a0ba89ba1cf0",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer to retrieve fees for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"_links\": {\n        \"key_0\": {\n          \"href\": \"https://api.dwolla.com\",\n          \"type\": \"application/vnd.dwolla.v1.hal+json\",\n          \"resource-type\": \"resource-type\"\n        },\n        \"key_1\": {\n          \"href\": \"https://api.dwolla.com\",\n          \"type\": \"application/vnd.dwolla.v1.hal+json\",\n          \"resource-type\": \"resource-type\"\n        }\n      },\n      \"id\": \"416a2857-c887-4cca-bd02-8c3f75c4bb0e\",\n      \"status\": \"pending\",\n      \"amount\": {\n        \"value\": \"2.00\",\n        \"currency\": \"USD\"\n      },\n      \"created\": \"2016-02-22T20:46:38.777Z\"\n    },\n    {\n      \"_links\": {\n        \"key_0\": {\n          \"href\": \"https://api.dwolla.com\",\n          \"type\": \"application/vnd.dwolla.v1.hal+json\",\n          \"resource-type\": \"resource-type\"\n        },\n        \"key_1\": {\n          \"href\": \"https://api.dwolla.com\",\n          \"type\": \"application/vnd.dwolla.v1.hal+json\",\n          \"resource-type\": \"resource-type\"\n        }\n      },\n      \"id\": \"416a2857-c887-4cca-bd02-8c3f75c4bb0e\",\n      \"status\": \"pending\",\n      \"amount\": {\n        \"value\": \"2.00\",\n        \"currency\": \"USD\"\n      },\n      \"created\": \"2016-02-22T20:46:38.777Z\"\n    }\n  ],\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1868c6c2-e9e7-4f3a-b5b0-d15f3e97cb02",
+              "name": "404 Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of transfer to retrieve fees for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7e66d78-852d-4603-b230-3180fd173d06",
+          "name": "Retrieve a transfer failure reason",
+          "request": {
+            "name": "Retrieve a transfer failure reason",
+            "description": {
+              "content": "Retrieve detailed failure information for a failed bank or VAN transfer including the ACH return code, description, and explanation. Returns failure details with links to the failed funding source and associated Customer for comprehensive error analysis. Available only for transfers with failure status and accessed through the failure link from transfer retrieval. Critical for troubleshooting payment failures and understanding ACH return reasons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":id",
+                "failure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Transfer unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53906751-9ad4-4b70-afa5-9cee77b6610c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id",
+                    "failure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Transfer unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"R03\",\n  \"description\": \"No Account/Unable to Locate Account\",\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"explanation\": \"The account number does not correspond to the individual identified in the entry or a valid account.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "740bc71c-7b92-4751-af31-6623d4bbe2ed",
+              "name": "403 Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id",
+                    "failure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Transfer unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"The supplied credentials are not authorized for this resource.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0cdf81-941b-446a-8cca-6fd8642ab1be",
+              "name": "404 Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":id",
+                    "failure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Transfer unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dwolla.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d015479d-6906-44f7-bc1f-c9b8ddef1aea",
+    "name": "Dwolla API - Transfers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+      "type": "text/plain"
+    }
+  }
+}

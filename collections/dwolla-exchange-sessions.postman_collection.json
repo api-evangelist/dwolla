@@ -1,0 +1,1082 @@
+{
+  "item": [
+    {
+      "id": "f78e29ed-7b91-4098-8da8-c865b1add8bf",
+      "name": "exchange sessions",
+      "description": {
+        "content": "Operations related to Exchange Sessions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd02f768-3c00-4e6d-89e8-118e168bdc3d",
+          "name": "Create customer exchange session",
+          "request": {
+            "name": "Create customer exchange session",
+            "description": {
+              "content": "Creates an exchange session for a customer. Use cases include:\n- **Plaid / MX**: Instant bank account verification (open banking). For faster verification as compared to traditional micro-deposits.\n- **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id",
+                "exchange-sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Customer's unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"<uri>\"\n    },\n    \"redirect-url\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7590a19d-1b81-46b9-a3ee-f0f74592a86d",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4\"\n    },\n    \"redirect-url\": {\n      \"href\": \"https://example.com/app123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The location of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9947aebe-554d-4a09-a73b-d6a5c07b5c3a",
+              "name": "validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4\"\n    },\n    \"redirect-url\": {\n      \"href\": \"https://example.com/app123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"ValidationError\",\n  \"message\": \"/_links/exchange-partner/href is invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1b5aa51-c703-400e-ba41-0fce51612717",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4\"\n    },\n    \"redirect-url\": {\n      \"href\": \"https://example.com/app123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"InvalidScope\",\n  \"message\": \"Missing or invalid scopes for requested endpoint\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2150673a-924d-409b-8194-288071e4afb9",
+              "name": "forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4\"\n    },\n    \"redirect-url\": {\n      \"href\": \"https://example.com/app123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"forbidden\",\n  \"message\": \"The exchange partner specified does not support this product\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "532a44e9-a4cb-4aad-a808-893d37edc5f0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4\"\n    },\n    \"redirect-url\": {\n      \"href\": \"https://example.com/app123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9d708eb-09b1-4a57-beaa-d60bab9a362e",
+          "name": "Retrieve exchange session",
+          "request": {
+            "name": "Retrieve exchange session",
+            "description": {
+              "content": "Returns details of a previously created exchange session. Response varies by partner:\n- **MX**: `_links.external-provider-session.href` (redirect URL for verification).\n- **Plaid**: `externalProviderSessionToken` (token to initialize Plaid Link).\n- **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange-sessions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Exchange session's unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0e76134-3bef-42ef-bbcf-648fdafb2918",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange session's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"created\": \"2024-03-25T17:13:38.430Z\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"exchange-sessions\"\n    },\n    \"exchange-partner\": {\n      \"href\": \"https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"exchange-partner\"\n    },\n    \"external-provider-session\": {\n      \"href\": \"https://www.mx.com/connect/lAfkc7m897s3t1ks9mmwyj4ry7Zq0xql4grzAg1kz77x7c9jrwls1t22w6xt8d2lsxx9zpqv30js3wswfdwcrpAsqgbAfkqwpksp7c2chsx167xy90Asfc67dkj9y48y8p142xw3yp4x5l9t9gkk6m3yk5vwsvyq2qq7w9trszxwdl14lmkg7l6949bn5n41chdkbnxycy40n9b6fkbdwl6qt5wl107k1x8srvlkpz325p412x9tkyA5clf39109lsfrgz2lkgsvntqf7l0zzwb5hl658gdjbxwhb52krwybnbdAqfq69cdy54l05jkvfwyf01q89x48jtgtx290lzjdfcty1lwb8d648wns/eyJ1aV9tZXNzYWdlX3ZlcnNpb24iOjQsInVpX21lc3NhZ2Vfd2Vidmlld191cmxfc2NoZW1lIjoibXgiLCJtb2RlIjoidmVyaWZpY2F0aW9uIn0%3D\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"text/html\"\n    }\n  },\n  \"externalProviderSessionToken\": \"link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f\",\n  \"externalProviderSessionData\": {\n    \"id\": \"ps_39vhHjFxZuJRKOw5Hexbnv39fC7\",\n    \"payment_session_secret\": \"pss_2400dd88-171d-4a9c-bebf-e06b56d59bb6\",\n    \"payment_session_token\": \"YmFzZTY0:eyJpZCI6InBzXzM5dmhIakZ4WnVKUktPdzVIZXhibnYzOWZDNyIs...\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0be28b11-d49e-4d6e-b6ba-7dcf04d60429",
+              "name": "forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange session's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"forbidden\",\n  \"message\": \"Not authorized to retrieve exchange session.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76adae88-9013-4bc5-9cb7-25cbc17f3d36",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange session's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"notFound\",\n  \"message\": \"Exchange session not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ce926db-867b-4806-847d-c4c2c2557481",
+          "name": "Create re-authentication exchange session",
+          "request": {
+            "name": "Create re-authentication exchange session",
+            "description": {
+              "content": "Creates a re-authentication exchange session to refresh a user's bank account connection when their existing authorization is no longer valid. Required when receiving an UpdateCredentials error during bank balance checks or when user re-authentication is needed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchanges",
+                ":id",
+                "exchange-sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Exchange's unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbdc56ac-105e-4cb0-87af-85f6ab4f5b9f",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The location of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a25deb41-5c77-427d-aafa-bbfbf4830e31",
+              "name": "validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"ValidationError\",\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f1456c1-5c0c-43f3-a806-0f1394c74867",
+              "name": "forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchanges",
+                    ":id",
+                    "exchange-sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Exchange's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"forbidden\",\n  \"message\": \"Not authorized to create re-authentication exchange session.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "198576e5-2558-4512-a13a-850030f45dbf",
+          "name": "List available exchange connections",
+          "request": {
+            "name": "List available exchange connections",
+            "description": {
+              "content": "Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id",
+                "available-exchange-connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Customer's unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8add3187-61d9-48d4-bc28-d4d4949c1189",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "available-exchange-connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694/available-exchange-connections\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"customer\"\n    },\n    \"customers\": {\n      \"href\": \"https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"customer\"\n    }\n  },\n  \"_embedded\": {\n    \"available-exchange-connections\": [\n      {\n        \"availableConnectionToken\": \"eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=\",\n        \"name\": \"XYZ Checking\"\n      },\n      {\n        \"availableConnectionToken\": \"eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=\",\n        \"name\": \"XYZ Checking\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd96795a-b60e-4159-8e29-143425c3f9cd",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "available-exchange-connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer's unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"The requested resource was not found. Check Customer ID.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dwolla.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f48ceca1-5230-4e17-aedc-f96d1d88c802",
+    "name": "Dwolla API - Exchange Sessions",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+      "type": "text/plain"
+    }
+  }
+}

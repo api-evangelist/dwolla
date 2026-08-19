@@ -1,0 +1,374 @@
+{
+  "item": [
+    {
+      "id": "854b306e-e773-4423-aeaf-632c830b4a7d",
+      "name": "sandbox simulations",
+      "description": {
+        "content": "Sandbox-only operations for simulating processing of bank transfers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c1a4b57-eb5b-4eaf-b500-5ccc96feeb30",
+          "name": "Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)",
+          "request": {
+            "name": "Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)",
+            "description": {
+              "content": "Sandbox-only endpoint with three modes:\n\n**Simulate bank transfer processing** — Omit the body or send an empty JSON object. Processes or fails\nthe last 500 bank transfers on the authorized application or Sandbox account (and initiated micro-deposits).\nIf webhooks are configured, events are delivered. If a bank-to-bank transaction involves two users,\ncall this twice to process debit and credit sides. Returns **200** with a HAL document including `total`.\n\n**Simulate VAN (virtual) transfers** — Send a JSON body with `type` set to `virtual` and a `transfers`\narray (up to 10 items). External transfers are created and processed immediately. Returns **202 Accepted**.\n\n**Simulate verification directives** — For a business Verified Customer in **`retry`** or **`document`**\nstatus, send `type`: `customer-verification`, `_links.customer.href` pointing at that customer, and\n`errorCode` set to one of: `PersonalIDRequired`, `POBoxNotAllowed`, `AddressNotAssociatedWithBusiness`,\n`EINDocumentRequired`. Returns **200** with HAL `_links.self` and `errorCode`. Then **GET** the Customer;\nthe same code appears in `_embedded.errors` for end-to-end testing.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandbox-simulations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"<uri>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9848517e-4386-4020-9f67-a615c7c6b5bd",
+              "name": "Success. **Bank transfer processing** returns HAL with `total`. **Customer verification directives**\nreturn HAL `_links.self` and `errorCode` (retrieve the Customer for `_embedded.errors`).\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api-sandbox.dwolla.com/sandbox-simulations\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"sandbox-simulation\"\n    }\n  },\n  \"total\": 8\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdaa9f52-6984-4340-a459-eace3238bb4b",
+              "name": "Accepted. Virtual (VAN) transfer simulation: requested transfers were accepted for immediate\nprocessing in Sandbox.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3ef0402-1cf2-41aa-811c-f0a0c9163ded",
+              "name": "Bad Request.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"The request body contains bad syntax or is incomplete.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50f39f9f-7dc5-4609-a03a-06ff6fc682e3",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"InvalidAccessToken\",\n  \"message\": \"Invalid access token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0890ad38-b02c-4f14-a809-4902be7f069e",
+              "name": "forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandbox-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"string\",\n  \"transfers\": [\n    {\n      \"_link\": {\n        \"destination\": {\n          \"href\": \"https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"forbidden\",\n  \"message\": \"Not authorized to simulate transfer processing.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dwolla.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e28008e0-8ead-49e3-a899-9b85051129d3",
+    "name": "Dwolla API - Sandbox Simulations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Exchange Sessions",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "exchange sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create customer exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/customers/:id/exchange-sessions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an exchange session for a customer. Use cases include:\n- **Plaid / MX**: Instant bank account verification (open banking). For faster verification as compared to traditional micro-deposits.\n- **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/exchange-sessions/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange session's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns details of a previously created exchange session. Response varies by partner:\n- **MX**: `_links.external-provider-session.href` (redirect URL for verification).\n- **Plaid**: `externalProviderSessionToken` (token to initialize Plaid Link).\n- **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).\n"
+        },
+        {
+          "info": {
+            "name": "Create re-authentication exchange session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/exchanges/:id/exchange-sessions",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Exchange's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a re-authentication exchange session to refresh a user's bank account connection when their existing authorization is no longer valid. Required when receiving an UpdateCredentials error during bank balance checks or when user re-authentication is needed."
+        },
+        {
+          "info": {
+            "name": "List available exchange connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/customers/:id/available-exchange-connections",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

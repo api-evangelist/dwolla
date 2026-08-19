@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Accounts",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns basic account information for your authorized Main Dwolla Account, including account ID, name, and links to related resources such as funding sources, transfers, and customers."
+        },
+        {
+          "info": {
+            "name": "Create a funding source for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint allows you to connect a checking or savings account using either manual bank account details or an exchange resource.\n\nFor more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).\n"
+        },
+        {
+          "info": {
+            "name": "List funding sources for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/funding-sources",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "removed",
+                "value": "",
+                "type": "query",
+                "description": "Filter removed funding sources. Boolean value. Defaults to `true`"
+              }
+            ]
+          },
+          "docs": "Get a list of all funding sources associated with a specific Main Dwolla Account. This endpoint returns both bank accounts and balance funding sources, with detailed information about each funding source's status, type, and available processing channels.\n"
+        },
+        {
+          "info": {
+            "name": "List and search account transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/transfers",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A string to search on fields `firstName`, `lastName`, `email`, `businessName`, Customer ID, and Account ID"
+              },
+              {
+                "name": "startAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or greater than `startAmount`"
+              },
+              {
+                "name": "endAmount",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions with an amount equal to or less than `endAmount`"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`"
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "A string value to search on if `correlationId` was specified for a transaction"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to return. Defaults to 25"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of search results to skip. Use for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a paginated, searchable list of transfers associated with the specified Main Dwolla account. Supports advanced filtering by amount range, date range, transfer status, and correlation ID. Results are limited to 10,000 transfers per query; use date range filters for historical data beyond this limit."
+        },
+        {
+          "info": {
+            "name": "List account mass payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dwolla.com/accounts/:id/mass-payments",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "How many results to skip."
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "Correlation ID to search by."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of mass payments created by your Main Dwolla account. Results are sorted by creation date in descending order (newest first) and can be filtered by correlation ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

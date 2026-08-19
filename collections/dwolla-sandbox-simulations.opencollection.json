@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dwolla API - Sandbox Simulations",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sandbox simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dwolla.com/sandbox-simulations",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sandbox-only endpoint with three modes:\n\n**Simulate bank transfer processing** — Omit the body or send an empty JSON object. Processes or fails\nthe last 500 bank transfers on the authorized application or Sandbox account (and initiated micro-deposits).\nIf webhooks are configured, events are delivered. If a bank-to-bank transaction involves two users,\ncall this twice to process debit and credit sides. Returns **200** with a HAL document including `total`.\n\n**Simulate VAN (virtual) transfers** — S"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

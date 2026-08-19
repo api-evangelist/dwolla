@@ -1,0 +1,1607 @@
+{
+  "item": [
+    {
+      "id": "29c7fbe8-17d2-44f3-98d1-c3f1b17b0d76",
+      "name": "mass payments",
+      "description": {
+        "content": "Operations related to Mass Payments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85420c54-af17-45e4-9ceb-b2dca26ce807",
+          "name": "Initiate a mass payment",
+          "request": {
+            "name": "Initiate a mass payment",
+            "description": {
+              "content": "Create a mass payment containing up to 5,000 individual payment items from a Dwolla Main Account or Verified Customer funding source. Supports optional metadata, correlation IDs for traceability, deferred processing, and expedited transfer options including same-day ACH clearing. Returns the location of the created mass payment resource with a unique identifier for tracking and management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mass-payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"<string>\"\n    }\n  },\n  \"items\": [\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"<string>\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"<string>\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"<string>\"\n    },\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"<string>\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"<string>\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  },\n  \"clearing\": {\n    \"source\": \"<string>\"\n  },\n  \"metadata\": \"<object>\",\n  \"correlationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c8e5f1f-dc2e-4a46-9ea2-a1ec58b65479",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\n    }\n  },\n  \"items\": [\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    },\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    }\n  ],\n  \"status\": \"deferred\",\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"ZYX987_AddendaValue\",\n          \"ZYX987_AddendaValue\"\n        ]\n      }\n    }\n  },\n  \"clearing\": {\n    \"source\": \"next-available\"\n  },\n  \"metadata\": \"<object>\",\n  \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The location of the created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98b50da7-6aa1-4177-8fd1-e584ca970952",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\n    }\n  },\n  \"items\": [\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    },\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    }\n  ],\n  \"status\": \"deferred\",\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"ZYX987_AddendaValue\",\n          \"ZYX987_AddendaValue\"\n        ]\n      }\n    }\n  },\n  \"clearing\": {\n    \"source\": \"next-available\"\n  },\n  \"metadata\": \"<object>\",\n  \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"The request body contains bad syntax or is incomplete.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91de8029-b4df-40e1-8fa0-186ceac27010",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "19051a62-3403-11e6-ac61-9e71128cae77",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\n    }\n  },\n  \"items\": [\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    },\n    {\n      \"_links\": {\n        \"destination\": {\n          \"href\": \"https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"5.00\",\n        \"currency\": \"USD\"\n      },\n      \"processingChannel\": {\n        \"destination\": \"real-time-payments\"\n      },\n      \"metadata\": \"<object>\",\n      \"clearing\": {\n        \"destination\": \"next-available\"\n      },\n      \"achDetails\": {\n        \"destination\": {\n          \"addenda\": {\n            \"values\": [\n              \"XYZ987_AddendaValue\",\n              \"XYZ987_AddendaValue\"\n            ]\n          }\n        }\n      },\n      \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n    }\n  ],\n  \"status\": \"deferred\",\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\n          \"ZYX987_AddendaValue\",\n          \"ZYX987_AddendaValue\"\n        ]\n      }\n    }\n  },\n  \"clearing\": {\n    \"source\": \"next-available\"\n  },\n  \"metadata\": \"<object>\",\n  \"correlationId\": \"ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Not authorized to create mass payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d67eee20-a688-473f-a9f0-0143944c39f4",
+          "name": "Retrieve a mass payment",
+          "request": {
+            "name": "Retrieve a mass payment",
+            "description": {
+              "content": "Retrieve detailed information for a mass payment by its unique identifier. Returns the current processing status (pending, processing, or complete), creation date, metadata, and links to the source funding source and payment items. Use this endpoint to monitor mass payment processing progress and determine when to check individual item results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mass-payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Mass payment unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11f4ebcf-5a03-4694-a05b-6dd9386a2c41",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"id\": \"11ac4051-7b76-44fc-87ab-ae23012393f0\",\n  \"status\": \"complete\",\n  \"created\": \"2022-01-20T17:41:41.000Z\",\n  \"metaData\": {},\n  \"total\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"totalFees\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"correlationId\": \"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb91bad1-463b-4767-9b18-da8d404e8236",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Not authorized to retrieve mass payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5607a48-2474-445b-8108-4addf450b382",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"Mass payment not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8bcdc53-3e09-4c33-8aa4-db86543da535",
+          "name": "Update a mass payment",
+          "request": {
+            "name": "Update a mass payment",
+            "description": {
+              "content": "Update the status of a deferred mass payment to control its processing lifecycle. Set status to `pending` to trigger processing and begin fund transfers, or `cancelled` to permanently cancel the mass payment before processing begins. Only applies to mass payments created with deferred status. Returns the updated mass payment resource with the new status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mass-payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of mass payment to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f11ce224-267e-4d3c-88ee-235450581b53",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of mass payment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"pending\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"id\": \"11ac4051-7b76-44fc-87ab-ae23012393f0\",\n  \"status\": \"complete\",\n  \"created\": \"2022-01-20T17:41:41.000Z\",\n  \"metaData\": {},\n  \"total\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"totalFees\": {\n    \"value\": \"5.00\",\n    \"currency\": \"USD\"\n  },\n  \"correlationId\": \"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ede466c6-a4bb-4b0c-a062-cd8d3499314f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of mass payment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"pending\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"The request body contains bad syntax or is incomplete.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "797356d5-8c61-4b13-a8d6-ecd70327826b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of mass payment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"pending\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Not authorized to update mass payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "409384a7-eddf-46f9-86f7-124f2af1172b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of mass payment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"pending\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"Mass payment not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77da8f9e-93d8-43cd-8300-4e37330cc7ab",
+          "name": "List items for a mass payment",
+          "request": {
+            "name": "List items for a mass payment",
+            "description": {
+              "content": "Retrieve individual payment items within a mass payment with optional status filtering and pagination support. Each item represents a distinct payment with status indicators (failed, pending, success) showing whether a transfer was successfully created. Returns paginated item details including amount, destination, metadata, and error information for failed items. Supports filtering by status and standard pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mass-payments",
+                ":id",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>",
+                  "description": "How many results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<string>",
+                  "description": "How many results to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by item status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Mass payment unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df8c3111-df07-4a57-81b3-f48e3c90e765",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items\"\n    },\n    \"first\": {\n      \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0\"\n    },\n    \"last\": {\n      \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0\"\n    }\n  },\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388\"\n          },\n          \"mass-payment\": {\n            \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563\"\n          },\n          \"destination\": {\n            \"href\": \"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd\"\n          },\n          \"transfer\": {\n            \"href\": \"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388\"\n          }\n        },\n        \"id\": \"2f845bc9-41ed-e511-80df-0aa34a9b2388\",\n        \"status\": \"success\",\n        \"amount\": {\n          \"value\": \"1.00\",\n          \"currency\": \"USD\"\n        },\n        \"metadata\": {\n          \"item1\": \"item1\"\n        },\n        \"processingChannel\": {\n          \"destination\": \"real-time-payments\"\n        }\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388\"\n          },\n          \"mass-payment\": {\n            \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563\"\n          },\n          \"destination\": {\n            \"href\": \"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd\"\n          },\n          \"transfer\": {\n            \"href\": \"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388\"\n          }\n        },\n        \"id\": \"2f845bc9-41ed-e511-80df-0aa34a9b2388\",\n        \"status\": \"success\",\n        \"amount\": {\n          \"value\": \"1.00\",\n          \"currency\": \"USD\"\n        },\n        \"metadata\": {\n          \"item1\": \"item1\"\n        },\n        \"processingChannel\": {\n          \"destination\": \"real-time-payments\"\n        }\n      }\n    ]\n  },\n  \"total\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7971842-22e3-4e3b-b2c8-e52efe4155be",
+              "name": "Not authorized to list mass payment items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Not authorized to list mass payment items.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "529ed56a-af4b-4e53-a7a6-1ea2ac2e9dbe",
+              "name": "Mass payment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payments",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Mass payment unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"Mass payment not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a700f620-a3dc-45f4-8432-f3a6c80654a1",
+          "name": "Retrieve mass payment item",
+          "request": {
+            "name": "Retrieve mass payment item",
+            "description": {
+              "content": "Retrieve detailed information for a specific mass payment item by its unique identifier. Returns item status, amount, metadata, and links to the parent mass payment, associated transfer, and destination funding source. Use this endpoint to check the processing status and details of an individual item within a mass payment batch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mass-payment-items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) ID of item to be retrieved in mass payment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99d42a31-04a0-430d-97cb-12baef5d9e08",
+              "name": "success operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payment-items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of item to be retrieved in mass payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388\"\n    },\n    \"mass-payment\": {\n      \"href\": \"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563\"\n    },\n    \"destination\": {\n      \"href\": \"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd\"\n    },\n    \"transfer\": {\n      \"href\": \"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388\"\n    }\n  },\n  \"id\": \"2f845bc9-41ed-e511-80df-0aa34a9b2388\",\n  \"status\": \"success\",\n  \"amount\": {\n    \"value\": \"1.00\",\n    \"currency\": \"USD\"\n  },\n  \"metadata\": {\n    \"item1\": \"item1\"\n  },\n  \"processingChannel\": {\n    \"destination\": \"real-time-payments\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddcd35e1-184b-4581-9d43-f298b9f2b044",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payment-items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of item to be retrieved in mass payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Forbidden\",\n  \"message\": \"Not authorized to retrieve mass payment item\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9775bfe-448a-4f51-9ed8-313a789d8f9a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mass-payment-items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) ID of item to be retrieved in mass payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"Mass payment item not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d31a0f4-9e78-4dfd-8a01-9a0e32fd415c",
+          "name": "List mass payments for customer",
+          "request": {
+            "name": "List mass payments for customer",
+            "description": {
+              "content": "Retrieve all previously created mass payments for a Verified Customer account with optional correlation ID filtering and pagination support. Mass payments are returned ordered by date created with most recent appearing first. Returns paginated results including mass payment status, metadata, source funding information, and item links. Supports standard pagination parameters and correlation ID search for enhanced traceability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id",
+                "mass-payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "correlationId",
+                  "value": "<string>",
+                  "description": "A string value to search on if `correlationId` was specified for a transaction"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of search results to return. Defaults to 25"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of search results to skip. Use for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Customer ID to get mass payments for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dwolla.v1.hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dba2043-c3ca-4028-81d9-3188a0b08079",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to get mass payments for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    },\n    \"key_1\": {\n      \"href\": \"https://api.dwolla.com\",\n      \"type\": \"application/vnd.dwolla.v1.hal+json\",\n      \"resource-type\": \"resource-type\"\n    }\n  },\n  \"_embedded\": {\n    \"mass-payments\": [\n      {\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_1\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_2\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          }\n        },\n        \"id\": \"11ac4051-7b76-44fc-87ab-ae23012393f0\",\n        \"status\": \"complete\",\n        \"created\": \"2022-01-20T17:41:41.000Z\",\n        \"metaData\": {},\n        \"total\": {\n          \"value\": \"5.00\",\n          \"currency\": \"USD\"\n        },\n        \"totalFees\": {\n          \"value\": \"5.00\",\n          \"currency\": \"USD\"\n        },\n        \"correlationId\": \"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2\"\n      },\n      {\n        \"_links\": {\n          \"key_0\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          },\n          \"key_1\": {\n            \"href\": \"https://api.dwolla.com\",\n            \"type\": \"application/vnd.dwolla.v1.hal+json\",\n            \"resource-type\": \"resource-type\"\n          }\n        },\n        \"id\": \"11ac4051-7b76-44fc-87ab-ae23012393f0\",\n        \"status\": \"complete\",\n        \"created\": \"2022-01-20T17:41:41.000Z\",\n        \"metaData\": {},\n        \"total\": {\n          \"value\": \"5.00\",\n          \"currency\": \"USD\"\n        },\n        \"totalFees\": {\n          \"value\": \"5.00\",\n          \"currency\": \"USD\"\n        },\n        \"correlationId\": \"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2\"\n      }\n    ]\n  },\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f380a85a-006b-4040-ac47-52641495ce54",
+              "name": "Not authorized to list mass payments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to get mass payments for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotAuthorized\",\n  \"message\": \"Not authorized to list mass payments.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "837cde9d-49aa-4035-8b58-33d302f4e9d8",
+              "name": "Customer not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id",
+                    "mass-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to get mass payments for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The media type of the response. Must be application/vnd.dwolla.v1.hal+json",
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dwolla.v1.hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dwolla.v1.hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"Customer not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dwolla.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef0157b1-002b-45e4-aff4-ebd1c620a051",
+    "name": "Dwolla API - Mass Payments",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dwolla API Documentation\n\nContact Support:\n Name: Dwolla Developer Relations Team\n Email: api@dwolla.com",
+      "type": "text/plain"
+    }
+  }
+}
