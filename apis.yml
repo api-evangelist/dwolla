@@ -56,6 +56,26 @@ tags:
 - Money Movement
 - Instant Payments
 - Open Banking
+- Webhook
+- KYC
+- United States
+- Open Finance
+- Same-Day ACH
+- RTP
+- FedNow
+- Mass Payments
+- Drop-in Components
+- SDK
+- Sandbox
+tags_raw:
+- Payments
+- ACH
+- Bank Transfers
+- Fintech
+- Account-to-Account Payments
+- Money Movement
+- Instant Payments
+- Open Banking
 - Webhooks
 - KYC
 - United States
@@ -79,6 +99,12 @@ apis:
   baseURL: https://api.dwolla.com
   version: v2
   tags:
+  - Payments
+  - Account
+  - Funding Sources
+  - Balances
+  - United States
+  tags_raw:
   - Payments
   - Accounts
   - Funding Sources
@@ -263,6 +289,12 @@ apis:
   - Payments
   - Labels
   - Ledger
+  - Balances
+  - United States
+  tags_raw:
+  - Payments
+  - Labels
+  - Ledger
   - Balance
   - United States
   properties:
@@ -330,6 +362,12 @@ apis:
   version: v2
   tags:
   - Payments
+  - Event
+  - Webhook
+  - Notification
+  - United States
+  tags_raw:
+  - Payments
   - Events
   - Webhooks
   - Notifications
@@ -352,6 +390,12 @@ apis:
   version: v2
   tags:
   - Payments
+  - Webhook
+  - Subscription
+  - Notification
+  - United States
+  tags_raw:
+  - Payments
   - Webhooks
   - Subscriptions
   - Notifications
@@ -373,6 +417,12 @@ apis:
   baseURL: https://api.dwolla.com
   version: v2
   tags:
+  - Payments
+  - Webhook
+  - Notification
+  - Delivery
+  - United States
+  tags_raw:
   - Payments
   - Webhooks
   - Notifications
@@ -417,6 +467,11 @@ apis:
   baseURL: https://api.dwolla.com
   version: v2
   tags:
+  - Payments
+  - Authentication
+  - Security
+  - United States
+  tags_raw:
   - Payments
   - Authentication
   - OAuth 2.0
