@@ -346,6 +346,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/dwolla-capability-edges.yml
+  name: Dwolla Business Capability Map
 - type: IssueTracker
   url: https://github.com/Dwolla/dwolla-openapi/issues
 - type: License
