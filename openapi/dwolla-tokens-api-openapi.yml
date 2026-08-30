@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  title: Dwolla Tokens API
+  version: '2.0'
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+  termsOfService: https://www.dwolla.com/legal/tos/
+  description: 'Operations tagged tokens across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-tokens-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: tokens
+  description: Operations related to Application Access Tokens
+paths:
+  /token:
+    post:
+      tags:
+      - tokens
+      summary: Create an application access token
+      description: Generate an application access token using OAuth 2.0 client credentials flow for server-to-server authentication. Requires client ID and secret sent via Basic authentication header with grant_type=client_credentials in the request body. Returns a bearer access token with expiration time for authenticating API requests scoped to your application. Essential for secure API access.
+      operationId: createApplicationAccessToken
+      x-speakeasy-group: tokens
+      x-speakeasy-name-override: create
+      security:
+      - basicAuth: []
+      x-codeSamples:
+      - lang: bash
+        source: 'POST https://api-sandbox.dwolla.com/token
+
+          Authorization: Basic YkVEMGJMaEFhb0pDamplbmFPVjNwMDZSeE9Eb2pyOUNFUzN1dldXcXUyeE9RYk9GeUE6WEZ0bmJIbXR3dXEwNVI1Yk91WmVOWHlqcW9RelNSc21zUU5qelFOZUFZUlRIbmhHRGw=
+
+          Content-Type: application/x-www-form-urlencoded
+
+
+          grant_type=client_credentials
+
+          '
+      - lang: javascript
+        source: "// Using DwollaV2 - https://github.com/Dwolla/dwolla-v2-node\n// This example assumes you've already initialized the client. Reference the SDKs page for more information: https://developers.dwolla.com/sdks-tools\nclient.auth\n  .client()\n  .then(function (appToken) {\n    return appToken.get(\"/\");\n  })\n  .then(function (res) {\n    console.log(JSON.stringify(res.body));\n  });\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          // This example assumes you''ve already initialized the client. Reference the SDKs page for more information: https://developers.dwolla.com/sdks-tools
+
+          app_token = client.Auth.client()
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          // This example assumes you''ve already intialized the client. Reference the SDKs page for more information: https://developers.dwolla.com/sdks-tools
+
+          $tokensApi = new DwollaSwagger\TokensApi($apiClient);
+
+          $appToken = $tokensApi->token();
+
+
+          DwollaSwagger\Configuration::$access_token = $appToken->access_token;
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using DwollaV2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          // This example assumes you''ve already initialized the client. Reference the SDKs page for more information: https://developers.dwolla.com/sdks-tools
+
+          app_token = $dwolla.auths.client
+
+          # => #<DwollaV2::Token client=#<DwollaV2::Client id="..." secret="..." environment=:sandbox> access_token="..." expires_in=3600 scope="...">
+
+          '
+      requestBody:
+        required: true
+        description: OAuth get token request. Client credentials are sent in the Authorization header using Basic authentication.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  description: Must be set to "client_credentials"
+                  example: client_credentials
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                properties:
+                  access_token:
+                    type: string
+                    description: A new access token that is used to authenticate against resources that belong to the app itself.
+                    example: gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5
+                  token_type:
+                    type: string
+                    description: The type of token, always "Bearer"
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    description: The lifetime of the access token, in seconds. Default is 3600.
+                    example: 3599
+        '401':
+          description: Unauthorized
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+components:
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}
+x-refined-from:
+- dwolla-openapi.yml
+- dwolla-tokens-openapi.yml

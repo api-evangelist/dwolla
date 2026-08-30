@@ -1,0 +1,473 @@
+openapi: 3.2.0
+info:
+  title: Dwolla Kba API
+  version: '2.0'
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+  termsOfService: https://www.dwolla.com/legal/tos/
+  description: 'Operations tagged kba across 2 of this provider''s published API definitions: dwolla-kba-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: kba
+  description: Operations related to Knowledge-Based Authentication
+paths:
+  /customers/{id}/kba:
+    post:
+      tags:
+      - kba
+      summary: Initiate a KBA session
+      description: Creates a new KBA (Knowledge-Based Authentication) session for a personal Verified Customer. Returns a KBA identifier that represents the session and is used to retrieve authentication questions for customer verification.
+      operationId: initiateKbaForCustomer
+      x-speakeasy-group: customers.kba
+      x-speakeasy-name-override: initiate
+      x-codeSamples:
+      - lang: bash
+        source: 'POST https://api.dwolla.com/customers/33aa88b1-97df-424a-9043-d5f85809858b/kba
+
+          Authorization: Bearer cRahPzURfaIrTKL18tmslWPqKdzkLeYJm0oB1hGJ1vMPArft1v
+
+          Content-Type: application/json
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl =\n  \"https://api-sandbox.dwolla.com/customers/61a74e62-e27d-46f1-9fa6-a8e57226bb3e\";\n\ndwolla.post(`${customerUrl}/kba`).then((res) => res.headers.get(\"location\")); // => 'https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/61a74e62-e27d-46f1-9fa6-a8e57226bb3e''
+
+
+          kba = app_token.post(''%s/kba'' % customer_url)
+
+          kba.headers[''location''] # => "https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31"
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customersApi = new DwollaSwagger\CustomersApi($apiClient);
+
+
+          $customerUrl = "https://api.dwolla.com/customers/ca22d192-48f1-4b72-b29d-681e9e20795d";
+
+
+          $kba = $customersApi->initiateKba($customer_url);
+
+          $kba; # => "https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''https://api-sandbox.dwolla.com/customers/ca22d192-48f1-4b72-b29d-681e9e20795d''
+
+
+          kba = app_token.post "#{customer_url}/kba"
+
+          kba.response_headers[:location] # => "https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the Customer for initiating a KBA session
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '201':
+          description: created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '403':
+          description: 403 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/InvalidResourceStateSchema'
+                - $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: 404 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+  /kba/{id}:
+    get:
+      tags:
+      - kba
+      summary: Retrieve KBA Questions
+      description: Returns the KBA questions for a specific KBA session. The questions are used to verify the customer's identity during the KBA process.
+      operationId: getKbaQuestions
+      x-speakeasy-name-override: getQuestions
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api.dwolla.com/kba/33aa88b1-97df-424a-9043-d5f85809858b
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer cRahPzURfaIrTewKL18tmslWPqKdzkLeYJm0oB1hGJ1vMPArft1v
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar kbaUrl =\n  \"https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31\";\n\ndwolla.get(kbaUrl).then((res) => res.body.id); // => '70b0e9cc-020d-4de2-9a82-a2281afa4c31'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          kba_url = ''https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31''
+
+
+          kba_questions = app_token.get(kba_url)
+
+          kba_questions.id # => ''70b0e9cc-020d-4de2-9a82-a2281afa4c31''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $kbaApi = new DwollaSwagger\KbaApi($apiClient);
+
+
+          $kbaUrl = "https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31";
+
+
+          $kbaQuestions = $kbaApi->getKbaQuestions($kbaUrl);
+
+          print $kbaQuestions->id; # => "70b0e9cc-020d-4de2-9a82-a2281afa4c31"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          kba_url = ''https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31''
+
+
+          kba_questions = app_token.get kba_url
+
+          kba_questions.id # => "70b0e9cc-020d-4de2-9a82-a2281afa4c31"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the KBA session to retrieve questions for
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                required:
+                - _links
+                - id
+                - questions
+                properties:
+                  _links:
+                    type: object
+                    required:
+                    - answer
+                    properties:
+                      answer:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/kba/62dac6f3-bf8f-4961-9af8-428de8ecd9a4
+                          type:
+                            type: string
+                            example: application/vnd.dwolla.v1.hal+json
+                          resource-type:
+                            type: string
+                            example: kba
+                  id:
+                    type: string
+                    example: 62dac6f3-bf8f-4961-9af8-428de8ecd9a4
+                  questions:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - text
+                      - answers
+                      properties:
+                        id:
+                          type: string
+                          example: '2355953375'
+                        text:
+                          type: string
+                          example: In what county do you currently live?
+                        answers:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - id
+                            - text
+                            properties:
+                              id:
+                                type: string
+                                example: '2687969295'
+                              text:
+                                type: string
+                                example: Pulaski
+        '403':
+          description: 403 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: 404 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: KBA questions not found. Check KBA id.
+    post:
+      tags:
+      - kba
+      summary: Verify KBA Questions
+      description: Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication.
+      operationId: verifyKbaQuestions
+      x-speakeasy-name-override: verify
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api.dwolla.com/kba/33aa88b1-97df-424a-9043-d5f85809858b\nAccept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer cRahPzURfaIrTewKL18tmslWPqKdzkLeYJm0oB1hGJ1vMPArft1v\n\n{\n    \"answers\": [\n        { \"questionId\": \"2355953375\", \"answerId\": \"2687969335\" },\n        { \"questionId\": \"2355953385\", \"answerId\": \"2687969385\" },\n        { \"questionId\": \"2355953395\", \"answerId\": \"2687969435\" },\n        { \"questionId\": \"2355953405\", \"answerId\": \"2687969485\" }\n    ]\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar kbaUrl = \"https://api.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31\";\nvar requestBody = {\n  answers: [\n    { questionId: \"2355953375\", answerId: \"2687969335\" },\n    { questionId: \"2355953385\", answerId: \"2687969385\" },\n    { questionId: \"2355953395\", answerId: \"2687969435\" },\n    { questionId: \"2355953405\", answerId: \"2687969485\" },\n  ],\n};\n\ndwolla.post(kbaUrl, requestBody);\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nkba_url = 'https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31'\n\nrequest_body = {\n    'answers' : [\n        { 'questionId': \"2355953375\", 'answerId': \"2687969335\" },\n        { 'questionId': \"2355953385\", 'answerId': \"2687969385\" },\n        { 'questionId': \"2355953395\", 'answerId':\"2687969435\" },\n        { 'questionId': \"2355953405\", 'answerId': \"2687969485\" }\n    ]\n}\n\nkba_answers = app_token.post (kba_url, request_body)\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$kbaApi = new DwollaSwagger\\KbaApi($apiClient);\n\n$kbaUrl = \"https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31\";\n\n$kbaAnswers = $kbaApi->answerKbaQuestions([\n    \"answers\" => [\n         [\n             \"questionId\" => \"2355953375\",\n             \"answerId\" => \"2687969335\"\n         ],\n         [\n             \"questionId\" => \"2355953385\",\n             \"answerId\" => \"2687969385\"\n         ],\n         [\n             \"questionId\" => \"2355953395\",\n             \"answerId\" => \"2687969435\"\n         ],\n         [\n             \"questionId\" => \"2355953405\",\n             \"answerId\" => \"2687969485\"\n         ]\n    ]\n  ], $kbaUrl);\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nkba_url = 'https://api-sandbox.dwolla.com/kba/70b0e9cc-020d-4de2-9a82-a2281afa4c31'\n\nrequest_body = {\n    :answers => [\n        { :questionId => \"2355953375\", :answerId => \"2687969335\" },\n        { :questionId => \"2355953385\", :answerId => \"2687969385\" },\n        { :questionId => \"2355953395\", :answerId => \"2687969435\" },\n        { :questionId => \"2355953405\", :answerId => \"2687969485\" }\n    ]\n}\n\nkba_answers = app_token.post kba_url, request_body\n"
+      parameters:
+      - name: id
+        in: path
+        description: The id of the KBA session to verify questions for.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters for verifying KBA questions
+        content:
+          application/json:
+            schema:
+              required:
+              - answers
+              type: object
+              properties:
+                answers:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - questionId
+                    - answerId
+                    properties:
+                      questionId:
+                        type: string
+                        example: '2355953375'
+                      answerId:
+                        type: string
+                        example: '2687969335'
+      responses:
+        '200':
+          description: created
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                    properties:
+                      customer:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: https://api.dwolla.com/customers/b5fd802d-d8c7-43ce-94a8-7c14485b7042
+                          type:
+                            type: string
+                            example: application/vnd.dwolla.v1.hal+json
+                          resource-type:
+                            type: string
+                            example: customer
+                  verificationStatus:
+                    type: string
+                    example: verified
+        '403':
+          description: 403 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ForbiddenError'
+                - $ref: '#/components/schemas/InvalidKbaSessionError'
+                - $ref: '#/components/schemas/ExpiredKbaSessionError'
+        '404':
+          description: 404 Error
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: KBA session not found.
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  schemas:
+    InvalidKbaSessionError:
+      title: InvalidKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session is no longer valid.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    InvalidResourceStateSchema:
+      title: InvalidResourceStateSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidResourceState
+        message:
+          type: string
+          example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
+    ExpiredKbaSessionError:
+      title: ExpiredKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session has expired.
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}
+x-refined-from:
+- dwolla-kba-openapi.yml
+- dwolla-openapi.yml

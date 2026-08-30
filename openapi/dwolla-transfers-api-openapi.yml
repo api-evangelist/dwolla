@@ -1,0 +1,3546 @@
+openapi: 3.2.0
+info:
+  title: Dwolla Transfers API
+  version: '2.0'
+  contact:
+    name: Dwolla Developer Relations Team
+    url: https://developers.dwolla.com
+    email: api@dwolla.com
+  license:
+    name: MIT
+    url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
+  termsOfService: https://www.dwolla.com/legal/tos/
+  description: 'Operations tagged transfers across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-transfers-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.dwolla.com
+  description: Production server
+- url: https://api-sandbox.dwolla.com
+  description: Sandbox server
+security:
+- clientCredentials: []
+tags:
+- name: transfers
+  description: Operations related to Transfers
+paths:
+  /transfers:
+    post:
+      tags:
+      - transfers
+      summary: Initiate a transfer
+      description: Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), Push-to-Debit Card, and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
+      operationId: initiateTransfer
+      x-speakeasy-name-override: create
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/transfers\nAccept: application/vnd.dwolla.v1.hal+json\nContent-Type: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n  \"_links\": {\n    \"source\": {\n      \"href\": \"https://api-sandbox.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\n    },\n    \"destination\": {\n      \"href\": \"https://api-sandbox.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n    }\n  },\n  \"amount\": {\n    \"currency\": \"USD\",\n    \"value\": \"1.00\"\n  },\n  \"clearing\": {\n    \"source\": \"standard\",\n    \"destination\": \"next-available\"\n  },\n  \"achDetails\": {\n    \"source\": {\n      \"addenda\": {\n        \"values\": [\"ABC123_AddendaValue\"]\n      }\n    },\n    \"destination\": {\n      \"addenda\": {\n        \"values\": [\"ZYX987_AddendaValue\"]\n      }\n    }\n  },\n  \"instantDetails\": {\n    \"destination\": {\n      \"remittanceData\": \"ABC_123 Remittance Data\"\n    }\n  },\n  \"fees\": [\n    {\n      \"_links\": {\n        \"charge-to\": {\n          \"href\": \"https://api-sandbox.dwolla.com/customers/d795f696-2cac-4662-8f16-95f1db9bddd8\"\n        }\n      },\n      \"amount\": {\n        \"value\": \"4.00\",\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"correlationId\": \"6d127333-69e9-4c2b-8cae-df850228e130\",\n  \"processingChannel\": {\n    \"destination\": \"instant\"\n  }\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar requestBody = {\n  _links: {\n    source: {\n      href: \"https://api-sandbox.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\",\n    },\n    destination: {\n      href: \"https://api-sandbox.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\",\n    },\n  },\n  amount: {\n    currency: \"USD\",\n    value: \"1.00\",\n  },\n  clearing: {\n    source: \"standard\",\n    destination: \"next-available\",\n  },\n  achDetails: {\n    source: {\n      addenda: {\n        values: [\"ABC123_AddendaValue\"],\n      },\n    },\n    destination: {\n      addenda: {\n        values: [\"ZYX987_AddendaValue\"],\n      },\n    },\n  },\n  instantDetails: {\n    destination: {\n      remittanceData: \"ABC_123 Remittance Data\",\n    },\n  },\n  fees: [\n    {\n      _links: {\n        \"charge-to\": {\n          href: \"https://api-sandbox.dwolla.com/customers/d795f696-2cac-4662-8f16-95f1db9bddd8\",\n        },\n      },\n      amount: {\n        value: \"4.00\",\n        currency: \"USD\",\n      },\n    },\n  ],\n  metadata: {\n    key: \"value\",\n  },\n  correlationId: \"6d127333-69e9-4c2b-8cae-df850228e130\",\n  processingChannel: {\n    destination: \"instant\",\n  },\n};\n\ndwolla\n  .post(\"transfers\", requestBody)\n  .then((res) => res.headers.get(\"location\")); // => 'https://api-sandbox.dwolla.com/transfers/0e6b8c1e-7b6e-4b2e-8e2e-1b2e2e2e2e2e'\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\nrequest_body = {\n  '_links': {\n    'source': {\n      'href': 'https://api-sandbox.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4'\n    },\n    'destination': {\n      'href': 'https://api-sandbox.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db'\n    }\n  },\n  'amount': {\n    'currency': 'USD',\n    'value': '1.00'\n  },\n  'clearing': {\n    'source': 'standard',\n    'destination': 'next-available'\n  },\n  'achDetails': {\n    'source': {\n      'addenda': {\n        'values': ['ABC123_AddendaValue']\n      }\n    },\n    'destination': {\n      'addenda': {\n        'values': ['ZYX987_AddendaValue']\n      }\n    }\n  },\n  'instantDetails': {\n    'destination': {\n      'remittanceData': 'ABC_123 Remittance Data'\n    }\n  },\n  'fees': [\n    {\n      '_links': {\n        'charge-to': {\n          'href': 'https://api-sandbox.dwolla.com/customers/d795f696-2cac-4662-8f16-95f1db9bddd8'\n        }\n      },\n      'amount': {\n        'value': '4.00',\n        'currency': 'USD'\n      }\n    }\n  ],\n  'metadata': {\n    'key': 'value'\n  },\n  'correlationId': '6d127333-69e9-4c2b-8cae-df850228e130',\n  'processingChannel': {\n    'destination': 'instant'\n  }\n}\n\ntransfer = app_token.post('transfers', request_body)\ntransfer.headers['location'] # => 'https://api-sandbox.dwolla.com/transfers/0e6b8c1e-7b6e-4b2e-8e2e-1b2e2e2e2e2e'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$transfersApi = new DwollaSwagger\\TransfersApi($apiClient);\n\n$transfer = $transfersApi->create([\n  '_links' => [\n    'source' => [\n      'href' => 'https://api-sandbox.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4',\n    ],\n    'destination' => [\n      'href' => 'https://api-sandbox.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db',\n    ]\n  ],\n  'amount' => [\n    'currency' => 'USD',\n    'value' => '1.00'\n  ],\n  'clearing' => [\n    'source' => 'standard',\n    'destination' => 'next-available'\n  ],\n  'achDetails' => [\n    'source' => [\n      'addenda' => [\n        'values' => ['ABC123_AddendaValue']\n      ]\n    ],\n    'destination' => [\n      'addenda' => [\n        'values' => ['ZYX987_AddendaValue']\n      ]\n    ]\n  ],\n  'instantDetails' => [\n    'destination' => [\n      'remittanceData' => 'ABC_123 Remittance Data'\n    ]\n  ],\n  'fees' => [\n    [\n      '_links' => [\n        'charge-to' => [\n          'href' => 'https://api-sandbox.dwolla.com/customers/d795f696-2cac-4662-8f16-95f1db9bddd8',\n        ]\n      ],\n      'amount' => [\n        'value' => '4.00',\n        'currency' => 'USD'\n      ]\n    ]\n  ],\n  'metadata' => [\n    'key' => 'value'\n  ],\n  'correlationId' => '6d127333-69e9-4c2b-8cae-df850228e130',\n  'processingChannel' => [\n    'destination' => 'instant'\n  ]\n]);\n$transfer; # => \"https://api-sandbox.dwolla.com/transfers/0e6b8c1e-7b6e-4b2e-8e2e-1b2e2e2e2e2e\"\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\nrequest_body = {\n  :_links => {\n    :source => {\n      :href => \"https://api-sandbox.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4\"\n    },\n    :destination => {\n      :href => \"https://api-sandbox.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db\"\n    }\n  },\n  :amount => {\n    :currency => \"USD\",\n    :value => \"1.00\"\n  },\n  :clearing => {\n    :source => \"standard\",\n    :destination => \"next-available\"\n  },\n  :achDetails => {\n    :source => {\n      :addenda => {\n        :values => [\"ABC123_AddendaValue\"]\n      }\n    },\n    :destination => {\n      :addenda => {\n        :values => [\"ZYX987_AddendaValue\"]\n      }\n    }\n  },\n  :instantDetails => {\n    :destination => {\n      :remittanceData => \"ABC_123 Remittance Data\"\n    }\n  },\n  :fees => [\n    {\n      :_links => {\n        :\"charge-to\" => {\n          :href => \"https://api-sandbox.dwolla.com/customers/d795f696-2cac-4662-8f16-95f1db9bddd8\"\n        }\n      },\n      :amount => {\n        :value => \"4.00\",\n        :currency => \"USD\"\n      }\n    }\n  ],\n  :metadata => {\n    :key => \"value\"\n  },\n  :correlationId => \"6d127333-69e9-4c2b-8cae-df850228e130\",\n  :processingChannel => {\n    :destination => \"instant\"\n  }\n}\n\ntransfer = app_token.post \"transfers\", request_body\ntransfer.response_headers[:location] # => \"https://api-sandbox.dwolla.com/transfers/0e6b8c1e-7b6e-4b2e-8e2e-1b2e2e2e2e2e\"\n"
+      parameters:
+      - $ref: '#/components/parameters/Accept'
+      - name: Idempotency-Key
+        schema:
+          type: string
+        in: header
+        example: 19051a62-3403-11e6-ac61-9e71128cae77
+      requestBody:
+        required: true
+        description: Parameters to initiate a transfer
+        content:
+          application/json:
+            schema:
+              required:
+              - _links
+              - amount
+              type: object
+              properties:
+                _links:
+                  type: object
+                  properties:
+                    source:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                    destination:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                amount:
+                  $ref: '#/components/schemas/TransferAmount'
+                metadata:
+                  type: object
+                fees:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _links:
+                        type: object
+                        properties:
+                          charge-to:
+                            type: object
+                            properties:
+                              href:
+                                type: string
+                      amount:
+                        $ref: '#/components/schemas/TransferAmount'
+                clearing:
+                  type: object
+                  properties:
+                    source:
+                      type: string
+                    destination:
+                      type: string
+                achDetails:
+                  type: object
+                  properties:
+                    source:
+                      type: object
+                      properties:
+                        addenda:
+                          type: object
+                          properties:
+                            values:
+                              type: array
+                              items:
+                                type: string
+                    destination:
+                      type: object
+                      properties:
+                        addenda:
+                          type: object
+                          properties:
+                            values:
+                              type: array
+                              items:
+                                type: string
+                rtpDetails:
+                  type: object
+                  description: Real-Time Payments (RTP) specific transaction details.
+                  properties:
+                    destination:
+                      type: object
+                      description: RTP details for the destination
+                      properties:
+                        remittanceData:
+                          type: string
+                          description: 'Remittance information for Real-Time Payments, providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.''&/-@!$%*()_+={}|:;`[]^~\")'
+                          maxLength: 140
+                          pattern: '^[0-9a-zA-Z #,.''&/\-@!$%*()_+={}|:;`\[\]\^\~\\"]+$'
+                          example: ABC_123 Remittance Data
+                instantDetails:
+                  type: object
+                  description: Instant Payments specific transaction details for both RTP and FedNow networks.
+                  properties:
+                    destination:
+                      type: object
+                      description: Instant payment details for the destination
+                      properties:
+                        remittanceData:
+                          type: string
+                          description: 'Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.''&/-@!$%*()_+={}|:;`[]^~\")'
+                          maxLength: 140
+                          pattern: '^[0-9a-zA-Z #,.''&/\-@!$%*()_+={}|:;`\[\]\^\~\\"]+$'
+                          example: ABC_123 Remittance Data
+                correlationId:
+                  type: string
+                processingChannel:
+                  type: object
+                  properties:
+                    destination:
+                      type: string
+                      enum:
+                      - real-time-payments
+                      - instant
+                      example: instant
+      responses:
+        '201':
+          description: created
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/SourceNotFoundError'
+                - $ref: '#/components/schemas/ReceiverNotFoundError'
+                - $ref: '#/components/schemas/InvalidSourceFundingSourceError'
+                - $ref: '#/components/schemas/SenderRestrictedError'
+                - $ref: '#/components/schemas/ReceiverRestrictedError'
+                - $ref: '#/components/schemas/InvalidMetadataError'
+                - $ref: '#/components/schemas/OperationBlockedError'
+                - $ref: '#/components/schemas/InvalidAmountLimitError'
+                - $ref: '#/components/schemas/CannotParseAmountError'
+                - $ref: '#/components/schemas/InsufficientFundsError'
+                - $ref: '#/components/schemas/FacilitatorFeeAccountNotFoundError'
+                - $ref: '#/components/schemas/FacilitatorFeeSumTooLargeError'
+                - $ref: '#/components/schemas/FacilitatorFeeBelowMinimumError'
+                - $ref: '#/components/schemas/HighRiskError'
+                - $ref: '#/components/schemas/IncompatibleHoldingsError'
+                - $ref: '#/components/schemas/DirectAccountWithoutBankError'
+                - $ref: '#/components/schemas/SourceSameAsDestinationError'
+                - $ref: '#/components/schemas/InvalidFacilitatorError'
+                - $ref: '#/components/schemas/InvalidFacilitatorFeeCollectFromError'
+                - $ref: '#/components/schemas/InvalidFacilitatorFeeCollectFromCombinationError'
+                - $ref: '#/components/schemas/InvalidDestinationFundingSourceError'
+                - $ref: '#/components/schemas/InvalidOrRemovedCardDestinationError'
+                - $ref: '#/components/schemas/InvalidFacilitatorFeeAmountError'
+                - $ref: '#/components/schemas/WeeklyReceiveLimitReachedError'
+                - $ref: '#/components/schemas/InvalidDestinationClearingTypeError'
+                - $ref: '#/components/schemas/InvalidAmountForDestinationClearingTypeError'
+                - $ref: '#/components/schemas/InvalidCorrelationIdError'
+                - $ref: '#/components/schemas/SourceAddendaMaxLengthError'
+                - $ref: '#/components/schemas/DestinationAddendaMaxLengthError'
+                - $ref: '#/components/schemas/AchAddendaEntriesNotEnabledForAccountError'
+                - $ref: '#/components/schemas/PointOfSaleAddendaEntriesNotEnabledForAccountError'
+                - $ref: '#/components/schemas/IncompatibleAddendaEntriesError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaIdentificationCodeError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaSerialNumberError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaDateError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaAddressError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaCityError'
+                - $ref: '#/components/schemas/InvalidPointOfSaleAddendaStateError'
+                - $ref: '#/components/schemas/TransferExpiredForFeeError'
+                - $ref: '#/components/schemas/InvalidFeeOdfiError'
+                - $ref: '#/components/schemas/InvalidSourceBankAccountTypeError'
+                - $ref: '#/components/schemas/InvalidDestinationBankAccountTypeError'
+                - $ref: '#/components/schemas/IncompatibleSourceAndDestinationTypesError'
+                - $ref: '#/components/schemas/SourceNotCardNetworkSettlementError'
+                - $ref: '#/components/schemas/CardSourceNotAllowedError'
+                - $ref: '#/components/schemas/IncompatibleSourceForRtpDestinationError'
+                - $ref: '#/components/schemas/InvalidAmountForDestinationProcessingChannelError'
+                - $ref: '#/components/schemas/RtpFacilitatorFeeNotSupportedError'
+                - $ref: '#/components/schemas/RtpUnverifiedSenderNotSupportedError'
+                - $ref: '#/components/schemas/RtpPersonalToPersonalNotSupportedError'
+                - $ref: '#/components/schemas/DestinationProcessingChannelNotSupportedError'
+                - $ref: '#/components/schemas/DestinationRemittanceDataMaxLengthError'
+                - $ref: '#/components/schemas/WithdrawInvalidAmountError'
+                - $ref: '#/components/schemas/WithdrawInvalidFundingSourceError'
+                - $ref: '#/components/schemas/WithdrawAccountRestrictedError'
+                - $ref: '#/components/schemas/WithdrawInvalidAmountForClearingTypeError'
+                - $ref: '#/components/schemas/WithdrawInvalidWireBeneficiaryLocalityError'
+                - $ref: '#/components/schemas/WithdrawInvalidWireBeneficiaryRegionError'
+                - $ref: '#/components/schemas/WithdrawInvalidWireBeneficiaryCountryError'
+                - $ref: '#/components/schemas/WithdrawInvalidWireOriginatorToBeneficiaryError'
+                - $ref: '#/components/schemas/WithdrawProcessingChannelNotSupportedError'
+                - $ref: '#/components/schemas/WithdrawRtpUnverifiedSenderNotSupportedError'
+                - $ref: '#/components/schemas/WithdrawRtpPersonalWithdrawalNotSupportedError'
+                - $ref: '#/components/schemas/DepositAccountRestrictedError'
+                - $ref: '#/components/schemas/WireInvalidImadError'
+                - $ref: '#/components/schemas/WireAccountRestrictedError'
+                - $ref: '#/components/schemas/WireNotEnabledError'
+                - $ref: '#/components/schemas/WireAccountNotFoundError'
+                - $ref: '#/components/schemas/PrefundingSourceNotAllowedError'
+        '403':
+          description: Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/InvalidAttemptToFacilitateFundsError'
+                - $ref: '#/components/schemas/InvalidAttemptToPayInFundsError'
+                - $ref: '#/components/schemas/InvalidAttemptToPayOutFundsError'
+                - $ref: '#/components/schemas/RtpAccountSettingNotEnabledError'
+        '429':
+          description: Too Many Requests
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsErrorError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+  /transfers/{id}:
+    get:
+      tags:
+      - transfers
+      summary: Retrieve a transfer
+      description: Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation.
+      operationId: getTransfer
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/transfers/15c6bcce-46f7-e811-8112-e8dd3bececa8
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar transferUrl =\n  \"https://api-sandbox.dwolla.com/transfers/15c6bcce-46f7-e811-8112-e8dd3bececa8\";\n\ndwolla.get(transferUrl).then((res) => res.body.status); // => 'pending'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          transfer_url = ''https://api-sandbox.dwolla.com/transfers/15c6bcce-46f7-e811-8112-e8dd3bececa8''
+
+
+          transfer = account_token.get(transfer_url)
+
+          transfer.body[''status''] # => ''pending''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $transferUrl = ''https://api-sandbox.dwolla.com/transfers/15c6bcce-46f7-e811-8112-e8dd3bececa8'';
+
+
+          $transfersApi = new DwollaSwagger\TransfersApi($apiClient);
+
+
+          $transfer = $transfersApi->byId($transferUrl);
+
+          $transfer->status; # => "pending"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          transfer_url = ''https://api.dwolla.com/transfers/15c6bcce-46f7-e811-8112-e8dd3bececa8''
+
+
+          transfer = app_token.get transfer_url
+
+          transfer.status # => "pending"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: ID of transfer to be retrieved
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+        '404':
+          description: 404 Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    post:
+      tags:
+      - transfers
+      summary: Cancel a transfer
+      description: Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing.
+      operationId: cancelTransfer
+      x-speakeasy-name-override: cancel
+      x-codeSamples:
+      - lang: bash
+        source: "POST https://api-sandbox.dwolla.com/transfers/3d48c13a-0fc6-e511-80de-0aa34a9b2388\nContent-Type: application/vnd.dwolla.v1.hal+json\nAccept: application/vnd.dwolla.v1.hal+json\nAuthorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY\n\n{\n    \"status\": \"cancelled\"\n}\n"
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar transferUrl =\n  \"https://api-sandbox.dwolla.com/transfers/3d48c13a-0fc6-e511-80de-0aa34a9b2388\";\nvar requestBody = {\n  status: \"cancelled\",\n};\n\ndwolla.post(transfer_url, requestBody).then((res) => res.body.status); // => \"cancelled\"\n"
+      - lang: python
+        source: "# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python\ntransfer_url = 'https://api-sandbox.dwolla.com/transfers/3d48c13a-0fc6-e511-80de-0aa34a9b2388'\nrequest_body = {\n  'status': 'cancelled'\n}\n\ntransfer = app_token.post(transfer_url, request_body)\ntransfer.body['status'] # => 'cancelled'\n"
+      - lang: php
+        source: "<?php\n// Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php\n$transfersApi = new DwollaSwagger\\TransfersApi($apiClient);\n\n$transferUrl = 'https://api-sandbox.dwolla.com/transfers/3d48c13a-0fc6-e511-80de-0aa34a9b2388';\n$transfer = $transfersApi->update([\n  'status' => 'cancelled',\n], $transferUrl);\n\n$transfer->status; # => \"cancelled\"\n?>\n"
+      - lang: ruby
+        source: "# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby\ntransfer_url = 'https://api-sandbox.dwolla.com/transfers/3d48c13a-0fc6-e511-80de-0aa34a9b2388'\nrequest_body = {\n      \"status\" => \"cancelled\",\n}\n\ntransfer = app_token.post \"#{transfer_url}\", request_body\ntransfer.status # => \"cancelled\"\n"
+      parameters:
+      - name: id
+        in: path
+        description: ID of transfer
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      requestBody:
+        required: true
+        description: Parameters to cancel a transfer
+        content:
+          application/json:
+            schema:
+              required:
+              - status
+              type: object
+              properties:
+                status:
+                  type: string
+                  const: cancelled
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+        '400':
+          description: 400 Bad Request
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/BadRequestError'
+                - $ref: '#/components/schemas/StatusInvalidError'
+                - $ref: '#/components/schemas/StatusNotAllowedError'
+        '404':
+          description: 404 Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+  /customers/{id}/transfers:
+    get:
+      tags:
+      - transfers
+      summary: List and search transfers for a customer
+      description: Retrieve and search transfers for a specific Customer with comprehensive filtering and pagination support. Supports searching by customer details (name, email, business name), amount ranges, date ranges, transfer status, and correlation IDs for enhanced transaction discovery. Returns paginated transfer results including status, amounts, metadata, and links to source and destination funding sources. Use this endpoint for transaction history analysis and reconciliation purposes.
+      operationId: listCustomerTransfers
+      x-speakeasy-group: customers.transfers
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/customers/33e56307-6754-41cb-81e2-23a7f1072295/transfers
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar customerUrl =\n  \"http://api-sandbox.dwolla.com/customers/33e56307-6754-41cb-81e2-23a7f1072295\";\n\ndwolla\n  .get(`${customerUrl}/transfers`)\n  .then((res) => res.body._embedded[\"transfers\"][0].status); // => \"pending\"\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          customer_url = ''http://api-sandbox.dwolla.com/customers/33e56307-6754-41cb-81e2-23a7f1072295''
+
+
+          transfers = app_token.get(''%s/transfers'' % customer_url)
+
+          transfers.body[''_embedded''][''transfers''][0][''status''] # => ''pending''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $customerUrl = ''http://api-sandbox.dwolla.com/customers/33e56307-6754-41cb-81e2-23a7f1072295'';
+
+
+          $TransfersApi = new DwollaSwagger\TransfersApi($apiClient);
+
+
+          $transfers = $TransfersApi->getCustomerTransfers($customerUrl);
+
+          $transfers->_embedded->{''transfers''}[0]->status; # => "pending"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          customer_url = ''http://api-sandbox.dwolla.com/customers/33e56307-6754-41cb-81e2-23a7f1072295''
+
+
+          transfers = app_token.get "#{customer_url}/transfers"
+
+          transfers._embedded[''transfers''][0].status # => "pending"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Customer's unique identifier
+        required: true
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: A string to search on fields `firstName`, `lastName`, `email`, `businessName`
+        required: false
+        schema:
+          type: string
+      - name: startAmount
+        in: query
+        description: Only include transactions with an amount equal to or greater than `startAmount`
+        required: false
+        schema:
+          type: string
+      - name: endAmount
+        in: query
+        description: Only include transactions with an amount equal to or less than `endAmount`
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Only include transactions created after this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: Only include transactions created before this date. ISO-8601 format `YYYY-MM-DD`
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter on transaction status. Possible values are `pending`, `processed`, `failed`, or `cancelled`
+        required: false
+        schema:
+          type: string
+      - name: correlationId
+        in: query
+        description: A string value to search on if `correlationId` was specified for a transaction
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of search results to return. Defaults to 25
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Number of search results to skip. Use for pagination
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/Transfers'
+        '404':
+          description: 404 Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+  /transfers/{id}/fees:
+    get:
+      tags:
+      - transfers
+      summary: List fees for a transfer
+      description: Retrieve detailed fee information for a specific transfer by its unique identifier. Returns the total number of fees and individual fee transaction details including amounts, status, and links to source and destination accounts.
+      operationId: listTransferFees
+      x-speakeasy-group: transfers.fees
+      x-speakeasy-name-override: list
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388/fees
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar transferUrl =\n  \"https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388\";\n\ndwolla.get(`${transferUrl}/fees`).then((res) => res.body.total); // => 2\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          transfer_url = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388''
+
+
+          fees = app_token.get(''%s/fees'' % transfer_url)
+
+          fees.body[''total''] # => 2
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $transferUrl = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388'';
+
+
+          $transfersApi = new DwollaSwagger\TransfersApi($apiClient);
+
+
+          $transferFees = $transfersApi->getFeesBySource($transferUrl);
+
+          $transferFees->total; # => "2"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          transfer_url = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388''
+
+
+          fees = app_token.get "#{transfer_url}/fees"
+
+          fees.total # => 2
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: ID of transfer to retrieve fees for
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _links:
+                          type: object
+                          additionalProperties:
+                            $ref: '#/components/schemas/HalLink'
+                        id:
+                          type: string
+                          example: 416a2857-c887-4cca-bd02-8c3f75c4bb0e
+                        status:
+                          type: string
+                          example: pending
+                        amount:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                              example: '2.00'
+                            currency:
+                              type: string
+                              example: USD
+                        created:
+                          type: string
+                          format: date-time
+                          example: '2016-02-22T20:46:38.777Z'
+                  total:
+                    type: integer
+                    format: int32
+                    example: 1
+        '404':
+          description: 404 Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+  /transfers/{id}/failure:
+    get:
+      tags:
+      - transfers
+      summary: Retrieve a transfer failure reason
+      description: Retrieve detailed failure information for a failed bank or VAN transfer including the ACH return code, description, and explanation. Returns failure details with links to the failed funding source and associated Customer for comprehensive error analysis. Available only for transfers with failure status and accessed through the failure link from transfer retrieval. Critical for troubleshooting payment failures and understanding ACH return reasons.
+      operationId: getTransferFailureReason
+      x-speakeasy-group: transfers.failure
+      x-speakeasy-name-override: get
+      x-codeSamples:
+      - lang: bash
+        source: 'GET https://api-sandbox.dwolla.com/transfers/8997ebed-69be-e611-80ea-0aa34a9b2388/failure
+
+          Accept: application/vnd.dwolla.v1.hal+json
+
+          Authorization: Bearer pBA9fVDBEyYZCEsLf/wKehyh1RTpzjUj5KzIRfDi0wKTii7DqY
+
+          '
+      - lang: javascript
+        source: "// Using dwolla-v2 - https://github.com/Dwolla/dwolla-v2-node\nvar transferUrl =\n  \"https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388\";\n\ndwolla.get(`${transferUrl}/failure`).then((res) => res.body.code); // => 'R01'\n"
+      - lang: python
+        source: '# Using dwollav2 - https://github.com/Dwolla/dwolla-v2-python
+
+          transfer_url = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388''
+
+
+          failure = app_token.get(''%s/failure'' % transfer_url)
+
+          failure.body[''code''] # => ''R01''
+
+          '
+      - lang: php
+        source: '<?php
+
+          // Using dwollaswagger - https://github.com/Dwolla/dwolla-swagger-php
+
+          $transferUrl = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388'';
+
+
+          $transfersApi = new DwollaSwagger\TransfersApi($apiClient);
+
+
+          $transferFailure = $transfersApi->failureById($transferUrl);
+
+          $transferFailure->code; # => "R01"
+
+          ?>
+
+          '
+      - lang: ruby
+        source: '# Using dwolla_v2 - https://github.com/Dwolla/dwolla-v2-ruby
+
+          transfer_url = ''https://api-sandbox.dwolla.com/transfers/83eb4b5e-a5d9-e511-80de-0aa34a9b2388''
+
+
+          failure = app_token.get "#{transfer_url}/failure"
+
+          failure.code # => "R01"
+
+          '
+      parameters:
+      - name: id
+        in: path
+        description: Transfer unique identifier
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                type: object
+                required:
+                - code
+                - description
+                properties:
+                  _links:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/HalLink'
+                  code:
+                    type: string
+                    example: R03
+                  description:
+                    type: string
+                    example: No Account/Unable to Locate Account
+                  explanation:
+                    type: string
+                    example: The account number does not correspond to the individual identified in the entry or a valid account.
+        '403':
+          description: 403 Forbidden
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+        '404':
+          description: 404 Not Found
+          headers: {}
+          content:
+            application/vnd.dwolla.v1.hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+    servers:
+    - url: https://api.dwolla.com
+      description: Production server
+    - url: https://api-sandbox.dwolla.com
+      description: Sandbox server
+components:
+  schemas:
+    InvalidFacilitatorFeeCollectFromError:
+      title: InvalidFacilitatorFeeCollectFromError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Unable to charge fee to specified destination.
+                  path:
+                    type: string
+                    example: /fees/_links/charge-to/href
+                  _links:
+                    type: object
+                    example: {}
+    SenderRestrictedError:
+      title: SenderRestrictedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Sender restricted.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidFundingSourceError:
+      title: WithdrawInvalidFundingSourceError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Destination funding source is either removed or does not exist.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    RtpPersonalToPersonalNotSupportedError:
+      title: RtpPersonalToPersonalNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Real Time Payments does not currently support transfers between personal accounts
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    InvalidPointOfSaleAddendaDateError:
+      title: InvalidPointOfSaleAddendaDateError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: 'Date on a Point of Sale addenda entry is required and should be ISO-8601 format: YYYY-MM-DD.'
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/date
+                  _links:
+                    type: object
+                    example: {}
+    SourceSameAsDestinationError:
+      title: SourceSameAsDestinationError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Receiver cannot be the owner of the source funding source.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    SourceAddendaMaxLengthError:
+      title: SourceAddendaMaxLengthError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Ach addenda entries can be up to 80 characters when supplied.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/values
+                  _links:
+                    type: object
+                    example: {}
+    WireAccountNotFoundError:
+      title: WireAccountNotFoundError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotFound
+                  message:
+                    type: string
+                    example: Account or customer invalid.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    RtpAccountSettingNotEnabledError:
+      title: RtpAccountSettingNotEnabledError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: Real Time Payments not enabled for this account
+    HighRiskError:
+      title: HighRiskError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Due to account restrictions, we are unable to process this transaction.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidWireOriginatorToBeneficiaryError:
+      title: WithdrawInvalidWireOriginatorToBeneficiaryError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Originator to beneficiary items must not exceed 35 characters and contain only alphanumeric, white space, '.' or '#' characters.
+                  path:
+                    type: string
+                    example: /wireInstructions/originatorToBeneficiary
+                  _links:
+                    type: object
+                    example: {}
+    DestinationAddendaMaxLengthError:
+      title: DestinationAddendaMaxLengthError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Ach addenda entries can be up to 80 characters when supplied.
+                  path:
+                    type: string
+                    example: /achDetails/destination/addenda/values
+                  _links:
+                    type: object
+                    example: {}
+    FacilitatorFeeBelowMinimumError:
+      title: FacilitatorFeeBelowMinimumError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Facilitator fee below minimum.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    InvalidPointOfSaleAddendaAddressError:
+      title: InvalidPointOfSaleAddendaAddressError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Address on a Point of Sale addenda entry is required and can be up to 27 characters.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/address
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidWireBeneficiaryLocalityError:
+      title: WithdrawInvalidWireBeneficiaryLocalityError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Beneficiary locality must not exceed 35 characters and contain only alphanumeric, white space, '.' or '#' characters.
+                  path:
+                    type: string
+                    example: /wireInstructions/beneficiaryLocality
+                  _links:
+                    type: object
+                    example: {}
+    RtpUnverifiedSenderNotSupportedError:
+      title: RtpUnverifiedSenderNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Real Time Payments does not currently support unverified senders
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    InvalidPointOfSaleAddendaIdentificationCodeError:
+      title: InvalidPointOfSaleAddendaIdentificationCodeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Identification code on a Point of Sale addenda entry is required and can be up to 6 characters.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/identificationCode
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAmountForDestinationProcessingChannelError:
+      title: InvalidAmountForDestinationProcessingChannelError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Amount is greater than the allowed threshold for the specified destination processing channel.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidWireBeneficiaryCountryError:
+      title: WithdrawInvalidWireBeneficiaryCountryError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Beneficiary country must not exceed 35 characters and contain only alphanumeric, white space, '.' or '#' characters.
+                  path:
+                    type: string
+                    example: /wireInstructions/beneficiaryCountry
+                  _links:
+                    type: object
+                    example: {}
+    CannotParseAmountError:
+      title: CannotParseAmountError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Invalid amount. The supplied amount must be a positive number.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    DestinationRemittanceDataMaxLengthError:
+      title: DestinationRemittanceDataMaxLengthError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Remittance data entries can be up to 140 characters when supplied.
+                  path:
+                    type: string
+                    example: /rtpDetails/destination/remittanceData
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidWireBeneficiaryRegionError:
+      title: WithdrawInvalidWireBeneficiaryRegionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Beneficiary region must not exceed 35 characters and contain only alphanumeric, white space, '.' or '#' characters.
+                  path:
+                    type: string
+                    example: /wireInstructions/beneficiaryRegion
+                  _links:
+                    type: object
+                    example: {}
+    FacilitatorFeeAccountNotFoundError:
+      title: FacilitatorFeeAccountNotFoundError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Facilitator fee account not found.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    InvalidDestinationBankAccountTypeError:
+      title: InvalidDestinationBankAccountTypeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid bank account type
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    IncompatibleAddendaEntriesError:
+      title: IncompatibleAddendaEntriesError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Addenda must not include both 'values' and 'pointOfSale addenda
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale
+                  _links:
+                    type: object
+                    example: {}
+    IncompatibleSourceForRtpDestinationError:
+      title: IncompatibleSourceForRtpDestinationError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Transfers using the Real Time Payments processing channel must be funded by a balance
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    WireAccountRestrictedError:
+      title: WireAccountRestrictedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Account or customer restricted.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawProcessingChannelNotSupportedError:
+      title: WithdrawProcessingChannelNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Unsupported processing channel.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    SourceNotCardNetworkSettlementError:
+      title: SourceNotCardNetworkSettlementError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Source funding source does not support card payouts.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidAmountForClearingTypeError:
+      title: WithdrawInvalidAmountForClearingTypeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Amount is above the allowed threshold for the specified clearing type.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAmountLimitError:
+      title: InvalidAmountLimitError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid amount. The supplied amount is greater than your transaction limit.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    RtpFacilitatorFeeNotSupportedError:
+      title: RtpFacilitatorFeeNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Real Time Payments does not currently support facilitator fees
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    InvalidDestinationClearingTypeError:
+      title: InvalidDestinationClearingTypeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Destination clearing type is currently not enabled.
+                  path:
+                    type: string
+                    example: /clearing/destination
+                  _links:
+                    type: object
+                    example: {}
+    InvalidFacilitatorError:
+      title: InvalidFacilitatorError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Account cannot facilitate this transaction.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    IncompatibleSourceAndDestinationTypesError:
+      title: IncompatibleSourceAndDestinationTypesError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Card type funding sources can only accept payments directly from a balance
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidDestinationFundingSourceError:
+      title: InvalidDestinationFundingSourceError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid destination funding source.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    WireInvalidImadError:
+      title: WireInvalidImadError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Missing or invalid IMAD.
+                  path:
+                    type: string
+                    example: /imad
+                  _links:
+                    type: object
+                    example: {}
+    InvalidPointOfSaleAddendaCityError:
+      title: InvalidPointOfSaleAddendaCityError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: City on a Point of Sale addenda entry is required and can be up to 15 characters.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/city
+                  _links:
+                    type: object
+                    example: {}
+    Transfers:
+      title: Transfers
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            transfers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transfer'
+        total:
+          type: integer
+          example: 100
+    FacilitatorFeeSumTooLargeError:
+      title: FacilitatorFeeSumTooLargeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Facilitator fee sum too large.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    DirectAccountWithoutBankError:
+      title: DirectAccountWithoutBankError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: RequiresFundingSource
+                  message:
+                    type: string
+                    example: Receiver requires funding source.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    ReceiverRestrictedError:
+      title: ReceiverRestrictedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Receiver restricted.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawAccountRestrictedError:
+      title: WithdrawAccountRestrictedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Account or customer restricted.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawInvalidAmountError:
+      title: WithdrawInvalidAmountError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid amount.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    TooManyRequestsErrorError:
+      title: TooManyRequestsErrorError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: TooManyRequests
+        message:
+          type: string
+          example: Concurrent transfers with the given funding source are not supported. Please wait a short period of time before re-attempting the request.
+    SourceNotFoundError:
+      title: SourceNotFoundError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Funding source not found.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAttemptToPayInFundsError:
+      title: InvalidAttemptToPayInFundsError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: 'Invalid Funds Flow: this operation requires the funds flow ''Receive'' to be enabled'
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    CardSourceNotAllowedError:
+      title: CardSourceNotAllowedError
+      description: Error returned when attempting to use a debit card funding source as the transfer source
+      type: object
+      required:
+      - code
+      - message
+      - _embedded
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          required:
+          - errors
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                - path
+                properties:
+                  code:
+                    type: string
+                    enum:
+                    - NotAllowed
+                    example: NotAllowed
+                  message:
+                    type: string
+                    enum:
+                    - Cards cannot be used as a source for transfers.
+                    example: Cards cannot be used as a source for transfers.
+                  path:
+                    type: string
+                    enum:
+                    - /_links/source/href
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawRtpPersonalWithdrawalNotSupportedError:
+      title: WithdrawRtpPersonalWithdrawalNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Real Time Payments withdrawal from a personal account is currently not supported
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    InvalidPointOfSaleAddendaStateError:
+      title: InvalidPointOfSaleAddendaStateError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: State on a Point of Sale addenda entry is required and should be a valid 2-letter abbreviation.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/state
+                  _links:
+                    type: object
+                    example: {}
+    DepositAccountRestrictedError:
+      title: DepositAccountRestrictedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Account is restricted.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    StatusNotAllowedError:
+      title: StatusNotAllowedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Status not allowed.
+                  path:
+                    type: string
+                    example: /status
+                  _links:
+                    type: object
+                    example: {}
+    InvalidPointOfSaleAddendaSerialNumberError:
+      title: InvalidPointOfSaleAddendaSerialNumberError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Serial number on a Point of Sale addenda entry is required and can be up to 6 characters.
+                  path:
+                    type: string
+                    example: /achDetails/source/addenda/pointOfSale/serialNumber
+                  _links:
+                    type: object
+                    example: {}
+    DestinationProcessingChannelNotSupportedError:
+      title: DestinationProcessingChannelNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Destination funding source does not support processing channel
+                  path:
+                    type: string
+                    example: /processingChannel/destination
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAttemptToPayOutFundsError:
+      title: InvalidAttemptToPayOutFundsError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: 'Invalid Funds Flow: this operation requires the funds flow ''Send'' to be enabled'
+    InvalidFacilitatorFeeAmountError:
+      title: InvalidFacilitatorFeeAmountError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid facilitator fee amount.
+                  path:
+                    type: string
+                    example: /fees/_links/charge-to/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAttemptToFacilitateFundsError:
+      title: InvalidAttemptToFacilitateFundsError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: 'Invalid Funds Flow: this operation requires the funds flow ''Facilitate'' to be enabled'
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+    ReceiverNotFoundError:
+      title: ReceiverNotFoundError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Receiver not found.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    TransferExpiredForFeeError:
+      title: TransferExpiredForFeeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Return fees can only be charged within 45 days of the original transfer's settlement date.
+                  path:
+                    type: string
+                    example: /_links/failed-transfer/href
+                  _links:
+                    type: object
+                    example: {}
+    WithdrawRtpUnverifiedSenderNotSupportedError:
+      title: WithdrawRtpUnverifiedSenderNotSupportedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Real Time Payments does not currently support unverified senders
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    InvalidMetadataError:
+      title: InvalidMetadataError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid metadata.
+                  path:
+                    type: string
+                    example: /metadata
+                  _links:
+                    type: object
+                    example: {}
+    OperationBlockedError:
+      title: OperationBlockedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Receiver cannot receive from sender.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidSourceFundingSourceError:
+      title: InvalidSourceFundingSourceError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid funding source.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidAmountForDestinationClearingTypeError:
+      title: InvalidAmountForDestinationClearingTypeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Amount is above the allowed threshold for the specified destination clearing type.
+                  path:
+                    type: string
+                    example: /amount/value
+                  _links:
+                    type: object
+                    example: {}
+    PrefundingSourceNotAllowedError:
+      title: PrefundingSourceNotAllowedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Only the prefunding account owner is able to prefund the account.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidCorrelationIdError:
+      title: InvalidCorrelationIdError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Correlation id must be at least one character and up to 255 characters when supplied.
+                  path:
+                    type: string
+                    example: /correlationId
+                  _links:
+                    type: object
+                    example: {}
+    InsufficientFundsError:
+      title: InsufficientFundsError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InsufficientFunds
+                  message:
+                    type: string
+                    example: Insufficient funds.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidFeeOdfiError:
+      title: InvalidFeeOdfiError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Transfer ineligible.
+                  path:
+                    type: string
+                    example: /_links/failed-transfer/href
+                  _links:
+                    type: object
+                    example: {}
+    Transfer:
+      title: Transfer
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 15c6bcce-46f7-e811-8112-e8dd3bececa8
+        status:
+          type: string
+          example: pending
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '42.00'
+            currency:
+              type: string
+              example: USD
+        created:
+          type: string
+          format: date-time
+          example: '2018-12-03T22:00:22.970Z'
+        clearing:
+          type: object
+          properties:
+            source:
+              type: string
+              example: standard
+            destination:
+              type: string
+              example: same-day
+        metadata:
+          type: object
+          properties:
+            paymentId:
+              type: string
+              example: '12345678'
+            note:
+              type: string
+              example: Payment for completed work Dec. 1
+        achDetails:
+          type: object
+          description: ACH-specific details for the transfer. Present when transfer was processed via ACH network.
+          properties:
+            source:
+              type: object
+              description: Information sent to the source/originating bank account along with the transfer
+              properties:
+                addenda:
+                  type: object
+                  description: Contains addenda information for the transfer
+                  properties:
+                    values:
+                      type: array
+                      items:
+                        type: string
+                        example: ABC123_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+                  example: John Doe
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                  - REVERSAL
+                  - RECLAIM
+                  - NO CHECK
+                  - AUTOENROLL
+                  - REDEPCHECK
+                  - RETURN FEE
+                  - RETRY PMNT
+                  - HEALTHCARE
+                  - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:John Doe
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
+            destination:
+              type: object
+              description: Information sent to the destination/receiving bank account along with the transfer
+              properties:
+                addenda:
+                  type: object
+                  description: Contains addenda information for the transfer
+                  properties:
+                    values:
+                      type: array
+                      items:
+                        type: string
+                        example: ZYX987_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+                  example: Jane Smith
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                  - REVERSAL
+                  - RECLAIM
+                  - NO CHECK
+                  - AUTOENROLL
+                  - REDEPCHECK
+                  - RETURN FEE
+                  - RETRY PMNT
+                  - HEALTHCARE
+                  - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:Jane Smith
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
+        rtpDetails:
+          type: object
+          description: Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network.
+          properties:
+            destination:
+              type: object
+              description: RTP destination details with network identifiers
+              properties:
+                remittanceData:
+                  type: string
+                  description: Remittance information included in the transfer request
+                  example: ABC_123 Remittance Data
+                networkId:
+                  type: string
+                  description: Unique identifier for the transfer within the RTP network
+                  example: 20210617021214273T1BG27487110796028
+                endToEndReferenceId:
+                  type: string
+                  description: End-to-end reference identifier for the RTP transfer
+                  example: E2E-RTP-20210617-001
+        fedNowDetails:
+          type: object
+          description: FedNow Service network specific details. Present when transfer was processed via FedNow network.
+          properties:
+            destination:
+              type: object
+              description: FedNow destination details with network identifiers
+              properties:
+                remittanceData:
+                  type: string
+                  description: Remittance information included in the transfer request
+                  example: ABC_123 Remittance Data
+                networkId:
+                  type: string
+                  description: Unique identifier for the transfer within the FedNow network
+                  example: 20240115123456789FEDNOW123456
+                endToEndReferenceId:
+                  type: string
+                  description: End-to-end reference identifier for the FedNow transfer
+                  example: E2E-FEDNOW-20240115-001
+        correlationId:
+          type: string
+          example: 8a2cdc8d-629d-4a24-98ac-40b735229fe2
+        processingChannel:
+          type: object
+          properties:
+            destination:
+              type: string
+              enum:
+              - real-time-payments
+              - fed-now
+              description: The payment network used to process the transfer
+              example: real-time-payments
+    AchAddendaEntriesNotEnabledForAccountError:
+      title: AchAddendaEntriesNotEnabledForAccountError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Supplying ach addenda entries is currently not enabled.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    PointOfSaleAddendaEntriesNotEnabledForAccountError:
+      title: PointOfSaleAddendaEntriesNotEnabledForAccountError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Supplying point of sale addenda entries is currently not enabled.
+                  path:
+                    type: string
+                    example: ''
+                  _links:
+                    type: object
+                    example: {}
+    WeeklyReceiveLimitReachedError:
+      title: WeeklyReceiveLimitReachedError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Restricted
+                  message:
+                    type: string
+                    example: Destination customer has reached its weekly receive limit.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidOrRemovedCardDestinationError:
+      title: InvalidOrRemovedCardDestinationError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Destination funding source is either removed or does not exist.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+    InvalidFacilitatorFeeCollectFromCombinationError:
+      title: InvalidFacilitatorFeeCollectFromCombinationError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Currently, all fees must be paid by same destination."
+                  path:
+                    type: string
+                    example: /fees/_links/charge-to/href
+                  _links:
+                    type: object
+                    example: {}
+    WireNotEnabledError:
+      title: WireNotEnabledError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Wire transfers are currently not enabled.
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    StatusInvalidError:
+      title: StatusInvalidError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Status invalid.
+                  path:
+                    type: string
+                    example: /status
+                  _links:
+                    type: object
+                    example: {}
+    InvalidSourceBankAccountTypeError:
+      title: InvalidBankAccountTypeError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: Invalid bank account type
+                  path:
+                    type: string
+                    example: /_links/source/href
+                  _links:
+                    type: object
+                    example: {}
+    IncompatibleHoldingsError:
+      title: IncompatibleHoldingsError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: NotAllowed
+                  message:
+                    type: string
+                    example: Receiver cannot receive from sender.
+                  path:
+                    type: string
+                    example: /_links/destination/href
+                  _links:
+                    type: object
+                    example: {}
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
+  securitySchemes:
+    clientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          x-speakeasy-token-endpoint-authentication: client_secret_basic
+          scopes: {}
+x-refined-from:
+- dwolla-openapi.yml
+- dwolla-transfers-openapi.yml
