@@ -94,6 +94,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -108,6 +110,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Beneficial Owners
+  tags_raw:
   - beneficial owners
   properties:
   - type: OpenAPI
@@ -122,6 +126,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Client Tokens
+  tags_raw:
   - client tokens
   properties:
   - type: OpenAPI
@@ -136,6 +142,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Customers
+  tags_raw:
   - customers
   properties:
   - type: OpenAPI
@@ -150,6 +158,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Documents
+  tags_raw:
   - documents
   properties:
   - type: OpenAPI
@@ -164,6 +174,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -192,6 +204,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Exchanges
+  tags_raw:
   - exchanges
   properties:
   - type: OpenAPI
@@ -206,6 +220,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Funding Sources
+  tags_raw:
   - funding sources
   properties:
   - type: OpenAPI
@@ -234,6 +250,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Labels
+  tags_raw:
   - labels
   properties:
   - type: OpenAPI
@@ -248,6 +266,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Mass Payments
+  tags_raw:
   - mass payments
   properties:
   - type: OpenAPI
@@ -262,6 +282,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Root
+  tags_raw:
   - root
   properties:
   - type: OpenAPI
@@ -290,6 +312,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Tokens
+  tags_raw:
   - tokens
   properties:
   - type: OpenAPI
@@ -304,6 +328,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Transfers
+  tags_raw:
   - transfers
   properties:
   - type: OpenAPI
@@ -318,6 +344,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Webhook Subscriptions
+  tags_raw:
   - webhook subscriptions
   properties:
   - type: OpenAPI
@@ -332,6 +360,8 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
+  - Webhook
+  tags_raw:
   - webhooks
   properties:
   - type: OpenAPI
