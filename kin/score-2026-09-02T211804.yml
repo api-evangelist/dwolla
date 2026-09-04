@@ -1,38 +1,45 @@
-# Kin Score artifact — dwolla — 2026-08-04T083143
+# Kin Score artifact — dwolla — 2026-09-02T211804
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: dwolla
-  schema_version: 0.9
-  scored_at: '2026-08-04'
-  run_ts: 2026-08-04T083143
-  composite: 60.3
+  schema_version: 0.18.0
+  scored_at: '2026-09-02'
+  run_ts: 2026-09-02T211804
+  composite: 61.6
   band: strong
   facets:
-    discoverability: 92.6
-    contract_quality: 70.4
-    governance: 20.8
-    operational_transparency: 52.6
-    developer_ergonomics: 79.9
+    discoverability: 81.5
+    contract_quality: 66.0
+    governance: 18.2
+    operational_transparency: 50.0
+    developer_ergonomics: 75.6
     commercial_clarity: 60.5
+    contract_governance: 18.2
+    access_clarity: 60.5
   agent_readiness:
-    score: 69.1
+    score: 48.6
     band: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
-      mcp_server: true
-      auth_clarity: true
+      reversibility_documented: false
+      mcp_server: documented
+      auth_clarity: negotiable
       idempotency: verified
       error_semantics: verified
       openapi_examples: verified
       rate_limit_signal: documented
-      event_surface_described: derived
+      event_surface_described: true
       agent_skills: derived
-      well_known_catalog: true
+      well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Banking & Open Finance
@@ -45,7 +52,7 @@ kin_score:
     agentic_access: derived
     conformance: first-party
     contracts:
-      total: 19
+      total: 18
       derived: 0
       coverage: 0.0
       callable: 100.0
