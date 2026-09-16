@@ -46,7 +46,7 @@ x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-23'
+modified: '2026-09-16'
 tags:
 - Payments
 - ACH
@@ -472,7 +472,7 @@ common:
 - type: Blog
   url: https://www.dwolla.com/blog/
 - type: OpenAPI
-  url: openapi/dwolla-openapi.yml
+  url: openapi/_original/dwolla-openapi.yml
   name: Dwolla API (full bundled OpenAPI 3.1)
 - type: SourceCode
   url: https://github.com/Dwolla/dwolla-openapi
