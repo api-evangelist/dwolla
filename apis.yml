@@ -204,7 +204,7 @@ apis:
   humanURL: https://developers.dwolla.com/api-reference
   baseURL: https://api.dwolla.com
   tags:
-  - Exchanges
+  - Exchange
   tags_raw:
   - exchanges
   properties:
