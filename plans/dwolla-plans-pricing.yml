@@ -11,6 +11,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
 published: false
 note: No numeric price is published on the pricing page; Page states pricing is tailored to transaction
   volume, rails, and integration needs; no numeric prices shown, directs to talk to sales.
