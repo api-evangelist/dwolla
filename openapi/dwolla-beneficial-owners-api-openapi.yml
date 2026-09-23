@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla beneficial owners API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged beneficial owners across 2 of this provider''s published API definitions: dwolla-beneficial-owners-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: beneficial owners
+- name: Beneficial owners
   description: Operations related to Beneficial Owners
 paths:
   /customers/{id}/beneficial-owners:
     get:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: List customer beneficial owners
       description: Returns all beneficial owners associated with a business verified customer. Beneficial owners are individuals who directly or indirectly own 25% or more of the company's equity. Includes personal information, verification status, and address details for each owner.
       operationId: listBeneficialOwnersForCustomer
@@ -111,7 +111,7 @@ paths:
                     example: not found.
     post:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Create customer beneficial owner
       description: Creates a new beneficial owner for a business verified customer. Beneficial owners are individuals who own 25% or more of the company's equity. Requires personal information, address, and SSN or passport for identity verification.
       operationId: createBeneficialOwnerForCustomer
@@ -174,15 +174,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /beneficial-owners/{id}:
     get:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Retrieve beneficial owner
       description: Returns detailed information for a specific beneficial owner, including personal information, address, and verification status. The verification status indicates the owner's identity verification progress and affects the business customer's transaction capabilities.
       operationId: retrieveBeneficialOwner
@@ -275,7 +270,7 @@ paths:
                     example: not found.
     post:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Update beneficial owner
       description: Updates a beneficial owner's information to retry verification when their status is "incomplete". Only beneficial owners with incomplete verification status can be updated. Used to correct information that caused initial verification to fail.
       operationId: updateBeneficialOwner
@@ -354,7 +349,7 @@ paths:
                     example: owner not found.
     delete:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Remove beneficial owner
       description: Permanently removes a beneficial owner from a business customer. This action is irreversible and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change the customer's certification status to "recertify".
       operationId: deleteBeneficialOwner
@@ -440,15 +435,10 @@ paths:
                   message:
                     type: string
                     example: Beneficial owner not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /customers/{id}/beneficial-ownership:
     get:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Retrieve beneficial ownership status
       description: Returns the certification status of beneficial ownership for a business verified customer. Status indicates whether beneficial owner information has been certified and affects the customer's ability to send funds. Possible values include uncertified, certified, and recertify.
       operationId: getBeneficialOwnershipStatusForCustomer
@@ -548,7 +538,7 @@ paths:
                     example: Ownership certification status not found.
     post:
       tags:
-      - beneficial owners
+      - Beneficial owners
       summary: Certify beneficial ownership
       description: Updates the beneficial ownership certification status to "certified", confirming that all beneficial owner information is accurate and complete. This action enables the business customer to send funds and is required to complete the verification process.
       operationId: certifyBeneficialOwnershipForCustomer
@@ -626,37 +616,46 @@ paths:
                   message:
                     type: string
                     example: Forbidden from updating beneficial ownership status for this customer.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    Passport:
-      title: Passport
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
       type: object
       required:
-      - number
-      - country
+      - code
+      - message
       properties:
-        number:
+        code:
           type: string
-        country:
+          example: BadRequest
+        message:
           type: string
+          example: The request body contains bad syntax or is incomplete.
+    CreateInternationalBeneficialOwner:
+      title: CreateInternationalBeneficialOwner
+      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - passport
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        dateOfBirth:
+          type: string
+          example: '1985-03-15'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        passport:
+          $ref: '#/components/schemas/Passport'
     BeneficialOwnership:
       title: BeneficialOwnership
       type: object
@@ -676,6 +675,44 @@ components:
           - certified
           - recertify
           example: uncertified
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    Passport:
+      title: Passport
+      type: object
+      required:
+      - number
+      - country
+      properties:
+        number:
+          type: string
+        country:
+          type: string
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -690,31 +727,58 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-    CreateUSBeneficialOwner:
-      title: CreateUSBeneficialOwner
-      description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
-      required:
-      - firstName
-      - lastName
-      - dateOfBirth
-      - address
-      - ssn
+    InternationalAddress:
+      title: InternationalAddress
       type: object
+      required:
+      - address1
+      - city
+      - country
+      - stateProvinceRegion
       properties:
-        firstName:
+        address1:
           type: string
-          example: John
-        lastName:
+          example: 462 Main Street
+        address2:
           type: string
-          example: Doe
-        dateOfBirth:
+          example: Suite 123
+        address3:
           type: string
-          example: '1980-01-31'
-        address:
-          $ref: '#/components/schemas/InternationalAddress'
-        ssn:
+          example: Unit 123
+        city:
           type: string
-          example: '123456789'
+          example: Des Moines
+        postalCode:
+          type: string
+          example: '50309'
+        country:
+          type: string
+          example: USA
+        stateProvinceRegion:
+          type: string
+          example: IA
+    ValidationErrorSchema:
+      title: ValidationErrorSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner
@@ -769,110 +833,36 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BeneficialOwner'
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    InternationalAddress:
-      title: InternationalAddress
-      type: object
-      required:
-      - address1
-      - city
-      - country
-      - stateProvinceRegion
-      properties:
-        address1:
-          type: string
-          example: 462 Main Street
-        address2:
-          type: string
-          example: Suite 123
-        address3:
-          type: string
-          example: Unit 123
-        city:
-          type: string
-          example: Des Moines
-        postalCode:
-          type: string
-          example: '50309'
-        country:
-          type: string
-          example: USA
-        stateProvinceRegion:
-          type: string
-          example: IA
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
-    CreateInternationalBeneficialOwner:
-      title: CreateInternationalBeneficialOwner
-      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
+    CreateUSBeneficialOwner:
+      title: CreateUSBeneficialOwner
+      description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
       required:
       - firstName
       - lastName
       - dateOfBirth
       - address
-      - passport
+      - ssn
       type: object
       properties:
         firstName:
           type: string
-          example: Jane
+          example: John
         lastName:
           type: string
-          example: Smith
+          example: Doe
         dateOfBirth:
           type: string
-          example: '1985-03-15'
+          example: '1980-01-31'
         address:
           $ref: '#/components/schemas/InternationalAddress'
-        passport:
-          $ref: '#/components/schemas/Passport'
-    ValidationErrorSchema:
-      title: ValidationErrorSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
+        ssn:
           type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
+          example: '123456789'
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -884,11 +874,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -897,6 +882,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-beneficial-owners-openapi.yml
-- dwolla-openapi.yml

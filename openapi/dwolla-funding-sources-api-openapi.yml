@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla funding sources API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged funding sources across 2 of this provider''s published API definitions: dwolla-funding-sources-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: funding sources
+- name: Funding Sources
   description: Operations related to Funding Sources
 paths:
   /customers/{id}/funding-sources:
     get:
       tags:
-      - funding sources
+      - Funding Sources
       summary: List customer funding sources
       description: Returns all funding sources for a customer, including bank accounts, debit card funding sources, and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Card funding sources include masked card information. Supports filtering to exclude removed funding sources using the removed parameter.
       operationId: listCustomerFundingSources
@@ -134,7 +134,7 @@ paths:
                     example: Customer not found.
     post:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Create customer funding source
       description: Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, debit card addition via Exchange, and virtual account numbers. Bank funding sources require verification before transfers can be initiated.
       operationId: createCustomerFundingSource
@@ -261,15 +261,10 @@ paths:
                   message:
                     type: string
                     example: Customer ID not found. Check Customer ID.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /funding-sources/{id}:
     get:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Retrieve a funding source
       description: Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name.
       operationId: getFundingSource
@@ -444,7 +439,7 @@ paths:
                     example: Funding source not found.
     post:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Update or remove a funding source
       description: Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
       operationId: updateOrRemoveFundingSource
@@ -515,15 +510,10 @@ paths:
                   message:
                     type: string
                     example: A removed bank cannot be updated.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /funding-sources/{id}/micro-deposits:
     get:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Retrieve micro-deposits details
       description: Returns the status and details of micro-deposits for a funding source to check verification eligibility. Includes deposit status (pending, processed, failed), creation timestamp, and failure details with ACH return codes if deposits failed. Use this endpoint to determine when micro-deposits are ready for verification.
       operationId: getMicroDeposits
@@ -626,7 +616,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Initiate or Verify micro-deposits
       description: Handles micro-deposit bank verification process. Make a request without a request body to initiate two small deposits to the customer's bank account. Include deposit amounts to verify the received values and complete verification.
       operationId: initiateOrVerifyMicroDeposits
@@ -766,15 +756,10 @@ paths:
                   message:
                     type: string
                     example: The requested resource was not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /funding-sources/{id}/balance:
     get:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Retrieve funding source balance
       description: Returns the current balance for a specific funding source. For bank accounts, includes available and closing balances; for Dwolla balance, includes balance and total amounts; for settlement accounts (bankUsageType = card-network), includes available balance only. Supports bank accounts (via Open Banking), Dwolla balance (verified customers only), and settlement accounts for card network processing.
       operationId: getFundingSourceBalance
@@ -989,15 +974,10 @@ paths:
                   message:
                     type: string
                     example: Funding source not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /funding-sources/{id}/ach-routing:
     get:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Retrieve VAN account and routing numbers
       description: Returns the unique account and routing numbers for a Virtual Account Number (VAN) funding source. These numbers can be used by external systems to initiate ACH transactions that pull funds from or push funds to the associated Dwolla balance.
       operationId: getVanRouting
@@ -1094,15 +1074,10 @@ paths:
                   message:
                     type: string
                     example: Funding source not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /on-demand-authorizations:
     post:
       tags:
-      - funding sources
+      - Funding Sources
       summary: Create an on-demand transfer authorization
       description: Create an on-demand transfer authorization that allows Customers to pre-authorize variable amount ACH transfers from their bank account for future payments. This authorization is used when creating Customer funding sources to enable flexible payment processing. Returns UI text elements including authorization body text and button text for display in your application's bank account addition flow.
       operationId: createOnDemandTransferAuthorization
@@ -1165,50 +1140,8 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/ForbiddenError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    FundingSources:
-      title: FundingSources
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            funding-sources:
-              type: array
-              items:
-                $ref: '#/components/schemas/FundingSource'
-        total:
-          type: integer
-          format: int32
-          example: 3
-    OnDemandAuthorization:
-      title: OnDemandAuthorization
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
-        bodyText:
-          type: string
-          example: I agree that future payments to Company ABC inc. will be processed by the Dwolla payment system from the selected account above. In order to cancel this authorization, I will change my payment settings within my Company ABC inc. account.
-        buttonText:
-          type: string
-          example: Agree & Continue
     MaximumCardsExceededError:
       title: MaximumCardsExceededError
       type: object
@@ -1247,101 +1180,49 @@ components:
                   path:
                     type: string
                     example: /_links/exchange
-    InactiveExchangeError:
-      title: InactiveExchangeError
+    CreateCustomerVirtualAccountFundingSource:
+      title: CreateCustomerVirtualAccountFundingSource
       type: object
+      description: Schema for creating a Virtual Account Number (VAN) . VANs are unique account numbers for receiving external transactions into a Dwolla Balance.
       required:
-      - code
-      - message
+      - name
+      - type
+      - bankAccountType
       properties:
-        code:
+        name:
           type: string
-          example: InactiveExchange
-        message:
+          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
+          example: My First VAN
+        type:
           type: string
-          example: The Exchange was removed or disabled.
-    InvalidTokenError:
-      title: InvalidTokenError
+          enum:
+          - virtual
+          description: Type of funding source. Must be set to "virtual" for VAN creation.
+          example: virtual
+        bankAccountType:
+          type: string
+          enum:
+          - checking
+          description: Type of bank account. Must be "checking" for Virtual Account Numbers.
+          example: checking
+    FundingSources:
+      title: FundingSources
       type: object
-      description: Error returned when creating an Exchange with an invalid token, or when the card data is invalid
-      required:
-      - code
-      - message
-      - _embedded
       properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
         _embedded:
           type: object
-          required:
-          - errors
           properties:
-            errors:
+            funding-sources:
               type: array
               items:
-                type: object
-                required:
-                - code
-                - message
-                - path
-                properties:
-                  code:
-                    type: string
-                    example: Invalid
-                  message:
-                    type: string
-                    example: The card data is invalid.
-                  path:
-                    type: string
-                    example: /token
-                  _links:
-                    type: object
-                    example: {}
-    UnsupportedCardCountryError:
-      title: UnsupportedCardCountryError
-      type: object
-      description: Error returned when attempting to create a debit card funding source from an unsupported country
-      required:
-      - code
-      - message
-      - _embedded
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          required:
-          - errors
-          properties:
-            errors:
-              type: array
-              items:
-                type: object
-                required:
-                - code
-                - message
-                - path
-                properties:
-                  code:
-                    type: string
-                    example: Invalid
-                  message:
-                    type: string
-                    example: The card's country is not supported.
-                  path:
-                    type: string
-                    example: /token
-                  _links:
-                    type: object
-                    example: {}
+                $ref: '#/components/schemas/FundingSource'
+        total:
+          type: integer
+          format: int32
+          example: 3
     CreateCustomerExchangeFundingSource:
       title: CreateCustomerExchangeFundingSource
       type: object
@@ -1385,98 +1266,25 @@ components:
           type: string
           description: Arbitrary nickname for the funding source. Must be 50 characters or less.
           example: Jane Doe's Checking
-    RemoveBank:
-      title: RemoveBank
-      description: Request body for removing a bank funding source
+    OnDemandAuthorization:
+      title: OnDemandAuthorization
       type: object
-      required:
-      - removed
       properties:
-        removed:
-          type: boolean
-          example: true
-    DuplicateFundingSourceError:
-      title: DuplicateFundingSourceError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Duplicate funding source or validation error. Authorization already associated to a funding source.
-    CreateCustomerBankFundingSourceWithAccountNumbers:
-      title: CreateCustomerBankFundingSourceWithAccountNumbers
-      type: object
-      description: Schema for creating a basic bank funding source using routing and account numbers. This is the traditional method of adding a bank account.
-      required:
-      - routingNumber
-      - accountNumber
-      - bankAccountType
-      - name
-      properties:
-        routingNumber:
-          type: string
-          description: A bank routing number that identifies a bank or credit union in the U.S.
-          example: '222222226'
-        accountNumber:
-          type: string
-          description: The bank account number
-          example: '123456789'
-        bankAccountType:
-          type: string
-          enum:
-          - checking
-          - savings
-          - general-ledger
-          - loan
-          description: Type of bank account
-          example: checking
-        name:
-          type: string
-          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
-          example: Jane Doe's Checking
-        verified:
-          type: boolean
-          description: Use when creating an unverified bank account.
-          enum:
-          - false
-          example: false
-        channels:
-          type: array
-          items:
-            type: string
-            enum:
-            - wire
-          description: An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
         _links:
           type: object
           properties:
-            on-demand-authorization:
+            self:
               type: object
-              required:
-              - href
               properties:
                 href:
                   type: string
-                  format: uri
-                  example: https://api-sandbox.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
-    InvalidExchangeTokenError:
-      title: InvalidExchangeTokenError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
+                  example: https://api.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
+        bodyText:
           type: string
-          example: InvalidExchangeToken
-        message:
+          example: I agree that future payments to Company ABC inc. will be processed by the Dwolla payment system from the selected account above. In order to cancel this authorization, I will change my payment settings within my Company ABC inc. account.
+        buttonText:
           type: string
-          example: The exchange token is not valid to perform this operation.
+          example: Agree & Continue
     FundingSource:
       title: FundingSource
       type: object
@@ -1591,38 +1399,20 @@ components:
                   type: string
                   description: Postal code or ZIP code
                   example: '50310'
-    VerifyMicroDeposits:
-      title: VerifyMicroDeposits
-      description: Request body for verifying micro-deposits
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
-      - amount1
-      - amount2
+      - code
+      - message
       properties:
-        amount1:
-          type: object
-          required:
-          - value
-          - currency
-          properties:
-            value:
-              type: string
-              example: '0.02'
-            currency:
-              type: string
-              example: USD
-        amount2:
-          type: object
-          required:
-          - value
-          - currency
-          properties:
-            value:
-              type: string
-              example: '0.03'
-            currency:
-              type: string
-              example: USD
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     CardMissingRequiredFieldsError:
       title: CardMissingRequiredFieldsError
       type: object
@@ -1661,63 +1451,6 @@ components:
                   path:
                     type: string
                     example: /token
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    CreateCustomerBankFundingSourceWithPlaid:
-      title: CreateCustomerBankFundingSourceWithPlaid
-      type: object
-      description: Schema for creating a bank funding source using a Plaid processor token.
-      required:
-      - plaidToken
-      - bankAccountType
-      - name
-      properties:
-        plaidToken:
-          type: string
-          description: A processor token obtained from Plaid for adding and verifying a bank
-          example: processor-sandbox-plaidauth-123456
-        bankAccountType:
-          type: string
-          enum:
-          - checking
-          - savings
-          description: Type of bank account
-          example: checking
-        name:
-          type: string
-          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
-          example: Jane Doe's Checking
-        channels:
-          type: array
-          items:
-            type: string
-            enum:
-            - wire
-          description: An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
-        _links:
-          type: object
-          properties:
-            on-demand-authorization:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api-sandbox.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
     CreateCustomerCardFundingSourceWithExchange:
       title: CreateCustomerCardFundingSourceWithExchange
       type: object
@@ -1799,29 +1532,64 @@ components:
                   type: string
                   description: Postal code or ZIP code
                   example: '76034'
-    UpdateVerifiedBank:
-      title: UpdateVerifiedBank
-      description: Request body for updating information of a Verified bank funding source
+    InactiveExchangeError:
+      title: InactiveExchangeError
       type: object
       required:
-      - name
+      - code
+      - message
       properties:
-        name:
+        code:
           type: string
-          example: Jane Doe’s Checking
-    HalLink:
-      title: HalLink
+          example: InactiveExchange
+        message:
+          type: string
+          example: The Exchange was removed or disabled.
+    DuplicateFundingSourceError:
+      title: DuplicateFundingSourceError
       type: object
+      required:
+      - code
+      - message
       properties:
-        href:
+        code:
           type: string
-          example: https://api.dwolla.com
-        type:
+          example: ValidationError
+        message:
           type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
+          example: Duplicate funding source or validation error. Authorization already associated to a funding source.
+    VerifyMicroDeposits:
+      title: VerifyMicroDeposits
+      description: Request body for verifying micro-deposits
+      type: object
+      required:
+      - amount1
+      - amount2
+      properties:
+        amount1:
+          type: object
+          required:
+          - value
+          - currency
+          properties:
+            value:
+              type: string
+              example: '0.02'
+            currency:
+              type: string
+              example: USD
+        amount2:
+          type: object
+          required:
+          - value
+          - currency
+          properties:
+            value:
+              type: string
+              example: '0.03'
+            currency:
+              type: string
+              example: USD
     CreateCustomerFundingSource:
       title: Create Customer Funding Source
       description: 'Parameters for creating customer funding sources using different methods:
@@ -1841,31 +1609,150 @@ components:
       - $ref: '#/components/schemas/CreateCustomerExchangeFundingSource'
       - $ref: '#/components/schemas/CreateCustomerVirtualAccountFundingSource'
       - $ref: '#/components/schemas/CreateCustomerCardFundingSourceWithExchange'
-    CreateCustomerVirtualAccountFundingSource:
-      title: CreateCustomerVirtualAccountFundingSource
+    UnsupportedCardCountryError:
+      title: UnsupportedCardCountryError
       type: object
-      description: Schema for creating a Virtual Account Number (VAN) . VANs are unique account numbers for receiving external transactions into a Dwolla Balance.
+      description: Error returned when attempting to create a debit card funding source from an unsupported country
+      required:
+      - code
+      - message
+      - _embedded
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          required:
+          - errors
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                - path
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: The card's country is not supported.
+                  path:
+                    type: string
+                    example: /token
+                  _links:
+                    type: object
+                    example: {}
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    UpdateVerifiedBank:
+      title: UpdateVerifiedBank
+      description: Request body for updating information of a Verified bank funding source
+      type: object
       required:
       - name
-      - type
-      - bankAccountType
       properties:
         name:
           type: string
-          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
-          example: My First VAN
-        type:
+          example: Jane Doe’s Checking
+    RemoveBank:
+      title: RemoveBank
+      description: Request body for removing a bank funding source
+      type: object
+      required:
+      - removed
+      properties:
+        removed:
+          type: boolean
+          example: true
+    CreateCustomerBankFundingSourceWithAccountNumbers:
+      title: CreateCustomerBankFundingSourceWithAccountNumbers
+      type: object
+      description: Schema for creating a basic bank funding source using routing and account numbers. This is the traditional method of adding a bank account.
+      required:
+      - routingNumber
+      - accountNumber
+      - bankAccountType
+      - name
+      properties:
+        routingNumber:
           type: string
-          enum:
-          - virtual
-          description: Type of funding source. Must be set to "virtual" for VAN creation.
-          example: virtual
+          description: A bank routing number that identifies a bank or credit union in the U.S.
+          example: '222222226'
+        accountNumber:
+          type: string
+          description: The bank account number
+          example: '123456789'
         bankAccountType:
           type: string
           enum:
           - checking
-          description: Type of bank account. Must be "checking" for Virtual Account Numbers.
+          - savings
+          - general-ledger
+          - loan
+          description: Type of bank account
           example: checking
+        name:
+          type: string
+          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
+          example: Jane Doe's Checking
+        verified:
+          type: boolean
+          description: Use when creating an unverified bank account.
+          enum:
+          - false
+          example: false
+        channels:
+          type: array
+          items:
+            type: string
+            enum:
+            - wire
+          description: An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
+        _links:
+          type: object
+          properties:
+            on-demand-authorization:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api-sandbox.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
     UpdateUnverifiedBank:
       title: UpdateUnverifiedBank
       description: Request body for updating information of an unverified bank funding source
@@ -1885,9 +1772,92 @@ components:
         name:
           type: string
           example: Jane Doe’s Checking
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
+    InvalidTokenError:
+      title: InvalidTokenError
+      type: object
+      description: Error returned when creating an Exchange with an invalid token, or when the card data is invalid
+      required:
+      - code
+      - message
+      - _embedded
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          required:
+          - errors
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                - path
+                properties:
+                  code:
+                    type: string
+                    example: Invalid
+                  message:
+                    type: string
+                    example: The card data is invalid.
+                  path:
+                    type: string
+                    example: /token
+                  _links:
+                    type: object
+                    example: {}
+    CreateCustomerBankFundingSourceWithPlaid:
+      title: CreateCustomerBankFundingSourceWithPlaid
+      type: object
+      description: Schema for creating a bank funding source using a Plaid processor token.
+      required:
+      - plaidToken
+      - bankAccountType
+      - name
+      properties:
+        plaidToken:
+          type: string
+          description: A processor token obtained from Plaid for adding and verifying a bank
+          example: processor-sandbox-plaidauth-123456
+        bankAccountType:
+          type: string
+          enum:
+          - checking
+          - savings
+          description: Type of bank account
+          example: checking
+        name:
+          type: string
+          description: Arbitrary nickname for the funding source. Must be 50 characters or less.
+          example: Jane Doe's Checking
+        channels:
+          type: array
+          items:
+            type: string
+            enum:
+            - wire
+          description: An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
+        _links:
+          type: object
+          properties:
+            on-demand-authorization:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api-sandbox.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388
+    InvalidExchangeTokenError:
+      title: InvalidExchangeTokenError
       type: object
       required:
       - code
@@ -1895,10 +1865,15 @@ components:
       properties:
         code:
           type: string
-          example: Forbidden
+          example: InvalidExchangeToken
         message:
           type: string
-          example: The supplied credentials are not authorized for this resource.
+          example: The exchange token is not valid to perform this operation.
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -1910,11 +1885,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -1923,6 +1893,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-funding-sources-openapi.yml
-- dwolla-openapi.yml

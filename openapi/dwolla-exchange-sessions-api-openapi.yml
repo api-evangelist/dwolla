@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla exchange sessions API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged exchange sessions across 2 of this provider''s published API definitions: dwolla-exchange-sessions-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -31,9 +31,7 @@ paths:
 
         - **Plaid / MX**: Instant bank account verification (open banking). For faster verification as compared to traditional micro-deposits.
 
-        - **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.
-
-        '
+        - **Checkout.com**: Debit card capture for Push to Card. Create a session, then retrieve it to get `externalProviderSessionData` (payment session) for the Checkout.com Flow component.'
       operationId: createCustomerExchangeSession
       x-speakeasy-group: customers.exchangeSessions
       x-speakeasy-name-override: create
@@ -157,11 +155,6 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /exchange-sessions/{id}:
     get:
       tags:
@@ -173,9 +166,7 @@ paths:
 
         - **Plaid**: `externalProviderSessionToken` (token to initialize Plaid Link).
 
-        - **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).
-
-        '
+        - **Checkout.com**: `externalProviderSessionData` with `id`, `payment_session_secret`, and `payment_session_token` to initialize the Checkout.com Flow component for debit card capture (Push to Card).'
       operationId: retrieveCustomerExchangeSession
       x-speakeasy-group: exchangeSessions
       x-speakeasy-name-override: get
@@ -263,11 +254,6 @@ paths:
                   message:
                     type: string
                     example: Exchange session not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /exchanges/{id}/exchange-sessions:
     post:
       tags:
@@ -347,11 +333,6 @@ paths:
                   message:
                     type: string
                     example: Not authorized to create re-authentication exchange session.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /customers/{id}/available-exchange-connections:
     get:
       tags:
@@ -424,27 +405,16 @@ paths:
                   message:
                     type: string
                     example: The requested resource was not found. Check Customer ID.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
       schema:
         type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
   schemas:
-    CreateCustomerExchangeSessionWithRedirect:
-      title: CreateCustomerExchangeSessionWithRedirect
-      description: Create exchange session with redirect URL (required for mobile sessions with Plaid)
+    CreateReAuthExchangeSessionWithRedirect:
+      title: CreateReAuthExchangeSessionWithRedirect
+      description: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
       type: object
       required:
       - _links
@@ -452,18 +422,8 @@ components:
         _links:
           type: object
           required:
-          - exchange-partner
           - redirect-url
           properties:
-            exchange-partner:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
             redirect-url:
               type: object
               required:
@@ -480,11 +440,6 @@ components:
 
                     '
                   example: https://example.com/app123
-    CreateReAuthExchangeSessionForWeb:
-      title: CreateReAuthExchangeSessionForWeb
-      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
-      type: object
-      properties: {}
     ExchangeSession:
       title: ExchangeSession
       description: 'Details of a previously created exchange session. Response shape varies by exchange partner.
@@ -609,27 +564,6 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-    CreateCustomerExchangeSessionForWeb:
-      title: CreateCustomerExchangeSessionForWeb
-      description: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          type: object
-          required:
-          - exchange-partner
-          properties:
-            exchange-partner:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
     AvailableExchangeConnections:
       type: object
       required:
@@ -697,9 +631,14 @@ components:
                     type: string
                     description: Name of the external bank account
                     example: XYZ Checking
-    CreateReAuthExchangeSessionWithRedirect:
-      title: CreateReAuthExchangeSessionWithRedirect
-      description: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
+    CreateReAuthExchangeSessionForWeb:
+      title: CreateReAuthExchangeSessionForWeb
+      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
+      type: object
+      properties: {}
+    CreateCustomerExchangeSessionWithRedirect:
+      title: CreateCustomerExchangeSessionWithRedirect
+      description: Create exchange session with redirect URL (required for mobile sessions with Plaid)
       type: object
       required:
       - _links
@@ -707,8 +646,18 @@ components:
         _links:
           type: object
           required:
+          - exchange-partner
           - redirect-url
           properties:
+            exchange-partner:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
             redirect-url:
               type: object
               required:
@@ -725,11 +674,38 @@ components:
 
                     '
                   example: https://example.com/app123
-  headers:
-    Location:
-      description: The location of the created resource
+    CreateCustomerExchangeSessionForWeb:
+      title: CreateCustomerExchangeSessionForWeb
+      description: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          required:
+          - exchange-partner
+          properties:
+            exchange-partner:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
       schema:
         type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -738,6 +714,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-exchange-sessions-openapi.yml
-- dwolla-openapi.yml

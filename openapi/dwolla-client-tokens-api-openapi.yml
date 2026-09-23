@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla client tokens API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged client tokens across 2 of this provider''s published API definitions: dwolla-client-tokens-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: client tokens
+- name: Client Tokens
   description: Operations related to Client Tokens
 paths:
   /client-tokens:
     post:
       tags:
-      - client tokens
+      - Client Tokens
       summary: Create a client token
       description: Create a client token for secure authentication within Dwolla Drop-in components. Requires a granular permission action and a Customer link to define what operations the end user can perform within the component. Returns a short-lived token for configuring client-side Drop-in components including customer creation, verification, funding source management, and payment processing. Essential for implementing secure, embeddable UI components without exposing application credentials to the frontend.
       operationId: createClientToken
@@ -99,38 +99,8 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/ForbiddenError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
-      schema:
-        type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
   schemas:
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -145,6 +115,31 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -153,6 +148,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-client-tokens-openapi.yml
-- dwolla-openapi.yml

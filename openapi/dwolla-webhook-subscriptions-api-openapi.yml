@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla webhook subscriptions API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged webhook subscriptions across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-webhook-subscriptions-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: webhook subscriptions
+- name: Webhook Subscriptions
   description: Operations related to Webhook Subscriptions
 paths:
   /webhook-subscriptions:
     get:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: List webhook subscriptions
       description: Retrieve all webhook subscriptions that belong to an application including their configuration details and status. Returns subscription details including webhook endpoints, status, creation dates, and links to associated webhooks with total count. Essential for webhook management and monitoring subscription health.
       operationId: listWebhookSubscriptions
@@ -124,7 +124,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: Create a webhook subscription
       description: Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events.
       operationId: createWebhookSubscription
@@ -197,15 +197,10 @@ paths:
             application/vnd.dwolla.v1.hal:
               schema:
                 $ref: '#/components/schemas/TooManyRequestsError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /webhook-subscriptions/{id}:
     get:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: Retrieve a webhook subscription
       description: Retrieve detailed information for a specific webhook subscription by its unique identifier. Returns subscription configuration including URL endpoint, creation date, and links to associated webhooks for comprehensive subscription management. Essential for monitoring webhook subscription status and accessing webhook delivery history.
       operationId: getWebhookSubscription
@@ -284,7 +279,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: Update a webhook subscription
       description: Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods.
       operationId: updateWebhookSubscription
@@ -346,7 +341,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: Delete a webhook subscription
       description: Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions.
       operationId: delete
@@ -415,15 +410,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /webhook-subscriptions/{id}/webhooks:
     get:
       tags:
-      - webhook subscriptions
+      - Webhook Subscriptions
       summary: List webhooks for a webhook subscription
       description: Retrieve all fired webhooks for a specific webhook subscription with comprehensive filtering and pagination support. Returns webhook delivery history including topics, attempts, request/response details, and delivery status over a rolling 30-day period. Supports filtering by resource ID, date ranges, and pagination parameters for detailed webhook delivery analysis. Critical for debugging webhook delivery issues and monitoring event notification success rates.
       operationId: listWebhooks
@@ -570,13 +560,162 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    MaxSubscriptionsReachedError:
+      title: MaxSubscriptionsReachedError
+      type: object
+      properties:
+        code:
+          type: string
+          example: MaxNumberOfResources
+        message:
+          type: string
+          example: The maximum number of subscriptions has been reached.
+    WebhookSubscription:
+      title: WebhookSubscription
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589
+            webhooks:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks
+        id:
+          type: string
+          example: 077dfffb-4852-412f-96b6-0fe668066589
+        url:
+          type: string
+          example: http://myapplication.com/webhooks
+        paused:
+          type: boolean
+          example: true
+        created:
+          type: string
+          format: date-time
+          example: '2022-10-28T16:20:47+00:00'
+    SecretTooLongError:
+      title: SecretTooLongError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Secret must be 128 or fewer characters.
+                  path:
+                    type: string
+                    example: /secret
+                  _links:
+                    type: object
+                    example: {}
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    TooManyRequestsError:
+      title: TooManyRequestsError
+      type: object
+      properties:
+        code:
+          type: string
+          example: Too Many Requests
+        message:
+          type: string
+          example: Please wait a short period of time before re-attempting the request.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    InvalidUrlFormatError:
+      title: InvalidUrlFormatError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Url must be a valid url.
+                  path:
+                    type: string
+                    example: /url
+                  _links:
+                    type: object
+                    example: {}
     Webhook:
       title: Webhook
       type: object
@@ -680,160 +819,11 @@ components:
                   body:
                     type: string
                     example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
-    MaxSubscriptionsReachedError:
-      title: MaxSubscriptionsReachedError
-      type: object
-      properties:
-        code:
-          type: string
-          example: MaxNumberOfResources
-        message:
-          type: string
-          example: The maximum number of subscriptions has been reached.
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    TooManyRequestsError:
-      title: TooManyRequestsError
-      type: object
-      properties:
-        code:
-          type: string
-          example: Too Many Requests
-        message:
-          type: string
-          example: Please wait a short period of time before re-attempting the request.
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    InvalidUrlFormatError:
-      title: InvalidUrlFormatError
-      type: object
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    example: InvalidFormat
-                  message:
-                    type: string
-                    example: Url must be a valid url.
-                  path:
-                    type: string
-                    example: /url
-                  _links:
-                    type: object
-                    example: {}
-    WebhookSubscription:
-      title: WebhookSubscription
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589
-            webhooks:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks
-        id:
-          type: string
-          example: 077dfffb-4852-412f-96b6-0fe668066589
-        url:
-          type: string
-          example: http://myapplication.com/webhooks
-        paused:
-          type: boolean
-          example: true
-        created:
-          type: string
-          format: date-time
-          example: '2022-10-28T16:20:47+00:00'
-    SecretTooLongError:
-      title: SecretTooLongError
-      type: object
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    example: InvalidFormat
-                  message:
-                    type: string
-                    example: Secret must be 128 or fewer characters.
-                  path:
-                    type: string
-                    example: /secret
-                  _links:
-                    type: object
-                    example: {}
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -845,11 +835,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -858,6 +843,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-openapi.yml
-- dwolla-webhook-subscriptions-openapi.yml

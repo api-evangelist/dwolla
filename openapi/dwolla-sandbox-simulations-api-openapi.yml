@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla sandbox simulations API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged sandbox simulations across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-sandbox-simulations-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -26,7 +26,7 @@ paths:
     post:
       tags:
       - sandbox simulations
-      summary: Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)
+      summary: Sandbox simulations (bank transfers, VAN transfers, or customer verification…
       description: 'Sandbox-only endpoint with three modes:
 
 
@@ -52,9 +52,7 @@ paths:
 
         `EINDocumentRequired`. Returns **200** with HAL `_links.self` and `errorCode`. Then **GET** the Customer;
 
-        the same code appears in `_embedded.errors` for end-to-end testing.
-
-        '
+        the same code appears in `_embedded.errors` for end-to-end testing.'
       operationId: simulateBankTransferProcessing
       x-speakeasy-name-override: simulate
       x-codeSamples:
@@ -153,26 +151,22 @@ paths:
                   message:
                     type: string
                     example: Not authorized to simulate transfer processing.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    SandboxSimulationRequest:
-      title: SandboxSimulationRequest
-      description: 'Bank transfer processing (omit body or `{}`), VAN transfer simulation (`type` virtual + transfers), or
-
-        verification directive simulation (`type` customer-verification, customer link, and errorCode). Typed bodies
-
-        are mutually exclusive; use only an omitted body or `{}` for bank processing.
-
-        '
-      oneOf:
-      - $ref: '#/components/schemas/SandboxSimulationVirtualAccountTransfersRequest'
-      - $ref: '#/components/schemas/SandboxSimulationCustomerVerificationRequest'
-      - $ref: '#/components/schemas/SandboxSimulationBankProcessingRequest'
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
     HalLink:
       title: HalLink
       type: object
@@ -186,26 +180,6 @@ components:
         resource-type:
           type: string
           example: resource-type
-    SandboxSimulationBankProcessingResponse:
-      title: SandboxSimulationBankProcessingResponse
-      description: Response when simulating bank transfer processing (200 OK).
-      type: object
-      required:
-      - _links
-      - total
-      properties:
-        total:
-          type: integer
-          format: int32
-          example: 8
-          description: Count of bank transfers (and related items) affected by the simulation run.
-        _links:
-          type: object
-          required:
-          - self
-          properties:
-            self:
-              $ref: '#/components/schemas/HalLink'
     SandboxSimulationBankProcessingRequest:
       title: SandboxSimulationBankProcessingRequest
       description: 'Omit the request body or send an empty JSON object (`{}`). Triggers processing (or failure) for the last
@@ -217,19 +191,31 @@ components:
         '
       type: object
       additionalProperties: false
-    TransferAmount:
-      title: TransferAmount
+    SandboxSimulationVirtualTransferItem:
+      title: SandboxSimulationVirtualTransferItem
+      description: One simulated external (VAN) transfer in a sandbox-simulations request.
       type: object
       required:
-      - value
-      - currency
+      - _link
+      - amount
       properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
+        _link:
+          type: object
+          description: Link wrapper for the destination funding source (Dwolla HAL-style single link).
+          required:
+          - destination
+          properties:
+            destination:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09
+        amount:
+          $ref: '#/components/schemas/TransferAmount'
     SandboxSimulationCustomerVerificationResponse:
       title: SandboxSimulationCustomerVerificationResponse
       description: 'Response when simulating customer verification directives (200 OK). Echoes the simulated `errorCode`;
@@ -258,6 +244,39 @@ components:
           - AddressNotAssociatedWithBusiness
           - EINDocumentRequired
           example: AddressNotAssociatedWithBusiness
+    SandboxSimulationRequest:
+      title: SandboxSimulationRequest
+      description: 'Bank transfer processing (omit body or `{}`), VAN transfer simulation (`type` virtual + transfers), or
+
+        verification directive simulation (`type` customer-verification, customer link, and errorCode). Typed bodies
+
+        are mutually exclusive; use only an omitted body or `{}` for bank processing.
+
+        '
+      oneOf:
+      - $ref: '#/components/schemas/SandboxSimulationVirtualAccountTransfersRequest'
+      - $ref: '#/components/schemas/SandboxSimulationCustomerVerificationRequest'
+      - $ref: '#/components/schemas/SandboxSimulationBankProcessingRequest'
+    SandboxSimulationBankProcessingResponse:
+      title: SandboxSimulationBankProcessingResponse
+      description: Response when simulating bank transfer processing (200 OK).
+      type: object
+      required:
+      - _links
+      - total
+      properties:
+        total:
+          type: integer
+          format: int32
+          example: 8
+          description: Count of bank transfers (and related items) affected by the simulation run.
+        _links:
+          type: object
+          required:
+          - self
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
     SandboxSimulationCustomerVerificationRequest:
       title: SandboxSimulationCustomerVerificationRequest
       description: 'Simulate a verification directive for a business Verified Customer in Sandbox. The customer must be in
@@ -301,45 +320,6 @@ components:
           - AddressNotAssociatedWithBusiness
           - EINDocumentRequired
           example: AddressNotAssociatedWithBusiness
-    SandboxSimulationVirtualTransferItem:
-      title: SandboxSimulationVirtualTransferItem
-      description: One simulated external (VAN) transfer in a sandbox-simulations request.
-      type: object
-      required:
-      - _link
-      - amount
-      properties:
-        _link:
-          type: object
-          description: Link wrapper for the destination funding source (Dwolla HAL-style single link).
-          required:
-          - destination
-          properties:
-            destination:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09
-        amount:
-          $ref: '#/components/schemas/TransferAmount'
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
     SandboxSimulationVirtualAccountTransfersRequest:
       title: SandboxSimulationVirtualAccountTransfersRequest
       description: 'Simulate Virtual Account Number (VAN) / external transfers in Sandbox. Up to 10 transfers per request;
@@ -363,6 +343,19 @@ components:
           maxItems: 10
           items:
             $ref: '#/components/schemas/SandboxSimulationVirtualTransferItem'
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
   parameters:
     Accept:
       name: Accept
@@ -382,6 +375,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-openapi.yml
-- dwolla-sandbox-simulations-openapi.yml

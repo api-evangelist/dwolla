@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Kba API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged kba across 2 of this provider''s published API definitions: dwolla-kba-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -114,11 +114,6 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /kba/{id}:
     get:
       tags:
@@ -370,24 +365,21 @@ paths:
                   message:
                     type: string
                     example: KBA session not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
-      schema:
-        type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
   schemas:
+    ExpiredKbaSessionError:
+      title: ExpiredKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session has expired.
     InvalidKbaSessionError:
       title: InvalidKbaSessionError
       type: object
@@ -401,20 +393,6 @@ components:
         message:
           type: string
           example: The kba session is no longer valid.
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -429,6 +407,20 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     InvalidResourceStateSchema:
       title: InvalidResourceStateSchema
       type: object
@@ -442,24 +434,22 @@ components:
         message:
           type: string
           example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
-    ExpiredKbaSessionError:
-      title: ExpiredKbaSessionError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: InvalidResourceState
-        message:
-          type: string
-          example: The kba session has expired.
   headers:
     Location:
       description: The location of the created resource
       schema:
         type: string
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -468,6 +458,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-kba-openapi.yml
-- dwolla-openapi.yml

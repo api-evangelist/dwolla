@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Labels API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged labels across 2 of this provider''s published API definitions: dwolla-labels-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: labels
+- name: Labels
   description: Operations related to Labels
 paths:
   /labels/{id}:
     get:
       tags:
-      - labels
+      - Labels
       summary: Retrieve a label
       description: Retrieve details for a specific Label used to categorize and track funds within your account. Returns Label information including unique identifier, current amount with currency, and creation timestamp.
       operationId: getLabel
@@ -113,7 +113,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     delete:
       tags:
-      - labels
+      - Labels
       summary: Remove a label
       description: Delete a Label to stop tracking funds and remove it from your account. Returns success status if the Label is successfully removed. Use this to streamline your account management and remove unused Labels from your system.
       operationId: removeLabel
@@ -196,15 +196,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /customers/{id}/labels:
     get:
       tags:
-      - labels
+      - Labels
       summary: List labels for a customer
       description: Returns all labels for a specified Verified Customer, sorted by creation date (most recent first). Supports pagination with limit and offset parameters. Each label includes its current amount and creation timestamp.
       operationId: listCustomerLabels
@@ -319,7 +314,7 @@ paths:
                     example: Customer not found
     post:
       tags:
-      - labels
+      - Labels
       summary: Create a label for a customer
       description: Creates a new label for a Verified Customer with a specified amount. Labels help organize and track funds within a customer's balance. Returns the location of the created label resource in the response header.
       operationId: createCustomerLabel
@@ -404,15 +399,10 @@ paths:
                   message:
                     type: string
                     example: Customer not found
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /labels/{id}/ledger-entries:
     get:
       tags:
-      - labels
+      - Labels
       summary: List label ledger entries
       description: Returns all ledger entries for a specific Label, sorted by creation date (newest first). Supports pagination with limit and offset parameters. Each ledger entry includes its amount, currency, and creation timestamp.
       operationId: listLabelLedgerEntries
@@ -520,7 +510,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - labels
+      - Labels
       summary: Create a label ledger entry
       description: Create a new ledger entry to track fund adjustments on a Label by specifying a positive or negative amount value. Returns the location of the created ledger entry in the response header. Label amounts cannot go negative, so validation errors occur if the entry would result in a negative Label balance.
       operationId: createLabelLedgerEntry
@@ -596,15 +586,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /ledger-entries/{ledgerEntryId}:
     get:
       tags:
-      - labels
+      - Labels
       summary: Retrieve a label ledger entry
       description: Returns detailed information for a specific ledger entry on a Label, including its amount, currency, and creation timestamp.
       operationId: getLabelLedgerEntry
@@ -691,15 +676,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /label-reallocations:
     post:
       tags:
-      - labels
+      - Labels
       summary: Create a label reallocation
       description: Reallocates funds between two labels belonging to the same Verified Customer. Moves the specified amount from the source label to the destination label, creating ledger entries for both. The reallocation only succeeds if the source label has sufficient funds.
       operationId: createLabelReallocation
@@ -794,15 +774,10 @@ paths:
                   message:
                     type: string
                     example: Label not found
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /label-reallocations/{reallocationId}:
     get:
       tags:
-      - labels
+      - Labels
       summary: Retrieve a label reallocation
       description: Retrieve details for a specific label reallocation that transfers funds between Labels. Returns reallocation information including source and destination Labels, amount transferred, status, and creation timestamp. Use this to track and audit fund movements between different Labels.
       operationId: retrieveLabelReallocation
@@ -933,81 +908,8 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    Label:
-      title: Label
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 7e042ffe-e25e-40d2-b86e-748b98845ecc
-        created:
-          type: string
-          format: date-time
-          example: '2022-05-15T22:19:09.635Z'
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-              example: '10.00'
-            currency:
-              type: string
-              example: USD
-    LabelLedgerEntries:
-      title: LabelLedgerEntries
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            ledger-entries:
-              type: array
-              items:
-                $ref: '#/components/schemas/LabelLedgerEntry'
-        total:
-          type: integer
-          example: 100
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     LabelLedgerEntry:
       title: LabelLedgerEntry
       type: object
@@ -1031,20 +933,24 @@ components:
           type: string
           format: date-time
           example: '2019-05-16T01:54:58.062Z'
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
+    LabelLedgerEntries:
+      title: LabelLedgerEntries
       type: object
-      required:
-      - code
-      - message
       properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            ledger-entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelLedgerEntry'
+        total:
+          type: integer
+          example: 100
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -1059,6 +965,70 @@ components:
         message:
           type: string
           example: The request body contains bad syntax or is incomplete.
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    Label:
+      title: Label
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 7e042ffe-e25e-40d2-b86e-748b98845ecc
+        created:
+          type: string
+          format: date-time
+          example: '2022-05-15T22:19:09.635Z'
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '10.00'
+            currency:
+              type: string
+              example: USD
     Labels:
       title: Labels
       type: object
@@ -1076,6 +1046,11 @@ components:
         total:
           type: integer
           example: 100
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -1087,11 +1062,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -1100,6 +1070,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-labels-openapi.yml
-- dwolla-openapi.yml

@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Webhooks API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged webhooks across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-webhooks-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: webhooks
+- name: Webhooks
   description: Operations related to Webhooks
 paths:
   /webhooks/{id}:
     get:
       tags:
-      - webhooks
+      - Webhooks
       summary: Retrieve a webhook
       description: Retrieve detailed information for a specific webhook by its unique identifier including delivery attempts and response data. Returns webhook details with topic, account information, delivery attempts containing request/response history, and links to subscription and retry resources. Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification processing status.
       operationId: getWebhook
@@ -104,15 +104,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /webhooks/{id}/retries:
     get:
       tags:
-      - webhooks
+      - Webhooks
       summary: List retries for a webhook
       description: Retrieve all retry attempts for a specific webhook including timestamps and delivery details. Returns a list of retry attempts with unique identifiers, timestamps, and links to the parent webhook with total count. Essential for tracking webhook delivery failures, analyzing retry patterns, and debugging webhook notification issues to ensure reliable event processing.
       operationId: listWebhookRetries
@@ -194,7 +189,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - webhooks
+      - Webhooks
       summary: Retry a webhook
       description: Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application.
       operationId: retryWebhook
@@ -267,12 +262,12 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   schemas:
     WebhookRetries:
       title: WebhookRetries
@@ -321,6 +316,20 @@ components:
           type: integer
           format: int32
           example: 1
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     Webhook:
       title: Webhook
       type: object
@@ -424,20 +433,6 @@ components:
                   body:
                     type: string
                     example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
   parameters:
     Accept:
       name: Accept
@@ -449,11 +444,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -462,6 +452,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-openapi.yml
-- dwolla-webhooks-openapi.yml

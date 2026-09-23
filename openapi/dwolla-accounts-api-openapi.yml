@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Accounts API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged accounts across 2 of this provider''s published API definitions: dwolla-accounts-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: accounts
+- name: Accounts
   description: Operations related to Accounts
 paths:
   /accounts/{id}:
     get:
       tags:
-      - accounts
+      - Accounts
       summary: Retrieve account details
       description: Returns basic account information for your authorized Main Dwolla Account, including account ID, name, and links to related resources such as funding sources, transfers, and customers.
       operationId: getAccount
@@ -125,22 +125,15 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /funding-sources:
     post:
       tags:
-      - accounts
+      - Accounts
       summary: Create a funding source for an account
       description: 'Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint allows you to connect a checking or savings account using either manual bank account details or an exchange resource.
 
 
-        For more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).
-
-        '
+        For more information about funding sources, see the Funding Sources API Reference.'
       operationId: createFundingSource
       x-speakeasy-group: accounts.fundingSources
       x-speakeasy-name-override: create
@@ -193,19 +186,12 @@ paths:
                   message:
                     type: string
                     example: Not authorized to create funding source.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /accounts/{id}/funding-sources:
     get:
       tags:
-      - accounts
+      - Accounts
       summary: List funding sources for an account
-      description: 'Get a list of all funding sources associated with a specific Main Dwolla Account. This endpoint returns both bank accounts and balance funding sources, with detailed information about each funding source''s status, type, and available processing channels.
-
-        '
+      description: Get a list of all funding sources associated with a specific Main Dwolla Account. This endpoint returns both bank accounts and balance funding sources, with detailed information about each funding source's status, type, and available processing channels.
       operationId: listFundingSources
       x-speakeasy-group: accounts.fundingSources
       x-speakeasy-name-override: list
@@ -301,15 +287,10 @@ paths:
                   message:
                     type: string
                     example: Account not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /accounts/{id}/transfers:
     get:
       tags:
-      - accounts
+      - Accounts
       summary: List and search account transfers
       description: Returns a paginated, searchable list of transfers associated with the specified Main Dwolla account. Supports advanced filtering by amount range, date range, transfer status, and correlation ID. Results are limited to 10,000 transfers per query; use date range filters for historical data beyond this limit.
       operationId: listAndSearchTransfers
@@ -441,15 +422,10 @@ paths:
                   message:
                     type: string
                     example: Account not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /accounts/{id}/mass-payments:
     get:
       tags:
-      - accounts
+      - Accounts
       summary: List account mass payments
       description: Returns a paginated list of mass payments created by your Main Dwolla account. Results are sorted by creation date in descending order (newest first) and can be filtered by correlation ID.
       operationId: listMassPayments
@@ -571,15 +547,10 @@ paths:
                   message:
                     type: string
                     example: Account not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    FundingSources:
-      title: FundingSources
+    Transfers:
+      title: Transfers
       type: object
       properties:
         _links:
@@ -588,14 +559,127 @@ components:
         _embedded:
           type: object
           properties:
-            funding-sources:
+            transfers:
               type: array
               items:
-                $ref: '#/components/schemas/FundingSource'
+                $ref: '#/components/schemas/Transfer'
         total:
           type: integer
-          format: int32
-          example: 3
+          example: 100
+    FundingSource:
+      title: FundingSource
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        status:
+          type: string
+          example: unverified
+        type:
+          type: string
+          example: bank
+        bankAccountType:
+          type: string
+          example: checking
+        name:
+          type: string
+          example: My bank
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
+        removed:
+          type: boolean
+          example: true
+        channels:
+          type: array
+          description: Payment processing channels supported by this funding source
+          items:
+            type: string
+            enum:
+            - ach
+            - real-time-payments
+            - wire
+            - external
+            example: ach
+        bankName:
+          type: string
+          example: SANDBOX TEST BANK
+        fingerprint:
+          type: string
+          example: 5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c
+        bankUsageType:
+          type: string
+          description: The usage type of the bank account. Indicates if this is a settlement account for card network processors.
+          enum:
+          - card-network
+          example: card-network
+        cardDetails:
+          type: object
+          description: Card-specific details. Only present when type is 'card'.
+          properties:
+            brand:
+              type: string
+              description: The card brand/network (e.g., Visa, Mastercard, American Express)
+              example: Visa
+            lastFour:
+              type: string
+              description: The last four digits of the card number
+              example: '1234'
+            expirationMonth:
+              type: integer
+              description: The card expiration month (1-12)
+              example: 12
+              minimum: 1
+              maximum: 12
+            expirationYear:
+              type: integer
+              description: The card expiration year (4-digit year)
+              example: 2026
+            nameOnCard:
+              type: string
+              description: The cardholder name as it appears on the card
+              example: John Doe
+            bin:
+              type: string
+              description: Bank Identification Number (BIN) - the first 6-8 digits of the card number
+              example: '40247644'
+            billingAddress:
+              type: object
+              description: The billing address associated with the card
+              properties:
+                address1:
+                  type: string
+                  description: First line of the street address
+                  example: 552 test
+                address2:
+                  type: string
+                  description: Second line of the street address (optional)
+                  example: Apt 4B
+                address3:
+                  type: string
+                  description: Third line of the street address (optional)
+                  example: Unit 101
+                city:
+                  type: string
+                  description: City name
+                  example: Des Moines
+                stateProvinceRegion:
+                  type: string
+                  description: Two-letter state, province, or region code
+                  example: IA
+                country:
+                  type: string
+                  description: Two-letter country code (ISO 3166-1 alpha-2)
+                  example: US
+                postalCode:
+                  type: string
+                  description: Postal code or ZIP code
+                  example: '50310'
     HalLink:
       title: HalLink
       type: object
@@ -609,6 +693,46 @@ components:
         resource-type:
           type: string
           example: resource-type
+    MassPayments:
+      title: MassPayments
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
+        total:
+          type: integer
+          example: 100
+    BadRequestSchema:
+      title: BadRequestSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
     Transfer:
       title: Transfer
       type: object
@@ -825,155 +949,6 @@ components:
               - fed-now
               description: The payment network used to process the transfer
               example: real-time-payments
-    FundingSource:
-      title: FundingSource
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
-        status:
-          type: string
-          example: unverified
-        type:
-          type: string
-          example: bank
-        bankAccountType:
-          type: string
-          example: checking
-        name:
-          type: string
-          example: My bank
-        created:
-          type: string
-          format: date-time
-          example: '2022-07-23T00:18:21.419Z'
-        removed:
-          type: boolean
-          example: true
-        channels:
-          type: array
-          description: Payment processing channels supported by this funding source
-          items:
-            type: string
-            enum:
-            - ach
-            - real-time-payments
-            - wire
-            - external
-            example: ach
-        bankName:
-          type: string
-          example: SANDBOX TEST BANK
-        fingerprint:
-          type: string
-          example: 5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c
-        bankUsageType:
-          type: string
-          description: The usage type of the bank account. Indicates if this is a settlement account for card network processors.
-          enum:
-          - card-network
-          example: card-network
-        cardDetails:
-          type: object
-          description: Card-specific details. Only present when type is 'card'.
-          properties:
-            brand:
-              type: string
-              description: The card brand/network (e.g., Visa, Mastercard, American Express)
-              example: Visa
-            lastFour:
-              type: string
-              description: The last four digits of the card number
-              example: '1234'
-            expirationMonth:
-              type: integer
-              description: The card expiration month (1-12)
-              example: 12
-              minimum: 1
-              maximum: 12
-            expirationYear:
-              type: integer
-              description: The card expiration year (4-digit year)
-              example: 2026
-            nameOnCard:
-              type: string
-              description: The cardholder name as it appears on the card
-              example: John Doe
-            bin:
-              type: string
-              description: Bank Identification Number (BIN) - the first 6-8 digits of the card number
-              example: '40247644'
-            billingAddress:
-              type: object
-              description: The billing address associated with the card
-              properties:
-                address1:
-                  type: string
-                  description: First line of the street address
-                  example: 552 test
-                address2:
-                  type: string
-                  description: Second line of the street address (optional)
-                  example: Apt 4B
-                address3:
-                  type: string
-                  description: Third line of the street address (optional)
-                  example: Unit 101
-                city:
-                  type: string
-                  description: City name
-                  example: Des Moines
-                stateProvinceRegion:
-                  type: string
-                  description: Two-letter state, province, or region code
-                  example: IA
-                country:
-                  type: string
-                  description: Two-letter country code (ISO 3166-1 alpha-2)
-                  example: US
-                postalCode:
-                  type: string
-                  description: Postal code or ZIP code
-                  example: '50310'
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
-    BadRequestSchema:
-      title: BadRequestSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -1047,61 +1022,6 @@ components:
         correlationId:
           type: string
           example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
-    Account:
-      title: Account
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
-        name:
-          type: string
-          example: Jane Doe's Business
-        timezoneOffset:
-          type: number
-          example: -6
-        type:
-          type: string
-          example: Commercial
-    Transfers:
-      title: Transfers
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            transfers:
-              type: array
-              items:
-                $ref: '#/components/schemas/Transfer'
-        total:
-          type: integer
-          example: 100
-    MassPayments:
-      title: MassPayments
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            mass-payments:
-              type: array
-              items:
-                $ref: '#/components/schemas/MassPayment'
-        total:
-          type: integer
-          example: 100
     DuplicateResourceSchema:
       title: DuplicateResourceSchema
       type: object
@@ -1130,6 +1050,62 @@ components:
                 resource-type:
                   type: string
                   example: funding-source
+    FundingSources:
+      title: FundingSources
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            funding-sources:
+              type: array
+              items:
+                $ref: '#/components/schemas/FundingSource'
+        total:
+          type: integer
+          format: int32
+          example: 3
+    Account:
+      title: Account
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
+        name:
+          type: string
+          example: Jane Doe's Business
+        timezoneOffset:
+          type: number
+          example: -6
+        type:
+          type: string
+          example: Commercial
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -1141,11 +1117,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -1154,6 +1125,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-accounts-openapi.yml
-- dwolla-openapi.yml

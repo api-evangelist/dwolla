@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla mass payments API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged mass payments across 2 of this provider''s published API definitions: dwolla-mass-payments-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -171,11 +171,6 @@ paths:
                   message:
                     type: string
                     example: Not authorized to create mass payment
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /mass-payments/{id}:
     get:
       tags:
@@ -363,11 +358,6 @@ paths:
                   message:
                     type: string
                     example: Mass payment not found
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /mass-payments/{id}/items:
     get:
       tags:
@@ -523,11 +513,6 @@ paths:
                   message:
                     type: string
                     example: Mass payment not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /mass-payment-items/{itemId}:
     get:
       tags:
@@ -632,11 +617,6 @@ paths:
                   message:
                     type: string
                     example: Mass payment item not found
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /customers/{id}/mass-payments:
     get:
       tags:
@@ -757,39 +737,8 @@ paths:
                   message:
                     type: string
                     example: Customer not found.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -804,33 +753,37 @@ components:
         message:
           type: string
           example: The request body contains bad syntax or is incomplete.
-    MassPayment:
-      title: MassPayment
+    MassPayments:
+      title: MassPayments
       type: object
       properties:
         _links:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
-        status:
-          type: string
-          example: complete
-        created:
-          type: string
-          format: date-time
-          example: '2022-01-20T17:41:41.000Z'
-        metaData:
+        _embedded:
           type: object
+          properties:
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
         total:
-          $ref: '#/components/schemas/TransferAmount'
-        totalFees:
-          $ref: '#/components/schemas/TransferAmount'
-        correlationId:
+          type: integer
+          example: 100
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
           type: string
-          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
     MassPaymentItem:
       title: MassPaymentItem
       type: object
@@ -889,24 +842,51 @@ components:
             destination:
               type: string
               example: real-time-payments
-    MassPayments:
-      title: MassPayments
+    MassPayment:
+      title: MassPayment
       type: object
       properties:
         _links:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/HalLink'
-        _embedded:
+        id:
+          type: string
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
+          type: string
+          example: complete
+        created:
+          type: string
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
           type: object
-          properties:
-            mass-payments:
-              type: array
-              items:
-                $ref: '#/components/schemas/MassPayment'
         total:
-          type: integer
-          example: 100
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -918,11 +898,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -931,6 +906,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-mass-payments-openapi.yml
-- dwolla-openapi.yml

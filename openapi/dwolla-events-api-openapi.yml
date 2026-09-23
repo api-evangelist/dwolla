@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Events API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged events across 2 of this provider''s published API definitions: dwolla-events-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: events
+- name: Events
   description: Operations related to Events
 paths:
   /events:
     get:
       tags:
-      - events
+      - Events
       summary: List events
       description: Returns a paginated list of events representing state changes to resources in your Dwolla application. Events track actions on customers, transfers, funding sources, and other resources, sorted by creation date (newest first). Events are retained for 30 days and are essential for webhook notifications and system activity monitoring.
       operationId: listEvents
@@ -99,15 +99,10 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /events/{id}:
     get:
       tags:
-      - events
+      - Events
       summary: Retrieve event
       description: Returns detailed information for a specific event representing a state change that occurred on a resource in your Dwolla application. Includes the event topic, timestamp, resource links, and correlation ID if applicable.
       operationId: getEvent
@@ -180,11 +175,6 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
     HalLink:
@@ -200,6 +190,20 @@ components:
         resource-type:
           type: string
           example: resource-type
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     Event:
       title: Event
       type: object
@@ -221,20 +225,6 @@ components:
         resourceId:
           type: string
           example: 09A166BC-1B74-E511-80DB-0AA34A9B2388
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     Events:
       title: Events
       type: object
@@ -273,6 +263,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-events-openapi.yml
-- dwolla-openapi.yml

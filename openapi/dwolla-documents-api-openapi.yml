@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Documents API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged documents across 2 of this provider''s published API definitions: dwolla-documents-openapi.yml, dwolla-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: documents
+- name: Documents
   description: Operations related to Documents
 paths:
   /customers/{id}/documents:
     get:
       tags:
-      - documents
+      - Documents
       summary: List documents for customer
       description: Returns all identity verification documents submitted for a customer. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process.
       operationId: listCustomerDocuments
@@ -108,7 +108,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - documents
+      - Documents
       summary: Create a document for customer
       description: Uploads an identity verification document for a customer using multipart form-data. Required when a customer has "document" status during the verification process.
       operationId: createCustomerDocument
@@ -252,15 +252,10 @@ paths:
                   message:
                     type: string
                     example: Document requests are limited to 10 MiB.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /beneficial-owners/{id}/documents:
     get:
       tags:
-      - documents
+      - Documents
       summary: List documents for beneficial owner
       description: Returns all identity verification documents submitted for a beneficial owner. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process.
       operationId: listBeneficialOwnerDocuments
@@ -343,7 +338,7 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
     post:
       tags:
-      - documents
+      - Documents
       summary: Create a document for beneficial owner
       description: Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has "document" status during the business verification process.
       operationId: createBeneficialOwnerDocument
@@ -478,15 +473,10 @@ paths:
                   message:
                     type: string
                     example: Document requests are limited to 10 MiB.
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
   /documents/{id}:
     get:
       tags:
-      - documents
+      - Documents
       summary: Retrieve a document
       description: Returns detailed information about a specific identity verification document, including its status, type, and verification results. Used to track document submission and verification progress during the business verification process.
       operationId: retrieveDocument
@@ -566,76 +556,8 @@ paths:
             application/vnd.dwolla.v1.hal+json:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   schemas:
-    MaximumNumberOfResourcesSchema:
-      title: MaximumNumberOfResourcesSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: maximumNumberOfResources
-        message:
-          type: string
-          example: Max of four files upload allowed. Please wait for Dwolla to manually check the documents.
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    NotAuthorizedSchema:
-      title: NotAuthorizedSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: notAuthorized
-        message:
-          type: string
-          example: Not authorized to create documents.
-    Documents:
-      title: Documents
-      type: object
-      required:
-      - _links
-      - _embedded
-      - total
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          required:
-          - documents
-          properties:
-            documents:
-              type: array
-              items:
-                $ref: '#/components/schemas/Document'
-        total:
-          type: integer
-          example: 2
     Document:
       title: Document
       description: Identity verification document for a customer or beneficial owner
@@ -707,9 +629,21 @@ components:
                 type: string
                 description: Human-readable explanation of the failure reason
                 example: Scan DOB does not match DOB on account
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    NotAuthorizedSchema:
+      title: NotAuthorizedSchema
       type: object
       required:
       - code
@@ -717,10 +651,10 @@ components:
       properties:
         code:
           type: string
-          example: NotFound
+          example: notAuthorized
         message:
           type: string
-          example: The requested resource was not found.
+          example: Not authorized to create documents.
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -735,6 +669,20 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     InvalidResourceStateSchema:
       title: InvalidResourceStateSchema
       type: object
@@ -789,6 +737,48 @@ components:
                 resource-type:
                   type: string
                   example: funding-source
+    MaximumNumberOfResourcesSchema:
+      title: MaximumNumberOfResourcesSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: maximumNumberOfResources
+        message:
+          type: string
+          example: Max of four files upload allowed. Please wait for Dwolla to manually check the documents.
+    Documents:
+      title: Documents
+      type: object
+      required:
+      - _links
+      - _embedded
+      - total
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          required:
+          - documents
+          properties:
+            documents:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+        total:
+          type: integer
+          example: 2
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept
@@ -800,11 +790,6 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2
@@ -813,6 +798,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-documents-openapi.yml
-- dwolla-openapi.yml

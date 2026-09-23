@@ -1,16 +1,16 @@
 openapi: 3.2.0
 info:
   title: Dwolla Tokens API
-  version: '2.0'
+  description: Dwolla API Documentation
   contact:
     name: Dwolla Developer Relations Team
     url: https://developers.dwolla.com
     email: api@dwolla.com
+  version: '2.0'
+  termsOfService: https://www.dwolla.com/legal/tos/
   license:
     name: MIT
     url: https://github.com/Dwolla/dwolla-openapi/blob/master/LICENSE
-  termsOfService: https://www.dwolla.com/legal/tos/
-  description: 'Operations tagged tokens across 2 of this provider''s published API definitions: dwolla-openapi.yml, dwolla-tokens-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.dwolla.com
   description: Production server
@@ -19,13 +19,13 @@ servers:
 security:
 - clientCredentials: []
 tags:
-- name: tokens
+- name: Tokens
   description: Operations related to Application Access Tokens
 paths:
   /token:
     post:
       tags:
-      - tokens
+      - Tokens
       summary: Create an application access token
       description: Generate an application access token using OAuth 2.0 client credentials flow for server-to-server authentication. Requires client ID and secret sent via Basic authentication header with grant_type=client_credentials in the request body. Returns a bearer access token with expiration time for authenticating API requests scoped to your application. Essential for secure API access.
       operationId: createApplicationAccessToken
@@ -134,11 +134,6 @@ paths:
                   error:
                     type: string
                     example: invalid_client
-    servers:
-    - url: https://api.dwolla.com
-      description: Production server
-    - url: https://api-sandbox.dwolla.com
-      description: Sandbox server
 components:
   securitySchemes:
     clientCredentials:
@@ -148,6 +143,3 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
-x-refined-from:
-- dwolla-openapi.yml
-- dwolla-tokens-openapi.yml
