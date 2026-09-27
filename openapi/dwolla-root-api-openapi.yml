@@ -100,6 +100,17 @@ paths:
                     example: Invalid access token.
       deprecated: false
 components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   schemas:
     HalLink:
       title: HalLink
@@ -122,17 +133,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/HalLink'
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
-      schema:
-        type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
   securitySchemes:
     clientCredentials:
       type: oauth2

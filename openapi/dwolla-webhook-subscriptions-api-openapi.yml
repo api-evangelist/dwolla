@@ -562,9 +562,49 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
+    InvalidUrlFormatError:
+      title: InvalidUrlFormatError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Url must be a valid url.
+                  path:
+                    type: string
+                    example: /url
+                  _links:
+                    type: object
+                    example: {}
+    TooManyRequestsError:
+      title: TooManyRequestsError
+      type: object
+      properties:
+        code:
+          type: string
+          example: Too Many Requests
+        message:
+          type: string
+          example: Please wait a short period of time before re-attempting the request.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
       - code
@@ -572,10 +612,10 @@ components:
       properties:
         code:
           type: string
-          example: BadRequest
+          example: NotFound
         message:
           type: string
-          example: The request body contains bad syntax or is incomplete.
+          example: The requested resource was not found.
     MaxSubscriptionsReachedError:
       title: MaxSubscriptionsReachedError
       type: object
@@ -618,6 +658,20 @@ components:
           type: string
           format: date-time
           example: '2022-10-28T16:20:47+00:00'
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
     SecretTooLongError:
       title: SecretTooLongError
       type: object
@@ -662,60 +716,6 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
-    TooManyRequestsError:
-      title: TooManyRequestsError
-      type: object
-      properties:
-        code:
-          type: string
-          example: Too Many Requests
-        message:
-          type: string
-          example: Please wait a short period of time before re-attempting the request.
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    InvalidUrlFormatError:
-      title: InvalidUrlFormatError
-      type: object
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    example: InvalidFormat
-                  message:
-                    type: string
-                    example: Url must be a valid url.
-                  path:
-                    type: string
-                    example: /url
-                  _links:
-                    type: object
-                    example: {}
     Webhook:
       title: Webhook
       type: object

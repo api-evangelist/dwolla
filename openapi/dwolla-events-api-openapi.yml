@@ -177,19 +177,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -244,6 +231,19 @@ components:
           type: integer
           format: int32
           example: 3
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   parameters:
     Accept:
       name: Accept

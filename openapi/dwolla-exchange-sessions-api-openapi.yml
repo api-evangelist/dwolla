@@ -406,15 +406,24 @@ paths:
                     type: string
                     example: The requested resource was not found. Check Customer ID.
 components:
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   schemas:
-    CreateReAuthExchangeSessionWithRedirect:
-      title: CreateReAuthExchangeSessionWithRedirect
-      description: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    CreateCustomerExchangeSessionWithRedirect:
+      title: CreateCustomerExchangeSessionWithRedirect
+      description: Create exchange session with redirect URL (required for mobile sessions with Plaid)
       type: object
       required:
       - _links
@@ -422,8 +431,18 @@ components:
         _links:
           type: object
           required:
+          - exchange-partner
           - redirect-url
           properties:
+            exchange-partner:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
             redirect-url:
               type: object
               required:
@@ -440,6 +459,73 @@ components:
 
                     '
                   example: https://example.com/app123
+    AvailableExchangeConnections:
+      type: object
+      required:
+      - _links
+      - _embedded
+      properties:
+        _links:
+          type: object
+          required:
+          - self
+          - customers
+          properties:
+            self:
+              type: object
+              required:
+              - href
+              - type
+              - resource-type
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694/available-exchange-connections
+                type:
+                  type: string
+                  example: application/vnd.dwolla.v1.hal+json
+                resource-type:
+                  type: string
+                  example: customer
+            customers:
+              type: object
+              required:
+              - href
+              - type
+              - resource-type
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694
+                type:
+                  type: string
+                  example: application/vnd.dwolla.v1.hal+json
+                resource-type:
+                  type: string
+                  example: customer
+        _embedded:
+          type: object
+          required:
+          - available-exchange-connections
+          properties:
+            available-exchange-connections:
+              type: array
+              items:
+                type: object
+                required:
+                - availableConnectionToken
+                - name
+                properties:
+                  availableConnectionToken:
+                    type: string
+                    description: Token representing the external bank account that can be used to create a funding source
+                    example: eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=
+                  name:
+                    type: string
+                    description: Name of the external bank account
+                    example: XYZ Checking
     ExchangeSession:
       title: ExchangeSession
       description: 'Details of a previously created exchange session. Response shape varies by exchange partner.
@@ -550,130 +636,6 @@ components:
               type: string
               description: Checkout.com payment session token (base64) for Flow initialization.
               example: YmFzZTY0:eyJpZCI6InBzXzM5dmhIakZ4WnVKUktPdzVIZXhibnYzOWZDNyIs...
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    AvailableExchangeConnections:
-      type: object
-      required:
-      - _links
-      - _embedded
-      properties:
-        _links:
-          type: object
-          required:
-          - self
-          - customers
-          properties:
-            self:
-              type: object
-              required:
-              - href
-              - type
-              - resource-type
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694/available-exchange-connections
-                type:
-                  type: string
-                  example: application/vnd.dwolla.v1.hal+json
-                resource-type:
-                  type: string
-                  example: customer
-            customers:
-              type: object
-              required:
-              - href
-              - type
-              - resource-type
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694
-                type:
-                  type: string
-                  example: application/vnd.dwolla.v1.hal+json
-                resource-type:
-                  type: string
-                  example: customer
-        _embedded:
-          type: object
-          required:
-          - available-exchange-connections
-          properties:
-            available-exchange-connections:
-              type: array
-              items:
-                type: object
-                required:
-                - availableConnectionToken
-                - name
-                properties:
-                  availableConnectionToken:
-                    type: string
-                    description: Token representing the external bank account that can be used to create a funding source
-                    example: eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=
-                  name:
-                    type: string
-                    description: Name of the external bank account
-                    example: XYZ Checking
-    CreateReAuthExchangeSessionForWeb:
-      title: CreateReAuthExchangeSessionForWeb
-      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
-      type: object
-      properties: {}
-    CreateCustomerExchangeSessionWithRedirect:
-      title: CreateCustomerExchangeSessionWithRedirect
-      description: Create exchange session with redirect URL (required for mobile sessions with Plaid)
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          type: object
-          required:
-          - exchange-partner
-          - redirect-url
-          properties:
-            exchange-partner:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
-            redirect-url:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  description: 'Required for Plaid mobile sessions.
-
-                    For Android: use app URI scheme (e.g., com.example.app123)
-
-                    For iOS: use HTTPS URL (e.g., https://example.com/app123)
-
-                    '
-                  example: https://example.com/app123
     CreateCustomerExchangeSessionForWeb:
       title: CreateCustomerExchangeSessionForWeb
       description: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
@@ -695,6 +657,44 @@ components:
                   type: string
                   format: uri
                   example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
+    CreateReAuthExchangeSessionForWeb:
+      title: CreateReAuthExchangeSessionForWeb
+      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
+      type: object
+      properties: {}
+    CreateReAuthExchangeSessionWithRedirect:
+      title: CreateReAuthExchangeSessionWithRedirect
+      description: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          required:
+          - redirect-url
+          properties:
+            redirect-url:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  description: 'Required for Plaid mobile sessions.
+
+                    For Android: use app URI scheme (e.g., com.example.app123)
+
+                    For iOS: use HTTPS URL (e.g., https://example.com/app123)
+
+                    '
+                  example: https://example.com/app123
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept

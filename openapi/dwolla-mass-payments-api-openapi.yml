@@ -739,20 +739,19 @@ paths:
                     example: Customer not found.
 components:
   schemas:
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
+    TransferAmount:
+      title: TransferAmount
       type: object
       required:
-      - code
-      - message
+      - value
+      - currency
       properties:
-        code:
+        value:
           type: string
-          example: BadRequest
-        message:
+          example: '5.00'
+        currency:
           type: string
-          example: The request body contains bad syntax or is incomplete.
+          example: USD
     MassPayments:
       title: MassPayments
       type: object
@@ -771,19 +770,47 @@ components:
         total:
           type: integer
           example: 100
-    HalLink:
-      title: HalLink
+    MassPayment:
+      title: MassPayment
       type: object
       properties:
-        href:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
           type: string
-          example: https://api.dwolla.com
-        type:
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
           type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
+          example: complete
+        created:
           type: string
-          example: resource-type
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
+          type: object
+        total:
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
     MassPaymentItem:
       title: MassPaymentItem
       type: object
@@ -842,46 +869,19 @@ components:
             destination:
               type: string
               example: real-time-payments
-    MassPayment:
-      title: MassPayment
+    HalLink:
+      title: HalLink
       type: object
       properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
+        href:
           type: string
-          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
-        status:
+          example: https://api.dwolla.com
+        type:
           type: string
-          example: complete
-        created:
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
           type: string
-          format: date-time
-          example: '2022-01-20T17:41:41.000Z'
-        metaData:
-          type: object
-        total:
-          $ref: '#/components/schemas/TransferAmount'
-        totalFees:
-          $ref: '#/components/schemas/TransferAmount'
-        correlationId:
-          type: string
-          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
+          example: resource-type
   headers:
     Location:
       description: The location of the created resource

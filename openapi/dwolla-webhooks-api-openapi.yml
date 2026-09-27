@@ -263,12 +263,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
 components:
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   schemas:
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     WebhookRetries:
       title: WebhookRetries
       type: object
@@ -316,20 +325,6 @@ components:
           type: integer
           format: int32
           example: 1
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     Webhook:
       title: Webhook
       type: object
@@ -433,6 +428,11 @@ components:
                   body:
                     type: string
                     example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   parameters:
     Accept:
       name: Accept

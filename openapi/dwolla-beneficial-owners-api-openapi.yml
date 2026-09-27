@@ -618,167 +618,6 @@ paths:
                     example: Forbidden from updating beneficial ownership status for this customer.
 components:
   schemas:
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
-    CreateInternationalBeneficialOwner:
-      title: CreateInternationalBeneficialOwner
-      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
-      required:
-      - firstName
-      - lastName
-      - dateOfBirth
-      - address
-      - passport
-      type: object
-      properties:
-        firstName:
-          type: string
-          example: Jane
-        lastName:
-          type: string
-          example: Smith
-        dateOfBirth:
-          type: string
-          example: '1985-03-15'
-        address:
-          $ref: '#/components/schemas/InternationalAddress'
-        passport:
-          $ref: '#/components/schemas/Passport'
-    BeneficialOwnership:
-      title: BeneficialOwnership
-      type: object
-      required:
-      - _links
-      - status
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              $ref: '#/components/schemas/HalLink'
-        status:
-          type: string
-          enum:
-          - uncertified
-          - certified
-          - recertify
-          example: uncertified
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    Passport:
-      title: Passport
-      type: object
-      required:
-      - number
-      - country
-      properties:
-        number:
-          type: string
-        country:
-          type: string
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    InternationalAddress:
-      title: InternationalAddress
-      type: object
-      required:
-      - address1
-      - city
-      - country
-      - stateProvinceRegion
-      properties:
-        address1:
-          type: string
-          example: 462 Main Street
-        address2:
-          type: string
-          example: Suite 123
-        address3:
-          type: string
-          example: Unit 123
-        city:
-          type: string
-          example: Des Moines
-        postalCode:
-          type: string
-          example: '50309'
-        country:
-          type: string
-          example: USA
-        stateProvinceRegion:
-          type: string
-          example: IA
-    ValidationErrorSchema:
-      title: ValidationErrorSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner
@@ -817,22 +656,20 @@ components:
           type: string
           format: date-time
           example: '2022-07-23T00:18:21.419Z'
-    BeneficialOwners:
-      title: BeneficialOwners
-      description: Request model for list beneficial owners
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
+      required:
+      - code
+      - message
       properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            beneficial-owners:
-              type: array
-              items:
-                $ref: '#/components/schemas/BeneficialOwner'
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     CreateUSBeneficialOwner:
       title: CreateUSBeneficialOwner
       description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
@@ -858,6 +695,169 @@ components:
         ssn:
           type: string
           example: '123456789'
+    BeneficialOwners:
+      title: BeneficialOwners
+      description: Request model for list beneficial owners
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            beneficial-owners:
+              type: array
+              items:
+                $ref: '#/components/schemas/BeneficialOwner'
+    BeneficialOwnership:
+      title: BeneficialOwnership
+      type: object
+      required:
+      - _links
+      - status
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
+        status:
+          type: string
+          enum:
+          - uncertified
+          - certified
+          - recertify
+          example: uncertified
+    CreateInternationalBeneficialOwner:
+      title: CreateInternationalBeneficialOwner
+      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - passport
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        dateOfBirth:
+          type: string
+          example: '1985-03-15'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        passport:
+          $ref: '#/components/schemas/Passport'
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    ValidationErrorSchema:
+      title: ValidationErrorSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
+    Passport:
+      title: Passport
+      type: object
+      required:
+      - number
+      - country
+      properties:
+        number:
+          type: string
+        country:
+          type: string
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    InternationalAddress:
+      title: InternationalAddress
+      type: object
+      required:
+      - address1
+      - city
+      - country
+      - stateProvinceRegion
+      properties:
+        address1:
+          type: string
+          example: 462 Main Street
+        address2:
+          type: string
+          example: Suite 123
+        address3:
+          type: string
+          example: Unit 123
+        city:
+          type: string
+          example: Des Moines
+        postalCode:
+          type: string
+          example: '50309'
+        country:
+          type: string
+          example: USA
+        stateProvinceRegion:
+          type: string
+          example: IA
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   headers:
     Location:
       description: The location of the created resource

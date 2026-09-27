@@ -910,29 +910,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    LabelLedgerEntry:
-      title: LabelLedgerEntry
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 32d68709-62dd-43d6-a6df-562f4baec526
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-              example: '-5.00'
-            currency:
-              type: string
-              example: USD
-        created:
-          type: string
-          format: date-time
-          example: '2019-05-16T01:54:58.062Z'
     LabelLedgerEntries:
       title: LabelLedgerEntries
       type: object
@@ -951,47 +928,6 @@ components:
         total:
           type: integer
           example: 100
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -1029,6 +965,43 @@ components:
             currency:
               type: string
               example: USD
+    LabelLedgerEntry:
+      title: LabelLedgerEntry
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 32d68709-62dd-43d6-a6df-562f4baec526
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '-5.00'
+            currency:
+              type: string
+              example: USD
+        created:
+          type: string
+          format: date-time
+          example: '2019-05-16T01:54:58.062Z'
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
     Labels:
       title: Labels
       type: object
@@ -1046,6 +1019,33 @@ components:
         total:
           type: integer
           example: 100
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   headers:
     Location:
       description: The location of the created resource

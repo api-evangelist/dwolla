@@ -549,8 +549,8 @@ paths:
                     example: Account not found.
 components:
   schemas:
-    Transfers:
-      title: Transfers
+    FundingSources:
+      title: FundingSources
       type: object
       properties:
         _links:
@@ -559,13 +559,28 @@ components:
         _embedded:
           type: object
           properties:
-            transfers:
+            funding-sources:
               type: array
               items:
-                $ref: '#/components/schemas/Transfer'
+                $ref: '#/components/schemas/FundingSource'
         total:
           type: integer
-          example: 100
+          format: int32
+          example: 3
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     FundingSource:
       title: FundingSource
       type: object
@@ -680,37 +695,6 @@ components:
                   type: string
                   description: Postal code or ZIP code
                   example: '50310'
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    MassPayments:
-      title: MassPayments
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            mass-payments:
-              type: array
-              items:
-                $ref: '#/components/schemas/MassPayment'
-        total:
-          type: integer
-          example: 100
     BadRequestSchema:
       title: BadRequestSchema
       type: object
@@ -733,6 +717,19 @@ components:
             message:
               type: string
               example: Validation error(s) present. See embedded errors list for more details.
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
     Transfer:
       title: Transfer
       type: object
@@ -949,20 +946,68 @@ components:
               - fed-now
               description: The payment network used to process the transfer
               example: real-time-payments
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
+    MassPayments:
+      title: MassPayments
       type: object
-      required:
-      - code
-      - message
       properties:
-        code:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
+        total:
+          type: integer
+          example: 100
+    MassPayment:
+      title: MassPayment
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
           type: string
-          example: NotFound
-        message:
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
           type: string
-          example: The requested resource was not found.
+          example: complete
+        created:
+          type: string
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
+          type: object
+        total:
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+    Transfers:
+      title: Transfers
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            transfers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transfer'
+        total:
+          type: integer
+          example: 100
     CreateAccountFundingSource:
       title: CreateAccountFundingSource
       type: object
@@ -995,8 +1040,8 @@ components:
       - bankAccountType
       - accountNumber
       - routingNumber
-    MassPayment:
-      title: MassPayment
+    Account:
+      title: Account
       type: object
       properties:
         _links:
@@ -1005,23 +1050,16 @@ components:
             $ref: '#/components/schemas/HalLink'
         id:
           type: string
-          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
-        status:
+          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
+        name:
           type: string
-          example: complete
-        created:
+          example: Jane Doe's Business
+        timezoneOffset:
+          type: number
+          example: -6
+        type:
           type: string
-          format: date-time
-          example: '2022-01-20T17:41:41.000Z'
-        metaData:
-          type: object
-        total:
-          $ref: '#/components/schemas/TransferAmount'
-        totalFees:
-          $ref: '#/components/schemas/TransferAmount'
-        correlationId:
-          type: string
-          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+          example: Commercial
     DuplicateResourceSchema:
       title: DuplicateResourceSchema
       type: object
@@ -1050,57 +1088,19 @@ components:
                 resource-type:
                   type: string
                   example: funding-source
-    FundingSources:
-      title: FundingSources
+    HalLink:
+      title: HalLink
       type: object
       properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            funding-sources:
-              type: array
-              items:
-                $ref: '#/components/schemas/FundingSource'
-        total:
-          type: integer
-          format: int32
-          example: 3
-    Account:
-      title: Account
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
+        href:
           type: string
-          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
-        name:
-          type: string
-          example: Jane Doe's Business
-        timezoneOffset:
-          type: number
-          example: -6
+          example: https://api.dwolla.com
         type:
           type: string
-          example: Commercial
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
           type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
+          example: resource-type
   headers:
     Location:
       description: The location of the created resource
