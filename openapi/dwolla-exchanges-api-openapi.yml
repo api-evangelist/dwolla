@@ -549,9 +549,9 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
       type: object
       required:
       - code
@@ -559,10 +559,88 @@ components:
       properties:
         code:
           type: string
-          example: NotFound
+          example: Forbidden
         message:
           type: string
-          example: The requested resource was not found.
+          example: The supplied credentials are not authorized for this resource.
+    Exchange:
+      title: Exchange
+      type: object
+      required:
+      - _links
+      - id
+      - status
+      - created
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        status:
+          type: string
+          enum:
+          - active
+          - deactivated
+          - removed
+          example: active
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
+    ExchangePartners:
+      title: ExchangePartners
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            exchange-partners:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExchangePartner'
+        total:
+          type: integer
+          format: int32
+          example: 3
+    ExchangePartner:
+      title: ExchangePartner
+      type: object
+      required:
+      - _links
+      - id
+      - name
+      - status
+      - created
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        name:
+          type: string
+          enum:
+          - MX
+          - Plaid
+          - Flinks
+          - Finicity
+          - Checkout.com
+          example: Plaid
+        status:
+          type: string
+          enum:
+          - active
+          example: active
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
     Exchanges:
       title: Exchanges
       type: object
@@ -587,19 +665,19 @@ components:
           type: integer
           format: int32
           example: 3
-    InvalidExchangeToken:
-      title: InvalidExchangeToken
+    HalLink:
+      title: HalLink
       type: object
-      required:
-      - code
-      - message
       properties:
-        code:
+        href:
           type: string
-          example: InvalidExchangeToken
-        message:
+          example: https://api.dwolla.com
+        type:
           type: string
-          example: Exchange token is expired.
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
     InvalidExchange:
       title: InvalidExchange
       type: object
@@ -696,32 +774,33 @@ components:
               type: string
               description: The Plaid public token for the connection
               example: public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c
-    Exchange:
-      title: Exchange
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
-      - _links
-      - id
-      - status
-      - created
+      - code
+      - message
       properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
+        code:
           type: string
-          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
-        status:
+          example: NotFound
+        message:
           type: string
-          enum:
-          - active
-          - deactivated
-          - removed
-          example: active
-        created:
+          example: The requested resource was not found.
+    InvalidExchangeToken:
+      title: InvalidExchangeToken
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
           type: string
-          format: date-time
-          example: '2022-07-23T00:18:21.419Z'
+          example: InvalidExchangeToken
+        message:
+          type: string
+          example: Exchange token is expired.
     CreateFinicitySecureExchange:
       title: CreateFinicitySecureExchange
       type: object
@@ -790,85 +869,6 @@ components:
               type: string
               format: date-time
               example: '2022-07-11T06:06:23Z'
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    ExchangePartner:
-      title: ExchangePartner
-      type: object
-      required:
-      - _links
-      - id
-      - name
-      - status
-      - created
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
-        name:
-          type: string
-          enum:
-          - MX
-          - Plaid
-          - Flinks
-          - Finicity
-          - Checkout.com
-          example: Plaid
-        status:
-          type: string
-          enum:
-          - active
-          example: active
-        created:
-          type: string
-          format: date-time
-          example: '2022-07-23T00:18:21.419Z'
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    ExchangePartners:
-      title: ExchangePartners
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            exchange-partners:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExchangePartner'
-        total:
-          type: integer
-          format: int32
-          example: 3
   headers:
     Location:
       description: The location of the created resource

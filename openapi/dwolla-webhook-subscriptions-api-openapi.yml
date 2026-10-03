@@ -562,36 +562,20 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    InvalidUrlFormatError:
-      title: InvalidUrlFormatError
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
       type: object
+      required:
+      - code
+      - message
       properties:
         code:
           type: string
-          example: ValidationError
+          example: Forbidden
         message:
           type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            errors:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    example: InvalidFormat
-                  message:
-                    type: string
-                    example: Url must be a valid url.
-                  path:
-                    type: string
-                    example: /url
-                  _links:
-                    type: object
-                    example: {}
+          example: The supplied credentials are not authorized for this resource.
     TooManyRequestsError:
       title: TooManyRequestsError
       type: object
@@ -602,20 +586,6 @@ components:
         message:
           type: string
           example: Please wait a short period of time before re-attempting the request.
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     MaxSubscriptionsReachedError:
       title: MaxSubscriptionsReachedError
       type: object
@@ -626,38 +596,6 @@ components:
         message:
           type: string
           example: The maximum number of subscriptions has been reached.
-    WebhookSubscription:
-      title: WebhookSubscription
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589
-            webhooks:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks
-        id:
-          type: string
-          example: 077dfffb-4852-412f-96b6-0fe668066589
-        url:
-          type: string
-          example: http://myapplication.com/webhooks
-        paused:
-          type: boolean
-          example: true
-        created:
-          type: string
-          format: date-time
-          example: '2022-10-28T16:20:47+00:00'
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -702,9 +640,9 @@ components:
                   _links:
                     type: object
                     example: {}
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
       - code
@@ -712,10 +650,72 @@ components:
       properties:
         code:
           type: string
-          example: Forbidden
+          example: NotFound
         message:
           type: string
-          example: The supplied credentials are not authorized for this resource.
+          example: The requested resource was not found.
+    InvalidUrlFormatError:
+      title: InvalidUrlFormatError
+      type: object
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: InvalidFormat
+                  message:
+                    type: string
+                    example: Url must be a valid url.
+                  path:
+                    type: string
+                    example: /url
+                  _links:
+                    type: object
+                    example: {}
+    WebhookSubscription:
+      title: WebhookSubscription
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589
+            webhooks:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks
+        id:
+          type: string
+          example: 077dfffb-4852-412f-96b6-0fe668066589
+        url:
+          type: string
+          example: http://myapplication.com/webhooks
+        paused:
+          type: boolean
+          example: true
+        created:
+          type: string
+          format: date-time
+          example: '2022-10-28T16:20:47+00:00'
     Webhook:
       title: Webhook
       type: object
@@ -819,11 +819,6 @@ components:
                   body:
                     type: string
                     example: body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   parameters:
     Accept:
       name: Accept
@@ -835,6 +830,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

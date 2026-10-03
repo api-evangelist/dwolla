@@ -264,20 +264,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     WebhookRetries:
       title: WebhookRetries
       type: object
@@ -325,6 +311,20 @@ components:
           type: integer
           format: int32
           example: 1
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
     Webhook:
       title: Webhook
       type: object

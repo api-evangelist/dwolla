@@ -367,59 +367,6 @@ paths:
                     example: KBA session not found.
 components:
   schemas:
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    InvalidResourceStateSchema:
-      title: InvalidResourceStateSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: invalidResourceState
-        message:
-          type: string
-          example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
-    ExpiredKbaSessionError:
-      title: ExpiredKbaSessionError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: InvalidResourceState
-        message:
-          type: string
-          example: The kba session has expired.
-    InvalidKbaSessionError:
-      title: InvalidKbaSessionError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: InvalidResourceState
-        message:
-          type: string
-          example: The kba session is no longer valid.
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -434,6 +381,59 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
+    ExpiredKbaSessionError:
+      title: ExpiredKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session has expired.
+    InvalidResourceStateSchema:
+      title: InvalidResourceStateSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidResourceState
+        message:
+          type: string
+          example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    InvalidKbaSessionError:
+      title: InvalidKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session is no longer valid.
   headers:
     Location:
       description: The location of the created resource
