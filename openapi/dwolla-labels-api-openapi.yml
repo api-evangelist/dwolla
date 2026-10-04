@@ -910,37 +910,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    Labels:
-      title: Labels
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            labels:
-              type: array
-              items:
-                $ref: '#/components/schemas/Label'
-        total:
-          type: integer
-          example: 100
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -978,51 +947,6 @@ components:
             currency:
               type: string
               example: USD
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    LabelLedgerEntries:
-      title: LabelLedgerEntries
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            ledger-entries:
-              type: array
-              items:
-                $ref: '#/components/schemas/LabelLedgerEntry'
-        total:
-          type: integer
-          example: 100
     LabelLedgerEntry:
       title: LabelLedgerEntry
       type: object
@@ -1046,11 +970,82 @@ components:
           type: string
           format: date-time
           example: '2019-05-16T01:54:58.062Z'
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    LabelLedgerEntries:
+      title: LabelLedgerEntries
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            ledger-entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelLedgerEntry'
+        total:
+          type: integer
+          example: 100
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    Labels:
+      title: Labels
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/Label'
+        total:
+          type: integer
+          example: 100
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
   parameters:
     Accept:
       name: Accept
@@ -1062,6 +1057,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

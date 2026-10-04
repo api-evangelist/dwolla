@@ -549,6 +549,28 @@ paths:
                     example: Account not found.
 components:
   schemas:
+    BadRequestSchema:
+      title: BadRequestSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
+          type: object
+          properties:
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
     TransferAmount:
       title: TransferAmount
       type: object
@@ -590,28 +612,93 @@ components:
                 resource-type:
                   type: string
                   example: funding-source
-    BadRequestSchema:
-      title: BadRequestSchema
+    Account:
+      title: Account
       type: object
-      required:
-      - code
-      - message
       properties:
-        code:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
           type: string
-          example: ValidationError
-        message:
+          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
+        name:
           type: string
-          example: Validation error(s) present. See embedded errors list for more details.
+          example: Jane Doe's Business
+        timezoneOffset:
+          type: number
+          example: -6
+        type:
+          type: string
+          example: Commercial
+    MassPayments:
+      title: MassPayments
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
         _embedded:
           type: object
           properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
+        total:
+          type: integer
+          example: 100
+    Transfers:
+      title: Transfers
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            transfers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transfer'
+        total:
+          type: integer
+          example: 100
+    CreateAccountFundingSource:
+      title: CreateAccountFundingSource
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            exchange:
+              type: object
+              properties:
+                href:
+                  type: string
+        name:
+          type: string
+        bankAccountType:
+          type: string
+          enum:
+          - checking
+          - savings
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - bankAccountType
+      - accountNumber
+      - routingNumber
     Transfer:
       title: Transfer
       type: object
@@ -841,8 +928,8 @@ components:
         resource-type:
           type: string
           example: resource-type
-    Transfers:
-      title: Transfers
+    FundingSources:
+      title: FundingSources
       type: object
       properties:
         _links:
@@ -851,13 +938,41 @@ components:
         _embedded:
           type: object
           properties:
-            transfers:
+            funding-sources:
               type: array
               items:
-                $ref: '#/components/schemas/Transfer'
+                $ref: '#/components/schemas/FundingSource'
         total:
           type: integer
-          example: 100
+          format: int32
+          example: 3
+    MassPayment:
+      title: MassPayment
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
+          type: string
+          example: complete
+        created:
+          type: string
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
+          type: object
+        total:
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -872,38 +987,6 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-    CreateAccountFundingSource:
-      title: CreateAccountFundingSource
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            exchange:
-              type: object
-              properties:
-                href:
-                  type: string
-        name:
-          type: string
-        bankAccountType:
-          type: string
-          enum:
-          - checking
-          - savings
-        accountNumber:
-          type: string
-        routingNumber:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - bankAccountType
-      - accountNumber
-      - routingNumber
     FundingSource:
       title: FundingSource
       type: object
@@ -1018,89 +1101,6 @@ components:
                   type: string
                   description: Postal code or ZIP code
                   example: '50310'
-    FundingSources:
-      title: FundingSources
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            funding-sources:
-              type: array
-              items:
-                $ref: '#/components/schemas/FundingSource'
-        total:
-          type: integer
-          format: int32
-          example: 3
-    MassPayment:
-      title: MassPayment
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
-        status:
-          type: string
-          example: complete
-        created:
-          type: string
-          format: date-time
-          example: '2022-01-20T17:41:41.000Z'
-        metaData:
-          type: object
-        total:
-          $ref: '#/components/schemas/TransferAmount'
-        totalFees:
-          $ref: '#/components/schemas/TransferAmount'
-        correlationId:
-          type: string
-          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
-    MassPayments:
-      title: MassPayments
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            mass-payments:
-              type: array
-              items:
-                $ref: '#/components/schemas/MassPayment'
-        total:
-          type: integer
-          example: 100
-    Account:
-      title: Account
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
-        name:
-          type: string
-          example: Jane Doe's Business
-        timezoneOffset:
-          type: number
-          example: -6
-        type:
-          type: string
-          example: Commercial
   parameters:
     Accept:
       name: Accept

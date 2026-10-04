@@ -367,6 +367,19 @@ paths:
                     example: KBA session not found.
 components:
   schemas:
+    ExpiredKbaSessionError:
+      title: ExpiredKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session has expired.
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -381,19 +394,6 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
-    ExpiredKbaSessionError:
-      title: ExpiredKbaSessionError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: InvalidResourceState
-        message:
-          type: string
-          example: The kba session has expired.
     InvalidResourceStateSchema:
       title: InvalidResourceStateSchema
       type: object
@@ -407,6 +407,19 @@ components:
         message:
           type: string
           example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
+    InvalidKbaSessionError:
+      title: InvalidKbaSessionError
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: InvalidResourceState
+        message:
+          type: string
+          example: The kba session is no longer valid.
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -421,24 +434,6 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-    InvalidKbaSessionError:
-      title: InvalidKbaSessionError
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: InvalidResourceState
-        message:
-          type: string
-          example: The kba session is no longer valid.
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
   parameters:
     Accept:
       name: Accept
@@ -450,6 +445,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

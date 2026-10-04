@@ -177,6 +177,25 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
+    Events:
+      title: Events
+      type: object
+      properties:
+        _links:
+          type: object
+        additionalProperties:
+          $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+        total:
+          type: integer
+          format: int32
+          example: 3
     Event:
       title: Event
       type: object
@@ -198,25 +217,6 @@ components:
         resourceId:
           type: string
           example: 09A166BC-1B74-E511-80DB-0AA34A9B2388
-    Events:
-      title: Events
-      type: object
-      properties:
-        _links:
-          type: object
-        additionalProperties:
-          $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            events:
-              type: array
-              items:
-                $ref: '#/components/schemas/Event'
-        total:
-          type: integer
-          format: int32
-          example: 3
     HalLink:
       title: HalLink
       type: object

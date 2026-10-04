@@ -555,6 +555,32 @@ components:
               type: string
               description: Checkout.com payment session token (base64) for Flow initialization.
               example: YmFzZTY0:eyJpZCI6InBzXzM5dmhIakZ4WnVKUktPdzVIZXhibnYzOWZDNyIs...
+    CreateReAuthExchangeSessionForWeb:
+      title: CreateReAuthExchangeSessionForWeb
+      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
+      type: object
+      properties: {}
+    CreateCustomerExchangeSessionForWeb:
+      title: CreateCustomerExchangeSessionForWeb
+      description: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
+      type: object
+      required:
+      - _links
+      properties:
+        _links:
+          type: object
+          required:
+          - exchange-partner
+          properties:
+            exchange-partner:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
     CreateReAuthExchangeSessionWithRedirect:
       title: CreateReAuthExchangeSessionWithRedirect
       description: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
@@ -583,41 +609,6 @@ components:
 
                     '
                   example: https://example.com/app123
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    CreateCustomerExchangeSessionForWeb:
-      title: CreateCustomerExchangeSessionForWeb
-      description: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
-      type: object
-      required:
-      - _links
-      properties:
-        _links:
-          type: object
-          required:
-          - exchange-partner
-          properties:
-            exchange-partner:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
     AvailableExchangeConnections:
       type: object
       required:
@@ -685,16 +676,20 @@ components:
                     type: string
                     description: Name of the external bank account
                     example: XYZ Checking
-    CreateReAuthExchangeSessionForWeb:
-      title: CreateReAuthExchangeSessionForWeb
-      description: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
-      properties: {}
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
   parameters:
     Accept:
       name: Accept
@@ -706,6 +701,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

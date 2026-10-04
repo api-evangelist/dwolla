@@ -558,20 +558,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
     DuplicateResourceSchema:
       title: DuplicateResourceSchema
       type: object
@@ -600,6 +586,59 @@ components:
                 resource-type:
                   type: string
                   example: funding-source
+    InvalidFileTypeSchema:
+      title: InvalidFileTypeSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidFileType
+        message:
+          type: string
+          example: 'File types supported: Personal IDs - .jpg, .jpeg or .png. Business Documents - .jpg, .jpeg, .png, or .pdf.'
+    InvalidResourceStateSchema:
+      title: InvalidResourceStateSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: invalidResourceState
+        message:
+          type: string
+          example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
+    NotAuthorizedSchema:
+      title: NotAuthorizedSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: notAuthorized
+        message:
+          type: string
+          example: Not authorized to create documents.
     Documents:
       title: Documents
       type: object
@@ -624,59 +663,6 @@ components:
         total:
           type: integer
           example: 2
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    InvalidResourceStateSchema:
-      title: InvalidResourceStateSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: invalidResourceState
-        message:
-          type: string
-          example: Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
-    NotAuthorizedSchema:
-      title: NotAuthorizedSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: notAuthorized
-        message:
-          type: string
-          example: Not authorized to create documents.
     Document:
       title: Document
       description: Identity verification document for a customer or beneficial owner
@@ -748,6 +734,19 @@ components:
                 type: string
                 description: Human-readable explanation of the failure reason
                 example: Scan DOB does not match DOB on account
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
     MaximumNumberOfResourcesSchema:
       title: MaximumNumberOfResourcesSchema
       type: object
@@ -761,8 +760,9 @@ components:
         message:
           type: string
           example: Max of four files upload allowed. Please wait for Dwolla to manually check the documents.
-    InvalidFileTypeSchema:
-      title: InvalidFileTypeSchema
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
       - code
@@ -770,15 +770,10 @@ components:
       properties:
         code:
           type: string
-          example: invalidFileType
+          example: NotFound
         message:
           type: string
-          example: 'File types supported: Personal IDs - .jpg, .jpeg or .png. Business Documents - .jpg, .jpeg, .png, or .pdf.'
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
+          example: The requested resource was not found.
   parameters:
     Accept:
       name: Accept
@@ -790,6 +785,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

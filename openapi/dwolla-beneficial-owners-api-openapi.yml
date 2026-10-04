@@ -618,34 +618,6 @@ paths:
                     example: Forbidden from updating beneficial ownership status for this customer.
 components:
   schemas:
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
     HalLink:
       title: HalLink
       type: object
@@ -659,31 +631,6 @@ components:
         resource-type:
           type: string
           example: resource-type
-    Passport:
-      title: Passport
-      type: object
-      required:
-      - number
-      - country
-      properties:
-        number:
-          type: string
-        country:
-          type: string
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     InternationalAddress:
       title: InternationalAddress
       type: object
@@ -714,6 +661,99 @@ components:
         stateProvinceRegion:
           type: string
           example: IA
+    CreateInternationalBeneficialOwner:
+      title: CreateInternationalBeneficialOwner
+      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - passport
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Smith
+        dateOfBirth:
+          type: string
+          example: '1985-03-15'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        passport:
+          $ref: '#/components/schemas/Passport'
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
+    BeneficialOwnership:
+      title: BeneficialOwnership
+      type: object
+      required:
+      - _links
+      - status
+      properties:
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
+        status:
+          type: string
+          enum:
+          - uncertified
+          - certified
+          - recertify
+          example: uncertified
+    CreateUSBeneficialOwner:
+      title: CreateUSBeneficialOwner
+      description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
+      required:
+      - firstName
+      - lastName
+      - dateOfBirth
+      - address
+      - ssn
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        dateOfBirth:
+          type: string
+          example: '1980-01-31'
+        address:
+          $ref: '#/components/schemas/InternationalAddress'
+        ssn:
+          type: string
+          example: '123456789'
+    Passport:
+      title: Passport
+      type: object
+      required:
+      - number
+      - country
+      properties:
+        number:
+          type: string
+        country:
+          type: string
     BeneficialOwners:
       title: BeneficialOwners
       description: Request model for list beneficial owners
@@ -730,8 +770,9 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/BeneficialOwner'
-    ValidationErrorSchema:
-      title: ValidationErrorSchema
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
       type: object
       required:
       - code
@@ -739,19 +780,24 @@ components:
       properties:
         code:
           type: string
-          example: ValidationError
+          example: NotFound
         message:
           type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
+          example: The requested resource was not found.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner
@@ -790,79 +836,28 @@ components:
           type: string
           format: date-time
           example: '2022-07-23T00:18:21.419Z'
-    CreateInternationalBeneficialOwner:
-      title: CreateInternationalBeneficialOwner
-      description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
-      required:
-      - firstName
-      - lastName
-      - dateOfBirth
-      - address
-      - passport
-      type: object
-      properties:
-        firstName:
-          type: string
-          example: Jane
-        lastName:
-          type: string
-          example: Smith
-        dateOfBirth:
-          type: string
-          example: '1985-03-15'
-        address:
-          $ref: '#/components/schemas/InternationalAddress'
-        passport:
-          $ref: '#/components/schemas/Passport'
-    CreateUSBeneficialOwner:
-      title: CreateUSBeneficialOwner
-      description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
-      required:
-      - firstName
-      - lastName
-      - dateOfBirth
-      - address
-      - ssn
-      type: object
-      properties:
-        firstName:
-          type: string
-          example: John
-        lastName:
-          type: string
-          example: Doe
-        dateOfBirth:
-          type: string
-          example: '1980-01-31'
-        address:
-          $ref: '#/components/schemas/InternationalAddress'
-        ssn:
-          type: string
-          example: '123456789'
-    BeneficialOwnership:
-      title: BeneficialOwnership
+    ValidationErrorSchema:
+      title: ValidationErrorSchema
       type: object
       required:
-      - _links
-      - status
+      - code
+      - message
       properties:
-        _links:
+        code:
+          type: string
+          example: ValidationError
+        message:
+          type: string
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
           type: object
           properties:
-            self:
-              $ref: '#/components/schemas/HalLink'
-        status:
-          type: string
-          enum:
-          - uncertified
-          - certified
-          - recertify
-          example: uncertified
-  headers:
-    Location:
-      description: The location of the created resource
-      schema:
-        type: string
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
   parameters:
     Accept:
       name: Accept
@@ -874,6 +869,11 @@ components:
         enum:
         - application/vnd.dwolla.v1.hal+json
         default: application/vnd.dwolla.v1.hal+json
+  headers:
+    Location:
+      description: The location of the created resource
+      schema:
+        type: string
   securitySchemes:
     clientCredentials:
       type: oauth2

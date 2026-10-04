@@ -153,64 +153,6 @@ paths:
                     example: Not authorized to simulate transfer processing.
 components:
   schemas:
-    SandboxSimulationVirtualTransferItem:
-      title: SandboxSimulationVirtualTransferItem
-      description: One simulated external (VAN) transfer in a sandbox-simulations request.
-      type: object
-      required:
-      - _link
-      - amount
-      properties:
-        _link:
-          type: object
-          description: Link wrapper for the destination funding source (Dwolla HAL-style single link).
-          required:
-          - destination
-          properties:
-            destination:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09
-        amount:
-          $ref: '#/components/schemas/TransferAmount'
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
-    SandboxSimulationBankProcessingResponse:
-      title: SandboxSimulationBankProcessingResponse
-      description: Response when simulating bank transfer processing (200 OK).
-      type: object
-      required:
-      - _links
-      - total
-      properties:
-        total:
-          type: integer
-          format: int32
-          example: 8
-          description: Count of bank transfers (and related items) affected by the simulation run.
-        _links:
-          type: object
-          required:
-          - self
-          properties:
-            self:
-              $ref: '#/components/schemas/HalLink'
     SandboxSimulationCustomerVerificationRequest:
       title: SandboxSimulationCustomerVerificationRequest
       description: 'Simulate a verification directive for a business Verified Customer in Sandbox. The customer must be in
@@ -254,6 +196,62 @@ components:
           - AddressNotAssociatedWithBusiness
           - EINDocumentRequired
           example: AddressNotAssociatedWithBusiness
+    SandboxSimulationVirtualAccountTransfersRequest:
+      title: SandboxSimulationVirtualAccountTransfersRequest
+      description: 'Simulate Virtual Account Number (VAN) / external transfers in Sandbox. Up to 10 transfers per request;
+
+        transfers are created and processed immediately. Successful response is 202 Accepted.
+
+        '
+      type: object
+      required:
+      - type
+      - transfers
+      properties:
+        type:
+          type: string
+          const: virtual
+          description: Must be set to virtual for VAN transfer simulation.
+        transfers:
+          type: array
+          description: Transfers to simulate (max 10 per request).
+          minItems: 1
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/SandboxSimulationVirtualTransferItem'
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+    SandboxSimulationBankProcessingResponse:
+      title: SandboxSimulationBankProcessingResponse
+      description: Response when simulating bank transfer processing (200 OK).
+      type: object
+      required:
+      - _links
+      - total
+      properties:
+        total:
+          type: integer
+          format: int32
+          example: 8
+          description: Count of bank transfers (and related items) affected by the simulation run.
+        _links:
+          type: object
+          required:
+          - self
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -279,32 +277,31 @@ components:
         '
       type: object
       additionalProperties: false
-    HalLink:
-      title: HalLink
+    SandboxSimulationVirtualTransferItem:
+      title: SandboxSimulationVirtualTransferItem
+      description: One simulated external (VAN) transfer in a sandbox-simulations request.
       type: object
+      required:
+      - _link
+      - amount
       properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    SandboxSimulationRequest:
-      title: SandboxSimulationRequest
-      description: 'Bank transfer processing (omit body or `{}`), VAN transfer simulation (`type` virtual + transfers), or
-
-        verification directive simulation (`type` customer-verification, customer link, and errorCode). Typed bodies
-
-        are mutually exclusive; use only an omitted body or `{}` for bank processing.
-
-        '
-      oneOf:
-      - $ref: '#/components/schemas/SandboxSimulationVirtualAccountTransfersRequest'
-      - $ref: '#/components/schemas/SandboxSimulationCustomerVerificationRequest'
-      - $ref: '#/components/schemas/SandboxSimulationBankProcessingRequest'
+        _link:
+          type: object
+          description: Link wrapper for the destination funding source (Dwolla HAL-style single link).
+          required:
+          - destination
+          properties:
+            destination:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09
+        amount:
+          $ref: '#/components/schemas/TransferAmount'
     SandboxSimulationCustomerVerificationResponse:
       title: SandboxSimulationCustomerVerificationResponse
       description: 'Response when simulating customer verification directives (200 OK). Echoes the simulated `errorCode`;
@@ -333,29 +330,32 @@ components:
           - AddressNotAssociatedWithBusiness
           - EINDocumentRequired
           example: AddressNotAssociatedWithBusiness
-    SandboxSimulationVirtualAccountTransfersRequest:
-      title: SandboxSimulationVirtualAccountTransfersRequest
-      description: 'Simulate Virtual Account Number (VAN) / external transfers in Sandbox. Up to 10 transfers per request;
+    SandboxSimulationRequest:
+      title: SandboxSimulationRequest
+      description: 'Bank transfer processing (omit body or `{}`), VAN transfer simulation (`type` virtual + transfers), or
 
-        transfers are created and processed immediately. Successful response is 202 Accepted.
+        verification directive simulation (`type` customer-verification, customer link, and errorCode). Typed bodies
+
+        are mutually exclusive; use only an omitted body or `{}` for bank processing.
 
         '
+      oneOf:
+      - $ref: '#/components/schemas/SandboxSimulationVirtualAccountTransfersRequest'
+      - $ref: '#/components/schemas/SandboxSimulationCustomerVerificationRequest'
+      - $ref: '#/components/schemas/SandboxSimulationBankProcessingRequest'
+    HalLink:
+      title: HalLink
       type: object
-      required:
-      - type
-      - transfers
       properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
         type:
           type: string
-          const: virtual
-          description: Must be set to virtual for VAN transfer simulation.
-        transfers:
-          type: array
-          description: Transfers to simulate (max 10 per request).
-          minItems: 1
-          maxItems: 10
-          items:
-            $ref: '#/components/schemas/SandboxSimulationVirtualTransferItem'
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   parameters:
     Accept:
       name: Accept
