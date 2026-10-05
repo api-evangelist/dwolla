@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/dwolla/dwolla-openapi/HEAD/openapi.yml",
+ "requested_url": "https://raw.githubusercontent.com/dwolla/dwolla-openapi/HEAD/openapi.yml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 645678,
+ "sha256": "3425f4fcc589f21031053c0a17865deb0e6868e381e284e6cddb1a42c2dde825",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
