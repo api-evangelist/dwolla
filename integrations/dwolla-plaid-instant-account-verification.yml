@@ -1,0 +1,138 @@
+arazzo: 1.0.1
+info:
+  title: Verify a Bank Account with Plaid and Attach It to a Dwolla Customer
+  summary: Exchange a Plaid Link public token, mint a Dwolla processor token, and create a verified Dwolla funding source from it.
+  description: After the end user links a bank account through Plaid Link, this workflow exchanges the Plaid public
+    token for an access token, creates a Plaid processor token for the Dwolla processor, hands that token to Dwolla
+    as a token-based exchange, and creates a verified bank funding source on the Dwolla customer from the exchange.
+  version: 1.0.0
+sourceDescriptions:
+- name: plaidApi
+  url: https://raw.githubusercontent.com/api-evangelist/plaid/refs/heads/main/openapi/plaid-plaid-api-openapi.yml
+  type: openapi
+- name: dwollaExchangesApi
+  url: https://raw.githubusercontent.com/api-evangelist/dwolla/refs/heads/main/openapi/dwolla-exchanges-api-openapi.yml
+  type: openapi
+- name: dwollaFundingSourcesApi
+  url: https://raw.githubusercontent.com/api-evangelist/dwolla/refs/heads/main/openapi/dwolla-funding-sources-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: dwolla-plaid-instant-account-verification
+  summary: Turn a Plaid Link public token into a verified Dwolla funding source.
+  description: Exchanges the Plaid public token, creates a Dwolla processor token, creates a Dwolla exchange with it,
+    then creates the customer's funding source from that exchange.
+  inputs:
+    type: object
+    required:
+    - plaid_client_id
+    - plaid_secret
+    - public_token
+    - account_id
+    - customer_id
+    - exchange_partner_href
+    - funding_source_name
+    properties:
+      plaid_client_id:
+        type: string
+        description: Plaid client id.
+      plaid_secret:
+        type: string
+        description: Plaid secret.
+      public_token:
+        type: string
+        description: Public token returned by Plaid Link.
+      account_id:
+        type: string
+        description: The Plaid account id the user selected.
+      customer_id:
+        type: string
+        description: The Dwolla customer id.
+      exchange_partner_href:
+        type: string
+        description: URL of the Plaid exchange partner, from Dwolla's exchange partners list.
+      funding_source_name:
+        type: string
+        description: Nickname for the new funding source.
+      bank_account_type:
+        type: string
+        description: checking or savings.
+        default: checking
+  steps:
+  - stepId: exchange-public-token
+    description: Exchange the Plaid Link public token for an access token.
+    operationId: $sourceDescriptions.plaidApi.itemPublicTokenExchange
+    requestBody:
+      contentType: application/json
+      payload:
+        client_id: $inputs.plaid_client_id
+        secret: $inputs.plaid_secret
+        public_token: $inputs.public_token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      access_token: $response.body#/access_token
+      item_id: $response.body#/item_id
+  - stepId: create-processor-token
+    description: Create a Plaid processor token for Dwolla.
+    operationId: $sourceDescriptions.plaidApi.processorTokenCreate
+    requestBody:
+      contentType: application/json
+      payload:
+        client_id: $inputs.plaid_client_id
+        secret: $inputs.plaid_secret
+        access_token: $steps.exchange-public-token.outputs.access_token
+        account_id: $inputs.account_id
+        processor: dwolla
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processor_token: $response.body#/processor_token
+  - stepId: create-exchange
+    description: Create a Dwolla exchange for the customer with the Plaid processor token.
+    operationId: $sourceDescriptions.dwollaExchangesApi.createCustomerExchange
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.customer_id
+    requestBody:
+      contentType: application/vnd.dwolla.v1.hal+json
+      payload:
+        _links:
+          exchange-partner:
+            href: $inputs.exchange_partner_href
+        token: $steps.create-processor-token.outputs.processor_token
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      exchange_url: $response.header.Location
+  - stepId: create-funding-source
+    description: Create the customer's bank funding source from the exchange.
+    operationId: $sourceDescriptions.dwollaFundingSourcesApi.createCustomerFundingSource
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.customer_id
+    requestBody:
+      contentType: application/vnd.dwolla.v1.hal+json
+      payload:
+        _links:
+          exchange:
+            href: $steps.create-exchange.outputs.exchange_url
+        bankAccountType: $inputs.bank_account_type
+        name: $inputs.funding_source_name
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      funding_source_url: $response.header.Location
+  outputs:
+    item_id: $steps.exchange-public-token.outputs.item_id
+    exchange_url: $steps.create-exchange.outputs.exchange_url
+    funding_source_url: $steps.create-funding-source.outputs.funding_source_url
+x-integration:
+  partner: plaid
+  template: null
+  edge_evidence: https://developers.dwolla.com/docs/open-banking/plaid.md
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)

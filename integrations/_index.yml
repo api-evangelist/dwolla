@@ -10,8 +10,8 @@
   type: claimed
   evidence: https://developers.dwolla.com/docs/open-banking/plaid.md
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: dwolla-plaid-instant-account-verification.yml
+  status: arazzo
 - slug: dwolla-mx
   label: MX
   partner_name: MX
