@@ -1,6 +1,6 @@
 ---
 generated: '2026-07-23'
-name: Subscribe to webhooks and consume events
+name: dwolla-subscribe-webhooks
 method: generated
 description: Register a webhook subscription with an HMAC secret, verify inbound event signatures, and reconcile against the Events resource with retry handling.
 api: openapi/dwolla-webhook-subscriptions-openapi.yml

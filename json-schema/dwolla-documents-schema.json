@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-documents-schema.json",
+  "title": "Documents",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-documents-api-openapi.yml#/components/schemas/Documents",
+  "type": "object",
+  "required": [
+    "_links",
+    "_embedded",
+    "total"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/HalLink"
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "required": [
+        "documents"
+      ],
+      "properties": {
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Document"
+          }
+        }
+      }
+    },
+    "total": {
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "Document": {
+      "title": "Document",
+      "description": "Identity verification document for a customer or beneficial owner",
+      "type": "object",
+      "required": [
+        "_links",
+        "id",
+        "status",
+        "documentVerificationStatus",
+        "type",
+        "created"
+      ],
+      "properties": {
+        "_links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "$ref": "#/$defs/HalLink"
+            }
+          }
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the document"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the document upload",
+          "enum": [
+            "pending",
+            "reviewed"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of identity document uploaded",
+          "enum": [
+            "passport",
+            "license",
+            "idCard",
+            "other"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp when the document was uploaded"
+        },
+        "documentVerificationStatus": {
+          "type": "string",
+          "description": "Verification status of the document after review",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "failureReason": {
+          "type": "string",
+          "description": "Primary reason why document verification failed (if rejected)"
+        },
+        "allFailureReasons": {
+          "type": "array",
+          "description": "Complete list of all failure reasons if document verification was rejected",
+          "items": {
+            "type": "object",
+            "required": [
+              "reason",
+              "description"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "description": "Failure reason code"
+              },
+              "description": {
+                "type": "string",
+                "description": "Human-readable explanation of the failure reason"
+              }
+            }
+          }
+        }
+      }
+    },
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

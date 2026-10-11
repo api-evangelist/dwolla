@@ -1,7 +1,7 @@
 ---
 generated: '2026-07-23'
 method: generated
-name: Send an ACH transfer between funding sources
+name: dwolla-send-ach-transfer
 description: Authenticate, initiate a bank-to-bank transfer over ACH (or Same-Day ACH / RTP / FedNow), then poll its status and read the failure reason if it fails.
 api: openapi/dwolla-transfers-openapi.yml
 operations: [createApplicationAccessToken, initiateTransfer, getTransfer, getTransferFailureReason]

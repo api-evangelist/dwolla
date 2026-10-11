@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-webhook-subscription-schema.json",
+  "title": "WebhookSubscription",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-webhook-subscriptions-api-openapi.yml#/components/schemas/WebhookSubscription",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          }
+        },
+        "webhooks": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "paused": {
+      "type": "boolean"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

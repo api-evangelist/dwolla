@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-plaid-open-banking-exchange-schema.json",
+  "title": "CreatePlaidOpenBankingExchange",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchanges-api-openapi.yml#/components/schemas/CreatePlaidOpenBankingExchange",
+  "type": "object",
+  "required": [
+    "_links",
+    "plaid"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "required": [
+        "exchange-partner"
+      ],
+      "properties": {
+        "exchange-partner": {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    },
+    "plaid": {
+      "type": "object",
+      "required": [
+        "publicToken"
+      ],
+      "properties": {
+        "publicToken": {
+          "type": "string",
+          "description": "The Plaid public token for the connection"
+        }
+      }
+    }
+  }
+}

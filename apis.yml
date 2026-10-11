@@ -1,15 +1,18 @@
 aid: dwolla
+
 name: Dwolla
+
 kind: company
-description: Dwolla is a Des Moines-based fintech providing an account-to-account (A2A) payments platform
-  that lets businesses programmatically move money across the U.S. banking system. Its v2 REST API — a
-  JSON-HAL hypermedia API secured with OAuth 2.0 client-credentials — supports ACH (standard and Same-Day),
-  instant/real-time payments over the RTP Network and FedNow Service, bank funding sources with micro-deposit
-  and Open Banking (Plaid/MX) verification, verified Customers (personal and business with beneficial-owner/KYC
-  flows), mass payments, labels and ledgers, virtual account numbers, and webhook event notifications.
-  Dwolla ships official SDKs for Node, Python, Ruby, PHP, C#, and Kotlin, low-code Drop-in Components,
-  and a read-only MCP server for AI agents.
+
+description: Dwolla is a Des Moines-based fintech providing an account-to-account (A2A) payments platform that lets businesses programmatically
+  move money across the U.S. banking system. Its v2 REST API — a JSON-HAL hypermedia API secured with OAuth 2.0 client-credentials — supports
+  ACH (standard and Same-Day), instant/real-time payments over the RTP Network and FedNow Service, bank funding sources with micro-deposit and
+  Open Banking (Plaid/MX) verification, verified Customers (personal and business with beneficial-owner/KYC flows), mass payments, labels and
+  ledgers, virtual account numbers, and webhook event notifications. Dwolla ships official SDKs for Node, Python, Ruby, PHP, C#, and Kotlin, low-code
+  Drop-in Components, and a read-only MCP server for AI agents.
+
 url: https://raw.githubusercontent.com/api-evangelist/dwolla/refs/heads/main/apis.yml
+
 deliveryModel:
   model: open-core
   license: MIT
@@ -24,6 +27,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -36,20 +40,33 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://github.com/Dwolla.png
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - a16z
 - union-square-ventures
+
 x-tier: enriched
+
 x-tier-reason: portfolio-lead
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-10-06'
+
 x-docs-platform: mintlify
+
 x-docs-platform-confidence: medium
+
 x-docs-platform-checked: 2026-10-03
+
 tags:
 - Payments
 - ACH
@@ -70,6 +87,7 @@ tags:
 - Drop-in Components
 - SDK
 - Sandbox
+
 tags_raw:
 - Payments
 - ACH
@@ -90,295 +108,28 @@ tags_raw:
 - Drop-in Components
 - SDKs
 - Sandbox
-apis:
-- aid: dwolla:dwolla-accounts-api
-  name: Dwolla Accounts API
-  description: Operations related to Accounts
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Account
-  tags_raw:
-  - accounts
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-accounts-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-beneficial-owners-api
-  name: Dwolla beneficial owners API
-  description: Operations related to Beneficial Owners
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Beneficial Owners
-  tags_raw:
-  - beneficial owners
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-beneficial-owners-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-client-tokens-api
-  name: Dwolla client tokens API
-  description: Operations related to Client Tokens
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Client Tokens
-  tags_raw:
-  - client tokens
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-client-tokens-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-customers-api
-  name: Dwolla Customers API
-  description: Operations related to Customers
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Customers
-  tags_raw:
-  - customers
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-customers-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-documents-api
-  name: Dwolla Documents API
-  description: Operations related to Documents
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Documents
-  tags_raw:
-  - documents
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-documents-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-events-api
-  name: Dwolla Events API
-  description: Operations related to Events
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Event
-  tags_raw:
-  - events
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-events-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-exchange-sessions-api
-  name: Dwolla exchange sessions API
-  description: Operations related to Exchange Sessions
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - exchange sessions
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-exchange-sessions-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-exchanges-api
-  name: Dwolla Exchanges API
-  description: Operations related to Exchanges
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Exchange
-  tags_raw:
-  - exchanges
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-exchanges-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-funding-sources-api
-  name: Dwolla funding sources API
-  description: Operations related to Funding Sources
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Funding Sources
-  tags_raw:
-  - funding sources
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-funding-sources-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-kba-api
-  name: Dwolla Kba API
-  description: Operations related to Knowledge-Based Authentication
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - kba
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-kba-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-labels-api
-  name: Dwolla Labels API
-  description: Operations related to Labels
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Labels
-  tags_raw:
-  - labels
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-labels-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-mass-payments-api
-  name: Dwolla mass payments API
-  description: Operations related to Mass Payments
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Mass Payments
-  tags_raw:
-  - mass payments
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-mass-payments-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-root-api
-  name: Dwolla Root API
-  description: Root API operations
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Root
-  tags_raw:
-  - root
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-root-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-sandbox-simulations-api
-  name: Dwolla sandbox simulations API
-  description: Sandbox-only operations for simulating processing of bank transfers
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - sandbox simulations
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-sandbox-simulations-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-tokens-api
-  name: Dwolla Tokens API
-  description: Operations related to Application Access Tokens
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Tokens
-  tags_raw:
-  - tokens
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-tokens-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-transfers-api
-  name: Dwolla Transfers API
-  description: Operations related to Transfers
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Transfers
-  tags_raw:
-  - transfers
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-transfers-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-webhook-subscriptions-api
-  name: Dwolla webhook subscriptions API
-  description: Operations related to Webhook Subscriptions
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Webhook Subscriptions
-  tags_raw:
-  - webhook subscriptions
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-webhook-subscriptions-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
-- aid: dwolla:dwolla-webhooks-api
-  name: Dwolla Webhooks API
-  description: Operations related to Webhooks
-  humanURL: https://developers.dwolla.com/api-reference
-  baseURL: https://api.dwolla.com
-  tags:
-  - Webhook
-  tags_raw:
-  - webhooks
-  properties:
-  - type: OpenAPI
-    url: openapi/dwolla-webhooks-api-openapi.yml
-  - type: Documentation
-    url: https://developers.dwolla.com/docs
-  - type: APIReference
-    url: https://developers.dwolla.com/api-reference
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: IntegrationEdges
+  url: integrations/dwolla-integration-edges.yml
+- type: Spectral
+  url: rules/dwolla-rules.yml
+- type: JSONLD
+  url: json-ld/dwolla-context.jsonld
+- type: Vocabulary
+  url: vocabulary/dwolla-vocabulary.yml
+- type: AgentCard
+  url: a2a/dwolla-a2a.yml
+- type: Vendors
+  url: vendors/dwolla-vendors.yml
+- type: Security
+  url: https://www.dwolla.com/features/security
 - url: https://www.dwolla.com/updates
   type: Blog
 - url: https://www.dwolla.com/updates/rss.xml
@@ -478,8 +229,6 @@ common:
   url: well-known/dwolla-well-known.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/dwolla
-- type: Blog
-  url: https://www.dwolla.com/blog/
 - type: OpenAPI
   url: openapi/_original/dwolla-openapi.yml
   name: Dwolla API (full bundled OpenAPI 3.1)
@@ -488,8 +237,409 @@ common:
   name: Dwolla OpenAPI source repository
 - type: Review
   url: review.yml
+
+apis:
+- aid: dwolla:dwolla-accounts-api
+  name: Dwolla Accounts API
+  description: Operations related to Accounts
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Account
+  tags_raw:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-create-account-funding-source-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-account-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-funding-sources-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-mass-payments-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-transfers-schema.json
+- aid: dwolla:dwolla-beneficial-owners-api
+  name: Dwolla beneficial owners API
+  description: Operations related to Beneficial Owners
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Beneficial Owners
+  tags_raw:
+  - beneficial owners
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-beneficial-owners-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-beneficial-owner-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-international-beneficial-owner-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-usbeneficial-owner-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-beneficial-owners-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-beneficial-ownership-schema.json
+- aid: dwolla:dwolla-client-tokens-api
+  name: Dwolla client tokens API
+  description: Operations related to Client Tokens
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Client Tokens
+  tags_raw:
+  - client tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-client-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-customers-api
+  name: Dwolla Customers API
+  description: Operations related to Customers
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Customers
+  tags_raw:
+  - customers
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-retry-verified-business-with-international-controller-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-verified-business-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-retry-verified-business-with-controller-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-verified-business-customer-with-international-controller-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-verified-business-customer-with-controller-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-upgrade-to-verified-business-schema.json
+- aid: dwolla:dwolla-documents-api
+  name: Dwolla Documents API
+  description: Operations related to Documents
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Documents
+  tags_raw:
+  - documents
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-documents-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-documents-schema.json
+- aid: dwolla:dwolla-events-api
+  name: Dwolla Events API
+  description: Operations related to Events
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Event
+  tags_raw:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-event-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-events-schema.json
+- aid: dwolla:dwolla-exchange-sessions-api
+  name: Dwolla exchange sessions API
+  description: Operations related to Exchange Sessions
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - exchange sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-exchange-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-exchange-session-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-available-exchange-connections-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-customer-exchange-session-with-redirect-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-re-auth-exchange-session-with-redirect-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-customer-exchange-session-for-web-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-re-auth-exchange-session-for-web-schema.json
+- aid: dwolla:dwolla-exchanges-api
+  name: Dwolla Exchanges API
+  description: Operations related to Exchanges
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Exchange
+  tags_raw:
+  - exchanges
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-exchanges-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-create-finicity-secure-exchange-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-mxopen-banking-exchange-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-token-based-exchange-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-plaid-open-banking-exchange-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-exchange-partner-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-exchange-schema.json
+- aid: dwolla:dwolla-funding-sources-api
+  name: Dwolla funding sources API
+  description: Operations related to Funding Sources
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Funding Sources
+  tags_raw:
+  - funding sources
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-funding-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-funding-source-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-create-customer-funding-source-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-on-demand-authorization-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-verify-micro-deposits-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-update-unverified-bank-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-funding-sources-schema.json
+- aid: dwolla:dwolla-kba-api
+  name: Dwolla Kba API
+  description: Operations related to Knowledge-Based Authentication
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - kba
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-kba-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-labels-api
+  name: Dwolla Labels API
+  description: Operations related to Labels
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Labels
+  tags_raw:
+  - labels
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-labels-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-label-ledger-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-label-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-label-ledger-entries-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-labels-schema.json
+- aid: dwolla:dwolla-mass-payments-api
+  name: Dwolla mass payments API
+  description: Operations related to Mass Payments
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Mass Payments
+  tags_raw:
+  - mass payments
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-mass-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-mass-payment-item-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-mass-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-mass-payments-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-transfer-amount-schema.json
+- aid: dwolla:dwolla-root-api
+  name: Dwolla Root API
+  description: Root API operations
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Root
+  tags_raw:
+  - root
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-root-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-root-schema.json
+- aid: dwolla:dwolla-sandbox-simulations-api
+  name: Dwolla sandbox simulations API
+  description: Sandbox-only operations for simulating processing of bank transfers
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - sandbox simulations
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-sandbox-simulations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-sandbox-simulation-customer-verification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-sandbox-simulation-request-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-sandbox-simulation-bank-processing-response-schema.json
+- aid: dwolla:dwolla-tokens-api
+  name: Dwolla Tokens API
+  description: Operations related to Application Access Tokens
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Tokens
+  tags_raw:
+  - tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+- aid: dwolla:dwolla-transfers-api
+  name: Dwolla Transfers API
+  description: Operations related to Transfers
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Transfers
+  tags_raw:
+  - transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-transfer-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-transfers-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-hal-link-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-transfer-amount-schema.json
+- aid: dwolla:dwolla-webhook-subscriptions-api
+  name: Dwolla webhook subscriptions API
+  description: Operations related to Webhook Subscriptions
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Webhook Subscriptions
+  tags_raw:
+  - webhook subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-webhook-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-webhook-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-webhook-subscription-schema.json
+- aid: dwolla:dwolla-webhooks-api
+  name: Dwolla Webhooks API
+  description: Operations related to Webhooks
+  humanURL: https://developers.dwolla.com/api-reference
+  baseURL: https://api.dwolla.com
+  tags:
+  - Webhook
+  tags_raw:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/dwolla-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.dwolla.com/docs
+  - type: APIReference
+    url: https://developers.dwolla.com/api-reference
+  - type: JSONSchema
+    url: json-schema/dwolla-webhook-schema.json
+  - type: JSONSchema
+    url: json-schema/dwolla-webhook-retries-schema.json
+
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
-  pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  date: '2026-10-12'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v5

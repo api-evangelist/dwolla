@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-exchange-session-schema.json",
+  "title": "ExchangeSession",
+  "description": "Details of a previously created exchange session. Response shape varies by exchange partner.\n- **MX**: includes `_links.external-provider-session.href` (redirect URL).\n- **Plaid**: includes `externalProviderSessionToken` (Link initialization token).\n- **Checkout.com**: includes `externalProviderSessionData` (payment session for Flow/debit card capture).\n",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/ExchangeSession",
+  "type": "object",
+  "required": [
+    "created",
+    "_links"
+  ],
+  "properties": {
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "_links": {
+      "type": "object",
+      "required": [
+        "self",
+        "exchange-partner"
+      ],
+      "properties": {
+        "self": {
+          "type": "object",
+          "required": [
+            "href",
+            "type",
+            "resource-type"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            },
+            "type": {
+              "type": "string"
+            },
+            "resource-type": {
+              "type": "string"
+            }
+          }
+        },
+        "exchange-partner": {
+          "type": "object",
+          "required": [
+            "href",
+            "type",
+            "resource-type"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            },
+            "type": {
+              "type": "string"
+            },
+            "resource-type": {
+              "type": "string"
+            }
+          }
+        },
+        "external-provider-session": {
+          "type": "object",
+          "required": [
+            "href",
+            "type",
+            "resource-type"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri",
+              "description": "Present for MX exchange sessions.\nContains the URL to redirect the user to complete the authorization process.\n"
+            },
+            "type": {
+              "type": "string"
+            },
+            "resource-type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "externalProviderSessionToken": {
+      "type": "string",
+      "description": "Present for Plaid exchange sessions.\nContains the token to initialize the Plaid Link flow.\n"
+    },
+    "externalProviderSessionData": {
+      "type": "object",
+      "description": "Present for Checkout.com exchange sessions (Push to Card / debit card flow).\nUse these fields to initialize the Checkout.com Flow component for card capture.\n",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Checkout.com payment session ID (e.g. ps_xxx)."
+        },
+        "payment_session_secret": {
+          "type": "string",
+          "description": "Checkout.com payment session secret."
+        },
+        "payment_session_token": {
+          "type": "string",
+          "description": "Checkout.com payment session token (base64) for Flow initialization."
+        }
+      }
+    }
+  }
+}

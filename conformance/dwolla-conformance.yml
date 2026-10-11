@@ -26,8 +26,18 @@ standards:
 - id: soc2-type2
   conforms: true
   evidence: SOC 2 Type 2 report (Security trust principle) per https://www.dwolla.com/security/.
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, offset
 compliance_program:
   published: true
   url: https://www.dwolla.com/security/
   trust_center: https://trust.dwolla.com/
-  certifications: [SOC 2 Type 2]
+  certifications:
+  - SOC 2 Type 2

@@ -1,0 +1,423 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/dwolla-accounts-api-openapi.yml
+- openapi/dwolla-beneficial-owners-api-openapi.yml
+- openapi/dwolla-client-tokens-api-openapi.yml
+- openapi/dwolla-customers-api-openapi.yml
+- openapi/dwolla-documents-api-openapi.yml
+vocabulary:
+  name: Dwolla Domain Vocabulary
+  description: 'Terms declared by Dwolla''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: Accounts
+    definition: Operations related to Accounts
+    tags:
+    - Resource Group
+    source: openapi/dwolla-accounts-api-openapi.yml
+  - term: Beneficial owners
+    definition: Operations related to Beneficial Owners
+    tags:
+    - Resource Group
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml
+  - term: Client Tokens
+    definition: Operations related to Client Tokens
+    tags:
+    - Resource Group
+    source: openapi/dwolla-client-tokens-api-openapi.yml
+  - term: Customers
+    definition: Operations related to Customers
+    tags:
+    - Resource Group
+    source: openapi/dwolla-customers-api-openapi.yml
+  - term: Documents
+    definition: Operations related to Documents
+    tags:
+    - Resource Group
+    source: openapi/dwolla-documents-api-openapi.yml
+  - term: Events
+    definition: Operations related to Events
+    tags:
+    - Resource Group
+    source: openapi/dwolla-events-api-openapi.yml
+  - term: exchange sessions
+    definition: Operations related to Exchange Sessions
+    tags:
+    - Resource Group
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml
+  - term: Exchanges
+    definition: Operations related to Exchanges
+    tags:
+    - Resource Group
+    source: openapi/dwolla-exchanges-api-openapi.yml
+  - term: Funding Sources
+    definition: Operations related to Funding Sources
+    tags:
+    - Resource Group
+    source: openapi/dwolla-funding-sources-api-openapi.yml
+  - term: kba
+    definition: Operations related to Knowledge-Based Authentication
+    tags:
+    - Resource Group
+    source: openapi/dwolla-kba-api-openapi.yml
+  - term: Labels
+    definition: Operations related to Labels
+    tags:
+    - Resource Group
+    source: openapi/dwolla-labels-api-openapi.yml
+  - term: mass payments
+    definition: Operations related to Mass Payments
+    tags:
+    - Resource Group
+    source: openapi/dwolla-mass-payments-api-openapi.yml
+  - term: Root
+    definition: Root API operations
+    tags:
+    - Resource Group
+    source: openapi/dwolla-root-api-openapi.yml
+  - term: sandbox simulations
+    definition: Sandbox-only operations for simulating processing of bank transfers
+    tags:
+    - Resource Group
+    source: openapi/dwolla-sandbox-simulations-api-openapi.yml
+  - term: Tokens
+    definition: Operations related to Application Access Tokens
+    tags:
+    - Resource Group
+    source: openapi/dwolla-tokens-api-openapi.yml
+  - term: Transfers
+    definition: Operations related to Transfers
+    tags:
+    - Resource Group
+    source: openapi/dwolla-transfers-api-openapi.yml
+  - term: Webhook Subscriptions
+    definition: Operations related to Webhook Subscriptions
+    tags:
+    - Resource Group
+    source: openapi/dwolla-webhook-subscriptions-api-openapi.yml
+  - term: Webhooks
+    definition: Operations related to Webhooks
+    tags:
+    - Resource Group
+    source: openapi/dwolla-webhooks-api-openapi.yml
+  - term: BadRequestSchema
+    definition: 'Object declared by the contract with fields: code, message, _embedded.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/BadRequestSchema
+  - term: TransferAmount
+    definition: 'Object declared by the contract with fields: value, currency.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/TransferAmount
+  - term: DuplicateResourceSchema
+    definition: 'Object declared by the contract with fields: code, message, _links.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/DuplicateResourceSchema
+  - term: Account
+    definition: 'Object declared by the contract with fields: _links, id, name, timezoneOffset, type.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/Account
+  - term: MassPayments
+    definition: 'Object declared by the contract with fields: _links, _embedded, total.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/MassPayments
+  - term: CreateAccountFundingSource
+    definition: 'Object declared by the contract with fields: _links, name, bankAccountType, accountNumber, routingNumber, channels.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/CreateAccountFundingSource
+  - term: Transfer
+    definition: 'Object declared by the contract with fields: _links, id, status, amount, created, clearing, metadata, achDetails, rtpDetails,
+      fedNowDetails, correlationId, processingChannel.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/Transfer
+  - term: HalLink
+    definition: 'Object declared by the contract with fields: href, type, resource-type.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/HalLink
+  - term: FundingSources
+    definition: 'Object declared by the contract with fields: _links, _embedded, total.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/FundingSources
+  - term: MassPayment
+    definition: 'Object declared by the contract with fields: _links, id, status, created, metaData, total, totalFees, correlationId.'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/MassPayment
+  - term: NotFoundError
+    definition: Error response schema for 404 NotFound
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/NotFoundError
+  - term: FundingSource
+    definition: 'Object declared by the contract with fields: _links, id, status, type, bankAccountType, name, created, removed, channels, bankName,
+      fingerprint, bankUsageType. (1 more)'
+    tags:
+    - Object
+    source: openapi/dwolla-accounts-api-openapi.yml#/components/schemas/FundingSource
+  - term: InternationalAddress
+    definition: 'Object declared by the contract with fields: address1, address2, address3, city, postalCode, country, stateProvinceRegion.'
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/InternationalAddress
+  - term: CreateInternationalBeneficialOwner
+    definition: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires
+      passport information for identity verification.
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/CreateInternationalBeneficialOwner
+  - term: BadRequestError
+    definition: Error response schema for 400 Bad Request
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/BadRequestError
+  - term: BeneficialOwnership
+    definition: 'Object declared by the contract with fields: _links, status.'
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/BeneficialOwnership
+  - term: CreateUSBeneficialOwner
+    definition: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead
+      of passport.
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/CreateUSBeneficialOwner
+  - term: Passport
+    definition: 'Object declared by the contract with fields: number, country.'
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/Passport
+  - term: BeneficialOwners
+    definition: Request model for list beneficial owners
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/BeneficialOwners
+  - term: ForbiddenError
+    definition: Error response schema for 403 Forbidden
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/ForbiddenError
+  - term: BeneficialOwner
+    definition: Request body model for a Beneficial Owner
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/BeneficialOwner
+  - term: ValidationErrorSchema
+    definition: 'Object declared by the contract with fields: code, message, _embedded.'
+    tags:
+    - Object
+    source: openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/ValidationErrorSchema
+  - term: UpdateVerifiedPersonal
+    definition: Update Verified Personal Customer Information
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpdateVerifiedPersonal
+  - term: CreateVerifiedBusinessCustomerWithInternationalController
+    definition: Create a Verified Business customer with an international (non US) controller
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateVerifiedBusinessCustomerWithInternationalController
+  - term: CreateUnverifiedCustomer
+    definition: Create an Unverified Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateUnverifiedCustomer
+  - term: SuspendCustomer
+    definition: Suspend a Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/SuspendCustomer
+  - term: BaseCustomer
+    definition: Base schema containing common fields for all customer types
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/BaseCustomer
+  - term: CreateVerifiedBusinessCustomerWithController
+    definition: Create a Verified Business customer with a US controller
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateVerifiedBusinessCustomerWithController
+  - term: CreateVerifiedPersonalCustomer
+    definition: Create a Verified Personal customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateVerifiedPersonalCustomer
+  - term: UpgradeToVerifiedPersonal
+    definition: Upgrade Unverified Customer to Verified Personal Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpgradeToVerifiedPersonal
+  - term: RetryVerifiedBusinessWithInternationalController
+    definition: Retry Verification for Verified Business Customer where Business Details as well as International Controller Details need to be
+      retried
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/RetryVerifiedBusinessWithInternationalController
+  - term: UpdateUnverifiedAndReceiveOnly
+    definition: Update Unverified Customer or Receive Only User Information
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpdateUnverifiedAndReceiveOnly
+  - term: VerifiedSolePropCustomer
+    definition: Verified sole proprietorship customer - distinguished from VerifiedBusinessCustomer by businessType=soleProprietorship
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/VerifiedSolePropCustomer
+  - term: RetryVerifiedPersonal
+    definition: Retry Verification for Verified Personal Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/RetryVerifiedPersonal
+  - term: CreateReceiveOnlyUser
+    definition: Create a Receive Only User
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateReceiveOnlyUser
+  - term: UnverifiedCustomer
+    definition: Unverified customer - basic customer type with no KYC verification
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UnverifiedCustomer
+  - term: UpgradeToVerifiedSoleProp
+    definition: Upgrade Unverified Customer to Verified Business Customer (Sole Proprietorship)
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpgradeToVerifiedSoleProp
+  - term: UpgradeToVerifiedBusiness
+    definition: Upgrade Unverified Customer to Verified Business Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpgradeToVerifiedBusiness
+  - term: UpgradeToUnverified
+    definition: Upgrade Receive Only User to Unverified Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpgradeToUnverified
+  - term: RetryVerifiedSoleProp
+    definition: Retry Verification for Verified Business Customer (Sole Proprietorship)
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/RetryVerifiedSoleProp
+  - term: BusinessClassifications
+    definition: 'Object declared by the contract with fields: _links, _embedded, total.'
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/BusinessClassifications
+  - term: VerifiedPersonalCustomer
+    definition: Verified personal customer - fully KYC verified individual with send and receive capabilities
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/VerifiedPersonalCustomer
+  - term: RetryVerifiedBusinessWithController
+    definition: Retry Verification for Verified Business Customer where Business Details as well as Controller Details need to be retried
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/RetryVerifiedBusinessWithController
+  - term: DeactivateCustomer
+    definition: Deactivate a Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/DeactivateCustomer
+  - term: VerifiedBusinessCustomer
+    definition: Verified business customer (LLC, Corporation, Partnership) - distinguished from VerifiedSolePropCustomer by presence of a controller
+      object
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/VerifiedBusinessCustomer
+  - term: CreateVerifiedSolePropCustomer
+    definition: Create a Verified Business customer (Sole Proprietorship)
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateVerifiedSolePropCustomer
+  - term: BusinessClassification
+    definition: 'Object declared by the contract with fields: _links, _embedded, id, name.'
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/BusinessClassification
+  - term: RetryVerifiedBusinessNoController
+    definition: Retry Verification for Verified Business Customer where only Business Details need to be retried
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/RetryVerifiedBusinessNoController
+  - term: ReceiveOnlyCustomer
+    definition: Receive-only user - can only receive funds, not send
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/ReceiveOnlyCustomer
+  - term: ReactivateCustomer
+    definition: Reactivate a Customer
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/ReactivateCustomer
+  - term: UpdateVerifiedBusiness
+    definition: Update Verified Business Customer Information (both Sole Proprietorship and Non-Sole Proprietorship)
+    tags:
+    - Object
+    source: openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpdateVerifiedBusiness
+  - term: InvalidFileTypeSchema
+    definition: 'Object declared by the contract with fields: code, message.'
+    tags:
+    - Object
+    source: openapi/dwolla-documents-api-openapi.yml#/components/schemas/InvalidFileTypeSchema
+  - term: InvalidResourceStateSchema
+    definition: 'Object declared by the contract with fields: code, message.'
+    tags:
+    - Object
+    source: openapi/dwolla-documents-api-openapi.yml#/components/schemas/InvalidResourceStateSchema
+  - term: NotAuthorizedSchema
+    definition: 'Object declared by the contract with fields: code, message.'
+    tags:
+    - Object
+    source: openapi/dwolla-documents-api-openapi.yml#/components/schemas/NotAuthorizedSchema
+  - term: Document
+    definition: Identity verification document for a customer or beneficial owner
+    tags:
+    - Object
+    source: openapi/dwolla-documents-api-openapi.yml#/components/schemas/Document
+  - term: MaximumNumberOfResourcesSchema
+    definition: 'Object declared by the contract with fields: code, message.'
+    tags:
+    - Object
+    source: openapi/dwolla-documents-api-openapi.yml#/components/schemas/MaximumNumberOfResourcesSchema
+  - term: Event
+    definition: 'Object declared by the contract with fields: _links, id, created, topic, resourceId.'
+    tags:
+    - Object
+    source: openapi/dwolla-events-api-openapi.yml#/components/schemas/Event
+  - term: CreateCustomerExchangeSessionWithRedirect
+    definition: Create exchange session with redirect URL (required for mobile sessions with Plaid)
+    tags:
+    - Object
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/CreateCustomerExchangeSessionWithRedirect
+  - term: ExchangeSession
+    definition: 'Details of a previously created exchange session. Response shape varies by exchange partner. - **MX**: includes `_links.external-provider-session.href`
+      (redirect URL). - **Plaid**: includes `externalProviderSessionToken` (Link initialization token). - **Checkout.com**: includes `externalProviderSessionData`
+      (payment session for Flow/debit card capture).'
+    tags:
+    - Object
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/ExchangeSession
+  - term: CreateReAuthExchangeSessionForWeb
+    definition: Create re-auth exchange session for web (Plaid web sessions where request body is optional)
+    tags:
+    - Object
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/CreateReAuthExchangeSessionForWeb
+  - term: CreateCustomerExchangeSessionForWeb
+    definition: Create exchange session for web (MX and Plaid web sessions where redirect-url is not required)
+    tags:
+    - Object
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/CreateCustomerExchangeSessionForWeb
+  - term: CreateReAuthExchangeSessionWithRedirect
+    definition: Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
+    tags:
+    - Object
+    source: openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/CreateReAuthExchangeSessionWithRedirect

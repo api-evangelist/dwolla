@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-mass-payments-schema.json",
+  "title": "MassPayments",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-accounts-api-openapi.yml#/components/schemas/MassPayments",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/HalLink"
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "mass-payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MassPayment"
+          }
+        }
+      }
+    },
+    "total": {
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    },
+    "MassPayment": {
+      "title": "MassPayment",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/HalLink"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "metaData": {
+          "type": "object"
+        },
+        "total": {
+          "$ref": "#/$defs/TransferAmount"
+        },
+        "totalFees": {
+          "$ref": "#/$defs/TransferAmount"
+        },
+        "correlationId": {
+          "type": "string"
+        }
+      }
+    },
+    "TransferAmount": {
+      "title": "TransferAmount",
+      "type": "object",
+      "required": [
+        "value",
+        "currency"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

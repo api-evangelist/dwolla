@@ -14,10 +14,14 @@ security_practices:
 - Cloudflare enterprise partnership
 evidence:
 - source: https://www.dwolla.com/security/
-  keywords: [soc 2 type 2, tokenization, penetration testing, continuous monitoring]
+  keywords:
+  - soc 2 type 2
+  - tokenization
+  - penetration testing
+  - continuous monitoring
 - source: https://trust.dwolla.com/
-  keywords: [trust center]
-note: >-
-  trust.dwolla.com is a JavaScript trust-center app; SOC 2 Type 2 is named verbatim on
-  https://www.dwolla.com/security/. Additional frameworks may be gated behind the trust center's
-  document-request flow.
+  keywords:
+  - trust center
+note: trust.dwolla.com is a JavaScript trust-center app; SOC 2 Type 2 is named verbatim on https://www.dwolla.com/security/.
+  Additional frameworks may be gated behind the trust center's document-request flow.
+source: https://trust.dwolla.com/

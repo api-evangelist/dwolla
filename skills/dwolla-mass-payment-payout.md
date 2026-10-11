@@ -1,6 +1,6 @@
 ---
 generated: '2026-07-23'
-name: Run a mass payment payout
+name: dwolla-mass-payment-payout
 method: generated
 description: Disburse funds to many recipients in one batch of up to 5,000 items from a single source funding source, then reconcile each item's status.
 api: openapi/dwolla-mass-payments-openapi.yml

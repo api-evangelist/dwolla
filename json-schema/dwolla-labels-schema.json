@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-labels-schema.json",
+  "title": "Labels",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-labels-api-openapi.yml#/components/schemas/Labels",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "additionalProperties": {
+        "$ref": "#/$defs/HalLink"
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Label"
+          }
+        }
+      }
+    },
+    "total": {
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    },
+    "Label": {
+      "title": "Label",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "additionalProperties": {
+            "$ref": "#/$defs/HalLink"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "amount": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

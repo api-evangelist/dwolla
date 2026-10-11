@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-account-funding-source-schema.json",
+  "title": "CreateAccountFundingSource",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-accounts-api-openapi.yml#/components/schemas/CreateAccountFundingSource",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object",
+      "properties": {
+        "exchange": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "bankAccountType": {
+      "type": "string",
+      "enum": [
+        "checking",
+        "savings"
+      ]
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "routingNumber": {
+      "type": "string"
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "bankAccountType",
+    "accountNumber",
+    "routingNumber"
+  ]
+}

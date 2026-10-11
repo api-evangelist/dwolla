@@ -1,6 +1,6 @@
 ---
 generated: '2026-07-23'
-name: Onboard a Business Verified Customer and certify beneficial owners
+name: dwolla-onboard-business-verified-customer
 method: generated
 description: Create a Business Verified Customer, add its beneficial owners with KYC data, and certify ownership to satisfy U.S. CDD/beneficial-ownership requirements.
 api: openapi/dwolla-beneficial-owners-openapi.yml

@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/dwolla/integrations
 - https://n8n.io/integrations/dwolla/
@@ -7,10 +7,50 @@ source:
 - https://monid.ai/tools/dwolla
 checked:
 - https://composio.dev/toolkits/dwolla
+- https://developers.dwolla.com/docs/open-banking/mx.md
+- https://developers.dwolla.com/docs/open-banking/plaid.md
+- https://developers.dwolla.com/docs/secure-exchange/plaid.md
+- https://developers.dwolla.com/llms.txt
 - https://monid.ai/tools/dwolla
 - https://n8n.io/integrations/dwolla/
+- https://www.dwolla.com/partners
+- https://www.make.com/en/integrations/dwolla
 - https://zapier.com/apps/dwolla/integrations
-summary: null
+summary: Dwolla's own docs and contract name open banking / card partners wired into its Exchanges and Exchange
+  Sessions APIs (Plaid, MX, Finicity, Flinks, Checkout.com). Zapier answered 200 with a non-app page; n8n, Composio
+  and dwolla.com/partners 404; Make 403.
 marketplace_apps: []
-edges: []
+edges:
+- partner: plaid
+  type: claimed
+  direction: provider-built
+  evidence: https://developers.dwolla.com/docs/open-banking/plaid.md
+  note: Plaid instant account verification via Dwolla Open Banking and Secure Token Exchange (https://developers.dwolla.com/docs/secure-exchange/plaid.md).
+  partner_name: Plaid
+  partner_match: name-exact
+- partner: null
+  type: claimed
+  direction: provider-built
+  evidence: https://developers.dwolla.com/docs/open-banking/mx.md
+  partner_name: MX
+  partner_match: null
+- partner: finicity
+  type: contract
+  direction: provider-built
+  evidence: https://developers.dwolla.com/docs/api-reference/exchanges/create-an-exchange-for-an-account.md
+  partner_name: Finicity
+  partner_match: name-exact
+- partner: flinks
+  type: contract
+  direction: provider-built
+  evidence: https://developers.dwolla.com/docs/api-reference/exchanges/create-an-exchange-for-an-account.md
+  partner_name: Flinks
+  partner_match: name-exact
+- partner: checkout-com
+  type: contract
+  direction: provider-built
+  evidence: https://developers.dwolla.com/docs/api-reference/exchange-sessions/create-customer-exchange-session.md
+  note: Debit card capture for Push to Card.
+  partner_name: Checkout.com
+  partner_match: name-exact
 templates: []

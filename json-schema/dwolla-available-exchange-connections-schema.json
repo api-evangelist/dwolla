@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-available-exchange-connections-schema.json",
+  "title": "AvailableExchangeConnections",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/AvailableExchangeConnections",
+  "type": "object",
+  "required": [
+    "_links",
+    "_embedded"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "required": [
+        "self",
+        "customers"
+      ],
+      "properties": {
+        "self": {
+          "type": "object",
+          "required": [
+            "href",
+            "type",
+            "resource-type"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            },
+            "type": {
+              "type": "string"
+            },
+            "resource-type": {
+              "type": "string"
+            }
+          }
+        },
+        "customers": {
+          "type": "object",
+          "required": [
+            "href",
+            "type",
+            "resource-type"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            },
+            "type": {
+              "type": "string"
+            },
+            "resource-type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "required": [
+        "available-exchange-connections"
+      ],
+      "properties": {
+        "available-exchange-connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "availableConnectionToken",
+              "name"
+            ],
+            "properties": {
+              "availableConnectionToken": {
+                "type": "string",
+                "description": "Token representing the external bank account that can be used to create a funding source"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the external bank account"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,445 @@
+{
+  "@context": {
+    "@vocab": "https://dwolla.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dwolla": "https://dwolla.com/schema#",
+    "BadRequestSchema": "dwolla:BadRequestSchema",
+    "code": {
+      "@id": "dwolla:code",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "dwolla:message",
+      "@type": "xsd:string"
+    },
+    "_embedded": {
+      "@id": "dwolla:_embedded"
+    },
+    "TransferAmount": "dwolla:TransferAmount",
+    "value": {
+      "@id": "dwolla:value",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "dwolla:currency",
+      "@type": "xsd:string"
+    },
+    "DuplicateResourceSchema": "dwolla:DuplicateResourceSchema",
+    "_links": {
+      "@id": "dwolla:_links"
+    },
+    "Account": "dwolla:Account",
+    "id": {
+      "@id": "dwolla:id",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "dwolla:name",
+      "@type": "xsd:string"
+    },
+    "timezoneOffset": {
+      "@id": "dwolla:timezoneOffset",
+      "@type": "xsd:decimal"
+    },
+    "type": {
+      "@id": "dwolla:type",
+      "@type": "xsd:string"
+    },
+    "MassPayments": "dwolla:MassPayments",
+    "total": {
+      "@id": "dwolla:total",
+      "@type": "xsd:integer"
+    },
+    "Transfers": "dwolla:Transfers",
+    "CreateAccountFundingSource": "dwolla:CreateAccountFundingSource",
+    "bankAccountType": {
+      "@id": "dwolla:bankAccountType",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "dwolla:accountNumber",
+      "@type": "xsd:string"
+    },
+    "routingNumber": {
+      "@id": "dwolla:routingNumber",
+      "@type": "xsd:string"
+    },
+    "channels": {
+      "@id": "dwolla:channels",
+      "@container": "@list"
+    },
+    "Transfer": "dwolla:Transfer",
+    "status": {
+      "@id": "dwolla:status",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "dwolla:amount"
+    },
+    "created": {
+      "@id": "dwolla:created",
+      "@type": "xsd:dateTime"
+    },
+    "clearing": {
+      "@id": "dwolla:clearing"
+    },
+    "metadata": {
+      "@id": "dwolla:metadata"
+    },
+    "achDetails": {
+      "@id": "dwolla:achDetails"
+    },
+    "rtpDetails": {
+      "@id": "dwolla:rtpDetails"
+    },
+    "fedNowDetails": {
+      "@id": "dwolla:fedNowDetails"
+    },
+    "correlationId": {
+      "@id": "dwolla:correlationId",
+      "@type": "xsd:string"
+    },
+    "processingChannel": {
+      "@id": "dwolla:processingChannel"
+    },
+    "HalLink": "dwolla:HalLink",
+    "href": {
+      "@id": "dwolla:href",
+      "@type": "xsd:string"
+    },
+    "resource-type": {
+      "@id": "dwolla:resource-type",
+      "@type": "xsd:string"
+    },
+    "FundingSources": "dwolla:FundingSources",
+    "MassPayment": "dwolla:MassPayment",
+    "metaData": {
+      "@id": "dwolla:metaData"
+    },
+    "totalFees": {
+      "@id": "dwolla:totalFees",
+      "@type": "@id"
+    },
+    "NotFoundError": "dwolla:NotFoundError",
+    "FundingSource": "dwolla:FundingSource",
+    "removed": {
+      "@id": "dwolla:removed",
+      "@type": "xsd:boolean"
+    },
+    "bankName": {
+      "@id": "dwolla:bankName",
+      "@type": "xsd:string"
+    },
+    "fingerprint": {
+      "@id": "dwolla:fingerprint",
+      "@type": "xsd:string"
+    },
+    "bankUsageType": {
+      "@id": "dwolla:bankUsageType",
+      "@type": "xsd:string"
+    },
+    "cardDetails": {
+      "@id": "dwolla:cardDetails"
+    },
+    "InternationalAddress": "dwolla:InternationalAddress",
+    "address1": {
+      "@id": "dwolla:address1",
+      "@type": "xsd:string"
+    },
+    "address2": {
+      "@id": "dwolla:address2",
+      "@type": "xsd:string"
+    },
+    "address3": {
+      "@id": "dwolla:address3",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "dwolla:city",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "dwolla:postalCode",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "dwolla:country",
+      "@type": "xsd:string"
+    },
+    "stateProvinceRegion": {
+      "@id": "dwolla:stateProvinceRegion",
+      "@type": "xsd:string"
+    },
+    "CreateInternationalBeneficialOwner": "dwolla:CreateInternationalBeneficialOwner",
+    "firstName": {
+      "@id": "dwolla:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "dwolla:lastName",
+      "@type": "xsd:string"
+    },
+    "dateOfBirth": {
+      "@id": "dwolla:dateOfBirth",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "dwolla:address",
+      "@type": "@id"
+    },
+    "passport": {
+      "@id": "dwolla:passport",
+      "@type": "@id"
+    },
+    "BadRequestError": "dwolla:BadRequestError",
+    "BeneficialOwnership": "dwolla:BeneficialOwnership",
+    "CreateUSBeneficialOwner": "dwolla:CreateUSBeneficialOwner",
+    "ssn": {
+      "@id": "dwolla:ssn",
+      "@type": "xsd:string"
+    },
+    "Passport": "dwolla:Passport",
+    "number": {
+      "@id": "dwolla:number",
+      "@type": "xsd:string"
+    },
+    "BeneficialOwners": "dwolla:BeneficialOwners",
+    "ForbiddenError": "dwolla:ForbiddenError",
+    "BeneficialOwner": "dwolla:BeneficialOwner",
+    "verificationStatus": {
+      "@id": "dwolla:verificationStatus",
+      "@type": "xsd:string"
+    },
+    "ValidationErrorSchema": "dwolla:ValidationErrorSchema",
+    "UpdateVerifiedPersonal": "dwolla:UpdateVerifiedPersonal",
+    "email": {
+      "@id": "dwolla:email",
+      "@type": "xsd:string"
+    },
+    "ipAddress": {
+      "@id": "dwolla:ipAddress",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "dwolla:state",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "dwolla:phone",
+      "@type": "xsd:string"
+    },
+    "CreateVerifiedBusinessCustomerWithInternationalController": "dwolla:CreateVerifiedBusinessCustomerWithInternationalController",
+    "businessClassification": {
+      "@id": "dwolla:businessClassification",
+      "@type": "xsd:string"
+    },
+    "businessName": {
+      "@id": "dwolla:businessName",
+      "@type": "xsd:string"
+    },
+    "doingBusinessAs": {
+      "@id": "dwolla:doingBusinessAs",
+      "@type": "xsd:string"
+    },
+    "ein": {
+      "@id": "dwolla:ein",
+      "@type": "xsd:string"
+    },
+    "website": {
+      "@id": "dwolla:website",
+      "@type": "xsd:string"
+    },
+    "controller": {
+      "@id": "dwolla:controller"
+    },
+    "businessType": {
+      "@id": "dwolla:businessType",
+      "@type": "xsd:string"
+    },
+    "CreateUnverifiedCustomer": "dwolla:CreateUnverifiedCustomer",
+    "SuspendCustomer": "dwolla:SuspendCustomer",
+    "BaseCustomer": "dwolla:BaseCustomer",
+    "CreateVerifiedBusinessCustomerWithController": "dwolla:CreateVerifiedBusinessCustomerWithController",
+    "CreateVerifiedPersonalCustomer": "dwolla:CreateVerifiedPersonalCustomer",
+    "UpgradeToVerifiedPersonal": "dwolla:UpgradeToVerifiedPersonal",
+    "RetryVerifiedBusinessWithInternationalController": "dwolla:RetryVerifiedBusinessWithInternationalController",
+    "UpdateUnverifiedAndReceiveOnly": "dwolla:UpdateUnverifiedAndReceiveOnly",
+    "RetryVerifiedPersonal": "dwolla:RetryVerifiedPersonal",
+    "CreateReceiveOnlyUser": "dwolla:CreateReceiveOnlyUser",
+    "UpgradeToVerifiedSoleProp": "dwolla:UpgradeToVerifiedSoleProp",
+    "UpgradeToVerifiedBusiness": "dwolla:UpgradeToVerifiedBusiness",
+    "UpgradeToUnverified": "dwolla:UpgradeToUnverified",
+    "Customers": "dwolla:Customers",
+    "RetryVerifiedSoleProp": "dwolla:RetryVerifiedSoleProp",
+    "BusinessClassifications": "dwolla:BusinessClassifications",
+    "RetryVerifiedBusinessWithController": "dwolla:RetryVerifiedBusinessWithController",
+    "DeactivateCustomer": "dwolla:DeactivateCustomer",
+    "CreateVerifiedSolePropCustomer": "dwolla:CreateVerifiedSolePropCustomer",
+    "BusinessClassification": "dwolla:BusinessClassification",
+    "RetryVerifiedBusinessNoController": "dwolla:RetryVerifiedBusinessNoController",
+    "ReactivateCustomer": "dwolla:ReactivateCustomer",
+    "InvalidFileTypeSchema": "dwolla:InvalidFileTypeSchema",
+    "InvalidResourceStateSchema": "dwolla:InvalidResourceStateSchema",
+    "NotAuthorizedSchema": "dwolla:NotAuthorizedSchema",
+    "Documents": "dwolla:Documents",
+    "Document": "dwolla:Document",
+    "documentVerificationStatus": {
+      "@id": "dwolla:documentVerificationStatus",
+      "@type": "xsd:string"
+    },
+    "failureReason": {
+      "@id": "dwolla:failureReason",
+      "@type": "xsd:string"
+    },
+    "allFailureReasons": {
+      "@id": "dwolla:allFailureReasons",
+      "@container": "@list"
+    },
+    "MaximumNumberOfResourcesSchema": "dwolla:MaximumNumberOfResourcesSchema",
+    "Events": "dwolla:Events",
+    "additionalProperties": {
+      "@id": "dwolla:additionalProperties",
+      "@type": "@id"
+    },
+    "Event": "dwolla:Event",
+    "topic": {
+      "@id": "dwolla:topic",
+      "@type": "xsd:string"
+    },
+    "resourceId": {
+      "@id": "dwolla:resourceId",
+      "@type": "xsd:string"
+    },
+    "CreateCustomerExchangeSessionWithRedirect": "dwolla:CreateCustomerExchangeSessionWithRedirect",
+    "ExchangeSession": "dwolla:ExchangeSession",
+    "externalProviderSessionToken": {
+      "@id": "dwolla:externalProviderSessionToken",
+      "@type": "xsd:string"
+    },
+    "externalProviderSessionData": {
+      "@id": "dwolla:externalProviderSessionData"
+    },
+    "CreateCustomerExchangeSessionForWeb": "dwolla:CreateCustomerExchangeSessionForWeb",
+    "CreateReAuthExchangeSessionWithRedirect": "dwolla:CreateReAuthExchangeSessionWithRedirect",
+    "AvailableExchangeConnections": "dwolla:AvailableExchangeConnections",
+    "CreateFinicitySecureExchange": "dwolla:CreateFinicitySecureExchange",
+    "finicity": {
+      "@id": "dwolla:finicity"
+    },
+    "CreatePlaidOpenBankingExchange": "dwolla:CreatePlaidOpenBankingExchange",
+    "plaid": {
+      "@id": "dwolla:plaid"
+    },
+    "Exchanges": "dwolla:Exchanges",
+    "InvalidExchange": "dwolla:InvalidExchange",
+    "ExchangePartners": "dwolla:ExchangePartners",
+    "ExchangePartner": "dwolla:ExchangePartner",
+    "Exchange": "dwolla:Exchange",
+    "CreateTokenBasedExchange": "dwolla:CreateTokenBasedExchange",
+    "token": {
+      "@id": "dwolla:token",
+      "@type": "xsd:string"
+    },
+    "CreateMXOpenBankingExchange": "dwolla:CreateMXOpenBankingExchange",
+    "mx": {
+      "@id": "dwolla:mx"
+    },
+    "InvalidExchangeToken": "dwolla:InvalidExchangeToken",
+    "UnsupportedCardCountryError": "dwolla:UnsupportedCardCountryError",
+    "CreateCustomerBankFundingSourceWithPlaid": "dwolla:CreateCustomerBankFundingSourceWithPlaid",
+    "plaidToken": {
+      "@id": "dwolla:plaidToken",
+      "@type": "xsd:string"
+    },
+    "CreateCustomerBankFundingSourceWithAccountNumbers": "dwolla:CreateCustomerBankFundingSourceWithAccountNumbers",
+    "verified": {
+      "@id": "dwolla:verified",
+      "@type": "xsd:boolean"
+    },
+    "InvalidExchangeTokenError": "dwolla:InvalidExchangeTokenError",
+    "CreateCustomerCardFundingSourceWithExchange": "dwolla:CreateCustomerCardFundingSourceWithExchange",
+    "MaximumCardsExceededError": "dwolla:MaximumCardsExceededError",
+    "VerifyMicroDeposits": "dwolla:VerifyMicroDeposits",
+    "amount1": {
+      "@id": "dwolla:amount1"
+    },
+    "amount2": {
+      "@id": "dwolla:amount2"
+    },
+    "DuplicateFundingSourceError": "dwolla:DuplicateFundingSourceError",
+    "CreateCustomerVirtualAccountFundingSource": "dwolla:CreateCustomerVirtualAccountFundingSource",
+    "CardMissingRequiredFieldsError": "dwolla:CardMissingRequiredFieldsError",
+    "InvalidTokenError": "dwolla:InvalidTokenError",
+    "InactiveExchangeError": "dwolla:InactiveExchangeError",
+    "CreateCustomerExchangeFundingSource": "dwolla:CreateCustomerExchangeFundingSource",
+    "RemoveBank": "dwolla:RemoveBank",
+    "UpdateVerifiedBank": "dwolla:UpdateVerifiedBank",
+    "OnDemandAuthorization": "dwolla:OnDemandAuthorization",
+    "bodyText": {
+      "@id": "dwolla:bodyText",
+      "@type": "xsd:string"
+    },
+    "buttonText": {
+      "@id": "dwolla:buttonText",
+      "@type": "xsd:string"
+    },
+    "UpdateUnverifiedBank": "dwolla:UpdateUnverifiedBank",
+    "ExpiredKbaSessionError": "dwolla:ExpiredKbaSessionError",
+    "InvalidKbaSessionError": "dwolla:InvalidKbaSessionError",
+    "Label": "dwolla:Label",
+    "LabelLedgerEntry": "dwolla:LabelLedgerEntry",
+    "LabelLedgerEntries": "dwolla:LabelLedgerEntries",
+    "Labels": "dwolla:Labels",
+    "MassPaymentItem": "dwolla:MassPaymentItem",
+    "Root": "dwolla:Root",
+    "SandboxSimulationCustomerVerificationRequest": "dwolla:SandboxSimulationCustomerVerificationRequest",
+    "errorCode": {
+      "@id": "dwolla:errorCode",
+      "@type": "xsd:string"
+    },
+    "SandboxSimulationVirtualAccountTransfersRequest": "dwolla:SandboxSimulationVirtualAccountTransfersRequest",
+    "transfers": {
+      "@id": "dwolla:transfers",
+      "@container": "@list"
+    },
+    "SandboxSimulationBankProcessingResponse": "dwolla:SandboxSimulationBankProcessingResponse",
+    "SandboxSimulationVirtualTransferItem": "dwolla:SandboxSimulationVirtualTransferItem",
+    "_link": {
+      "@id": "dwolla:_link"
+    },
+    "SandboxSimulationCustomerVerificationResponse": "dwolla:SandboxSimulationCustomerVerificationResponse",
+    "IncompatibleAddendaEntriesError": "dwolla:IncompatibleAddendaEntriesError",
+    "WithdrawRtpUnverifiedSenderNotSupportedError": "dwolla:WithdrawRtpUnverifiedSenderNotSupportedError",
+    "InvalidAttemptToPayInFundsError": "dwolla:InvalidAttemptToPayInFundsError",
+    "PrefundingSourceNotAllowedError": "dwolla:PrefundingSourceNotAllowedError",
+    "TooManyRequestsErrorError": "dwolla:TooManyRequestsErrorError",
+    "InvalidPointOfSaleAddendaAddressError": "dwolla:InvalidPointOfSaleAddendaAddressError",
+    "WeeklyReceiveLimitReachedError": "dwolla:WeeklyReceiveLimitReachedError",
+    "InvalidSourceFundingSourceError": "dwolla:InvalidSourceFundingSourceError",
+    "SourceNotCardNetworkSettlementError": "dwolla:SourceNotCardNetworkSettlementError",
+    "WithdrawInvalidAmountForClearingTypeError": "dwolla:WithdrawInvalidAmountForClearingTypeError",
+    "HighRiskError": "dwolla:HighRiskError",
+    "CannotParseAmountError": "dwolla:CannotParseAmountError",
+    "RtpFacilitatorFeeNotSupportedError": "dwolla:RtpFacilitatorFeeNotSupportedError",
+    "FacilitatorFeeSumTooLargeError": "dwolla:FacilitatorFeeSumTooLargeError",
+    "InvalidFeeOdfiError": "dwolla:InvalidFeeOdfiError",
+    "InvalidAmountForDestinationClearingTypeError": "dwolla:InvalidAmountForDestinationClearingTypeError",
+    "InvalidCorrelationIdError": "dwolla:InvalidCorrelationIdError",
+    "TransferExpiredForFeeError": "dwolla:TransferExpiredForFeeError",
+    "IncompatibleSourceAndDestinationTypesError": "dwolla:IncompatibleSourceAndDestinationTypesError",
+    "FacilitatorFeeAccountNotFoundError": "dwolla:FacilitatorFeeAccountNotFoundError"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Dwolla API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Dwolla's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/dwolla-accounts-api-openapi.yml, openapi/dwolla-beneficial-owners-api-openapi.yml, openapi/dwolla-client-tokens-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/dwolla-accounts-api-openapi.yml",
+    "openapi/dwolla-beneficial-owners-api-openapi.yml",
+    "openapi/dwolla-client-tokens-api-openapi.yml",
+    "openapi/dwolla-customers-api-openapi.yml",
+    "openapi/dwolla-documents-api-openapi.yml"
+  ]
+}

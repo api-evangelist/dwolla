@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-verified-business-customer-with-controller-schema.json",
+  "title": "CreateVerifiedBusinessCustomerWithController",
+  "description": "Create a Verified Business customer with a US controller",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-customers-api-openapi.yml#/components/schemas/CreateVerifiedBusinessCustomerWithController",
+  "type": "object",
+  "required": [
+    "firstName",
+    "lastName",
+    "email",
+    "address1",
+    "city",
+    "state",
+    "postalCode",
+    "type",
+    "businessType",
+    "controller",
+    "businessName",
+    "businessClassification",
+    "ein"
+  ],
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "const": "business"
+    },
+    "address1": {
+      "type": "string"
+    },
+    "address2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "businessClassification": {
+      "type": "string"
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "doingBusinessAs": {
+      "type": "string"
+    },
+    "ein": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "controller": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "title",
+        "dateOfBirth",
+        "address",
+        "ssn"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/$defs/InternationalAddress"
+        },
+        "ssn": {
+          "type": "string"
+        }
+      }
+    },
+    "businessType": {
+      "type": "string",
+      "enum": [
+        "llc",
+        "corporation",
+        "partnership"
+      ]
+    }
+  },
+  "$defs": {
+    "InternationalAddress": {
+      "title": "InternationalAddress",
+      "type": "object",
+      "required": [
+        "address1",
+        "city",
+        "country",
+        "stateProvinceRegion"
+      ],
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "address3": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "stateProvinceRegion": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

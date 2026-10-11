@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-funding-source-schema.json",
+  "title": "FundingSource",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-funding-sources-api-openapi.yml#/components/schemas/FundingSource",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "additionalProperties": {
+        "$ref": "#/$defs/HalLink"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "bankAccountType": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "removed": {
+      "type": "boolean"
+    },
+    "channels": {
+      "type": "array",
+      "description": "Payment processing channels supported by this funding source",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ach",
+          "real-time-payments",
+          "wire",
+          "external"
+        ]
+      }
+    },
+    "bankName": {
+      "type": "string"
+    },
+    "fingerprint": {
+      "type": "string"
+    },
+    "bankUsageType": {
+      "type": "string",
+      "description": "The usage type of the bank account. Indicates if this is a settlement account for card network processors.",
+      "enum": [
+        "card-network"
+      ]
+    },
+    "cardDetails": {
+      "type": "object",
+      "description": "Card-specific details. Only present when type is 'card'.",
+      "properties": {
+        "brand": {
+          "type": "string",
+          "description": "The card brand/network (e.g., Visa, Mastercard, American Express)"
+        },
+        "lastFour": {
+          "type": "string",
+          "description": "The last four digits of the card number"
+        },
+        "expirationMonth": {
+          "type": "integer",
+          "description": "The card expiration month (1-12)",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "expirationYear": {
+          "type": "integer",
+          "description": "The card expiration year (4-digit year)"
+        },
+        "nameOnCard": {
+          "type": "string",
+          "description": "The cardholder name as it appears on the card"
+        },
+        "bin": {
+          "type": "string",
+          "description": "Bank Identification Number (BIN) - the first 6-8 digits of the card number"
+        },
+        "billingAddress": {
+          "type": "object",
+          "description": "The billing address associated with the card",
+          "properties": {
+            "address1": {
+              "type": "string",
+              "description": "First line of the street address"
+            },
+            "address2": {
+              "type": "string",
+              "description": "Second line of the street address (optional)"
+            },
+            "address3": {
+              "type": "string",
+              "description": "Third line of the street address (optional)"
+            },
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "stateProvinceRegion": {
+              "type": "string",
+              "description": "Two-letter state, province, or region code"
+            },
+            "country": {
+              "type": "string",
+              "description": "Two-letter country code (ISO 3166-1 alpha-2)"
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Postal code or ZIP code"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

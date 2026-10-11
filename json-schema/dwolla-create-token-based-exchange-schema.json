@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-token-based-exchange-schema.json",
+  "title": "CreateTokenBasedExchange",
+  "description": "Create an exchange using a token. Supports MX, Plaid, and Flinks secure exchange flows, and Checkout.com for Push to Card (debit card).",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchanges-api-openapi.yml#/components/schemas/CreateTokenBasedExchange",
+  "type": "object",
+  "required": [
+    "_links",
+    "token"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "required": [
+        "exchange-partner"
+      ],
+      "properties": {
+        "exchange-partner": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "token": {
+      "type": "string",
+      "description": "Connection or processor token from the exchange partner (e.g., Plaid, MX, Flinks), or payment ID (pay_xxx) from Checkout.com Flow for Push to Card"
+    }
+  }
+}

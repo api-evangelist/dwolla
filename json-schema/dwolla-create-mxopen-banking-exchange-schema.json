@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-mxopen-banking-exchange-schema.json",
+  "title": "CreateMXOpenBankingExchange",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchanges-api-openapi.yml#/components/schemas/CreateMXOpenBankingExchange",
+  "type": "object",
+  "required": [
+    "_links",
+    "mx"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "required": [
+        "exchange-partner"
+      ],
+      "properties": {
+        "exchange-partner": {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    },
+    "mx": {
+      "type": "object",
+      "required": [
+        "availableConnectionToken"
+      ],
+      "properties": {
+        "availableConnectionToken": {
+          "type": "string",
+          "description": "The MX connection token for the available connection"
+        }
+      }
+    }
+  }
+}

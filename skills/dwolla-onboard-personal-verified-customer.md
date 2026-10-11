@@ -1,6 +1,6 @@
 ---
 generated: '2026-07-23'
-name: Onboard a personal Verified Customer with a bank funding source
+name: dwolla-onboard-personal-verified-customer
 method: generated
 description: Create a Personal Verified Customer, attach a bank funding source, and verify it (micro-deposits or Open Banking), handling KBA step-up when identity is not auto-verified.
 api: openapi/dwolla-customers-openapi.yml

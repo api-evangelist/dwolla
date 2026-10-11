@@ -40,8 +40,15 @@ van_transfer_failure_simulation:
     R02: No account (removes funding source)
 verification_directive_simulation:
   endpoint: /sandbox-simulations
-  error_codes: [PersonalIDRequired, POBoxNotAllowed, AddressNotAssociatedWithBusiness, EINDocumentRequired]
+  error_codes:
+  - PersonalIDRequired
+  - POBoxNotAllowed
+  - AddressNotAssociatedWithBusiness
+  - EINDocumentRequired
 processing_transfers:
   options:
   - POST to /sandbox-simulations
   - '"Process bank transfers" button in the Sandbox Dashboard (processes the last 500 transfers)'
+description: 'Dwolla Sandbox: a free, full-featured environment that simulates real API interactions (api-sandbox.dwolla.com)
+  for testing before going live.'
+docs: https://developers.dwolla.com/docs/testing

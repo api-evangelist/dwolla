@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-international-beneficial-owner-schema.json",
+  "title": "CreateInternationalBeneficialOwner",
+  "description": "Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/CreateInternationalBeneficialOwner",
+  "required": [
+    "firstName",
+    "lastName",
+    "dateOfBirth",
+    "address",
+    "passport"
+  ],
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/$defs/InternationalAddress"
+    },
+    "passport": {
+      "$ref": "#/$defs/Passport"
+    }
+  },
+  "$defs": {
+    "InternationalAddress": {
+      "title": "InternationalAddress",
+      "type": "object",
+      "required": [
+        "address1",
+        "city",
+        "country",
+        "stateProvinceRegion"
+      ],
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "address3": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "stateProvinceRegion": {
+          "type": "string"
+        }
+      }
+    },
+    "Passport": {
+      "title": "Passport",
+      "type": "object",
+      "required": [
+        "number",
+        "country"
+      ],
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

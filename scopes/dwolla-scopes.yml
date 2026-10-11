@@ -1,0 +1,102 @@
+generated: '2026-10-12'
+method: none
+source: openapi/dwolla-accounts-api-openapi.yml, openapi/dwolla-beneficial-owners-api-openapi.yml, openapi/dwolla-client-tokens-api-openapi.yml,
+  openapi/dwolla-customers-api-openapi.yml, openapi/dwolla-documents-api-openapi.yml, openapi/dwolla-events-api-openapi.yml,
+  openapi/dwolla-exchange-sessions-api-openapi.yml, openapi/dwolla-exchanges-api-openapi.yml, openapi/dwolla-funding-sources-api-openapi.yml,
+  openapi/dwolla-kba-api-openapi.yml, openapi/dwolla-labels-api-openapi.yml, openapi/dwolla-mass-payments-api-openapi.yml,
+  openapi/dwolla-root-api-openapi.yml, openapi/dwolla-sandbox-simulations-api-openapi.yml, openapi/dwolla-tokens-api-openapi.yml,
+  openapi/dwolla-transfers-api-openapi.yml, openapi/dwolla-webhook-subscriptions-api-openapi.yml, openapi/dwolla-webhooks-api-openapi.yml
+schemes:
+- name: clientCredentials
+  source: openapi/dwolla-accounts-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-beneficial-owners-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-client-tokens-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-customers-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-documents-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-events-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-exchange-sessions-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-exchanges-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-funding-sources-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-kba-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-labels-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-mass-payments-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-root-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-sandbox-simulations-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-tokens-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-transfers-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-webhook-subscriptions-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+- name: clientCredentials
+  source: openapi/dwolla-webhooks-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /token
+scopes: []
+note: Dwolla uses OAuth 2.0 client_credentials for application access tokens; neither the contract nor the docs publish a
+  scope list.

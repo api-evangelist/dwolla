@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-upgrade-to-verified-business-schema.json",
+  "title": "UpgradeToVerifiedBusiness",
+  "description": "Upgrade Unverified Customer to Verified Business Customer",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-customers-api-openapi.yml#/components/schemas/UpgradeToVerifiedBusiness",
+  "type": "object",
+  "required": [
+    "firstName",
+    "lastName",
+    "email",
+    "type",
+    "address1",
+    "city",
+    "state",
+    "postalCode",
+    "controller",
+    "businessClassification",
+    "businessType",
+    "businessName",
+    "ein"
+  ],
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "address1": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "controller": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "title",
+        "dateOfBirth",
+        "address"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "ssn": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "required": [
+            "address1",
+            "city",
+            "stateProvinceRegion",
+            "postalCode",
+            "country"
+          ],
+          "properties": {
+            "address1": {
+              "type": "string"
+            },
+            "address2": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "stateProvinceRegion": {
+              "type": "string"
+            },
+            "postalCode": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "businessClassification": {
+      "type": "string"
+    },
+    "businessType": {
+      "type": "string"
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "ein": {
+      "type": "string"
+    }
+  }
+}

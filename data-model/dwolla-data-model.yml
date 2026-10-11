@@ -1,76 +1,262 @@
 generated: '2026-07-18'
 method: generated
 source: https://developers.dwolla.com/docs/api-reference (documented resources + HAL _links)
-note: >-
-  Derived from the documented Dwolla API resource reference and HAL _links relationships; Dwolla does
-  not publish a public OpenAPI spec, so this graph is generated from the docs rather than mechanically
-  from a spec. Resource ids are UUIDs referenced via _links.href (HAL hypermedia).
+note: Derived from the documented Dwolla API resource reference and HAL _links relationships; Dwolla does not publish a public
+  OpenAPI spec, so this graph is generated from the docs rather than mechanically from a spec. Resource ids are UUIDs referenced
+  via _links.href (HAL hypermedia).
 entities:
 - name: Account
   description: The client's Main Dwolla Account (application owner).
   relationships:
-  - {kind: has_many, target: FundingSource, via: funding-sources}
-  - {kind: has_many, target: Customer, via: customers}
-  - {kind: has_many, target: Transfer, via: transfers}
-  - {kind: has_many, target: MassPayment, via: mass-payments}
+  - kind: has_many
+    target: FundingSource
+    via: funding-sources
+  - kind: has_many
+    target: Customer
+    via: customers
+  - kind: has_many
+    target: Transfer
+    via: transfers
+  - kind: has_many
+    target: MassPayment
+    via: mass-payments
 - name: Customer
   description: A personal, business, unverified, or receive-only end user.
   relationships:
-  - {kind: belongs_to, target: Account, via: account}
-  - {kind: has_many, target: FundingSource, via: funding-sources}
-  - {kind: has_many, target: BeneficialOwner, via: beneficial-owners}
-  - {kind: has_many, target: Document, via: documents}
-  - {kind: has_many, target: Exchange, via: exchanges}
-  - {kind: has_many, target: Label, via: labels}
-  - {kind: has_many, target: Transfer, via: transfers}
+  - kind: belongs_to
+    target: Account
+    via: account
+  - kind: has_many
+    target: FundingSource
+    via: funding-sources
+  - kind: has_many
+    target: BeneficialOwner
+    via: beneficial-owners
+  - kind: has_many
+    target: Document
+    via: documents
+  - kind: has_many
+    target: Exchange
+    via: exchanges
+  - kind: has_many
+    target: Label
+    via: labels
+  - kind: has_many
+    target: Transfer
+    via: transfers
 - name: BeneficialOwner
   description: Individual owning 25%+ of a business verified Customer.
   relationships:
-  - {kind: belongs_to, target: Customer, via: customer}
-  - {kind: has_many, target: Document, via: documents}
+  - kind: belongs_to
+    target: Customer
+    via: customer
+  - kind: has_many
+    target: Document
+    via: documents
 - name: FundingSource
   description: A bank account, debit card, or Dwolla balance used to send/receive funds.
   relationships:
-  - {kind: belongs_to, target: Customer, via: customer}
-  - {kind: has_one, target: Exchange, via: exchange}
-  - {kind: has_one, target: FundingSourceBalance, via: balance}
+  - kind: belongs_to
+    target: Customer
+    via: customer
+  - kind: has_one
+    target: Exchange
+    via: exchange
+  - kind: has_one
+    target: FundingSourceBalance
+    via: balance
 - name: Exchange
   description: A secure connection to an open-banking partner (Plaid, MX, Finicity, Flinks, Checkout.com).
   relationships:
-  - {kind: belongs_to, target: Customer, via: customer}
-  - {kind: belongs_to, target: ExchangePartner, via: exchange-partner}
-  - {kind: has_one, target: ExchangeSession, via: exchange-session}
+  - kind: belongs_to
+    target: Customer
+    via: customer
+  - kind: belongs_to
+    target: ExchangePartner
+    via: exchange-partner
+  - kind: has_one
+    target: ExchangeSession
+    via: exchange-session
 - name: ExchangePartner
   description: A supported open-banking provider.
 - name: Transfer
   description: A money movement (ACH, Same-Day, RTP/FedNow) between funding sources.
   relationships:
-  - {kind: belongs_to, target: FundingSource, via: source}
-  - {kind: belongs_to, target: FundingSource, via: destination}
-  - {kind: has_many, target: Fee, via: fees}
-  - {kind: has_one, target: TransferFailure, via: failure}
+  - kind: belongs_to
+    target: FundingSource
+    via: source
+  - kind: belongs_to
+    target: FundingSource
+    via: destination
+  - kind: has_many
+    target: Fee
+    via: fees
+  - kind: has_one
+    target: TransferFailure
+    via: failure
 - name: MassPayment
   description: A batch of transfers from one source to many destinations.
   relationships:
-  - {kind: belongs_to, target: Account, via: account}
-  - {kind: has_many, target: MassPaymentItem, via: items}
+  - kind: belongs_to
+    target: Account
+    via: account
+  - kind: has_many
+    target: MassPaymentItem
+    via: items
 - name: Label
   description: A sub-balance used to allocate funds within a verified Customer's balance.
   relationships:
-  - {kind: belongs_to, target: Customer, via: customer}
-  - {kind: has_many, target: LabelLedgerEntry, via: ledger-entries}
+  - kind: belongs_to
+    target: Customer
+    via: customer
+  - kind: has_many
+    target: LabelLedgerEntry
+    via: ledger-entries
 - name: Document
   description: An identity-verification document for a Customer or Beneficial Owner.
 - name: Event
   description: A state change on a resource; retained 30 days and drives webhooks.
   relationships:
-  - {kind: belongs_to, target: Account, via: account}
+  - kind: belongs_to
+    target: Account
+    via: account
 - name: WebhookSubscription
   description: A subscriber endpoint receiving event notifications.
   relationships:
-  - {kind: has_many, target: Webhook, via: webhooks}
+  - kind: has_many
+    target: Webhook
+    via: webhooks
 - name: Webhook
   description: A single delivery attempt of an event to a subscription.
   relationships:
-  - {kind: belongs_to, target: WebhookSubscription, via: subscription}
-  - {kind: has_many, target: WebhookRetry, via: retries}
+  - kind: belongs_to
+    target: WebhookSubscription
+    via: subscription
+  - kind: has_many
+    target: WebhookRetry
+    via: retries
+relationships:
+- from: Account
+  to: FundingSource
+  kind: has_many
+  via: funding-sources
+- from: Account
+  to: Customer
+  kind: has_many
+  via: customers
+- from: Account
+  to: Transfer
+  kind: has_many
+  via: transfers
+- from: Account
+  to: MassPayment
+  kind: has_many
+  via: mass-payments
+- from: Customer
+  to: Account
+  kind: belongs_to
+  via: account
+- from: Customer
+  to: FundingSource
+  kind: has_many
+  via: funding-sources
+- from: Customer
+  to: BeneficialOwner
+  kind: has_many
+  via: beneficial-owners
+- from: Customer
+  to: Document
+  kind: has_many
+  via: documents
+- from: Customer
+  to: Exchange
+  kind: has_many
+  via: exchanges
+- from: Customer
+  to: Label
+  kind: has_many
+  via: labels
+- from: Customer
+  to: Transfer
+  kind: has_many
+  via: transfers
+- from: BeneficialOwner
+  to: Customer
+  kind: belongs_to
+  via: customer
+- from: BeneficialOwner
+  to: Document
+  kind: has_many
+  via: documents
+- from: FundingSource
+  to: Customer
+  kind: belongs_to
+  via: customer
+- from: FundingSource
+  to: Exchange
+  kind: has_one
+  via: exchange
+- from: FundingSource
+  to: FundingSourceBalance
+  kind: has_one
+  via: balance
+- from: Exchange
+  to: Customer
+  kind: belongs_to
+  via: customer
+- from: Exchange
+  to: ExchangePartner
+  kind: belongs_to
+  via: exchange-partner
+- from: Exchange
+  to: ExchangeSession
+  kind: has_one
+  via: exchange-session
+- from: Transfer
+  to: FundingSource
+  kind: belongs_to
+  via: source
+- from: Transfer
+  to: FundingSource
+  kind: belongs_to
+  via: destination
+- from: Transfer
+  to: Fee
+  kind: has_many
+  via: fees
+- from: Transfer
+  to: TransferFailure
+  kind: has_one
+  via: failure
+- from: MassPayment
+  to: Account
+  kind: belongs_to
+  via: account
+- from: MassPayment
+  to: MassPaymentItem
+  kind: has_many
+  via: items
+- from: Label
+  to: Customer
+  kind: belongs_to
+  via: customer
+- from: Label
+  to: LabelLedgerEntry
+  kind: has_many
+  via: ledger-entries
+- from: Event
+  to: Account
+  kind: belongs_to
+  via: account
+- from: WebhookSubscription
+  to: Webhook
+  kind: has_many
+  via: webhooks
+- from: Webhook
+  to: WebhookSubscription
+  kind: belongs_to
+  via: subscription
+- from: Webhook
+  to: WebhookRetry
+  kind: has_many
+  via: retries

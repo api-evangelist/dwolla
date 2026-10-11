@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-beneficial-owners-schema.json",
+  "title": "BeneficialOwners",
+  "description": "Request model for list beneficial owners",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-beneficial-owners-api-openapi.yml#/components/schemas/BeneficialOwners",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/HalLink"
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "beneficial-owners": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BeneficialOwner"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "BeneficialOwner": {
+      "title": "BeneficialOwner",
+      "description": "Request body model for a Beneficial Owner",
+      "type": "object",
+      "required": [
+        "_links",
+        "id",
+        "firstName",
+        "lastName",
+        "address",
+        "verificationStatus",
+        "created"
+      ],
+      "properties": {
+        "_links": {
+          "additionalProperties": {
+            "$ref": "#/$defs/HalLink"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/$defs/InternationalAddress"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "document",
+            "incomplete"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    },
+    "InternationalAddress": {
+      "title": "InternationalAddress",
+      "type": "object",
+      "required": [
+        "address1",
+        "city",
+        "country",
+        "stateProvinceRegion"
+      ],
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "address3": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "stateProvinceRegion": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

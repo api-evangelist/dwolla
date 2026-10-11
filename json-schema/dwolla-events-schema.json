@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-events-schema.json",
+  "title": "Events",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-events-api-openapi.yml#/components/schemas/Events",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object"
+    },
+    "additionalProperties": {
+      "$ref": "#/$defs/HalLink"
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Event"
+          }
+        }
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "$defs": {
+    "Event": {
+      "title": "Event",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/HalLink"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        }
+      }
+    },
+    "HalLink": {
+      "title": "HalLink",
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "resource-type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

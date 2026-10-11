@@ -1,6 +1,7 @@
 generated: '2026-07-18'
 method: searched
-source: https://developers.dwolla.com/docs/api-reference/api-fundamentals/rate-limits
+source: https://developers.dwolla.com/docs/api-reference/api-fundamentals/rate-limits.md
+name: Dwolla API Rate Limits
 status_code: 429
 rate_limits:
 - type: concurrency
@@ -15,3 +16,14 @@ rate_limits:
 guidance: Implement exponential backoff and use idempotency keys; contact support@dwolla.com for elevated limits.
 headers:
   retry_after: not documented
+limits:
+- name: concurrency limit
+  scope: transfers sourced from the same Dwolla wallet (Account or Customer)
+  signal: HTTP 429 Too Many Requests on quick successive same-wallet transfers
+  limit_text: Quick successive transfers sourced from the same
+- name: volume limit
+  scope: per-endpoint request volume
+  limit_text: subsequent requests will result in an HTTP 429 Too Many Requests status code, which will persist for 5 minutes
+  note: Numeric thresholds are not published; limits target usage outside normal API patterns.
+limit_count: 0
+note: No numeric thresholds are published.

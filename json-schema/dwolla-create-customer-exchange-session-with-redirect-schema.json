@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dwolla/main/json-schema/dwolla-create-customer-exchange-session-with-redirect-schema.json",
+  "title": "CreateCustomerExchangeSessionWithRedirect",
+  "description": "Create exchange session with redirect URL (required for mobile sessions with Plaid)",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/dwolla-exchange-sessions-api-openapi.yml#/components/schemas/CreateCustomerExchangeSessionWithRedirect",
+  "type": "object",
+  "required": [
+    "_links"
+  ],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "required": [
+        "exchange-partner",
+        "redirect-url"
+      ],
+      "properties": {
+        "exchange-partner": {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "redirect-url": {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "type": "string",
+              "format": "uri",
+              "description": "Required for Plaid mobile sessions.\nFor Android: use app URI scheme (e.g., com.example.app123)\nFor iOS: use HTTPS URL (e.g., https://example.com/app123)\n"
+            }
+          }
+        }
+      }
+    }
+  }
+}

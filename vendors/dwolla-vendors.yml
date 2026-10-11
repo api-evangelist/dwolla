@@ -1,0 +1,65 @@
+generated: '2026-10-12'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: dwolla.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: hubspot
+  name: HubSpot
+  area: hosting
+  host: dwolla.com
+  evidence: header:x-hs-
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: vercel
+  name: Vercel
+  area: hosting
+  host: developers.dwolla.com
+  evidence: header:x-vercel-id
+  signal: header
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  - hosting
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.167
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: not probed'
+- dwolla.com (Website)
+- developers.dwolla.com (DeveloperPortal)
+- developers.dwolla.com (Documentation)
+- developers.dwolla.com (APIReference)
+- developers.dwolla.com (GettingStarted)
+- discuss.dwolla.com (Support)
+- accounts-sandbox.dwolla.com (SignUp)
+- dashboard.dwolla.com (Login)
+- status.dwolla.com (StatusPage)
+- api.dwolla.com (baseURL)
