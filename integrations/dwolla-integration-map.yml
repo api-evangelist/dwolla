@@ -1,0 +1,71 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: dwolla
+workflows:
+- file: dwolla-plaid-instant-account-verification.yml
+  title: Verify a Bank Account with Plaid and Attach It to a Dwolla Customer
+  partner: plaid
+  template: null
+  repos:
+  - plaid
+  - dwolla
+  steps:
+  - step: exchange-public-token
+    repo: plaid
+    spec_file: plaid-plaid-api-openapi.yml
+    operationId: itemPublicTokenExchange
+    tag: Plaid
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Exchange a public token for an access token
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: create-processor-token
+    repo: plaid
+    spec_file: plaid-plaid-api-openapi.yml
+    operationId: processorTokenCreate
+    tag: Plaid
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create a processor token for a partner
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: create-exchange
+    repo: dwolla
+    spec_file: dwolla-exchanges-api-openapi.yml
+    operationId: createCustomerExchange
+    tag: Exchanges
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: create-funding-source
+    repo: dwolla
+    spec_file: dwolla-funding-sources-api-openapi.yml
+    operationId: createCustomerFundingSource
+    tag: funding sources
+    capability_id: BC-1340
+    capability: Payments & Card Management
+    capability_l1: BC-1340
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    plaid:
+      capabilities: []
+      tags:
+      - Plaid
+    dwolla:
+      capabilities:
+      - BC-1340
+      tags:
+      - Exchanges
+      - funding sources
+  intents:
+  - Exchange a public token for an access token
+  - Create a processor token for a partner
