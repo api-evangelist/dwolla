@@ -54,3 +54,16 @@ edges:
   partner_name: Checkout.com
   partner_match: name-exact
 templates: []
+skips:
+- label: Finicity
+  cause: partner-contract
+  why: Dwolla's Finicity exchange needs a Finicity consent receipt (receiptId/receiptVersion). No operation in the
+    finicity/openapi specs issues that receipt.
+- label: Flinks
+  cause: partner-contract
+  why: Dwolla's token-based exchange needs a Flinks connection token. No Flinks spec operation is documented as
+    returning it (authorize/generateAuthorizeToken do not settle it).
+- label: Checkout.com
+  cause: partner-contract
+  why: Dwolla expects a pay_xxx payment ID from Checkout.com Flow, which runs client-side. checkout-com requestPayment
+    has no request or response schema, so the id field cannot be wired.
