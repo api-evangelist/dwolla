@@ -47,3 +47,21 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: dwolla-plaid
+  label: plaid
+  partner: plaid
+  partner_name: plaid
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/plaid/blob/main/openapi/plaid-plaid-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: plaid
+    spec_file: plaid-plaid-api-openapi.yml
+    value: dwolla
+    property: schemas.ProcessorTokenCreateRequest.processor
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  arazzo: dwolla-plaid-instant-account-verification.yml
+  status: arazzo
