@@ -69,3 +69,28 @@ workflows:
   intents:
   - Exchange a public token for an access token
   - Create a processor token for a partner
+- file: dwolla-plaid-preconfig.yml
+  title: 'dwolla through plaid: processorTokenCreate preconfigured with dwolla'
+  partner: plaid
+  template: null
+  repos:
+  - plaid
+  steps:
+  - step: call-with-preset
+    repo: plaid
+    spec_file: plaid-plaid-api-openapi.yml
+    operationId: processorTokenCreate
+    tag: Plaid
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create a processor token for a partner
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    plaid:
+      capabilities: []
+      tags:
+      - Plaid
+  intents:
+  - Create a processor token for a partner
