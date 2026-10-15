@@ -1,11 +1,12 @@
-generated: '2026-10-12'
+generated: '2026-10-14'
 method: none
-source: openapi/dwolla-accounts-api-openapi.yml, openapi/dwolla-beneficial-owners-api-openapi.yml, openapi/dwolla-client-tokens-api-openapi.yml,
-  openapi/dwolla-customers-api-openapi.yml, openapi/dwolla-documents-api-openapi.yml, openapi/dwolla-events-api-openapi.yml,
-  openapi/dwolla-exchange-sessions-api-openapi.yml, openapi/dwolla-exchanges-api-openapi.yml, openapi/dwolla-funding-sources-api-openapi.yml,
-  openapi/dwolla-kba-api-openapi.yml, openapi/dwolla-labels-api-openapi.yml, openapi/dwolla-mass-payments-api-openapi.yml,
-  openapi/dwolla-root-api-openapi.yml, openapi/dwolla-sandbox-simulations-api-openapi.yml, openapi/dwolla-tokens-api-openapi.yml,
-  openapi/dwolla-transfers-api-openapi.yml, openapi/dwolla-webhook-subscriptions-api-openapi.yml, openapi/dwolla-webhooks-api-openapi.yml
+source: openapi/dwolla-accounts-api-openapi.yml, openapi/dwolla-beneficial-owners-api-openapi.yml,
+  openapi/dwolla-client-tokens-api-openapi.yml, openapi/dwolla-customers-api-openapi.yml, openapi/dwolla-documents-api-openapi.yml,
+  openapi/dwolla-events-api-openapi.yml, openapi/dwolla-exchange-sessions-api-openapi.yml, openapi/dwolla-exchanges-api-openapi.yml,
+  openapi/dwolla-funding-sources-api-openapi.yml, openapi/dwolla-kba-api-openapi.yml, openapi/dwolla-labels-api-openapi.yml,
+  openapi/dwolla-mass-payments-api-openapi.yml, openapi/dwolla-root-api-openapi.yml, openapi/dwolla-sandbox-simulations-api-openapi.yml,
+  openapi/dwolla-tokens-api-openapi.yml, openapi/dwolla-transfers-api-openapi.yml, openapi/dwolla-webhook-subscriptions-api-openapi.yml,
+  openapi/dwolla-webhooks-api-openapi.yml
 schemes:
 - name: clientCredentials
   source: openapi/dwolla-accounts-api-openapi.yml
@@ -98,5 +99,5 @@ schemes:
   - flow: clientCredentials
     tokenUrl: /token
 scopes: []
-note: Dwolla uses OAuth 2.0 client_credentials for application access tokens; neither the contract nor the docs publish a
-  scope list.
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
