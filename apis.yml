@@ -116,6 +116,8 @@ maintainers:
   email: info@apis.io
 
 common:
+- type: OAuthScopes
+  url: scopes/dwolla-scopes.yml
 - type: IntegrationEdges
   url: integrations/dwolla-integration-edges.yml
 - type: Spectral
