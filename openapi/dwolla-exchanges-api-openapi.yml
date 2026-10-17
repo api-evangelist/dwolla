@@ -617,36 +617,19 @@ components:
               type: string
               format: date-time
               example: '2022-07-11T06:06:23Z'
-    CreatePlaidOpenBankingExchange:
-      title: CreatePlaidOpenBankingExchange
+    InvalidExchangeToken:
+      title: InvalidExchangeToken
       type: object
       required:
-      - _links
-      - plaid
+      - code
+      - message
       properties:
-        _links:
-          type: object
-          required:
-          - exchange-partner
-          properties:
-            exchange-partner:
-              type: object
-              required:
-              - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  example: https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef
-        plaid:
-          type: object
-          required:
-          - publicToken
-          properties:
-            publicToken:
-              type: string
-              description: The Plaid public token for the connection
-              example: public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c
+        code:
+          type: string
+          example: InvalidExchangeToken
+        message:
+          type: string
+          example: Exchange token is expired.
     Exchanges:
       title: Exchanges
       type: object
@@ -671,8 +654,9 @@ components:
           type: integer
           format: int32
           example: 3
-    InvalidExchange:
-      title: InvalidExchange
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
       type: object
       required:
       - code
@@ -680,28 +664,10 @@ components:
       properties:
         code:
           type: string
-          example: InvalidExchange
+          example: Forbidden
         message:
           type: string
-          example: The exchange is no longer active.
-    ExchangePartners:
-      title: ExchangePartners
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            exchange-partners:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExchangePartner'
-        total:
-          type: integer
-          format: int32
-          example: 3
+          example: The supplied credentials are not authorized for this resource.
     ExchangePartner:
       title: ExchangePartner
       type: object
@@ -736,69 +702,6 @@ components:
           type: string
           format: date-time
           example: '2022-07-23T00:18:21.419Z'
-    Exchange:
-      title: Exchange
-      type: object
-      required:
-      - _links
-      - id
-      - status
-      - created
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
-        status:
-          type: string
-          enum:
-          - active
-          - deactivated
-          - removed
-          example: active
-        created:
-          type: string
-          format: date-time
-          example: '2022-07-23T00:18:21.419Z'
-    CreateTokenBasedExchange:
-      title: CreateTokenBasedExchange
-      description: Create an exchange using a token. Supports MX, Plaid, and Flinks secure exchange flows, and Checkout.com for Push to Card (debit card).
-      type: object
-      required:
-      - _links
-      - token
-      properties:
-        _links:
-          type: object
-          required:
-          - exchange-partner
-          properties:
-            exchange-partner:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
-        token:
-          type: string
-          description: Connection or processor token from the exchange partner (e.g., Plaid, MX, Flinks), or payment ID (pay_xxx) from Checkout.com Flow for Push to Card
-          example: sandbox-token-abc123
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
     CreateMXOpenBankingExchange:
       title: CreateMXOpenBankingExchange
       type: object
@@ -829,8 +732,64 @@ components:
               type: string
               description: The MX connection token for the available connection
               example: eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=
-    InvalidExchangeToken:
-      title: InvalidExchangeToken
+    Exchange:
+      title: Exchange
+      type: object
+      required:
+      - _links
+      - id
+      - status
+      - created
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e
+        status:
+          type: string
+          enum:
+          - active
+          - deactivated
+          - removed
+          example: active
+        created:
+          type: string
+          format: date-time
+          example: '2022-07-23T00:18:21.419Z'
+    CreatePlaidOpenBankingExchange:
+      title: CreatePlaidOpenBankingExchange
+      type: object
+      required:
+      - _links
+      - plaid
+      properties:
+        _links:
+          type: object
+          required:
+          - exchange-partner
+          properties:
+            exchange-partner:
+              type: object
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  example: https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef
+        plaid:
+          type: object
+          required:
+          - publicToken
+          properties:
+            publicToken:
+              type: string
+              description: The Plaid public token for the connection
+              example: public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c
+    InvalidExchange:
+      title: InvalidExchange
       type: object
       required:
       - code
@@ -838,23 +797,28 @@ components:
       properties:
         code:
           type: string
-          example: InvalidExchangeToken
+          example: InvalidExchange
         message:
           type: string
-          example: Exchange token is expired.
-    HalLink:
-      title: HalLink
+          example: The exchange is no longer active.
+    ExchangePartners:
+      title: ExchangePartners
       type: object
       properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            exchange-partners:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExchangePartner'
+        total:
+          type: integer
+          format: int32
+          example: 3
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -869,6 +833,42 @@ components:
         message:
           type: string
           example: The requested resource was not found.
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    CreateTokenBasedExchange:
+      title: CreateTokenBasedExchange
+      description: Create an exchange using a token. Supports MX, Plaid, and Flinks secure exchange flows, and Checkout.com for Push to Card (debit card).
+      type: object
+      required:
+      - _links
+      - token
+      properties:
+        _links:
+          type: object
+          required:
+          - exchange-partner
+          properties:
+            exchange-partner:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
+        token:
+          type: string
+          description: Connection or processor token from the exchange partner (e.g., Plaid, MX, Flinks), or payment ID (pay_xxx) from Checkout.com Flow for Push to Card
+          example: sandbox-token-abc123
   parameters:
     Accept:
       name: Accept

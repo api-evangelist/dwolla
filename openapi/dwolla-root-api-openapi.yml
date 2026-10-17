@@ -101,6 +101,14 @@ paths:
       deprecated: false
 components:
   schemas:
+    Root:
+      title: Root
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
     HalLink:
       title: HalLink
       type: object
@@ -114,14 +122,6 @@ components:
         resource-type:
           type: string
           example: resource-type
-    Root:
-      title: Root
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
   parameters:
     Accept:
       name: Accept

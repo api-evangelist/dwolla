@@ -176,26 +176,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
 components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   schemas:
-    Events:
-      title: Events
-      type: object
-      properties:
-        _links:
-          type: object
-        additionalProperties:
-          $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            events:
-              type: array
-              items:
-                $ref: '#/components/schemas/Event'
-        total:
-          type: integer
-          format: int32
-          example: 3
     Event:
       title: Event
       type: object
@@ -217,19 +209,6 @@ components:
         resourceId:
           type: string
           example: 09A166BC-1B74-E511-80DB-0AA34A9B2388
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -244,17 +223,38 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
-      schema:
-        type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    Events:
+      title: Events
+      type: object
+      properties:
+        _links:
+          type: object
+        additionalProperties:
+          $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+        total:
+          type: integer
+          format: int32
+          example: 3
   securitySchemes:
     clientCredentials:
       type: oauth2

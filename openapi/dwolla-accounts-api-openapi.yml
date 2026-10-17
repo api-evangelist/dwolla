@@ -571,134 +571,6 @@ components:
             message:
               type: string
               example: Validation error(s) present. See embedded errors list for more details.
-    TransferAmount:
-      title: TransferAmount
-      type: object
-      required:
-      - value
-      - currency
-      properties:
-        value:
-          type: string
-          example: '5.00'
-        currency:
-          type: string
-          example: USD
-    DuplicateResourceSchema:
-      title: DuplicateResourceSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: DuplicateResource
-        message:
-          type: string
-          example: 'Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11'
-        _links:
-          type: object
-          properties:
-            about:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11
-                type:
-                  type: string
-                  example: application/vnd.dwolla.v1.hal+json
-                resource-type:
-                  type: string
-                  example: funding-source
-    Account:
-      title: Account
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
-        name:
-          type: string
-          example: Jane Doe's Business
-        timezoneOffset:
-          type: number
-          example: -6
-        type:
-          type: string
-          example: Commercial
-    MassPayments:
-      title: MassPayments
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            mass-payments:
-              type: array
-              items:
-                $ref: '#/components/schemas/MassPayment'
-        total:
-          type: integer
-          example: 100
-    Transfers:
-      title: Transfers
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            transfers:
-              type: array
-              items:
-                $ref: '#/components/schemas/Transfer'
-        total:
-          type: integer
-          example: 100
-    CreateAccountFundingSource:
-      title: CreateAccountFundingSource
-      type: object
-      properties:
-        _links:
-          type: object
-          properties:
-            exchange:
-              type: object
-              properties:
-                href:
-                  type: string
-        name:
-          type: string
-        bankAccountType:
-          type: string
-          enum:
-          - checking
-          - savings
-        accountNumber:
-          type: string
-        routingNumber:
-          type: string
-        channels:
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - bankAccountType
-      - accountNumber
-      - routingNumber
     Transfer:
       title: Transfer
       type: object
@@ -915,78 +787,6 @@ components:
               - fed-now
               description: The payment network used to process the transfer
               example: real-time-payments
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    FundingSources:
-      title: FundingSources
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            funding-sources:
-              type: array
-              items:
-                $ref: '#/components/schemas/FundingSource'
-        total:
-          type: integer
-          format: int32
-          example: 3
-    MassPayment:
-      title: MassPayment
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
-        status:
-          type: string
-          example: complete
-        created:
-          type: string
-          format: date-time
-          example: '2022-01-20T17:41:41.000Z'
-        metaData:
-          type: object
-        total:
-          $ref: '#/components/schemas/TransferAmount'
-        totalFees:
-          $ref: '#/components/schemas/TransferAmount'
-        correlationId:
-          type: string
-          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
-    NotFoundError:
-      title: NotFoundError
-      description: Error response schema for 404 NotFound
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
-          example: The requested resource was not found.
     FundingSource:
       title: FundingSource
       type: object
@@ -1101,6 +901,206 @@ components:
                   type: string
                   description: Postal code or ZIP code
                   example: '50310'
+    TransferAmount:
+      title: TransferAmount
+      type: object
+      required:
+      - value
+      - currency
+      properties:
+        value:
+          type: string
+          example: '5.00'
+        currency:
+          type: string
+          example: USD
+    Account:
+      title: Account
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 2e21f010-3023-4891-aced-ed726d7cd5e1
+        name:
+          type: string
+          example: Jane Doe's Business
+        timezoneOffset:
+          type: number
+          example: -6
+        type:
+          type: string
+          example: Commercial
+    Transfers:
+      title: Transfers
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            transfers:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transfer'
+        total:
+          type: integer
+          example: 100
+    DuplicateResourceSchema:
+      title: DuplicateResourceSchema
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: DuplicateResource
+        message:
+          type: string
+          example: 'Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11'
+        _links:
+          type: object
+          properties:
+            about:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11
+                type:
+                  type: string
+                  example: application/vnd.dwolla.v1.hal+json
+                resource-type:
+                  type: string
+                  example: funding-source
+    MassPayments:
+      title: MassPayments
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            mass-payments:
+              type: array
+              items:
+                $ref: '#/components/schemas/MassPayment'
+        total:
+          type: integer
+          example: 100
+    CreateAccountFundingSource:
+      title: CreateAccountFundingSource
+      type: object
+      properties:
+        _links:
+          type: object
+          properties:
+            exchange:
+              type: object
+              properties:
+                href:
+                  type: string
+        name:
+          type: string
+        bankAccountType:
+          type: string
+          enum:
+          - checking
+          - savings
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - bankAccountType
+      - accountNumber
+      - routingNumber
+    NotFoundError:
+      title: NotFoundError
+      description: Error response schema for 404 NotFound
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: NotFound
+        message:
+          type: string
+          example: The requested resource was not found.
+    MassPayment:
+      title: MassPayment
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 11ac4051-7b76-44fc-87ab-ae23012393f0
+        status:
+          type: string
+          example: complete
+        created:
+          type: string
+          format: date-time
+          example: '2022-01-20T17:41:41.000Z'
+        metaData:
+          type: object
+        total:
+          $ref: '#/components/schemas/TransferAmount'
+        totalFees:
+          $ref: '#/components/schemas/TransferAmount'
+        correlationId:
+          type: string
+          example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
+    FundingSources:
+      title: FundingSources
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            funding-sources:
+              type: array
+              items:
+                $ref: '#/components/schemas/FundingSource'
+        total:
+          type: integer
+          format: int32
+          example: 3
   parameters:
     Accept:
       name: Accept

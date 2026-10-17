@@ -738,20 +738,76 @@ paths:
                     type: string
                     example: Customer not found.
 components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
+      schema:
+        type: string
+        enum:
+        - application/vnd.dwolla.v1.hal+json
+        default: application/vnd.dwolla.v1.hal+json
   schemas:
-    HalLink:
-      title: HalLink
+    MassPaymentItem:
+      title: MassPaymentItem
       type: object
       properties:
-        href:
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388
+            mass-payment:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563
+            destination:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd
+            transfer:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388
+        id:
           type: string
-          example: https://api.dwolla.com
-        type:
+          example: 2f845bc9-41ed-e511-80df-0aa34a9b2388
+        status:
           type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
+          example: success
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '1.00'
+            currency:
+              type: string
+              example: USD
+        metadata:
+          type: object
+          properties:
+            item1:
+              type: string
+              example: item1
+        processingChannel:
+          type: object
+          properties:
+            destination:
+              type: string
+              example: real-time-payments
     TransferAmount:
       title: TransferAmount
       type: object
@@ -824,75 +880,19 @@ components:
         correlationId:
           type: string
           example: CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2
-    MassPaymentItem:
-      title: MassPaymentItem
+    HalLink:
+      title: HalLink
       type: object
       properties:
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388
-            mass-payment:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563
-            destination:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd
-            transfer:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388
-        id:
+        href:
           type: string
-          example: 2f845bc9-41ed-e511-80df-0aa34a9b2388
-        status:
+          example: https://api.dwolla.com
+        type:
           type: string
-          example: success
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-              example: '1.00'
-            currency:
-              type: string
-              example: USD
-        metadata:
-          type: object
-          properties:
-            item1:
-              type: string
-              example: item1
-        processingChannel:
-          type: object
-          properties:
-            destination:
-              type: string
-              example: real-time-payments
-  parameters:
-    Accept:
-      name: Accept
-      in: header
-      required: true
-      description: The media type of the response. Must be application/vnd.dwolla.v1.hal+json
-      schema:
-        type: string
-        enum:
-        - application/vnd.dwolla.v1.hal+json
-        default: application/vnd.dwolla.v1.hal+json
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   headers:
     Location:
       description: The location of the created resource

@@ -618,19 +618,6 @@ paths:
                     example: Forbidden from updating beneficial ownership status for this customer.
 components:
   schemas:
-    HalLink:
-      title: HalLink
-      type: object
-      properties:
-        href:
-          type: string
-          example: https://api.dwolla.com
-        type:
-          type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
     InternationalAddress:
       title: InternationalAddress
       type: object
@@ -661,6 +648,20 @@ components:
         stateProvinceRegion:
           type: string
           example: IA
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
     CreateInternationalBeneficialOwner:
       title: CreateInternationalBeneficialOwner
       description: Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
@@ -685,9 +686,8 @@ components:
           $ref: '#/components/schemas/InternationalAddress'
         passport:
           $ref: '#/components/schemas/Passport'
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
+    ValidationErrorSchema:
+      title: ValidationErrorSchema
       type: object
       required:
       - code
@@ -695,29 +695,19 @@ components:
       properties:
         code:
           type: string
-          example: BadRequest
+          example: ValidationError
         message:
           type: string
-          example: The request body contains bad syntax or is incomplete.
-    BeneficialOwnership:
-      title: BeneficialOwnership
-      type: object
-      required:
-      - _links
-      - status
-      properties:
-        _links:
+          example: Validation error(s) present. See embedded errors list for more details.
+        _embedded:
           type: object
           properties:
-            self:
-              $ref: '#/components/schemas/HalLink'
-        status:
-          type: string
-          enum:
-          - uncertified
-          - certified
-          - recertify
-          example: uncertified
+            code:
+              type: string
+              example: ValidationError
+            message:
+              type: string
+              example: Validation error(s) present. See embedded errors list for more details.
     CreateUSBeneficialOwner:
       title: CreateUSBeneficialOwner
       description: Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
@@ -743,6 +733,19 @@ components:
         ssn:
           type: string
           example: '123456789'
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
     Passport:
       title: Passport
       type: object
@@ -754,6 +757,20 @@ components:
           type: string
         country:
           type: string
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
+          example: The request body contains bad syntax or is incomplete.
     BeneficialOwners:
       title: BeneficialOwners
       description: Request model for list beneficial owners
@@ -784,20 +801,25 @@ components:
         message:
           type: string
           example: The requested resource was not found.
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
+    BeneficialOwnership:
+      title: BeneficialOwnership
       type: object
       required:
-      - code
-      - message
+      - _links
+      - status
       properties:
-        code:
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/HalLink'
+        status:
           type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
+          enum:
+          - uncertified
+          - certified
+          - recertify
+          example: uncertified
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner
@@ -836,28 +858,6 @@ components:
           type: string
           format: date-time
           example: '2022-07-23T00:18:21.419Z'
-    ValidationErrorSchema:
-      title: ValidationErrorSchema
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: ValidationError
-        message:
-          type: string
-          example: Validation error(s) present. See embedded errors list for more details.
-        _embedded:
-          type: object
-          properties:
-            code:
-              type: string
-              example: ValidationError
-            message:
-              type: string
-              example: Validation error(s) present. See embedded errors list for more details.
   parameters:
     Accept:
       name: Accept

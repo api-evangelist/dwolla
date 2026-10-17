@@ -101,20 +101,6 @@ paths:
                 $ref: '#/components/schemas/ForbiddenError'
 components:
   schemas:
-    ForbiddenError:
-      title: ForbiddenError
-      description: Error response schema for 403 Forbidden
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: The supplied credentials are not authorized for this resource.
     BadRequestError:
       title: BadRequestError
       description: Error response schema for 400 Bad Request
@@ -129,6 +115,20 @@ components:
         message:
           type: string
           example: The request body contains bad syntax or is incomplete.
+    ForbiddenError:
+      title: ForbiddenError
+      description: Error response schema for 403 Forbidden
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: The supplied credentials are not authorized for this resource.
   parameters:
     Accept:
       name: Accept

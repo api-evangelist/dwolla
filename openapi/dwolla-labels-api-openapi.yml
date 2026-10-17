@@ -910,43 +910,6 @@ paths:
                 $ref: '#/components/schemas/NotFoundError'
 components:
   schemas:
-    BadRequestError:
-      title: BadRequestError
-      description: Error response schema for 400 Bad Request
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-          example: The request body contains bad syntax or is incomplete.
-    Label:
-      title: Label
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        id:
-          type: string
-          example: 7e042ffe-e25e-40d2-b86e-748b98845ecc
-        created:
-          type: string
-          format: date-time
-          example: '2022-05-15T22:19:09.635Z'
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-              example: '10.00'
-            currency:
-              type: string
-              example: USD
     LabelLedgerEntry:
       title: LabelLedgerEntry
       type: object
@@ -970,6 +933,23 @@ components:
           type: string
           format: date-time
           example: '2019-05-16T01:54:58.062Z'
+    Labels:
+      title: Labels
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        _embedded:
+          type: object
+          properties:
+            labels:
+              type: array
+              items:
+                $ref: '#/components/schemas/Label'
+        total:
+          type: integer
+          example: 100
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden
@@ -984,6 +964,29 @@ components:
         message:
           type: string
           example: The supplied credentials are not authorized for this resource.
+    Label:
+      title: Label
+      type: object
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/HalLink'
+        id:
+          type: string
+          example: 7e042ffe-e25e-40d2-b86e-748b98845ecc
+        created:
+          type: string
+          format: date-time
+          example: '2022-05-15T22:19:09.635Z'
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+              example: '10.00'
+            currency:
+              type: string
+              example: USD
     LabelLedgerEntries:
       title: LabelLedgerEntries
       type: object
@@ -1002,36 +1005,20 @@ components:
         total:
           type: integer
           example: 100
-    HalLink:
-      title: HalLink
+    BadRequestError:
+      title: BadRequestError
+      description: Error response schema for 400 Bad Request
       type: object
+      required:
+      - code
+      - message
       properties:
-        href:
+        code:
           type: string
-          example: https://api.dwolla.com
-        type:
+          example: BadRequest
+        message:
           type: string
-          example: application/vnd.dwolla.v1.hal+json
-        resource-type:
-          type: string
-          example: resource-type
-    Labels:
-      title: Labels
-      type: object
-      properties:
-        _links:
-          additionalProperties:
-            $ref: '#/components/schemas/HalLink'
-        _embedded:
-          type: object
-          properties:
-            labels:
-              type: array
-              items:
-                $ref: '#/components/schemas/Label'
-        total:
-          type: integer
-          example: 100
+          example: The request body contains bad syntax or is incomplete.
     NotFoundError:
       title: NotFoundError
       description: Error response schema for 404 NotFound
@@ -1046,6 +1033,19 @@ components:
         message:
           type: string
           example: The requested resource was not found.
+    HalLink:
+      title: HalLink
+      type: object
+      properties:
+        href:
+          type: string
+          example: https://api.dwolla.com
+        type:
+          type: string
+          example: application/vnd.dwolla.v1.hal+json
+        resource-type:
+          type: string
+          example: resource-type
   parameters:
     Accept:
       name: Accept
