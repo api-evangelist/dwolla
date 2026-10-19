@@ -7,15 +7,22 @@ source:
 - https://monid.ai/tools/dwolla
 checked:
 - https://a2aregistry.org/api/agents
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/dwolla
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://crates.io/api/v1
 - https://developers.dwolla.com/docs/open-banking/mx.md
 - https://developers.dwolla.com/docs/open-banking/plaid.md
 - https://developers.dwolla.com/docs/secure-exchange/plaid.md
 - https://developers.dwolla.com/llms.txt
 - https://monid.ai/tools/dwolla
 - https://n8n.io/integrations/dwolla/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.dwolla.com/partners
 - https://www.make.com/en/integrations/dwolla
 - https://zapier.com/apps/dwolla/integrations
@@ -133,6 +140,105 @@ edges:
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
   detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@dwolla/react-drop-ins
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@dwolla/react-drop-ins'
+      version: 1.2.0
+      released: '2026-04-27'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@dwolla/react-drop-ins
+      repo_leg: github-org:dwolla
+      publisher_leg: email:dwolla.com
+      matched_by: domain
+    - name: dwolla-v2
+      version: 3.4.2
+      released: '2026-06-23'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/dwolla-v2
+      repo_leg: github-org:dwolla
+      publisher_leg: email:dwolla.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/dwollav2/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: dwollav2
+      version: 2.3.0
+      released: '2025-09-16'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/dwollav2/
+      repo_leg: domain:dwolla.com
+      publisher_leg: email:dwolla.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/dwolla_v2
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: dwolla_v2
+      version: 4.0.0
+      released: '2023-10-04'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/dwolla_v2
+      repo_leg: github-org:dwolla
+      publisher_leg: org:dwolla
+      matched_by: github-org
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 templates: []
 skips:
