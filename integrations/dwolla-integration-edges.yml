@@ -78,69 +78,6 @@ edges:
     property: schemas.ProcessorTokenCreateRequest.processor
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
-- partner_name: A2A protocol (own Agent Card)
-  partner: null
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: A2A agent
-  evidence: https://developers.dwolla.com/.well-known/agent-card.json
-  channel: provider-built
-  relationship: compatible
-  shape: a2a
-  evidence_kind: own-wellknown
-  degree: conformant
-  report_only: true
-  a2a_card:
-    grade: conformant
-    verdict: live
-    protocol_version: '0.3'
-    deviations:
-    - supportedInterfaces-instead-of-additionalInterfaces
-    card_subject: null
-  contract_reference:
-    register: provider's own /.well-known/agent-card.json
-    spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: Dwolla Developer Portal
-    organization: Dwolla Developer Portal
-    matched_domain: dwolla.com
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  detected_by: sweep-ai-agents.py
-  first_seen: '2026-10-15'
-- partner_name: Airbyte
-  partner: airbyte
-  partner_match: aggregator
-  type: marketplace
-  marketplace: airbyte-registry
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://docs.airbyte.com/integrations/sources/dwolla
-  category: null
-  contract_reference:
-    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
-    spec_file: null
-    role: elt-connector:airbyte-community
-    registered_name: Dwolla
-    matched_domain: dwolla.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connectors:
-    - airbyte/source-dwolla
-    support_level:
-    - community
-    release_stage:
-    - alpha
-    in_cloud: true
-    builder: unknown (community connector; contributor not in the record)
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -239,6 +176,36 @@ edges:
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Airbyte
+  partner: airbyte
+  partner_match: aggregator
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://docs.airbyte.com/integrations/sources/dwolla
+  category: null
+  contract_reference:
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
+    spec_file: null
+    role: elt-connector:airbyte-community
+    registered_name: Dwolla
+    matched_domain: dwolla.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/source-dwolla
+    support_level:
+    - community
+    release_stage:
+    - alpha
+    in_cloud: true
+    builder: unknown (community connector; contributor not in the record)
+  detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
 templates: []
 skips:
