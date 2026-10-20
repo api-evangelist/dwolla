@@ -197,3 +197,25 @@
     builder: unknown (community connector; contributor not in the record)
   status: not-a-workflow
   arazzo: null
+- slug: dwolla-claude-plugins-dev
+  label: claude-plugins.dev
+  partner_name: claude-plugins.dev
+  category: Agent Skills register
+  type: register
+  channel: standard-directory
+  evidence: https://claude-plugins.dev/skills/@dwolla/integration-examples
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: claude-plugins.dev (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: dwolla
+    matched_by: org-profile-domain:dwolla.com
+    sample_skills:
+    - integration-examples-contributor
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
