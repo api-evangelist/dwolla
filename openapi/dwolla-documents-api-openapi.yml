@@ -798,3 +798,9 @@ components:
           tokenUrl: /token
           x-speakeasy-token-endpoint-authentication: client_secret_basic
           scopes: {}
+x-provenance:
+  method: harvested
+  publisher: Dwolla
+  source: https://raw.githubusercontent.com/dwolla/dwolla-openapi/HEAD/openapi.yml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
